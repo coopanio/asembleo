@@ -1,0 +1,7 @@
+<%= form_with url: sessions_path do |f| %>
+  <div class="form-group">
+    <%= f.label :token %>
+    <%= f.text_field :token, class: 'form-control', autofocus: '', autocomplete: 'off' %>
+  </div>
+  <%= f.submit 'Accedir', class: 'btn btn-primary' %>
+<% end %>
