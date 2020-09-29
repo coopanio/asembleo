@@ -1,0 +1,18 @@
+<a class="navbar-brand" href="#">Assemblea</a>
+<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="navbar-collapse collapse mb-2 mb-md-0" id="navbarCollapse">
+  <% if @current_user %>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <span class="badge bg-info"><%= @current_user.role %></span>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to 'Tancar sessió', session_path('current'), method: :delete, class: 'nav-link' %>
+      </li>
+    </ul>
+  <% end %>
+</div>

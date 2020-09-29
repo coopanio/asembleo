@@ -1,0 +1,24 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <ul class="nav">
+      <li class="nav-item">
+        <strong><a href="#" class="nav-link disabled">Preguntes</a></strong>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Pregunta</th>
+          <th colspan="2">
+        </tr>
+      <thead>
+      <% @event.consultation.questions.order(:weight).each do |question| %>
+      <tr>
+        <td><%= question.weight %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

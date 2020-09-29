@@ -21,7 +21,11 @@ class SessionsController < ApplicationController
   private
 
   def destination
-    if token.admin? || token.manager? || next_question.blank?
+    if token.admin?
+      edit_consultation_url(consultation)
+    elsif token.manager?
+      edit_event_url(token.event)
+    elsif next_question.blank?
       consultation_url(consultation)
     else
       question_url(next_question)

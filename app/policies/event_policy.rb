@@ -14,7 +14,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    show? && token.admin?
+    show? && !token.voter?
   end
 
   def destroy?

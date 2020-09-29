@@ -16,7 +16,7 @@ class EventsController < ApplicationController
       token.save!
     end
 
-    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+    redirect
   end
 
   def edit
@@ -25,19 +25,27 @@ class EventsController < ApplicationController
 
   def update
     authorize event
-    event.update!(create_params)
+    event.update!(update_params)
 
-    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+    redirect
   end
 
   def destroy
     authorize event
     event.destroy!
 
-    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+    redirect
   end
 
   private
+
+  def redirect
+    if current_user.admin?
+      redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+    else
+      redirect_to controller: 'events', action: 'edit', id: event.id
+    end
+  end
 
   def consultation
     current_user.consultation
@@ -45,6 +53,14 @@ class EventsController < ApplicationController
 
   def create_params
     params.require(:event).permit(:title)
+  end
+
+  def update_params
+    if current_user.admin?
+      params.require(:event).permit(:title, :status)
+    else
+      params.require(:event).permit(:status)
+    end
   end
 
   def event

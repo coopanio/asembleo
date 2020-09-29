@@ -1,7 +1,11 @@
 <%= form_with scope: :event, model: @event do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
+  <div class="mb-3">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control', disabled: @current_user.manager? %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :status, class: 'form-label' %>
+    <%= f.select :status, Event.statuses.keys.to_a, class: 'form-control' %>
   </div>
   <%= f.submit 'Guardar', class: 'btn btn-primary' %>
 <% end %>
