@@ -6,9 +6,9 @@ class Event < ApplicationRecord
   belongs_to :consultation
   has_many :tokens, dependent: :nullify
 
-  enum status: { open: 1, closed: 0 }
+  enum status: { opened: 1, closed: 0 }
 
   def manager
-    tokens.find_by_role(:manager)
+    tokens.where(role: :manager).first
   end
 end

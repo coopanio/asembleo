@@ -1,4 +1,4 @@
 <%= render 'form' %>
-<% if @current_user.manager? && @event.status == 'open' %>
+<% if @current_user.manager? && @event.opened? %>
   <%= render 'questions' %>
 <% end %>

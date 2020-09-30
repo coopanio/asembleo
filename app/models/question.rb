@@ -7,14 +7,15 @@ class Question < ApplicationRecord
   has_many :receipts, dependent: :destroy
   has_many :votes, dependent: :destroy
 
-  enum status: { draft: 0, open: 1, closed: 2 }
+  enum status: { draft: 0, opened: 1, closed: 2 }
 
   def self.next(token)
     receipts = Receipt.arel_table
-    questions = Question.arel_table
-    condition = [receipts[:question_id].eq(questions[:id]), receipts[:token_id].eq(token.id)]
+    questions = EventsQuestion.arel_table
+    condition = [receipts[:question_id].eq(questions[:question_id]), receipts[:token_id].eq(token.id)]
     join = questions.join(receipts, Arel::Nodes::OuterJoin).on(*condition)
-    joins(join.join_sources).where(status: :open, receipts: { id: nil }).order(:weight).first
+    query = EventsQuestion.joins(join.join_sources).where(status: :opened, receipts: { id: nil }).order(:weight)
+    query.first.try(:question)
   end
 
   def valid_option?(value)

@@ -10,7 +10,7 @@ class QuestionTest < ActiveSupport::TestCase
     @token = create(:token, consultation: consultation)
   end
 
-  subject { consultation.questions.next(token) }
+  subject { Question.next(token) }
 
   test 'should return no next question' do
     assert subject.blank?
@@ -22,14 +22,16 @@ class QuestionTest < ActiveSupport::TestCase
   end
 
   test 'should return the first open question' do
-    question = create(:question, consultation: consultation, status: :open)
+    question = create(:question, consultation: consultation, status: :opened)
+    create(:events_question, question: question, status: :opened)
     assert subject.present?
     assert_equal subject.id, question.id
   end
 
   test 'should return the first open question (second)' do
-    questions = %i[closed open draft].map do |status|
-      create(:question, consultation: consultation, status: status)
+    event = create(:event)
+    questions = %i[closed opened draft].map do |status|
+      init_questions(status, event)
     end
 
     assert subject.present?
@@ -37,13 +39,23 @@ class QuestionTest < ActiveSupport::TestCase
   end
 
   test 'should return the first un-voted and open question (third)' do
-    questions = %i[closed open open draft].map do |status|
-      create(:question, consultation: consultation, status: status)
+    event = create(:event)
+    questions = %i[closed opened opened draft].map do |status|
+      init_questions(status, event)
     end
     create(:receipt, token: token, question: questions.first)
     create(:receipt, token: token, question: questions.second)
 
     assert subject.present?
     assert_equal subject.id, questions.third.id
+  end
+
+  private
+
+  def init_questions(status, event)
+    question = create(:question, consultation: consultation, status: status)
+    event_status = status == :draft ? :closed : status
+    create(:events_question, question: question, event: event, status: event_status)
+    question
   end
 end

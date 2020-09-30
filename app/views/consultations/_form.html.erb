@@ -12,4 +12,5 @@
     <%= f.select :status, Consultation.statuses.keys.to_a, class: 'form-control' %>
   </div>
   <%= f.submit 'Guardar', class: 'btn btn-primary' %>
+  <%= link_to 'Enrere', :back %>
 <% end %>

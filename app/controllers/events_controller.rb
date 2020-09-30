@@ -51,6 +51,10 @@ class EventsController < ApplicationController
     current_user.consultation
   end
 
+  def event
+    @event ||= policy_scope(Event).find(params[:id])
+  end
+
   def create_params
     params.require(:event).permit(:title)
   end
@@ -61,9 +65,5 @@ class EventsController < ApplicationController
     else
       params.require(:event).permit(:status)
     end
-  end
-
-  def event
-    @event ||= policy_scope(Event).find(params[:id])
   end
 end

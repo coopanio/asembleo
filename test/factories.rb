@@ -32,6 +32,12 @@ FactoryBot.define do
     status { :closed }
   end
 
+  factory :events_question do
+    event
+    question
+    status { :closed }
+  end
+
   factory :vote do
     question
     value { 'yes' }

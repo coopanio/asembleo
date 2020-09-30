@@ -10,13 +10,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>Ordre</th>
           <th>Pregunta</th>
-          <th colspan="2">
+          <th></th>
         </tr>
       <thead>
       <% @event.consultation.questions.order(:weight).each do |question| %>
       <tr>
         <td><%= question.weight %></td>
+        <td><%= question.description %></td>
+        <td>
+            <%= question_opener_closer_link(@event, question)  %>
+        </td>
       </tr>
       <% end %>
     </table>

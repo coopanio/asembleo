@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_200945) do
+ActiveRecord::Schema.define(version: 2020_09_30_135646) do
 
   create_table "consultations", force: :cascade do |t|
     t.string "title"
@@ -21,12 +21,22 @@ ActiveRecord::Schema.define(version: 2020_09_28_200945) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "title"
     t.integer "status", default: 0
     t.integer "consultation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
     t.index ["consultation_id"], name: "index_events_on_consultation_id"
+  end
+
+  create_table "events_questions", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "question_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_events_questions_on_event_id"
+    t.index ["question_id"], name: "index_events_questions_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -83,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_09_28_200945) do
   end
 
   add_foreign_key "events", "consultations"
+  add_foreign_key "events_questions", "events"
+  add_foreign_key "events_questions", "questions"
   add_foreign_key "questions", "consultations"
   add_foreign_key "receipts", "questions"
   add_foreign_key "receipts", "tokens"

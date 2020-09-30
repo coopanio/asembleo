@@ -22,7 +22,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     token = create(:token, :admin)
     post sessions_url, params: { token: token.to_hash }
 
-    @params = { consultation: { status: 'open' } }
+    @params = { consultation: { status: 'opened' } }
     patch consultation_url(token.consultation.id), params: params
 
     consultation = Consultation.all.first
