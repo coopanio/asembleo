@@ -1,4 +1,6 @@
 <%= render 'form' %>
-<% if @current_user.manager? && @event.opened? %>
-  <%= render 'questions' %>
+<% if @current_user.manager? %>
+  <hr>
+  <% if @event.opened? %><%= render 'questions' %><% end %>
+  <%= render 'tokens' %>
 <% end %>

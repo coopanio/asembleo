@@ -30,6 +30,19 @@ class EventsController < ApplicationController
     redirect
   end
 
+  def generate_tokens
+    authorize event
+    
+    @tokens = []
+    total = generate_tokens_params.to_i
+
+    Token.transaction do
+      total.times do
+        @tokens << Token.create(consultation: event.consultation, event: event)
+      end
+    end
+  end
+
   def destroy
     authorize event
     event.destroy!
@@ -65,5 +78,9 @@ class EventsController < ApplicationController
     else
       params.require(:event).permit(:status)
     end
+  end
+
+  def generate_tokens_params
+    params.require(:total)
   end
 end

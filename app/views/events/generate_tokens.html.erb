@@ -1,0 +1,7 @@
+<p>Identificadors creats:</p>
+<ul>
+  <% @tokens.each do |token| %>
+    <li><%= token %></li>
+  <% end %>
+</ul>
+<%= link_to 'Enrere', :back, class: 'btn btn-link px-0' %>

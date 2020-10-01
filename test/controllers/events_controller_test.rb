@@ -41,4 +41,17 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal 0, Event.all.size
   end
+
+  test 'should create tokens' do
+    token.update!(role: :manager)
+    post sessions_url, params: { token: token.to_hash }
+
+    event = create(:event, consultation: token.consultation)
+    total_tokens = 10
+
+    post "/events/#{event.id}/tokens", params: { total: total_tokens }
+
+    assert_response :success
+    assert_equal total_tokens, Token.where(event: event, role: :voter).size
+  end
 end

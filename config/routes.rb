@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   patch 'questions/:id/open', to: 'questions#open'
   patch 'questions/:id/close', to: 'questions#close'
+  post 'events/:id/tokens', to: 'events#generate_tokens'
   get '/', to: 'main#index'
 end

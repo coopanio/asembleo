@@ -17,6 +17,10 @@ class EventPolicy < ApplicationPolicy
     show? && !token.voter?
   end
 
+  def generate_tokens?
+    show? && token.manager?
+  end
+
   def destroy?
     show? && token.admin?
   end
