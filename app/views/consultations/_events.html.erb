@@ -20,9 +20,10 @@
       <tr>
         <td><%= event.title %></td>
         <td><%= event.manager %></td>
-        <td><%= link_to 'Editar', edit_event_path(event) %></td>
+        <td><%= link_to 'Editar', edit_event_path(event), class: 'btn btn-link py-0' %></td>
         <td><%= link_to 'Eliminar',
                 event_path(event),
+                class: 'btn btn-link py-0',
                 method: :delete,
                 data: { confirm: 'Segur que vols fer-ho?' } %></td>
       </tr>
