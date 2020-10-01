@@ -5,6 +5,7 @@ require 'test_helper'
 class EventsHelperTest < ActionView::TestCase
   attr_accessor :event, :question, :expected
 
+  # rubocop:disable Layout/LineLength
   setup do
     consultation = create(:consultation, status: :opened)
     @event = create(:event, consultation: consultation)
@@ -15,6 +16,7 @@ class EventsHelperTest < ActionView::TestCase
       close: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/close?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" /><input class=\"btn btn-link py-0\" type=\"submit\" value=\"Tancar\" /></form>"
     }
   end
+  # rubocop:enable Layout/LineLength
 
   subject { question_opener_closer_link(event, question) }
 

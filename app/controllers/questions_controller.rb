@@ -68,5 +68,5 @@ class QuestionsController < ApplicationController
     params.require(:event).permit(:id)
   end
 
-  alias :close_params :open_params
+  alias close_params open_params
 end

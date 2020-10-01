@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
   def generate_tokens
     authorize event
-    
+
     @tokens = []
     total = generate_tokens_params.to_i
 

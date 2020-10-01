@@ -19,13 +19,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = Event.first
     assert_response :redirect
     assert_equal event.title, params[:event][:title]
-    assert_equal Token.all.size, 2
+    assert_equal 2, Token.all.size
   end
 
   test 'should update event' do
     params = { event: { title: 'Test 2' } }
-    event = create(:event, consultation: token.consultation)    
-    
+    event = create(:event, consultation: token.consultation)
+
     patch event_url(event.id), params: params
 
     event = Event.first
@@ -35,7 +35,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should delete event' do
     event = create(:event, consultation: token.consultation)
-    
+
     delete event_url(event.id)
 
     assert_response :redirect

@@ -6,8 +6,30 @@ module EventsHelper
     return '-' unless question.consultation.opened?
 
     rel = EventsQuestion.find_by(event: event, question: question)
-    return button_to('Obrir', { controller: 'questions', action: 'open', id: question.id, event: { id: event.id } }, method: :patch, class: 'btn btn-link py-0') if rel.nil? || rel.closed?
+    if rel.nil? || rel.closed?
+      return button_to('Obrir', question_action_params('open', event, question), **button_params)
+    end
 
-    button_to('Tancar', { controller: 'questions', action: 'close', id: question.id, event: { id: event.id } }, method: :patch, class: 'btn btn-link py-0')
+    button_to('Tancar', question_action_params('close', event, question), **button_params)
+  end
+
+  private
+
+  def question_action_params(action, event, question)
+    {
+      controller: 'questions',
+      action: action,
+      id: question.id,
+      event: {
+        id: event.id
+      }
+    }
+  end
+
+  def button_params
+    {
+      method: :patch,
+      class: 'btn btn-link py-0'
+    }
   end
 end

@@ -2,13 +2,13 @@
 
 Rails.application.routes.draw do
   resources :consultations, shallow: true
-  resources :events, shallow: true
-  resources :questions, shallow: true
-  resources :sessions, shallow: true
-  resources :votes, shallow: true
+  resources :events,        shallow: true
+  resources :questions,     shallow: true
+  resources :sessions,      shallow: true
+  resources :votes,         shallow: true
 
-  patch 'questions/:id/open', to: 'questions#open'
+  patch 'questions/:id/open',  to: 'questions#open'
   patch 'questions/:id/close', to: 'questions#close'
-  post 'events/:id/tokens', to: 'events#generate_tokens'
-  get '/', to: 'main#index'
+  post  'events/:id/tokens',   to: 'events#generate_tokens'
+  get   '/',                   to: 'main#index'
 end

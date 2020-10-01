@@ -9,6 +9,6 @@ class Event < ApplicationRecord
   enum status: { opened: 1, closed: 0 }
 
   def manager
-    tokens.where(role: :manager).first
+    tokens.find_by(role: :manager)
   end
 end
