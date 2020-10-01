@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     reset_session
     session[:token] = token.id
@@ -41,10 +38,15 @@ class SessionsController < ApplicationController
   end
 
   def token
-    @token ||= Token.from_hash(fingerprint)
+    return @token if defined?(@token)
+
+    @token = Token.from_hash(identifier)
+    @token = Token.from_alias(identifier) if @token.nil?
+
+    @token
   end
 
-  def fingerprint
+  def identifier
     params.require(:token)
   end
 end

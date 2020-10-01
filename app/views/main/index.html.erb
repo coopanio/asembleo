@@ -1,8 +1,11 @@
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <%= link_to 'Crear', new_consultation_path, class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to 'Accedir', new_session_path, class: 'nav-link' %>
-  </li>
-</ul>
+<div class="m-auto col-3">
+  <%= form_with url: sessions_path, class: 'row g-3' do |f| %>
+    <div class="col">
+      <%= f.text_field :token, class: 'form-control', autofocus: '', autocomplete: 'off', placeholder: 'Identificador' %>
+    </div>
+    <%= f.submit 'Accedir', class: 'btn btn-primary' %>
+  <% end %>
+  <div class="row">
+    <%= link_to 'Crear votació', new_consultation_path, class: 'btn btn-link link-info px-0' %>
+  </div>
+</div>
