@@ -1,3 +1,5 @@
 <h2><%= @consultation.title %></h2>
-<%= raw(@consultation.description) %>
+<div class="mb-3">
+  <%= raw(@consultation.description) %>
+</div>
 <%= render @consultation.status %>
