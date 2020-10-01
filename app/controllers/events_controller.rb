@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  include DestinationConcern
+
   def new
     authorize Event
     @event = Event.new(consultation: consultation)
@@ -16,7 +18,7 @@ class EventsController < ApplicationController
       token.save!
     end
 
-    redirect
+    redirect_to event_destination
   end
 
   def edit
@@ -27,7 +29,12 @@ class EventsController < ApplicationController
     authorize event
     event.update!(update_params)
 
-    redirect
+    redirect_to event_destination
+  end
+
+  def next_question
+    authorize event
+    redirect_to destination
   end
 
   def generate_tokens
@@ -47,21 +54,17 @@ class EventsController < ApplicationController
     authorize event
     event.destroy!
 
-    redirect
+    redirect_to event_destination
   end
 
   private
 
-  def redirect
+  def event_destination
     if current_user.admin?
-      redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+      { controller: 'consultations', action: 'edit', id: consultation.id }
     else
-      redirect_to controller: 'events', action: 'edit', id: event.id
+      { controller: 'events', action: 'edit', id: event.id }
     end
-  end
-
-  def consultation
-    current_user.consultation
   end
 
   def event
@@ -83,4 +86,6 @@ class EventsController < ApplicationController
   def generate_tokens_params
     params.require(:total)
   end
+
+  alias token current_user
 end

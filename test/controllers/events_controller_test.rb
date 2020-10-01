@@ -43,12 +43,12 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create tokens' do
+    event = create(:event, consultation: token.consultation)
+
     token.update!(role: :manager)
     post sessions_url, params: { token: token.to_hash }
 
-    event = create(:event, consultation: token.consultation)
     total_tokens = 10
-
     post "/events/#{event.id}/tokens", params: { total: total_tokens }
 
     assert_response :success

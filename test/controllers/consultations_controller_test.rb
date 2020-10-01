@@ -20,7 +20,9 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update consultation' do
     token = create(:token, :admin)
+
     post sessions_url, params: { token: token.to_hash }
+    assert_response :redirect
 
     @params = { consultation: { status: 'opened' } }
     patch consultation_url(token.consultation.id), params: params

@@ -2,15 +2,25 @@
 
 require 'test_helper'
 
-class QuestionTest < ActiveSupport::TestCase
+class DestinationConcernTest < ActiveSupport::TestCase
   attr_reader :consultation, :token
+
+  class Stub
+    include DestinationConcern
+
+    attr_reader :token
+
+    def initialize(token)
+      @token = token
+    end
+  end
 
   setup do
     @consultation = create(:consultation)
     @token = create(:token, consultation: consultation)
   end
 
-  subject { Question.next(token) }
+  subject { Stub.new(token).send(:active_question) }
 
   test 'should return no next question' do
     assert subject.blank?
@@ -18,12 +28,14 @@ class QuestionTest < ActiveSupport::TestCase
 
   test 'should return no next question (all in draft status)' do
     create(:question, consultation: consultation)
+
     assert subject.blank?
   end
 
   test 'should return the first open question' do
     question = create(:question, consultation: consultation, status: :opened)
     create(:events_question, question: question, status: :opened)
+
     assert subject.present?
     assert_equal subject.id, question.id
   end

@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class EventsHelperTest < ActionView::TestCase
-  attr_accessor :event, :question, :expected
+  attr_reader :event, :question, :expected
 
   # rubocop:disable Layout/LineLength
   setup do
