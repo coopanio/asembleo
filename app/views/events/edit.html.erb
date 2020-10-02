@@ -1,6 +1,6 @@
-<%= render 'form' %>
-<% if @current_user.manager? %>
+<% if @consultation.config.asynchronous? %>
+  <%= render 'form' %>
   <hr>
   <% if @event.opened? %><%= render 'questions' %><% end %>
-  <%= render 'tokens' %>
 <% end %>
+<%= render 'tokens' %>

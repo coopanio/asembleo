@@ -17,6 +17,8 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert session[:token].present?
     assert_not_equal token.id, session[:token]
+    assert Token.exists?(role: :manager, consultation: consultation)
+    assert_equal 1, Event.where(consultation: consultation).count
     assert_equal params[:consultation][:title], consultation.title
     assert_equal params[:consultation][:description], consultation.description
   end

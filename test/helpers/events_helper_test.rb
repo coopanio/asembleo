@@ -34,11 +34,6 @@ class EventsHelperTest < ActionView::TestCase
     assert_equal expected[:close], subject
   end
 
-  test 'return no link when question is not opened' do
-    question.update!(status: :draft)
-    assert_equal '-', subject
-  end
-
   test 'return no link when consultation is not open' do
     question.consultation.update!(status: :draft)
     assert_equal '-', subject

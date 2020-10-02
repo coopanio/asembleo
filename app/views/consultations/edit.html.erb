@@ -1,3 +1,7 @@
+<%= render 'flash' %>
 <%= render 'form' %>
 <hr>
-<%= render 'events' %>
+<%= render 'questions' %>
+<% if @consultation.config.asynchronous? %>
+  <%= render 'events' %>
+<% end %>

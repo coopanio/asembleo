@@ -23,6 +23,8 @@ class EventsController < ApplicationController
 
   def edit
     authorize event
+
+    @consultation = event.consultation
   end
 
   def update
