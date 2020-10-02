@@ -3,7 +3,7 @@
     <strong>Identificadors</strong>
   </div>
   <div class="card-body">
-    <%= form_with url: { controller: :events, action: :generate_tokens }, class: 'row row-cols-auto g-3 align-items-center', local: true do |f| %>
+    <%= form_with url: { controller: :events, action: :generate_tokens, id: @event.id }, class: 'row row-cols-auto g-3 align-items-center', local: true do |f| %>
       <div class="col">
          <%= f.text_field :total, class: 'form-control' %>
       </div>

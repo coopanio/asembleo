@@ -4,4 +4,6 @@
 <%= render 'questions' %>
 <% if @consultation.config.asynchronous? %>
   <%= render 'events' %>
+<% elsif @consultation.config.synchronous? %>
+  <%= render 'tokens' %>
 <% end %>

@@ -37,13 +37,15 @@ class ConsultationsController < ApplicationController
 
   def edit
     authorize consultation
+
+    @event = consultation.events.first if consultation.config.synchronous?
   end
 
   def update
     authorize consultation
     consultation.update!(update_params)
 
-    redirect_to action: 'edit', id: @consultation.id
+    redirect_back(fallback_location: root_path)
   end
 
   def show

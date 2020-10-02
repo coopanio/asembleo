@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     authorize @question
 
     @question.save!
-    redirect_to action: 'show', id: question.id
+    redirect_to action: 'edit', id: question.id
   end
 
   def edit
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     authorize question
     question.save!
 
-    redirect_to action: 'show', id: question.id
+    redirect_back(fallback_location: root_path)
   end
 
   def show
@@ -31,10 +31,15 @@ class QuestionsController < ApplicationController
 
   def open
     authorize question
-    rel = EventsQuestion.find_or_create_by(event: event, question: question)
-    rel.update!(status: :opened)
 
-    redirect_to controller: 'events', action: 'edit', id: event.id
+    EventsQuestion.transaction do
+      rel = EventsQuestion.find_or_create_by(event: event, question: question)
+      rel.update!(status: :opened)
+
+      question.update!(status: :opened) if consultation.config.synchronous?
+    end
+
+    redirect_back(fallback_location: root_path)
   end
 
   def tally
@@ -49,10 +54,15 @@ class QuestionsController < ApplicationController
 
   def close
     authorize question
-    rel = EventsQuestion.find_by(event: event, question: question)
-    rel.update!(status: :closed)
 
-    redirect_to controller: 'events', action: 'edit', id: event.id
+    EventsQuestion.transaction do
+      rel = EventsQuestion.find_by(event: event, question: question)
+      rel.update!(status: :closed)
+
+      question.update!(status: :closed) if consultation.config.synchronous?
+    end
+
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
