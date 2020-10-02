@@ -224,6 +224,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    store_model (0.8.0)
+      activerecord (>= 5.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -283,6 +285,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
+  store_model
   timecop
   turbolinks (~> 5)
   tzinfo-data
