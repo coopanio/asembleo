@@ -7,7 +7,8 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @question = create(:question)
-    @token = create(:token, consultation: question.consultation)
+    event = create(:event, consultation: question.consultation)
+    @token = create(:token, event: event, consultation: question.consultation)
     @value = 'yes'
 
     post sessions_url, params: { token: token.to_hash }
