@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ConsultationsController < ApplicationController
+  include FlashConcern
+
   def new
     @consultation = Consultation.new
   end
@@ -14,7 +16,11 @@ class ConsultationsController < ApplicationController
       token.save!
     end
 
-    redirect_to action: 'show', id: @consultation.id
+    reset_session
+    session[:token] = token.id
+
+    success("Consulta creada. L'identificador d'administració és <strong>#{token}</strong>.")
+    redirect_to action: 'edit', id: @consultation.id
   end
 
   def edit
@@ -25,7 +31,7 @@ class ConsultationsController < ApplicationController
     authorize consultation
     consultation.update!(update_params)
 
-    redirect_to action: 'show', id: @consultation.id
+    redirect_to action: 'edit', id: @consultation.id
   end
 
   def show
