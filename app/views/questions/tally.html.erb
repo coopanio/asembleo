@@ -1,0 +1,17 @@
+<h2><%= @question.consultation.title %></h2>
+<h3>Pregunta #<%= @question.position %></h3>
+<table class="table table-hover">
+  <tbody>
+    <% @question.options.each_key do |key| %>
+      <tr>
+        <td>
+          <%= @question.options[key] %>
+        </td>
+        <td>
+          <%= @results[key] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Enrere', :back %>

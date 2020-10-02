@@ -37,6 +37,16 @@ class QuestionsController < ApplicationController
     redirect_to controller: 'events', action: 'edit', id: event.id
   end
 
+  def tally
+    authorize question
+
+    @results = {}
+    Vote.where(question: question).each do |vote|
+      result = @results[vote.value] || 0
+      @results[vote.value] = result + 1
+    end
+  end
+
   def close
     authorize question
     rel = EventsQuestion.find_by(event: event, question: question)

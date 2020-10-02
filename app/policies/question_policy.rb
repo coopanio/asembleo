@@ -21,18 +21,21 @@ class QuestionPolicy < ApplicationPolicy
     show? && token.admin?
   end
 
-  def show?
-    record.consultation == token.consultation
-  end
-
   def open?
     close?
   end
 
-  def close?
-    show? && token.manager?
+  def tally?
+    close?
   end
 
+  def close?
+    show? && token.admin?
+  end
+
+  def show?
+    record.consultation == token.consultation
+  end
   class Scope < Scope
     def resolve
       scope.where(consultation: token.consultation)
