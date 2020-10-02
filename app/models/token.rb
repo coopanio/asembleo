@@ -12,12 +12,23 @@ class Token < ApplicationRecord
 
   after_initialize :init
 
+  def self.from_value(value)
+    token = Token.from_hash(value)
+    token = Token.from_alias(value) if token.nil?
+
+    token
+  end
+
   def self.from_hash(hash)
+    hash = sanitize(hash)
+
     ids = HashIdService.decode(hash)
     Token.find(ids.first)
   end
 
   def self.from_alias(value)
+    value = sanitize(value)
+
     Token.find_by(alias: value)
   end
 
@@ -33,5 +44,10 @@ class Token < ApplicationRecord
 
   def init
     self.salt = SecureRandom.random_number(9_999) if salt.blank?
+  end
+
+  def self.sanitize(value)
+    value = value.downcase
+    value.delete('^0-9a-z')
   end
 end

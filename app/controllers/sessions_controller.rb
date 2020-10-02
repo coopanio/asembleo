@@ -22,10 +22,7 @@ class SessionsController < ApplicationController
   def token
     return @token if defined?(@token)
 
-    @token = Token.from_hash(identifier)
-    @token = Token.from_alias(identifier) if @token.nil?
-
-    @token
+    @token = Token.from_value(identifier)
   end
 
   def identifier
