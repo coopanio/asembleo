@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       token.save!
     end
 
-    redirect_to event_destination
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     authorize event
     event.update!(update_params)
 
-    redirect_to event_destination
+    redirect_back(fallback_location: root_path)
   end
 
   def next_question
@@ -56,18 +56,10 @@ class EventsController < ApplicationController
     authorize event
     event.destroy!
 
-    redirect_to event_destination
+    redirect_to controller: 'consultation', action: 'edit', id: event.consultation.id
   end
 
   private
-
-  def event_destination
-    if current_user.admin?
-      { controller: 'consultations', action: 'edit', id: consultation.id }
-    else
-      { controller: 'events', action: 'edit', id: event.id }
-    end
-  end
 
   def event
     @event ||= policy_scope(Event).find(params[:id])

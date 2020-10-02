@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post  'events/:id/tokens',   to: 'events#generate_tokens'
   get   'events/:id/next',     to: 'events#next_question'
   get   '/',                   to: 'main#index'
+
+  root to: 'main#index'
 end
