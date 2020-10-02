@@ -1,4 +1,6 @@
 <div class="alert alert-primary" role="alert">
-  <p>Aquesta consulta està oberta però no té preguntes obertes. Refresca quan la mesa t'ho indiqui.</p>
-  <%= link_to 'Refresca', { controller: 'events', action: 'next_question', id: @current_user.event.id }, class: 'btn btn-primary btn-lg' %>
+  <p>Aquesta consulta està oberta però no té preguntes actives. Refresca quan la mesa t'ho indiqui.</p>
+  <% if @current_user.voter? %>
+    <%= link_to 'Refresca', { controller: 'events', action: 'next_question', id: @current_user.event.id }, class: 'btn btn-primary btn-lg' %>
+  <% end %>
 </div>
