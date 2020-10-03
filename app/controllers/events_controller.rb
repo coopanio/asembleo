@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  include DestinationConcern
+  include DestinationConcern, FlashConcern
 
   def new
     authorize Event
@@ -11,14 +11,14 @@ class EventsController < ApplicationController
   def create
     authorize Event
     @event = Event.new(create_params.merge(consultation: consultation))
-    token = Token.new(role: :manager, event: @event, consultation: consultation)
+    token = Token.new(role: :manager, event: event, consultation: consultation)
 
     @event.transaction do
       @event.save!
       token.save!
     end
 
-    redirect_back(fallback_location: root_path)
+    redirect_to action: 'edit', id: event.id
   end
 
   def edit
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
 
     Token.transaction do
       total.times do
-        @tokens << Token.create(consultation: event.consultation, event: event)
+        @tokens << Token.create(consultation: consultation, event: event)
       end
     end
   end
@@ -56,7 +56,8 @@ class EventsController < ApplicationController
     authorize event
     event.destroy!
 
-    redirect_to controller: 'consultations', action: 'edit', id: event.consultation.id
+    success('Trobada eliminada.')
+    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
   private

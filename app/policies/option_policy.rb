@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QuestionPolicy < ApplicationPolicy
+class OptionPolicy < ApplicationPolicy
   def new?
     create?
   end
@@ -21,20 +21,8 @@ class QuestionPolicy < ApplicationPolicy
     show? && token.admin?
   end
 
-  def open?
-    close?
-  end
-
-  def tally?
-    close?
-  end
-
-  def close?
-    show? && token.admin?
-  end
-
   def show?
-    record.consultation == token.consultation
+    record.question.consultation == token.consultation
   end
 
   class Scope < Scope

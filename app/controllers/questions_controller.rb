@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  include FlashConcern
+
   def new
     authorize Question
     @question = Question.new(consultation: current_user.consultation)
   end
 
   def create
-    @question = Question.new(create_params)
+    @question = Question.new(create_params.merge(consultation: consultation))
     authorize @question
 
     @question.save!
+
+    success('Pregunta creada.')
     redirect_to action: 'edit', id: question.id
   end
 
@@ -20,13 +24,18 @@ class QuestionsController < ApplicationController
 
   def update
     authorize question
-    question.save!
+    question.update!(update_params)
 
-    redirect_back(fallback_location: root_path)
+    success('Pregunta actualizada.')
+    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
   def show
     authorize question
+  end
+
+  def new_option
+    authorize question, :edit?
   end
 
   def open
@@ -39,6 +48,7 @@ class QuestionsController < ApplicationController
       question.update!(status: :opened) if consultation.synchronous?
     end
 
+    success('Pregunta oberta.')
     redirect_back(fallback_location: root_path)
   end
 
@@ -62,18 +72,22 @@ class QuestionsController < ApplicationController
       question.update!(status: :closed) if consultation.synchronous?
     end
 
+    success('Pregunta tancada.')
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     authorize question
     question.destroy!
+
+    success('Pregunta eliminada.')
+    redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
   private
 
   def consultation
-    question.consultation
+    current_user.consultation
   end
 
   def question
@@ -85,7 +99,11 @@ class QuestionsController < ApplicationController
   end
 
   def create_params
-    params.require(:question).permit({})
+    params.require(:question).permit(:description)
+  end
+
+  def update_params
+    params.require(:question).permit(:description, :status)
   end
 
   def open_params

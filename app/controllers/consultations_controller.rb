@@ -57,6 +57,7 @@ class ConsultationsController < ApplicationController
     consultation.destroy!
 
     reset_session
+    success('Consulta eliminada.')
     redirect_to controller: 'main', action: 'index'
   end
 

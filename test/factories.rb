@@ -23,8 +23,13 @@ FactoryBot.define do
 
   factory :question do
     consultation
-    options { { 'yes': 'Yes', 'no': 'No', 'abstain': 'Abstain' } }
     status { :draft }
+  end
+
+  factory :option do
+    question
+    value { 'yes' }
+    description { Faker::Lorem.sentence }
   end
 
   factory :event do

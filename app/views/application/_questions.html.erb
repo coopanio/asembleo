@@ -1,23 +1,34 @@
 <div class="card mt-3">
-  <div class="card-header">
+  <div class="card-header d-flex justify-content-between">
     <strong>Preguntes</strong>
+    <% if @current_user.admin? %>
+      <ul class="nav">
+        <li class="nav-item">
+          <%= link_to 'Crear', new_question_path, class: 'nav-link p-0 text-decoration-underline' %>
+        </li>
+      </ul>
+    <% end %>
   </div>
   <div class="card-body">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Ordre</th>
           <th>Pregunta</th>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
         </tr>
       <thead>
       <% @consultation.questions.order(:weight).each do |question| %>
       <tr>
-        <td><%= question.weight %></td>
         <td><%= question.description %></td>
+        <% if @current_user.admin? && !question.closed? %>
+          <td><%= link_to 'Editar', edit_question_url(question)  %></td>
+        <% end %>
         <td><%= question_opener_closer_link(@event, question)  %></td>
         <% if question.closed? %>
           <td><%= link_to 'Resultats', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
+        <% end %>
+        <% if question.draft? %>
+          <td><%= button_to 'Eliminar', question_path(question), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
         <% end %>
       </tr>
       <% end %>

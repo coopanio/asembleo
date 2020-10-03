@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_221851) do
+ActiveRecord::Schema.define(version: 2020_10_03_005716) do
 
   create_table "consultations", force: :cascade do |t|
     t.string "title"
@@ -40,9 +40,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_221851) do
     t.index ["question_id"], name: "index_events_questions_on_question_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "value"
+    t.string "description"
+    t.integer "question_id", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "description"
-    t.json "options"
     t.integer "status", default: 0
     t.integer "weight", default: 0
     t.integer "consultation_id", null: false
@@ -97,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_221851) do
   add_foreign_key "events", "consultations"
   add_foreign_key "events_questions", "events"
   add_foreign_key "events_questions", "questions"
+  add_foreign_key "options", "questions"
   add_foreign_key "questions", "consultations"
   add_foreign_key "receipts", "questions"
   add_foreign_key "receipts", "tokens"

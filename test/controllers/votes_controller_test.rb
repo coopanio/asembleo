@@ -7,6 +7,8 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @question = create(:question)
+    create(:option, question: question, value: 'yes')
+    create(:option, question: question, value: 'no')
     event = create(:event, consultation: question.consultation)
     @token = create(:token, event: event, consultation: question.consultation)
     @value = 'yes'
