@@ -17,7 +17,7 @@
           <th colspan="3"></th>
         </tr>
       <thead>
-      <% @consultation.questions.order(:weight).each do |question| %>
+      <% @consultation.questions.order(:id).each do |question| %>
       <tr>
         <td><%= question.description %></td>
         <td><%= link_to 'Editar', edit_question_url(question)  %></td>
