@@ -115,4 +115,5 @@ Rails.application.configure do
   config.x.assemblea.public_instance = ENV['ASSEMBLEA_PUBLIC_INSTANCE'].present?
   config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].present? ? ENV['ASSEMBLEA_TITLE'] : 'Assemblea'
   config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].present? ? ENV['ASSEMBLEA_FOOTER'] : nil
+  config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].present? ? ENV['ASSEMBLEA_TOKEN_ALIAS'] : nil
 end
