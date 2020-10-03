@@ -56,4 +56,21 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, tokens.size
     assert_equal identifier, tokens.first.alias
   end
+
+  test 'should reactivate disabled token' do
+    event = create(:event, consultation: token.consultation)
+    identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
+    create(:token, consultation: token.consultation, event: event, alias: identifier, status: :disabled)
+
+    token.update!(role: :manager)
+    post sessions_url, params: { token: token.to_hash }
+
+    post "/events/#{event.id}/tokens", params: { alias: identifier }
+
+    tokens = Token.where(event: event, role: :voter)
+    assert_response :redirect
+    assert_equal 1, tokens.size
+    assert_equal identifier, tokens.first.alias
+    assert tokens.first.enabled?
+  end
 end

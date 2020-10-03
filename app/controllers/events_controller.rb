@@ -43,12 +43,15 @@ class EventsController < ApplicationController
     authorize event
 
     identifier = create_token_params
-    begin
-      Token.create!(alias: identifier, consultation: consultation, event: event)
-    rescue ActiveRecord::RecordInvalid
-      error('No es pot crear un identificador duplicat.')
-    else
+    token = Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+    if token.new_record?
+      token.save!
       success('Identificador creat.')
+    elsif token.disabled?
+      token.update!(status: :enabled)
+      info("L'identificador s'ha tornat a activar.")
+    else
+      info("L'identificador ja existeix i està activat.")
     end
 
     redirect_back(fallback_location: root_path)
