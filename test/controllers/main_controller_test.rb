@@ -8,4 +8,38 @@ class MainControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test 'should redirect admin to their main page' do
+    login_as(:admin)
+
+    get root_path
+
+    assert_response :redirect
+  end
+
+  test 'should redirect manager to their main page' do
+    login_as(:manager)
+
+    get root_path
+
+    assert_response :redirect
+  end
+
+  test 'should redirect voter to their main page' do
+    login_as(:voter)
+
+    get root_path
+
+    assert_response :redirect
+  end
+
+  private
+
+  def login_as(role)
+    event = create(:event)
+    token = create(:token, role: role, consultation: event.consultation, event: event)
+    post sessions_url, params: { token: token.to_hash }
+
+    assert_response :redirect
+  end
 end
