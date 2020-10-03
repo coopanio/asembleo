@@ -46,13 +46,17 @@ class EventsController < ApplicationController
         value.each_line do |line|
           create_token(line, flash: false)
         end
+
+        success('Identificadors creats.')
+        redirect_to destination
       else
         create_token(value)
+
+        success('Identificador creat.')
+        redirect_back(fallback_location: root_path)
       end
     end
 
-    success('Identificadors creats.')
-    redirect_back(fallback_location: root_path)
   end
 
   def update_token
