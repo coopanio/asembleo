@@ -52,7 +52,7 @@ class EventsController < ApplicationController
     end
 
     success('Identificadors creats.')
-    redirect_to action: 'edit', id: event.id
+    redirect_back(fallback_location: root_path)
   end
 
   def update_token
@@ -66,6 +66,7 @@ class EventsController < ApplicationController
     else
       success('Identificador desactivat.')
     end
+
     redirect_back(fallback_location: root_path)
   end
 
