@@ -72,6 +72,10 @@ class QuestionsController < ApplicationController
 
   private
 
+  def consultation
+    question.consultation
+  end
+
   def question
     @question ||= policy_scope(Question).find(params[:id])
   end
