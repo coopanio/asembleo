@@ -8,7 +8,6 @@ class Event < ApplicationRecord
 
   enum status: { opened: 1, closed: 0 }
 
-  def manager
-    tokens.find_by(role: :manager)
-  end
+  scope :managers, -> { where(role: :manager) }
+  scope :voters, -> { where(role: :voter) }
 end

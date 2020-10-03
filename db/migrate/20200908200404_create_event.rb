@@ -7,5 +7,7 @@ class CreateEvent < ActiveRecord::Migration[6.0]
       t.references :consultation, null: false, foreign_key: true
       t.timestamps
     end
+
+    add_reference :tokens, :event, null: true, foreign_key: true
   end
 end

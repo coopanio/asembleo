@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ConsultationsController < ApplicationController
-  include FlashConcern
-
   def new
     @consultation = Consultation.new
   end

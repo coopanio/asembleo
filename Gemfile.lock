@@ -127,6 +127,7 @@ GEM
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
+    pg (1.2.3)
     policy-assertions (0.2.0)
       activesupport (>= 3.0.0)
       pundit (>= 1.0.0)
@@ -276,6 +277,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   paper_trail
+  pg
   policy-assertions
   pry-rails
   puma (~> 4.1)

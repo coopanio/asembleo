@@ -12,6 +12,16 @@ module EventsHelper
     button_to('Tancar', question_action_params('close', event, question), **button_params)
   end
 
+  def token_enabler_disabler_link(token)
+    return '-' unless token.event.consultation.opened?
+
+    if token.enabled?
+      button_to('Desactivar', update_token_action_params(token, :disabled), **button_params)
+    else
+      button_to('Activar', update_token_action_params(token, :enabled), **button_params)
+    end
+  end
+
   private
 
   def question_action_params(action, event, question)
@@ -22,6 +32,16 @@ module EventsHelper
       event: {
         id: event.id
       }
+    }
+  end
+
+  def update_token_action_params(token, status)
+    {
+      controller: 'events',
+      action: 'update_token',
+      id: token.event.id,
+      token_id: token.id,
+      status: status
     }
   end
 

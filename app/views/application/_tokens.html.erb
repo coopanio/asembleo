@@ -1,15 +1,30 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
     <strong>Identificadors</strong>
-  </div>
-  <div class="card-body">
-    <%= form_with url: { controller: :events, action: :generate_tokens, id: @event.id }, class: 'row row-cols-auto g-3 align-items-center', local: true do |f| %>
+    <%= form_with url: { controller: :events, action: :create_token, id: @event.id }, class: 'row row-cols-auto g-3 align-items-center', local: true do |f| %>
       <div class="col">
-         <%= f.text_field :total, class: 'form-control' %>
+          <%= f.text_field :alias, class: 'form-control' %>
       </div>
       <div class="col">
         <%= f.submit 'Crear', class: 'btn btn-primary' %>
       </div>
     <% end %>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Identificador</th>
+          <th>Rol</th>
+          <th></th>
+        </tr>
+      <thead>
+      <% @event.tokens.each do |token| %>
+        <tr>
+          <td><%= token.alias || token.to_s %></td>
+          <td><%= token.role %></td>
+          <td><%= token_enabler_disabler_link(token)  %></td>
+        </tr>
+      <% end %>
   </div>
 </div>

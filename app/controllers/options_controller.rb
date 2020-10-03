@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class OptionsController < ApplicationController
-  include FlashConcern
-
   def new
     authorize question
     authorize Option

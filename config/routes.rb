@@ -9,13 +9,14 @@ Rails.application.routes.draw do
   resources :sessions
   resources :votes
 
-  patch 'questions/:id/open',   to: 'questions#open'
-  patch 'questions/:id/close',  to: 'questions#close'
-  get   'questions/:id/option', to: 'questions#new_option'
-  get   'questions/:id/tally',  to: 'questions#tally'
-  post  'events/:id/tokens',    to: 'events#generate_tokens'
-  get   'events/:id/next',      to: 'events#next_question'
-  get   '/',                    to: 'main#index'
+  patch 'questions/:id/open',         to: 'questions#open'
+  patch 'questions/:id/close',        to: 'questions#close'
+  get   'questions/:id/option',       to: 'questions#new_option'
+  get   'questions/:id/tally',        to: 'questions#tally'
+  post  'events/:id/tokens',          to: 'events#create_token'
+  patch 'events/:id/token/:token_id', to: 'events#update_token'
+  get   'events/:id/next',            to: 'events#next_question'
+  get   '/',                          to: 'main#index'
 
   root to: 'main#index'
 end

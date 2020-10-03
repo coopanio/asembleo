@@ -8,5 +8,7 @@ class CreateConsultation < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0
       t.timestamps
     end
+
+    add_reference :tokens, :consultation, null: false, foreign_key: true
   end
 end

@@ -19,7 +19,7 @@
       <% @consultation.events.each do |event| %>
       <tr>
         <td><%= event.title %></td>
-        <td><%= event.manager %></td>
+        <td><%= event.managers.first %></td>
         <td><%= link_to 'Editar', edit_event_path(event), class: 'btn btn-link py-0' %></td>
         <td><%= link_to 'Eliminar',
                 event_path(event),

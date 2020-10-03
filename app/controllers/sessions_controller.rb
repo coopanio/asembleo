@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   include DestinationConcern
 
   def create
+    raise Errors::AccessDenied if token.disabled?
+
     reset_session
     session[:token] = token.id
 

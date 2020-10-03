@@ -42,16 +42,18 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, Event.all.size
   end
 
-  test 'should create tokens' do
+  test 'should create aliased token' do
     event = create(:event, consultation: token.consultation)
+    identifier = Faker::PhoneNumber.cell_phone
 
     token.update!(role: :manager)
     post sessions_url, params: { token: token.to_hash }
 
-    total_tokens = 10
-    post "/events/#{event.id}/tokens", params: { total: total_tokens }
+    post "/events/#{event.id}/tokens", params: { alias: identifier }
 
-    assert_response :success
-    assert_equal total_tokens, Token.where(event: event, role: :voter).size
+    tokens = Token.where(event: event, role: :voter)
+    assert_response :redirect
+    assert_equal 1, tokens.size
+    assert_equal identifier, tokens.first.alias
   end
 end

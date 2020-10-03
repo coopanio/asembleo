@@ -39,17 +39,28 @@ class EventsController < ApplicationController
     redirect_to destination
   end
 
-  def generate_tokens
+  def create_token
     authorize event
 
-    @tokens = []
-    total = generate_tokens_params.to_i
+    identifier = create_token_params
+    Token.create(alias: identifier, consultation: consultation, event: event)
 
-    Token.transaction do
-      total.times do
-        @tokens << Token.create(consultation: consultation, event: event)
-      end
+    success('Identificador creat.')
+    redirect_back(fallback_location: root_path)
+  end
+
+  def update_token
+    authorize event
+
+    status = update_token_params
+    Token.find(params[:token_id]).update!(status: status)
+
+    if token.enabled?
+      success('Identificador activat.')
+    else
+      success('Identificador desactivat.')
     end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -78,8 +89,12 @@ class EventsController < ApplicationController
     end
   end
 
-  def generate_tokens_params
-    params.require(:total)
+  def create_token_params
+    params.require(:alias)
+  end
+
+  def update_token_params
+    params.require(:status)
   end
 
   alias token current_user

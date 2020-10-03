@@ -8,7 +8,8 @@ class Token < ApplicationRecord
   belongs_to :consultation
   belongs_to :event, optional: true
 
-  enum role: { voter: 0, manager: 1, admin: 2 }
+  enum role:   { voter: 0, manager: 1, admin: 2 }
+  enum status: { enabled: 1, disabled: 0 }
 
   after_initialize :init
 

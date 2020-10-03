@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_005716) do
+ActiveRecord::Schema.define(version: 2020_10_03_101427) do
 
   create_table "consultations", force: :cascade do |t|
     t.string "title"
@@ -71,11 +71,12 @@ ActiveRecord::Schema.define(version: 2020_10_03_005716) do
   create_table "tokens", force: :cascade do |t|
     t.integer "role", default: 0
     t.integer "salt"
-    t.integer "consultation_id", null: false
-    t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "consultation_id", null: false
+    t.integer "event_id"
     t.string "alias"
+    t.integer "status", default: 1
     t.index ["consultation_id"], name: "index_tokens_on_consultation_id"
     t.index ["event_id"], name: "index_tokens_on_event_id"
   end

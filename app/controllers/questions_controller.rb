@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  include FlashConcern
-
   def new
     authorize Question
     @question = Question.new(consultation: current_user.consultation)
