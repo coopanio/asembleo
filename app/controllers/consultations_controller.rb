@@ -24,7 +24,7 @@ class ConsultationsController < ApplicationController
     session[:token] = token.id
 
     message = [
-      "Consulta creada.",
+      'Consulta creada.',
       "L'identificador d'administració és <strong>#{token}</strong>."
     ]
     message << "L'identificador de gestió és <strong>#{manager_token}</strong>." if manager_token.present?

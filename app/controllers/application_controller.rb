@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_token
-    return unless current_user.present?
+    return if current_user.blank?
 
     if current_user.disabled?
       error('Identificador desactivat.')

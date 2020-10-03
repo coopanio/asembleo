@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddStatusToToken < ActiveRecord::Migration[6.0]
   def change
     add_column :tokens, :status, :integer, default: 1

@@ -16,8 +16,8 @@ gem 'webpacker', '~> 4.0'
 gem 'hashids'
 gem 'paper_trail'
 gem 'pundit'
-gem 'store_model'
 gem 'sentry-raven'
+gem 'store_model'
 
 gem 'bootstrap', '~> 5.0.0.alpha1'
 

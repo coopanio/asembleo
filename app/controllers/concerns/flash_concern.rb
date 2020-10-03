@@ -15,8 +15,6 @@ module FlashConcern
     flash[:alert] = Message.new(message, type: :danger)
   end
 
-  private
-
   class Message
     attr_reader :message, :type
 

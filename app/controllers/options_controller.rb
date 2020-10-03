@@ -10,7 +10,7 @@ class OptionsController < ApplicationController
 
   def create
     authorize question
-    
+
     @option = Option.new(create_params.merge(question: question))
     authorize option
 

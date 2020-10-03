@@ -4,7 +4,7 @@ class ApplicationPolicy
   attr_reader :token, :record
 
   def initialize(token, record)
-    raise Errors::AccessDenied unless token.present?
+    raise Errors::AccessDenied if token.blank?
 
     @token = token
     @record = record
@@ -42,7 +42,7 @@ class ApplicationPolicy
     attr_reader :token, :scope
 
     def initialize(token, scope)
-      raise Errors::AccessDenied unless token.present?
+      raise Errors::AccessDenied if token.blank?
 
       @token = token
       @scope = scope

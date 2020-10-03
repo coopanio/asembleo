@@ -113,7 +113,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.x.assemblea.public_instance = ENV['ASSEMBLEA_PUBLIC_INSTANCE'].present?
-  config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].present? ? ENV['ASSEMBLEA_TITLE'] : 'Assemblea'
-  config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].present? ? ENV['ASSEMBLEA_FOOTER'] : nil
-  config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].present? ? ENV['ASSEMBLEA_TOKEN_ALIAS'] : nil
+  config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].presence || 'Assemblea'
+  config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].presence
+  config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].presence
 end
