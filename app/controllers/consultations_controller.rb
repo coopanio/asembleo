@@ -16,7 +16,7 @@ class ConsultationsController < ApplicationController
       @consultation.save!
       token.save!
 
-      if @consultation.config.synchronous?
+      if @consultation.synchronous?
         event = Event.create(title: 'Default', consultation: @consultation)
         manager_token = Token.create(role: :manager, consultation: @consultation, event: event)
       end
@@ -38,7 +38,7 @@ class ConsultationsController < ApplicationController
   def edit
     authorize consultation
 
-    @event = consultation.events.first if consultation.config.synchronous?
+    @event = consultation.events.first if consultation.synchronous?
   end
 
   def update

@@ -1,4 +1,4 @@
-<% if @consultation.config.asynchronous? %>
+<% if @consultation.asynchronous? %>
   <%= render 'form' %>
   <hr>
   <% if @event.opened? %><%= render 'questions' %><% end %>

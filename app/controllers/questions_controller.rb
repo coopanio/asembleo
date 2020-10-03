@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
       rel = EventsQuestion.find_or_create_by(event: event, question: question)
       rel.update!(status: :opened)
 
-      question.update!(status: :opened) if consultation.config.synchronous?
+      question.update!(status: :opened) if consultation.synchronous?
     end
 
     redirect_back(fallback_location: root_path)
@@ -59,7 +59,7 @@ class QuestionsController < ApplicationController
       rel = EventsQuestion.find_by(event: event, question: question)
       rel.update!(status: :closed)
 
-      question.update!(status: :closed) if consultation.config.synchronous?
+      question.update!(status: :closed) if consultation.synchronous?
     end
 
     redirect_back(fallback_location: root_path)

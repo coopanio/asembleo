@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     authorize event
     event.destroy!
 
-    redirect_to controller: 'consultation', action: 'edit', id: event.consultation.id
+    redirect_to controller: 'consultations', action: 'edit', id: event.consultation.id
   end
 
   private

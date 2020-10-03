@@ -8,6 +8,8 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @params = { consultation: { title: 'Test', description: 'Description' } }
     @token = create(:token, :admin)
+    event = create(:event, consultation: @token.consultation)
+    @token.update!(event: event)
   end
 
   test 'should create consultation' do

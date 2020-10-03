@@ -17,5 +17,17 @@ class Consultation < ApplicationRecord
 
   enum status: { draft: 0, opened: 1, closed: 2, archived: 3 }
 
+  delegate :synchronous?, :asynchronous?, to: :config
+
   validates :config, store_model: { merge_errors: true }
+
+  after_update :update_default_event, if: :synchronous?
+
+  def update_default_event
+    if opened?
+      events.first.update!(status: :opened)
+    else
+      events.first.update!(status: :closed)
+    end
+  end
 end

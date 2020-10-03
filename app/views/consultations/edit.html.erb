@@ -2,8 +2,8 @@
 <%= render 'form' %>
 <hr>
 <%= render 'questions' %>
-<% if @consultation.config.asynchronous? %>
+<% if @consultation.asynchronous? %>
   <%= render 'events' %>
-<% elsif @consultation.config.synchronous? %>
+<% elsif @consultation.synchronous? %>
   <%= render 'tokens' %>
 <% end %>
