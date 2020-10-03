@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  include DestinationConcern
-
   def create
     raise Errors::AccessDenied if token.disabled?
 

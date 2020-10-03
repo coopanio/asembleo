@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include FlashConcern
-
   protect_from_forgery with: :exception
 
   before_action :set_raven_context
   before_action :check_token
 
-  include Pundit
+  include DestinationConcern
   include Errors
+  include FlashConcern
+  include Pundit
 
   def set_raven_context
     Raven.user_context(id: current_user.try(:id))

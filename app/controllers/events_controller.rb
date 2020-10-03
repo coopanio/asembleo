@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  include DestinationConcern, FlashConcern
-
   def new
     authorize Event
     @event = Event.new(consultation: consultation)
@@ -37,6 +35,10 @@ class EventsController < ApplicationController
   def next_question
     authorize event
     redirect_to destination
+  end
+
+  def new_tokens
+    authorize event
   end
 
   def create_token

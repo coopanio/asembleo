@@ -29,17 +29,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal token.id, session[:token]
   end
 
-  test 'should fail on malformed token' do
-    @params = { token: 'unknown' }
-    subject
-
-    assert_response 401
-  end
-
   test 'should fail on deleted token' do
     @token.destroy!
     subject
 
-    assert_response 401
+    assert_response :redirect
   end
 end
