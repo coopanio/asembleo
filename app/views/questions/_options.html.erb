@@ -22,7 +22,7 @@
       <tr>
         <td><%= option.description %></td>
         <td><%= option.value %></td>
-        <td><%= link_to 'Editar', edit_question_option_url(option)  %></td>
+        <td><%= link_to 'Editar', edit_question_option_url(@question, option)  %></td>
         <td><%= button_to 'Eliminar', question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
       </tr>
       <% end %>

@@ -17,7 +17,7 @@ class OptionsController < ApplicationController
     option.save!
 
     success('Opció creada.')
-    redirect_to action: 'edit', id: question.id
+    redirect_to controller: 'questions', action: 'edit', id: question.id
   end
 
   def edit
