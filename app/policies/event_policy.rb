@@ -17,11 +17,15 @@ class EventPolicy < ApplicationPolicy
     show? && !token.voter?
   end
 
-  def create_token?
-    update_token?
+  def new_tokens?
+    create_tokens?
   end
 
   def update_token?
+    create_tokens?
+  end
+
+  def create_tokens?
     show? && !token.voter?
   end
 

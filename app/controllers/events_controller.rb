@@ -37,26 +37,22 @@ class EventsController < ApplicationController
     redirect_to destination
   end
 
-  def new_tokens
-    authorize event
-  end
-
-  def create_token
+  def create_tokens
     authorize event
 
-    identifier = create_token_params
-    token = Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
-    if token.new_record?
-      token.save!
-      success('Identificador creat.')
-    elsif token.disabled?
-      token.update!(status: :enabled)
-      info("L'identificador s'ha tornat a activar.")
-    else
-      info("L'identificador ja existeix i està activat.")
+    value = create_token_params
+    Token.transaction do
+      if params[:multiple].present?
+        value.each_line do |line|
+          create_token(line, flash: false)
+        end
+      else
+        create_token(value)
+      end
     end
 
-    redirect_back(fallback_location: root_path)
+    success('Identificadors creats.')
+    redirect_to action: 'edit', id: event.id
   end
 
   def update_token
@@ -73,6 +69,10 @@ class EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def new_tokens
+    authorize event
+  end
+
   def destroy
     authorize event
     event.destroy!
@@ -82,6 +82,20 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def create_token(identifier, flash: true)
+    identifier = Token.sanitize(identifier)
+    token = Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+    if token.new_record?
+      token.save!
+      success('Identificador creat.') if flash
+    elsif token.disabled?
+      token.update!(status: :enabled)
+      info("L'identificador s'ha tornat a activar.") if flash
+    elsif flash
+      info("L'identificador ja existeix i està activat.")
+    end
+  end
 
   def event
     @event ||= policy_scope(Event).find(params[:id])
@@ -100,7 +114,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.require(:alias)
+    params.require(:value)
   end
 
   def update_token_params

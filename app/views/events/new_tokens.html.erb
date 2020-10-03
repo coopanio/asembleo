@@ -1,0 +1,10 @@
+<%= form_with url: { controller: :events, action: :create_tokens, id: @event.id, multiple: true }, class: 'container', local: true do |f| %>
+  <div class="row mb-3">
+    <%= f.text_area :value, class: 'form-control' %>
+  </div>
+  <div class="row mb-3">
+    <div class="col d-flex justify-content-end">
+      <%= f.submit 'Guardar', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

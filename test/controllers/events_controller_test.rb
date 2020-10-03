@@ -49,12 +49,12 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     token.update!(role: :manager)
     post sessions_url, params: { token: token.to_hash }
 
-    post "/events/#{event.id}/tokens", params: { alias: identifier }
+    post "/events/#{event.id}/tokens", params: { value: identifier }
 
     tokens = Token.where(event: event, role: :voter)
     assert_response :redirect
     assert_equal 1, tokens.size
-    assert_equal identifier, tokens.first.alias
+    assert_equal Token.sanitize(identifier), tokens.first.alias
   end
 
   test 'should reactivate disabled token' do
@@ -65,7 +65,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     token.update!(role: :manager)
     post sessions_url, params: { token: token.to_hash }
 
-    post "/events/#{event.id}/tokens", params: { alias: identifier }
+    post "/events/#{event.id}/tokens", params: { value: identifier }
 
     tokens = Token.where(event: event, role: :voter)
     assert_response :redirect

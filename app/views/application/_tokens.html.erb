@@ -4,12 +4,13 @@
       <strong>Identificadors</strong>
     </div>
     <div class="col-auto">
-      <%= form_with url: { controller: :events, action: :create_token, id: @event.id }, class: 'row row-cols-auto g-1 align-items-center', local: true do |f| %>
+      <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id }, class: 'row row-cols-auto g-1 align-items-center', local: true do |f| %>
         <div class="col">
-            <%= f.text_field :alias, class: 'form-control form-control-sm' %>
+            <%= f.text_field :value, class: 'form-control form-control-sm' %>
         </div>
         <div class="col">
           <%= f.submit 'Crear', class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Creació massiva', { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link btn-sm' %>
         </div>
       </div>
     <% end %>
