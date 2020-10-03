@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,8 +10,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body class="mb-3">
+  <body class="d-flex flex-column h-100">
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
@@ -20,7 +19,7 @@
       </nav>
     </header>
     <main role="main">
-      <div class="container mt-3">
+      <div class="container my-3">
         <%= yield %>
       </div>
     </main>
