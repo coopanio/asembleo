@@ -43,9 +43,14 @@ class EventsController < ApplicationController
     authorize event
 
     identifier = create_token_params
-    Token.create(alias: identifier, consultation: consultation, event: event)
+    begin
+      Token.create!(alias: identifier, consultation: consultation, event: event)
+    rescue ActiveRecord::RecordInvalid
+      error('No es pot crear un identificador duplicat.')
+    else
+      success('Identificador creat.')
+    end
 
-    success('Identificador creat.')
     redirect_back(fallback_location: root_path)
   end
 

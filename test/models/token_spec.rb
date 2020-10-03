@@ -14,4 +14,11 @@ class TokenTest < ActiveSupport::TestCase
       assert_equal c[:expected], Token.sanitize(c[:value])
     end
   end
+  
+  test 'should not create tokens with equal aliases' do
+    create(:token, alias: 'test')
+    assert_raises ActiveRecord::RecordInvalid do
+      create(:token, alias: 'test')
+    end
+  end
 end
