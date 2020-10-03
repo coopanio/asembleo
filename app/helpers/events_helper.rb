@@ -14,6 +14,7 @@ module EventsHelper
 
   def token_enabler_disabler_link(token)
     return '-' unless token.event.consultation.opened?
+    return '-' if token == @current_user
 
     if token.enabled?
       button_to('Desactivar', update_token_action_params(token, :disabled), **button_params)
