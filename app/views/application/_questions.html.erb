@@ -20,9 +20,7 @@
       <% @consultation.questions.order(:weight).each do |question| %>
       <tr>
         <td><%= question.description %></td>
-        <% if @current_user.admin? && !question.closed? %>
-          <td><%= link_to 'Editar', edit_question_url(question)  %></td>
-        <% end %>
+        <td><%= link_to 'Editar', edit_question_url(question)  %></td>
         <td><%= question_opener_closer_link(@event, question)  %></td>
         <% if question.closed? %>
           <td><%= link_to 'Resultats', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
