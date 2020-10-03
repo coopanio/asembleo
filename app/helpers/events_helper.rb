@@ -13,7 +13,7 @@ module EventsHelper
   end
 
   def token_enabler_disabler_link(token)
-    return '-' unless token.event.consultation.opened?
+    return '-' if token.event.consultation.closed?
     return '-' if token == @current_user
 
     if token.enabled?
