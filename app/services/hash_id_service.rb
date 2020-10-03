@@ -23,5 +23,7 @@ class HashIdService
 
   def decode(hash)
     @hasher.decode(hash)
+  rescue Hashids::InputError
+    []
   end
 end

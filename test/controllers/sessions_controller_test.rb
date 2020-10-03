@@ -7,12 +7,22 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @token = create(:token)
-    @params = { token: token.to_hash }
+    @params = { token: token.to_s }
   end
 
   subject { post sessions_url, params: params }
 
   test 'should create session' do
+    subject
+
+    assert_response :redirect
+    assert_equal token.id, session[:token]
+  end
+
+  test 'should create session with aliased token' do
+    @params = { token: Faker::PhoneNumber.cell_phone }
+    @token.update!(alias: Token.sanitize(@params[:token]))
+
     subject
 
     assert_response :redirect

@@ -24,13 +24,13 @@ class Token < ApplicationRecord
     hash = sanitize(hash)
 
     ids = HashIdService.decode(hash)
-    Token.find(ids.first)
+    Token.find(ids.first) unless ids.empty?
   end
 
   def self.from_alias(value)
     value = sanitize(value)
 
-    Token.find_by(alias: value)
+    Token.find_by!(alias: value)
   end
 
   def to_s

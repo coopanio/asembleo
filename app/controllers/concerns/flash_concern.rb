@@ -8,11 +8,11 @@ module FlashConcern
   end
 
   def info(message)
-    flash[:notice] = Message.new(message, :info)
+    flash[:notice] = Message.new(message, type: :info)
   end
 
   def error(message)
-    flash[:alert] = Message.new(message, :error)
+    flash[:alert] = Message.new(message, type: :danger)
   end
 
   private

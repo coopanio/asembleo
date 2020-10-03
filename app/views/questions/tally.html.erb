@@ -1,14 +1,18 @@
 <h2><%= @question.consultation.title %></h2>
-<h3>Pregunta #<%= @question.position %></h3>
+<% if @question.description %>
+  <div class="mb-3">
+    <%= raw(@question.description) %>
+  </div>
+<% end %>
 <table class="table table-hover">
   <tbody>
-    <% @question.options.each_key do |key| %>
+    <% @question.options.each do |option| %>
       <tr>
         <td>
-          <%= @question.options[key] %>
+          <%= option.description %>
         </td>
         <td>
-          <%= @results[key] %>
+          <%= @results[option.value] || 0 %>
         </td>
       </tr>
     <% end %>

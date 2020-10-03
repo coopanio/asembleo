@@ -1,12 +1,12 @@
 <%= form_with scope: :vote, url: { controller: :votes, action: :create }, local: true do |f| %>
   <table class="table table-hover table-borderless">
     <tbody>
-      <% @question.options.each_key do |key| %>
+      <% @question.options.each do |option| %>
         <tr>
           <td>
             <div class="form-check form-control-lg m-3 ml-0">
-              <%= f.radio_button :value, key, class: 'form-check-input', disabled: @question.draft? %>
-              <%= f.label @question.options[key], for: "vote_value_#{key}", class: 'form-check-label' %>
+              <%= f.radio_button :value, option.value, class: 'form-check-input', disabled: @question.draft? %>
+              <%= f.label option.description, for: "vote_value_#{option.value}", class: 'form-check-label' %>
             </div>
           </td>
         </tr>

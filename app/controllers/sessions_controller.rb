@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     session[:token] = token.id
 
     redirect_to destination
-  rescue Hashids::InputError, ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordNotFound
     raise Errors::AccessDenied
   end
 

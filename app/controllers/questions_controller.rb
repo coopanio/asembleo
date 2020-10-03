@@ -30,6 +30,11 @@ class QuestionsController < ApplicationController
 
   def show
     authorize question
+
+    if question.voted?(current_user)
+      error('Ja has votat aquesta pregunta.')
+      redirect_to controller: 'consultations', action: 'show', id: consultation.id
+    end
   end
 
   def new_option
@@ -52,6 +57,11 @@ class QuestionsController < ApplicationController
 
   def tally
     authorize question
+    unless question.closed?
+      error('Els resultats no es poden veure mentre la pregunta és oberta.')
+      redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+      return
+    end
 
     @results = {}
     Vote.where(question: question).each do |vote|
