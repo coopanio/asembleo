@@ -111,4 +111,8 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.x.assemblea.public_instance = ENV['ASSEMBLEA_PUBLIC_INSTANCE'].present?
+  config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].present? ? ENV['ASSEMBLEA_TITLE'] : 'Assemblea'
+  config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].present? ? ENV['ASSEMBLEA_FOOTER'] : nil
 end

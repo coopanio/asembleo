@@ -23,7 +23,7 @@
           <th></th>
         </tr>
       <thead>
-      <% @event.tokens.each do |token| %>
+      <% @event.tokens.order(:alias).each do |token| %>
         <tr>
           <td><%= token.alias || token.to_s %></td>
           <td><%= token.role %></td>
