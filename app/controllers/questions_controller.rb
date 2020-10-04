@@ -31,10 +31,7 @@ class QuestionsController < ApplicationController
   def show
     authorize question
 
-    if question.voted?(current_user)
-      error('Ja has votat aquesta pregunta.')
-      redirect_to controller: 'consultations', action: 'show', id: consultation.id
-    end
+    raise Errors::AlreadyVoted if question.voted?(current_user)
   end
 
   def new_option

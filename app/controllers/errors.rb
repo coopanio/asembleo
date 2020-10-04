@@ -7,6 +7,16 @@ module Errors
         render plain: 'Bad request', status: :bad_request
       end
 
+      rescue_from InvalidVoteOption do |_e|
+        error('Escull una opció vàlida.')
+        redirect_back fallback_location: root_path
+      end
+
+      rescue_from AlreadyVoted do |_e|
+        error('Ja has votat aquesta pregunta.')
+        redirect_to controller: 'consultations', action: 'show', id: consultation.id
+      end
+
       rescue_from AccessDenied do |_e|
         error('Accés denegat.')
         redirect_to root_path
