@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
     authorize question
 
     EventsQuestion.transaction do
-      rel = EventsQuestion.find_or_create_by(event: event, question: question)
+      rel = EventsQuestion.find_or_create_by(event: event, question: question, consultation: question.consultation)
       rel.update!(status: :opened)
 
       question.update!(status: :opened) if consultation.synchronous?

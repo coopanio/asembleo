@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_101427) do
+ActiveRecord::Schema.define(version: 2020_10_21_222336) do
 
   create_table "consultations", force: :cascade do |t|
     t.string "title"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_10_03_101427) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "consultation_id", null: false
+    t.index ["consultation_id"], name: "index_events_questions_on_consultation_id"
     t.index ["event_id"], name: "index_events_questions_on_event_id"
     t.index ["question_id"], name: "index_events_questions_on_question_id"
   end
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_10_03_101427) do
   end
 
   add_foreign_key "events", "consultations"
+  add_foreign_key "events_questions", "consultations"
   add_foreign_key "events_questions", "events"
   add_foreign_key "events_questions", "questions"
   add_foreign_key "options", "questions"

@@ -40,6 +40,7 @@ FactoryBot.define do
   factory :events_question do
     event
     question
+    consultation { question.consultation }
     status { :closed }
   end
 
