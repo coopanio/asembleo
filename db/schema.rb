@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_222336) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "consultation_id", null: false
+    t.integer "consultation_id"
     t.index ["consultation_id"], name: "index_events_questions_on_consultation_id"
     t.index ["event_id"], name: "index_events_questions_on_event_id"
     t.index ["question_id"], name: "index_events_questions_on_question_id"
