@@ -6,10 +6,10 @@ module EventsHelper
 
     rel = EventsQuestion.find_by(event: event, question: question)
     if rel.nil? || rel.closed?
-      return button_to('Obrir', question_action_params('open', event, question), **button_params)
+      return button_to('Open', question_action_params('open', event, question), **button_params)
     end
 
-    button_to('Tancar', question_action_params('close', event, question), **button_params)
+    button_to('Close', question_action_params('close', event, question), **button_params)
   end
 
   def token_enabler_disabler_link(token)
@@ -17,9 +17,9 @@ module EventsHelper
     return '-' if token == @current_user
 
     if token.enabled?
-      button_to('Desactivar', update_token_action_params(token, :disabled), **button_params)
+      button_to('Disable', update_token_action_params(token, :disabled), **button_params)
     else
-      button_to('Activar', update_token_action_params(token, :enabled), **button_params)
+      button_to('Enable', update_token_action_params(token, :enabled), **button_params)
     end
   end
 

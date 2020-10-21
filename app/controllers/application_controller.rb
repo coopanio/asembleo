@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     return if current_user.blank?
 
     if current_user.disabled?
-      error('Identificador desactivat.')
+      error('Token disabled.')
 
       reset_session
       redirect_to root_path

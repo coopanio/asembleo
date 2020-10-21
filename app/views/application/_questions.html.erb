@@ -1,10 +1,10 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
-    <strong>Preguntes</strong>
+    <strong>Questions</strong>
     <% if @current_user.admin? %>
       <ul class="nav">
         <li class="nav-item">
-          <%= link_to 'Crear', new_question_path, class: 'nav-link p-0 text-decoration-underline' %>
+          <%= link_to 'Create', new_question_path, class: 'nav-link p-0 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>
@@ -13,8 +13,8 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Pregunta</th>
-          <th>Estat</th>
+          <th>Question</th>
+          <th>Status</th>
           <th colspan="3"></th>
         </tr>
       <thead>
@@ -22,13 +22,13 @@
       <tr>
         <td><%= question.description %></td>
         <td><%= question.status %></td>
-        <td><%= link_to 'Editar', edit_question_url(question)  %></td>
+        <td><%= link_to 'Edit', edit_question_url(question)  %></td>
         <td><%= question_opener_closer_link(@event, question)  %></td>
         <% if question.closed? %>
-          <td><%= link_to 'Resultats', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
+          <td><%= link_to 'Results', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
         <% end %>
         <% if question.draft? %>
-          <td><%= button_to 'Eliminar', question_path(question), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
+          <td><%= button_to 'Delete', question_path(question), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
         <% end %>
       </tr>
       <% end %>

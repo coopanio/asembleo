@@ -57,7 +57,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal Token.sanitize(identifier), tokens.first.alias
   end
 
-  test 'should reactivate disabled token' do
+  test 'should reenable disabled token' do
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
     create(:token, consultation: token.consultation, event: event, alias: identifier, status: :disabled)

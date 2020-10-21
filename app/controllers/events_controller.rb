@@ -47,12 +47,12 @@ class EventsController < ApplicationController
           create_token(line, flash: false)
         end
 
-        success('Identificadors creats.')
+        success('Tokens created.')
         redirect_to destination
       else
         create_token(value)
 
-        success('Identificador creat.')
+        success('Token created.')
         redirect_back(fallback_location: root_path)
       end
     end
@@ -66,9 +66,9 @@ class EventsController < ApplicationController
     Token.find(params[:token_id]).update!(status: status)
 
     if token.enabled?
-      success('Identificador activat.')
+      success('Token enabled.')
     else
-      success('Identificador desactivat.')
+      success('Token disabled.')
     end
 
     redirect_back(fallback_location: root_path)
@@ -82,7 +82,7 @@ class EventsController < ApplicationController
     authorize event
     event.destroy!
 
-    success('Trobada eliminada.')
+    success('Event deleted.')
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
@@ -93,12 +93,12 @@ class EventsController < ApplicationController
     token = Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
     if token.new_record?
       token.save!
-      success('Identificador creat.') if flash
+      success('Token created.') if flash
     elsif token.disabled?
       token.update!(status: :enabled)
-      info("L'identificador s'ha tornat a activar.") if flash
+      info("Token enabled again.") if flash
     elsif flash
-      info("L'identificador ja existeix i està activat.")
+      info("Token exists and enabled.")
     end
   end
 

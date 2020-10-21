@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
 
     @question.save!
 
-    success('Pregunta creada.')
+    success('Question created.')
     redirect_to action: 'edit', id: question.id
   end
 
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     authorize question
     question.update!(update_params)
 
-    success('Pregunta actualizada.')
+    success('Question updated.')
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
@@ -48,14 +48,14 @@ class QuestionsController < ApplicationController
       question.update!(status: :opened) if consultation.synchronous?
     end
 
-    success('Pregunta oberta.')
+    success('Question opened.')
     redirect_back(fallback_location: root_path)
   end
 
   def tally
     authorize question
     unless question.closed?
-      error('Els resultats no es poden veure mentre la pregunta és oberta.')
+      error('Results not available while the question is open.')
       redirect_to controller: 'consultations', action: 'edit', id: consultation.id
       return
     end
@@ -77,7 +77,7 @@ class QuestionsController < ApplicationController
       question.update!(status: :closed) if consultation.synchronous?
     end
 
-    success('Pregunta tancada.')
+    success('Question closed.')
     redirect_back(fallback_location: root_path)
   end
 
@@ -85,7 +85,7 @@ class QuestionsController < ApplicationController
     authorize question
     question.destroy!
 
-    success('Pregunta eliminada.')
+    success('Question deleted.')
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 

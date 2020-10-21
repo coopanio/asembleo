@@ -8,22 +8,22 @@ module Errors
       end
 
       rescue_from InvalidVoteOption do |_e|
-        error('Escull una opció vàlida.')
+        error('Choose a valid option.')
         redirect_back fallback_location: root_path
       end
 
       rescue_from AlreadyVoted do |_e|
-        error('Ja has votat aquesta pregunta.')
+        error('You already voted for this question.')
         redirect_to controller: 'consultations', action: 'show', id: consultation.id
       end
 
       rescue_from AccessDenied do |_e|
-        error('Accés denegat.')
+        error('Access denied.')
         redirect_to root_path
       end
 
       rescue_from Pundit::NotAuthorizedError do |_e|
-        error('No estàs autoritzat per fer aquesta operació.')
+        error('You are not authorized.')
         redirect_back fallback_location: root_path
       end
     end

@@ -24,10 +24,10 @@ class ConsultationsController < ApplicationController
     session[:token] = token.id
 
     message = [
-      'Consulta creada.',
-      "L'identificador d'administració és <strong>#{token}</strong>."
+      'Consultation created.',
+      "Admin token is <strong>#{token}</strong>."
     ]
-    message << "L'identificador de gestió és <strong>#{manager_token}</strong>." if manager_token.present?
+    message << "Manager token is <strong>#{manager_token}</strong>." if manager_token.present?
     success(message.join(' '))
 
     redirect_to action: 'edit', id: @consultation.id
@@ -55,7 +55,7 @@ class ConsultationsController < ApplicationController
     consultation.destroy!
 
     reset_session
-    success('Consulta eliminada.')
+    success('Consultation deleted.')
     redirect_to controller: 'main', action: 'index'
   end
 

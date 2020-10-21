@@ -1,10 +1,10 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
-    <strong>Opcions</strong>
+    <strong>Options</strong>
     <% if @current_user.admin? %>
       <ul class="nav">
         <li class="nav-item">
-          <%= link_to 'Crear', new_question_option_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
+          <%= link_to 'Create', new_question_option_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>
@@ -13,8 +13,8 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <td>Descripció</td>
-          <td>Valor</td>
+          <td>Description</td>
+          <td>Value</td>
           <td colspan="2"></td>
         </tr>
       </thead>
@@ -22,8 +22,8 @@
       <tr>
         <td><%= option.description %></td>
         <td><%= option.value %></td>
-        <td><%= link_to 'Editar', edit_question_option_url(@question, option)  %></td>
-        <td><%= button_to 'Eliminar', question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
+        <td><%= link_to 'Edit', edit_question_option_url(@question, option)  %></td>
+        <td><%= button_to 'Delete', question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
       </tr>
       <% end %>
     </table>
