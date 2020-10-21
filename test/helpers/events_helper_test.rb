@@ -12,8 +12,8 @@ class EventsHelperTest < ActionView::TestCase
     @question = create(:question, consultation: consultation, status: :opened)
 
     @expected = {
-      open: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/open?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" /><input class=\"btn btn-link py-0\" type=\"submit\" value=\"Obrir\" /></form>",
-      close: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/close?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" /><input class=\"btn btn-link py-0\" type=\"submit\" value=\"Tancar\" /></form>"
+      open: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/open?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" /><input class=\"btn btn-link py-0\" type=\"submit\" value=\"Open\" /></form>",
+      close: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/close?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" /><input class=\"btn btn-link py-0\" type=\"submit\" value=\"Close\" /></form>"
     }
   end
   # rubocop:enable Layout/LineLength
