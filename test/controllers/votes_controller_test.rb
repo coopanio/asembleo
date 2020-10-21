@@ -46,7 +46,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @value = 'nay'
     subject
 
-    assert_response 400
+    assert_response :redirect
     assert_empty Vote.all
     assert_not Receipt.exists?(token: token, question: question)
   end
@@ -56,6 +56,6 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     post votes_url, params: { vote: { question_id: question.id, value: 'no' } }
-    assert_response 400
+    assert_response :redirect
   end
 end

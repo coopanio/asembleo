@@ -39,4 +39,8 @@ class VotesController < ApplicationController
       r.fingerprint = FingerprintService.generate(@receipt, current_user.to_hash, vote_params[:value])
     end
   end
+
+  def token
+    current_user
+  end
 end
