@@ -22,9 +22,19 @@ module DestinationConcern
 
     receipts = Receipt.arel_table
     questions = EventsQuestion.arel_table
-    condition = [receipts[:question_id].eq(questions[:question_id]), receipts[:token_id].eq(token.id), questions[:consultation_id].eq(consultation.id)]
-    join = questions.join(receipts, Arel::Nodes::OuterJoin).on(*condition)
-    query = EventsQuestion.joins(join.join_sources).where(status: :opened, receipts: { id: nil }).order(:id)
+
+    join_condition = [
+      receipts[:question_id].eq(questions[:question_id]),
+      receipts[:token_id].eq(token.id)
+    ]
+    where = {
+      status: :opened,
+      receipts: { id: nil },
+      consultation: token.consultation.id
+    }
+
+    join = questions.join(receipts, Arel::Nodes::OuterJoin).on(*join_condition)
+    query = EventsQuestion.joins(join.join_sources).where(**where).order(:id)
 
     @active_question = query.first.try(:question)
   end
