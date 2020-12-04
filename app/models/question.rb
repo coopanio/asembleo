@@ -21,4 +21,15 @@ class Question < ApplicationRecord
   def position
     weight + 1
   end
+
+  def tally
+    results = {}
+
+    votes.each do |vote|
+      result = results[vote.value] || 0
+      results[vote.value] = result + (1 * vote.weight)
+    end
+
+    results
+  end
 end

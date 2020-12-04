@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     @receipt.save!
 
     # TODO: sidekiq worker to store votes with chained hash
-    vote = Vote.new(question: question, value: vote_params[:value])
+    vote = Vote.new(question: question, value: vote_params[:value], weight: token.weight)
     vote.save!
   end
 
@@ -33,10 +33,10 @@ class VotesController < ApplicationController
     return @receipt if defined?(@receipt)
 
     @receipt ||= Receipt.new.tap do |r|
-      r.token = current_user
+      r.token = token
       r.question = question
       r.created_at = Time.now.utc
-      r.fingerprint = FingerprintService.generate(@receipt, current_user.to_hash, vote_params[:value])
+      r.fingerprint = FingerprintService.generate(r, current_user.to_hash, vote_params[:value])
     end
   end
 

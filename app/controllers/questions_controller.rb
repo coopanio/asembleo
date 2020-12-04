@@ -60,11 +60,7 @@ class QuestionsController < ApplicationController
       return
     end
 
-    @results = {}
-    Vote.where(question: question).each do |vote|
-      result = @results[vote.value] || 0
-      @results[vote.value] = result + 1
-    end
+    @results = question.tally
   end
 
   def close

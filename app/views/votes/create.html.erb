@@ -1,5 +1,6 @@
 <h2><%= @question.consultation.title %></h2>
 <div class="alert alert-primary" role="alert">
   <p>Your vote has been successfully registered. Proceed to the next question.</p>
+  <p>Your vote's fingerprint is <%= @receipt.fingerprint %></p>
   <%= link_to 'Next', { controller: 'events', action: 'next_question', id: @current_user.event.id }, class: 'btn btn-primary btn-lg' %>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_222336) do
+ActiveRecord::Schema.define(version: 2020_12_04_194236) do
 
   create_table "consultations", force: :cascade do |t|
     t.string "title"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_222336) do
     t.integer "event_id"
     t.string "alias"
     t.integer "status", default: 1
+    t.decimal "weight", default: "1.0"
     t.index ["consultation_id"], name: "index_tokens_on_consultation_id"
     t.index ["event_id"], name: "index_tokens_on_event_id"
   end
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_222336) do
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "weight"
     t.index ["question_id"], name: "index_votes_on_question_id"
   end
 
