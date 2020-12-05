@@ -42,6 +42,20 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, Event.all.size
   end
 
+  test 'should create unaliased token' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager)
+    post sessions_url, params: { token: token.to_hash }
+
+    post "/events/#{event.id}/tokens", params: {}
+
+    tokens = Token.where(event: event, role: :voter)
+    assert_response :redirect
+    assert_equal 1, tokens.size
+    assert_not tokens.first.alias
+  end
+
   test 'should create aliased token' do
     event = create(:event, consultation: token.consultation)
     identifier = Faker::PhoneNumber.cell_phone

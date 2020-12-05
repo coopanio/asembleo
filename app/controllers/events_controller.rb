@@ -56,7 +56,6 @@ class EventsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
     end
-
   end
 
   def update_token
@@ -89,8 +88,13 @@ class EventsController < ApplicationController
   private
 
   def create_token(identifier, flash: true)
-    identifier = Token.sanitize(identifier)
-    token = Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+    token = if identifier.blank?
+      Token.new(consultation: consultation, event: event)
+    else
+      identifier = Token.sanitize(identifier)
+      Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+    end
+
     if token.new_record?
       token.save!
       success('Token created.') if flash
@@ -119,7 +123,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.require(:value)
+    params[:value]
   end
 
   def update_token_params
