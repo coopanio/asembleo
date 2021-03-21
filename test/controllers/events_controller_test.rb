@@ -45,7 +45,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should create unaliased token' do
     event = create(:event, consultation: token.consultation)
 
-    token.update!(role: :manager)
+    token.update!(role: :manager, event: event)
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: {}
@@ -60,7 +60,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
     identifier = Faker::PhoneNumber.cell_phone
 
-    token.update!(role: :manager)
+    token.update!(role: :manager, event: event)
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
@@ -75,8 +75,8 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
     create(:token, consultation: token.consultation, event: event, alias: identifier, status: :disabled)
+    token.update!(role: :manager, event: event)
 
-    token.update!(role: :manager)
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
