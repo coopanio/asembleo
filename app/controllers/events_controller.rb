@@ -89,20 +89,20 @@ class EventsController < ApplicationController
 
   def create_token(identifier, flash: true)
     token = if identifier.blank?
-      Token.new(consultation: consultation, event: event)
-    else
-      identifier = Token.sanitize(identifier)
-      Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
-    end
+              Token.new(consultation: consultation, event: event)
+            else
+              identifier = Token.sanitize(identifier)
+              Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+            end
 
     if token.new_record?
       token.save!
       success('Token created.') if flash
     elsif token.disabled?
       token.update!(status: :enabled)
-      info("Token enabled again.") if flash
+      info('Token enabled again.') if flash
     elsif flash
-      info("Token exists and enabled.")
+      info('Token exists and enabled.')
     end
   end
 

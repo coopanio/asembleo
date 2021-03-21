@@ -78,7 +78,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
 
       question
     end
-  
+
     assert subject.present?
     assert_equal consultation.id, subject.consultation.id
   end

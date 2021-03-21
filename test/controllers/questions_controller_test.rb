@@ -26,7 +26,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   test 'should tally votes' do
     results = subject
 
-    assert_equal 4.0, results['yes']
-    assert_equal 1.5, results['no']
+    assert_in_delta(4.0, results['yes'])
+    assert_in_delta(1.5, results['no'])
   end
 end
