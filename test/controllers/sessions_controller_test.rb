@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create session with aliased token' do
     @params = { token: Faker::PhoneNumber.cell_phone }
-    @token.update!(alias: Token.sanitize(@params[:token]))
+    token.update!(alias: Token.sanitize(@params[:token]))
 
     subject
 
@@ -30,9 +30,16 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail on deleted token' do
-    @token.destroy!
+    token.destroy!
     subject
 
     assert_response :redirect
+  end
+
+  test 'should autologin' do
+    get "#{sessions_url}/#{token.to_hash}/login"
+
+    assert_response :redirect
+    assert_equal token.id, session[:token]
   end
 end
