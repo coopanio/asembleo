@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :votes
 
+  get   'sessions/:token/login',      to: 'sessions#create'
   patch 'questions/:id/open',         to: 'questions#open'
   patch 'questions/:id/close',        to: 'questions#close'
   get   'questions/:id/option',       to: 'questions#new_option'

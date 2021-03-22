@@ -44,6 +44,8 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_equal 1, votes.length
       assert votes.first.value = 'yes'
     end
+
+    assert_includes response.body, Receipt.first.fingerprint
   end
 
   test 'should fail if question_id is unknown' do
