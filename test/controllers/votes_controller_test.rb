@@ -33,6 +33,19 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'should asynchronously create vote' do
+    Rails.configuration.x.assemblea.async_vote = true
+    subject
+
+    perform_enqueued_jobs
+    assert_performed_jobs 1
+
+    Vote.all.tap do |votes|
+      assert_equal 1, votes.length
+      assert votes.first.value = 'yes'
+    end
+  end
+
   test 'should fail if question_id is unknown' do
     @question.id = nil
     subject

@@ -18,8 +18,9 @@ gem 'paper_trail'
 gem 'pundit'
 gem 'sentry-raven'
 gem 'store_model'
+gem 'sucker_punch'
 
-gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'bootstrap', '~> 5.0.0.beta2'
 
 group :production do
   gem 'pg'

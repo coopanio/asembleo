@@ -6,12 +6,10 @@ class VotesController < ApplicationController
     authorize question, :show?
     validate
 
-    @receipt = receipt
-    @receipt.save!
+    envelope = Envelope.new(question, token, **vote_params.to_h.symbolize_keys)
+    envelope.save(async: Rails.configuration.x.assemblea.async_vote)
 
-    # TODO: sidekiq worker to store votes with chained hash
-    vote = Vote.new(question: question, value: vote_params[:value], weight: token.weight)
-    vote.save!
+    @receipt = envelope.receipt
   end
 
   private
@@ -27,17 +25,6 @@ class VotesController < ApplicationController
 
   def question
     @question ||= policy_scope(Question).find(vote_params[:question_id])
-  end
-
-  def receipt
-    return @receipt if defined?(@receipt)
-
-    @receipt ||= Receipt.new.tap do |r|
-      r.token = token
-      r.question = question
-      r.created_at = Time.now.utc
-      r.fingerprint = FingerprintService.generate(r, current_user.to_hash, vote_params[:value])
-    end
   end
 
   def token
