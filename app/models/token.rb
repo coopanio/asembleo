@@ -35,6 +35,11 @@ class Token < ApplicationRecord
     Token.find_by!(alias: value)
   end
 
+  def self.sanitize(value)
+    value = value.downcase
+    value.delete('^0-9a-z')
+  end
+
   def to_s
     to_hash
   end
@@ -47,10 +52,5 @@ class Token < ApplicationRecord
 
   def init
     self.salt = SecureRandom.random_number(9_999) if salt.blank?
-  end
-
-  def self.sanitize(value)
-    value = value.downcase
-    value.delete('^0-9a-z')
   end
 end

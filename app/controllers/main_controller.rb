@@ -2,10 +2,10 @@
 
 class MainController < ApplicationController
   def index
-    if current_user.present?
-      redirect_to destination
-      nil
-    end
+    return if current_user.blank?
+
+    redirect_to destination
+    nil
   end
 
   alias token current_user

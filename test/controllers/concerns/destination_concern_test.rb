@@ -70,7 +70,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
       create(:event, consultation: consultation, status: :opened)
     ]
 
-    questions = events.map do |event|
+    events.map do |event|
       event.consultation.opened!
 
       question = create(:question, consultation: event.consultation, status: :opened)
