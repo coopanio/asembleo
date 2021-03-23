@@ -124,5 +124,6 @@ Rails.application.configure do
   config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].presence || 'Assemblea'
   config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].presence
   config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].presence
+  config.x.assemblea.default_from = ENV['ASSEMBLEA_DEFAULT_FROM'].presence
   config.x.assemblea.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASSEMBLEA_ASYNC_VOTE'].presence) || false
 end
