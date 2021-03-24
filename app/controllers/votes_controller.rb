@@ -6,10 +6,11 @@ class VotesController < ApplicationController
     authorize question, :show?
     validate
 
-    envelope = Envelope.new(question, token, **vote_params.to_h.symbolize_keys)
+    envelope = Envelope.new(question, token, **vote_params.to_h.symbolize_keys)    
     envelope.save(async: Rails.configuration.x.assemblea.async_vote)
 
     @receipt = envelope.receipt
+    @receipt.save!
   end
 
   private

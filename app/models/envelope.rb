@@ -29,7 +29,6 @@ class Envelope
     if async
       VoteCastJob.perform_later(question.id, token.id, value, receipt.created_at)
     else
-      receipt.save!
       vote.save!
     end
   end
