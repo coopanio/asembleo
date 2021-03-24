@@ -133,4 +133,12 @@ Rails.application.configure do
   config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].presence
   config.x.assemblea.default_from = ENV['ASSEMBLEA_DEFAULT_FROM'].presence
   config.x.assemblea.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASSEMBLEA_ASYNC_VOTE'].presence) || false
+
+  config.action_mailer.smtp_settings = {
+    address: ENV['ASSEMBLEA_SMTP_HOST'].presence,
+    user_name: ENV['ASSEMBLEA_SMTP_USERNAME'].presence,
+    password: ENV['ASSEMBLEA_SMTP_PASSWORD'].presence
+  }
+  config.action_mailer.default_url_options = { host: ENV['ASSEMBLEA_HOST'].presence }
+  config.action_mailer.raise_delivery_errors = true
 end
