@@ -1,6 +1,6 @@
 <div class="alert alert-primary" role="alert">
   <p>This consultation is open but has no active questions. Try it later.</p>
   <% if @current_user.voter? %>
-    <%= link_to 'Refresh', { controller: 'events', action: 'next_question', id: @current_user.event.id }, class: 'btn btn-primary btn-lg' %>
+    <%= link_to 'Refresh', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
   <% end %>
 </div>

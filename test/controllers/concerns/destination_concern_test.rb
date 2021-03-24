@@ -37,7 +37,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
     create(:events_question, question: question, consultation: consultation, status: :opened)
 
     assert subject.present?
-    assert_equal subject.id, question.id
+    assert_equal subject, question.id
   end
 
   test 'should return the first open question (second)' do
@@ -48,7 +48,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
     end
 
     assert subject.present?
-    assert_equal subject.id, questions.second.id
+    assert_equal subject, questions.second.id
   end
 
   test 'should return the first un-voted and open question (third)' do
@@ -61,7 +61,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
     create(:receipt, token: token, question: questions.second)
 
     assert subject.present?
-    assert_equal subject.id, questions.third.id
+    assert_equal subject, questions.third.id
   end
 
   test 'should return the first open question when multiple consultations are active' do
@@ -80,7 +80,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
     end
 
     assert subject.present?
-    assert_equal consultation.id, subject.consultation.id
+    assert_equal consultation.id, Question.find(subject).consultation.id
   end
 
   private

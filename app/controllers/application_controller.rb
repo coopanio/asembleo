@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:token]
 
-    @current_user ||= Token.find(session[:token])
+    @current_user ||= Rails.cache.fetch("tokens/id:#{session[:token]}") do
+      Token.find(session[:token])
+    end
   end
 end

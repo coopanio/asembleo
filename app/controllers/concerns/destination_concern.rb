@@ -7,11 +7,11 @@ module DestinationConcern
 
   def destination
     if token.admin?
-      edit_consultation_url(consultation)
+      edit_consultation_url(token.consultation_id)
     elsif token.manager?
-      edit_event_url(token.event)
+      edit_event_url(token.event_id)
     elsif active_question.blank?
-      consultation_url(consultation)
+      consultation_url(token.consultation_id)
     else
       question_url(active_question)
     end
@@ -30,16 +30,18 @@ module DestinationConcern
     where = {
       status: :opened,
       receipts: { id: nil },
-      consultation: token.consultation.id
+      consultation: token.consultation_id
     }
 
     join = questions.join(receipts, Arel::Nodes::OuterJoin).on(*join_condition)
     query = EventsQuestion.joins(join.join_sources).where(**where).order(:id)
 
-    @active_question = query.first.try(:question)
+    @active_question = query.pluck(:question_id).first
   end
 
   def consultation
-    @consultation ||= token.consultation
+    @consultation ||= Rails.cache.fetch("tokens/consultation:#{token.id}") do
+      token.consultation
+    end
   end
 end

@@ -38,12 +38,16 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    record.consultation == token.consultation
+    record.consultation_id == token.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: token.consultation)
+      consultation = Rails.cache.fetch("tokens/consultation:#{token.id}") do
+        token.consultation
+      end
+
+      scope.where(consultation: consultation)
     end
   end
 end

@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   def token
     return @token if defined?(@token)
 
-    @token = Rails.cache.fetch("tokens/#{identifier}") do
+    @token = Rails.cache.fetch("tokens/hash:#{identifier}") do
       Token.from_value(identifier)
     end
   end

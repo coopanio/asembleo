@@ -14,12 +14,16 @@ class ConsultationPolicy < ApplicationPolicy
   end
 
   def show?
-    record == token.consultation
+    record.id == token.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      scope.where(id: token.consultation)
+      consultation = Rails.cache.fetch("tokens/consultation:#{token.id}") do
+        token.consultation
+      end
+
+      scope.where(id: consultation)
     end
   end
 end
