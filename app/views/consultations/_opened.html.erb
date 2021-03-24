@@ -1,6 +1,6 @@
 <div class="alert alert-primary" role="alert">
   <% if @current_user.receipts.count == @consultation.questions.count %>
-    Ja has contestat totes les preguntes. Espera a que es tanqui la votació.
+    Ja has contestat totes les preguntes. Demà a les 10.00 h es tancarà la votació i publicaran els resultats.
   <% else %>
     <p>La votació està oberta però no té preguntes actives. Prova més tard.</p>
     <% if @current_user.voter? %>
