@@ -13,7 +13,7 @@ class SessionsMailerTest < ActionMailer::TestCase
     end
 
     assert_equal [to], email.to
-    assert email.body.include? "http://example.com/sessions/#{token.to_hash}/login"
-    assert email.body.include? "Thanks,\n#{Rails.configuration.x.assemblea.title}"
+    assert_includes email.body, "http://example.com/sessions/#{token.to_hash}/login"
+    assert_includes email.body, "Thanks,\n#{Rails.configuration.x.assemblea.title}"
   end
 end
