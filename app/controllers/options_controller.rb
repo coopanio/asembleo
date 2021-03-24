@@ -15,6 +15,7 @@ class OptionsController < ApplicationController
     authorize option
 
     option.save!
+    question.save!
 
     success('Option created.')
     redirect_to controller: 'questions', action: 'edit', id: question.id
@@ -30,6 +31,7 @@ class OptionsController < ApplicationController
     authorize option
 
     option.update!(update_params)
+    question.save!
 
     success('Option updated.')
     redirect_to controller: 'questions', action: 'edit', id: question.id
@@ -40,6 +42,7 @@ class OptionsController < ApplicationController
     authorize option
 
     option.destroy!
+    question.save!
 
     success('Option deleted.')
     redirect_to controller: 'questions', action: 'edit', id: question.id

@@ -16,6 +16,7 @@ class Token < ApplicationRecord
   validates :alias, uniqueness: true, if: proc { |t| t.alias.present? }
 
   after_initialize :init
+  after_save :invalidate_cache
 
   def self.from_value(value)
     token = Token.from_hash(value)
@@ -54,5 +55,11 @@ class Token < ApplicationRecord
 
   def init
     self.salt = SecureRandom.random_number(9_999) if salt.blank?
+  end
+
+  def invalidate_cache
+    Rails.cache.delete("tokens/hash:#{to_hash}")
+    Rails.cache.delete("tokens/id:#{id}")
+    Rails.cache.delete("tokens/consultation:#{id}")
   end
 end

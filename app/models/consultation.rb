@@ -24,6 +24,8 @@ class Consultation < ApplicationRecord
   after_update :update_default_event, if: :synchronous?
   after_save :invalidate_cache
 
+  private
+
   def update_default_event
     if opened?
       events.first.update!(status: :opened)

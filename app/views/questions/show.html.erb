@@ -1,7 +1,9 @@
-<h2><%= @question.consultation.title %></h2>
-<% if @question.description %>
-  <div class="mb-3">
-    <%= raw(@question.description) %>
-  </div>
+<% cache @question do %>
+  <h2><%= @question.consultation.title %></h2>
+  <% if @question.description %>
+    <div class="mb-3">
+      <%= raw(@question.description) %>
+    </div>
+  <% end %>
+  <%= render @question.status %>
 <% end %>
-<%= render @question.status %>

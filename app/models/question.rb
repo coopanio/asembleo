@@ -10,6 +10,8 @@ class Question < ApplicationRecord
 
   enum status: { draft: 0, opened: 1, closed: 2 }
 
+  after_save :invalidate_cache
+
   def valid_option?(value)
     options.exists?(value: value)
   end
@@ -31,5 +33,11 @@ class Question < ApplicationRecord
     end
 
     results
+  end
+
+  private
+
+  def invalidate_cache
+    Rails.cache.delete("questions:#{id}")
   end
 end

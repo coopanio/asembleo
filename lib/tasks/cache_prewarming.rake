@@ -12,9 +12,6 @@ namespace :assemblea do
       Rails.cache.fetch("tokens/consultation:#{token.id}") do
         token.consultation
       end
-      Rails.cache.fetch("tokens/event:#{token.id}") do
-        token.event
-      end
     end
   end
 end

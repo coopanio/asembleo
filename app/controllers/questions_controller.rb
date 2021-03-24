@@ -88,11 +88,13 @@ class QuestionsController < ApplicationController
   private
 
   def consultation
-    current_user.consultation
+    question.consultation
   end
 
   def question
-    @question ||= policy_scope(Question).find(params[:id])
+    @question ||= Rails.cache.fetch("questions:#{params[:id]}") do
+      policy_scope(Question).find(params[:id])
+    end
   end
 
   def event

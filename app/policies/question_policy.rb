@@ -34,12 +34,12 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def show?
-    record.consultation == token.consultation
+    record.consultation_id == token.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: token.consultation)
+      scope.where(consultation: token.consultation_id)
     end
   end
 end
