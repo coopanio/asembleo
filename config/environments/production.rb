@@ -60,6 +60,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, {
     url: ENV['ASSEMBLEA_REDIS_URL'],
+    pool_size: 5,
+    pool_timeout: 5,
     error_handler: lambda { |method:, returning:, exception:|
       Raven.capture_exception exception, level: 'warning', tags: { method: method, returning: returning }
     }

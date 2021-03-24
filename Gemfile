@@ -20,12 +20,13 @@ gem 'pundit'
 gem 'redis'
 gem 'sentry-raven'
 gem 'store_model'
-gem 'sucker_punch'
 
 gem 'bootstrap', '~> 5.0.0.beta2'
 
 group :production do
+  gem 'connection_pool'
   gem 'pg'
+  gem 'sucker_punch'
 end
 
 group :development, :test do
