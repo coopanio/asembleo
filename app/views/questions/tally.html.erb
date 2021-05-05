@@ -14,6 +14,9 @@
         <td>
           <%= @results[option.value] || 0 %>
         </td>
+        <td>
+          <%= (((@results[option.value] || 0) / (@results['_meta']['total_votes'] || 1)) * 100.0).round(2) %>%
+        </td>
       </tr>
     <% end %>
   </tbody>

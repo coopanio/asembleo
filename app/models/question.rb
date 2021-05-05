@@ -32,6 +32,9 @@ class Question < ApplicationRecord
       results[vote.value] = result + (1 * vote.weight)
     end
 
+    results['_meta'] = {
+      'total_votes' => results.values.sum
+    }
     results
   end
 
