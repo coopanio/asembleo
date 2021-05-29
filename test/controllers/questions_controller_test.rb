@@ -28,5 +28,6 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_in_delta(4.0, results['yes'])
     assert_in_delta(1.5, results['no'])
+    assert_equal 5.5, results['_meta']['total_votes']
   end
 end
