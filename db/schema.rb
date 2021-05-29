@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_173429) do
+ActiveRecord::Schema.define(version: 2021_04_26_212651) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(version: 2021_03_21_173429) do
   create_table "questions", force: :cascade do |t|
     t.text "description"
     t.integer "status", default: 0
-    t.integer "weight", default: 0
     t.integer "consultation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "max_options", default: 1
     t.index ["consultation_id"], name: "index_questions_on_consultation_id"
   end
 
