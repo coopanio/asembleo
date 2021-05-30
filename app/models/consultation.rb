@@ -7,6 +7,7 @@ class Consultation < ApplicationRecord
     include StoreModel::Model
 
     enum :mode, %i[synchronous asynchronous], default: :synchronous
+    enum :ballot, %i[open secret], default: :secret
   end
 
   has_many :events, dependent: :destroy
@@ -18,6 +19,7 @@ class Consultation < ApplicationRecord
   enum status: { draft: 0, opened: 1, closed: 2, archived: 3 }
 
   delegate :synchronous?, :asynchronous?, to: :config
+  delegate :ballot, to: :config
 
   validates :config, store_model: { merge_errors: true }
 
