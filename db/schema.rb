@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_212651) do
+ActiveRecord::Schema.define(version: 2021_05_29_180620) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_212651) do
     t.string "alias"
     t.integer "status", default: 1
     t.decimal "weight", default: "1.0"
+    t.string "on_behalf_of"
     t.index ["consultation_id"], name: "index_tokens_on_consultation_id"
     t.index ["event_id"], name: "index_tokens_on_event_id"
   end
