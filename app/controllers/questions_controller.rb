@@ -60,6 +60,7 @@ class QuestionsController < ApplicationController
       return
     end
 
+    @consultation = question.consultation
     @results = question.tally
   end
 

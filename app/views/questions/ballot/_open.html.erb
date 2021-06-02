@@ -1,0 +1,10 @@
+<% @question.votes.each do |vote| %>
+  <tr>
+    <td>
+      <%= vote.alias %>
+    </td>
+    <td>
+      <%= vote.value %>
+    </td>
+  </tr>
+<% end %>

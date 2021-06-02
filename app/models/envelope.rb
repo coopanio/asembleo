@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
 class Envelope
-  attr_reader :question, :token, :value, :created_at
+  attr_reader :question, :consultation, :token, :value, :created_at
 
   def initialize(question, token, created_at: Time.now.utc, **kwargs)
     @question = question
+    @consultation = question.consultation
     @token = token
     @value = kwargs[:value]
     @created_at = created_at
   end
 
   def vote
-    @vote ||= Vote.new(question: question, value: value, weight: token.weight)
+    @vote ||= Vote.new(
+      question: question,
+      value: value,
+      weight: token.weight,
+      alias: vote_alias
+    )
   end
 
   def receipt
@@ -31,5 +37,13 @@ class Envelope
     else
       vote.save!
     end
+  end
+
+  private
+  
+  def vote_alias
+    return unless consultation.ballot == 'open'
+
+    token.on_behalf_of || token.alias || token.to_hash
   end
 end
