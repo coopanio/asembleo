@@ -12,7 +12,7 @@ namespace :assemblea do
       to = row[0]
       event_name = row[1]
 
-      token = Token.new(consultation: consultation, event: consultation.events.where(title: event_name))
+      token = Token.new(consultation: consultation, event: consultation.events.find_by(title: event_name))
       
       token.save!
       token.reload
