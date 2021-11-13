@@ -24,7 +24,8 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     Vote.all.tap do |votes|
       assert_equal 1, votes.length
-      assert votes.first.value = 'yes'
+      assert_equal 'yes', votes.first.value
+      assert_equal @token.event, votes.first.event
     end
 
     Receipt.find_by(token: token, question: question).tap do |receipt|
@@ -42,7 +43,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     Vote.all.tap do |votes|
       assert_equal 1, votes.length
-      assert votes.first.value = 'yes'
+      assert_equal 'yes', votes.first.value
     end
 
     assert_includes response.body, Receipt.first.fingerprint

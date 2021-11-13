@@ -16,6 +16,7 @@ class Envelope
       question: question,
       value: value,
       weight: token.weight,
+      event: token.event,
       alias: vote_alias
     )
   end

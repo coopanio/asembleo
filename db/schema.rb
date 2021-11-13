@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_071244) do
+ActiveRecord::Schema.define(version: 2021_11_13_223835) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -127,11 +127,13 @@ ActiveRecord::Schema.define(version: 2021_06_02_071244) do
   create_table "votes", force: :cascade do |t|
     t.string "value"
     t.text "fingerprint"
-    t.bigint "question_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "weight"
     t.string "alias"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_votes_on_event_id"
     t.index ["question_id"], name: "index_votes_on_question_id"
   end
 
@@ -147,5 +149,6 @@ ActiveRecord::Schema.define(version: 2021_06_02_071244) do
   add_foreign_key "receipts", "tokens"
   add_foreign_key "tokens", "consultations"
   add_foreign_key "tokens", "events"
+  add_foreign_key "votes", "events"
   add_foreign_key "votes", "questions"
 end
