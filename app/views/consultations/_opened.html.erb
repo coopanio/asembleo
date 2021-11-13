@@ -1,10 +1,10 @@
 <div class="alert alert-primary" role="alert">
   <% if @current_user.receipts.count == @consultation.questions.count %>
-    This consultation has no more questions. Please wait for the consultation to close.
+    Ja has contestat totes les preguntes. Demà a les 10.00 h es tancarà la votació i publicaran els resultats.
   <% else %>
-    <p>This consultation is open but has no active questions. Try it later.</p>
+    <p>La votació està oberta però no té preguntes actives. Prova més tard.</p>
     <% if @current_user.voter? %>
-      <%= link_to 'Refresh', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'Refrescar', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
     <% end %>
   <% end %>
 </div>
