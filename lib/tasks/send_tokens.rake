@@ -13,10 +13,10 @@ namespace :assemblea do
       event_name = row[1]
 
       token = Token.new(consultation: consultation, event: consultation.events.find_by(title: event_name))
-      
+
       token.save!
       token.reload
-      
+
       puts "#{to}@#{event_name} => #{token.to_hash}"
       SessionsMailer.magic_link_email(to, token).deliver_now
     end
