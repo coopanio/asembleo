@@ -1,6 +1,6 @@
 <div class="alert alert-primary" role="alert">
   <% if @current_user.receipts.count == @consultation.questions.count %>
-    Ja has contestat totes les preguntes. Avui a les 23.59 h es tancarà la votació, i dimarts al matí es publicaran els resultats.
+    Ja has fet totes les votacions d'aquest bloc.
   <% else %>
     <p>La votació està oberta però no té preguntes actives. Prova més tard.</p>
     <% if @current_user.voter? %>
