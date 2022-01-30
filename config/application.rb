@@ -8,7 +8,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Assemblea
+module Asembleo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -20,9 +20,9 @@ module Assemblea
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    config.x.assemblea.public_instance = true
-    config.x.assemblea.title = 'Assemblea'
-    config.x.assemblea.default_from = 'assemblea@coopanio.com'
+    config.x.asembleo.public_instance = true
+    config.x.asembleo.title = 'Asembleo'
+    config.x.asembleo.default_from = 'asembleo@coopanio.com'
 
     config.action_mailer.default_url_options = { host: 'example.com' }
   end

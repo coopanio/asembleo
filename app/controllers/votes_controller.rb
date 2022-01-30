@@ -7,7 +7,7 @@ class VotesController < ApplicationController
     validate
 
     envelope = Envelope.new(question, token, **vote_params.to_h.symbolize_keys)
-    envelope.save(async: Rails.configuration.x.assemblea.async_vote)
+    envelope.save(async: Rails.configuration.x.asembleo.async_vote)
 
     @receipt = envelope.receipt
     @receipt.save!

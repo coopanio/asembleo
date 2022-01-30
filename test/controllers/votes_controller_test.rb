@@ -35,7 +35,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should asynchronously create vote' do
-    Rails.configuration.x.assemblea.async_vote = true
+    Rails.configuration.x.asembleo.async_vote = true
     subject
 
     perform_enqueued_jobs

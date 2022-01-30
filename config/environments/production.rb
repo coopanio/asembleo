@@ -59,7 +59,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, {
-    url: ENV['ASSEMBLEA_REDIS_URL'],
+    url: ENV['ASEMBLEO_REDIS_URL'],
     pool_size: 5,
     pool_timeout: 5,
     error_handler: lambda { |method:, returning:, exception:|
@@ -69,7 +69,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "assemblea_production"
+  # config.active_job.queue_name_prefix = "asembleo_production"
 
   config.action_mailer.perform_caching = false
 
@@ -127,18 +127,18 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.x.assemblea.public_instance = ENV['ASSEMBLEA_PUBLIC_INSTANCE'].present?
-  config.x.assemblea.title = ENV['ASSEMBLEA_TITLE'].presence || 'Assemblea'
-  config.x.assemblea.footer = ENV['ASSEMBLEA_FOOTER'].presence
-  config.x.assemblea.token_alias = ENV['ASSEMBLEA_TOKEN_ALIAS'].presence
-  config.x.assemblea.default_from = ENV['ASSEMBLEA_DEFAULT_FROM'].presence
-  config.x.assemblea.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASSEMBLEA_ASYNC_VOTE'].presence) || false
+  config.x.asembleo.public_instance = ENV['ASEMBLEO_PUBLIC_INSTANCE'].present?
+  config.x.asembleo.title = ENV['ASEMBLEO_TITLE'].presence || 'Asembleo'
+  config.x.asembleo.footer = ENV['ASEMBLEO_FOOTER'].presence
+  config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
+  config.x.asembleo.default_from = ENV['ASEMBLEO_DEFAULT_FROM'].presence
+  config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
 
   config.action_mailer.smtp_settings = {
-    address: ENV['ASSEMBLEA_SMTP_HOST'].presence,
-    user_name: ENV['ASSEMBLEA_SMTP_USERNAME'].presence,
-    password: ENV['ASSEMBLEA_SMTP_PASSWORD'].presence
+    address: ENV['ASEMBLEO_SMTP_HOST'].presence,
+    user_name: ENV['ASEMBLEO_SMTP_USERNAME'].presence,
+    password: ENV['ASEMBLEO_SMTP_PASSWORD'].presence
   }
-  config.action_mailer.default_url_options = { host: ENV['ASSEMBLEA_HOST'].presence }
+  config.action_mailer.default_url_options = { host: ENV['ASEMBLEO_HOST'].presence }
   config.action_mailer.raise_delivery_errors = true
 end

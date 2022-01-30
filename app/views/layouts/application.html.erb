@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><%= Rails.configuration.x.assemblea.title %></title>
+    <title><%= Rails.configuration.x.asembleo.title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,9 +24,9 @@
         <%= yield %>
       </div>
     </main>
-    <% if Rails.configuration.x.assemblea.footer %>
+    <% if Rails.configuration.x.asembleo.footer %>
       <footer class="mt-auto py-3 bg-light">
-        <div class="container text-muted"><%= Rails.configuration.x.assemblea.footer %></div>
+        <div class="container text-muted"><%= Rails.configuration.x.asembleo.footer %></div>
       </footer>
     <% end %>
   </body>

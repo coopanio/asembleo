@@ -2,7 +2,7 @@
 
 require 'csv'
 
-namespace :assemblea do
+namespace :asembleo do
   task :send_tokens, [:filename, :consultation_id] => :environment do |t, args|
     p args
     consultation = Consultation.find(args[:consultation_id])

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :assemblea do
+namespace :asembleo do
   task cache_prewarming: :environment do
     Token.all.each do |token|
       Rails.cache.fetch("tokens/hash:#{token.to_hash}") do

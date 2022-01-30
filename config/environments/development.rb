@@ -79,5 +79,5 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.x.assemblea.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASSEMBLEA_ASYNC_VOTE'].presence) || false
+  config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
 end
