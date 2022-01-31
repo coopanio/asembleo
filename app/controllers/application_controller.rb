@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   def set_raven_context
-    Raven.user_context(id: current_user.try(:id))
-    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+    Sentry.set_user(id: current_user.try(:id))
+    Sentry.set_extras(params: params.to_unsafe_h, url: request.url)
   end
 
   def check_token

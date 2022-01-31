@@ -63,7 +63,7 @@ Rails.application.configure do
     pool_size: 5,
     pool_timeout: 5,
     error_handler: lambda { |method:, returning:, exception:|
-      Raven.capture_exception exception, level: 'warning', tags: { method: method, returning: returning }
+      Sentry.capture_exception exception, level: 'warning', tags: { method: method, returning: returning }
     }
   }
 

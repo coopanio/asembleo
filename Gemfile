@@ -3,24 +3,24 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.1.0'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 6.1.0', '>= 6.1.3.2'
-gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.2.1'
+gem 'rails', '~> 7.0'
+gem 'jsbundling-rails', '~> 1.0'
+gem 'cssbundling-rails', '~> 1.0'
 
 gem 'hashids'
 gem 'hiredis'
 gem 'paper_trail'
 gem 'pundit'
 gem 'redis'
-gem 'sentry-raven'
+gem 'sentry-ruby'
+gem 'sentry-rails'
+gem 'sprockets-rails'
 gem 'store_model'
-
-gem 'bootstrap', '~> 5.0.0.beta2'
 
 group :production do
   gem 'connection_pool'
@@ -42,7 +42,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '~> 4.2'
 end
 
 group :test do
