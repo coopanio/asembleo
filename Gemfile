@@ -6,16 +6,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'jbuilder', '~> 2.7'
-gem 'puma', '~> 5.0'
-gem 'rails', '~> 7.0'
-gem 'jsbundling-rails', '~> 1.0'
 gem 'cssbundling-rails', '~> 1.0'
-
 gem 'hashids'
 gem 'hiredis'
+gem 'jbuilder', '~> 2.7'
+gem 'jsbundling-rails', '~> 1.0'
 gem 'paper_trail'
+gem 'puma', '~> 5.0'
 gem 'pundit'
+gem 'rails', '~> 7.0'
 gem 'redis'
 gem 'sentry-ruby'
 gem 'sentry-rails'
@@ -40,8 +39,6 @@ group :development do
   gem 'rubocop-minitest', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '~> 4.2'
 end
 
