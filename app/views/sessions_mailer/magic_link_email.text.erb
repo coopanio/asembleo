@@ -1,12 +1,14 @@
-Bona nit!
+Hello,
 
-Reps aquest correu perquè has participat de l'Assemblea Oberta Parlamentària d'avui per decidir sobre els pressupostos de la Generalitat i les esmenes de Pla de treball de la CUP+NCG al Parlament, que pots llegir en aquest document: https://ja.cat/aop-202111
+You are receiving this email to sign in to vote using your email address.
 
-Pots votar al següent enllaç (és únic i intransferible): <%= sessions_url %>/<%= @token.to_hash %>/login
+Please click the link below to sign in:
 
-En uns dies rebràs un segon enllaç per votar al document definitiu del Pla de Treball amb les esmenes incorporades, sempre que alguna d'elles superi el llindar necessari per ser incorporada.
+<%= sessions_url %>/<%= @token.to_hash %>/login
 
-Per últim, et volem recordar que Pirates no guarda cap dada de les dades de les inscrites a l'AOP de la CUP+NCG i han sigut eliminades només enviar-se.
+This link is valid while the vote is open.
 
-Salut!
-Pirates de Catalunya
+If you did not request this link, ignore this email.
+
+Thanks,
+<%= Rails.configuration.x.asembleo.title %>

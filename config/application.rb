@@ -23,6 +23,7 @@ module Asembleo
     config.x.asembleo.public_instance = true
     config.x.asembleo.title = 'Asembleo'
     config.x.asembleo.default_from = 'asembleo@coopanio.com'
+    config.x.asembleo.async_vote = false
 
     config.action_mailer.default_url_options = { host: 'example.com' }
   end

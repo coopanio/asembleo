@@ -35,8 +35,9 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should asynchronously create vote' do
-    Rails.configuration.x.asembleo.async_vote = true
-    subject
+    VotesController.stub_any_instance(:async?, true) do
+      subject
+    end
 
     perform_enqueued_jobs
     assert_performed_jobs 1

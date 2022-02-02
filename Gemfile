@@ -50,6 +50,7 @@ group :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'minitest-stub_any_instance'
   gem 'policy-assertions'
   gem 'selenium-webdriver'
   gem 'timecop'
