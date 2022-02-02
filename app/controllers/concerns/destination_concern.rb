@@ -40,8 +40,6 @@ module DestinationConcern
   end
 
   def consultation
-    @consultation ||= Rails.cache.fetch("tokens/consultation:#{token.id}") do
-      token.consultation
-    end
+    @consultation ||= token.consultation
   end
 end

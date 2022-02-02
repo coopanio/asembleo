@@ -43,9 +43,7 @@ class EventPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      consultation = Rails.cache.fetch("tokens/consultation:#{token.id}") do
-        token.consultation
-      end
+      consultation = token.consultation
 
       scope.where(consultation: consultation)
     end

@@ -107,9 +107,7 @@ class EventsController < ApplicationController
   end
 
   def event
-    @event ||= Rails.cache.fetch("events:#{params[:id]}") do
-      policy_scope(Event).find(params[:id])
-    end
+    @event ||= policy_scope(Event).find(params[:id])
   end
 
   def create_params

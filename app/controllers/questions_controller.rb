@@ -93,9 +93,7 @@ class QuestionsController < ApplicationController
   end
 
   def question
-    @question ||= Rails.cache.fetch("questions:#{params[:id]}") do
-      policy_scope(Question).find(params[:id])
-    end
+    @question ||= policy_scope(Question).find(params[:id])
   end
 
   def event

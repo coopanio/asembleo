@@ -70,8 +70,6 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation
-    @consultation ||= Rails.cache.fetch("consultations:#{params[:id]}") do
-      policy_scope(Consultation).find(params[:id])
-    end
+    @consultation ||= policy_scope(Consultation).find(params[:id])
   end
 end
