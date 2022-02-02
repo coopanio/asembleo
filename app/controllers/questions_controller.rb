@@ -3,13 +3,13 @@
 class QuestionsController < ApplicationController
   def new
     authorize Question
-    @question = Question.new(consultation: consultation)
+    @question = Question.new(consultation:)
   end
 
   def create
     authorize Question
 
-    @question = Question.new(create_params.merge(consultation: consultation))
+    @question = Question.new(create_params.merge(consultation:))
     @question.save!
 
     success('Question created.')
@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
     authorize question
 
     EventsQuestion.transaction do
-      rel = EventsQuestion.find_or_create_by(event: event, question: question, consultation: consultation)
+      rel = EventsQuestion.find_or_create_by(event:, question:, consultation:)
       rel.update!(status: :opened)
 
       question.update!(status: :opened) if consultation.synchronous?
@@ -68,7 +68,7 @@ class QuestionsController < ApplicationController
     authorize question
 
     EventsQuestion.transaction do
-      rel = EventsQuestion.find_by(event: event, question: question)
+      rel = EventsQuestion.find_by(event:, question:)
       rel.update!(status: :closed)
 
       question.update!(status: :closed) if consultation.synchronous?

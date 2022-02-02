@@ -17,7 +17,7 @@ class DestinationConcernTest < ActiveSupport::TestCase
 
   setup do
     @consultation = create(:consultation)
-    @token = create(:token, consultation: consultation)
+    @token = create(:token, consultation:)
   end
 
   subject { Stub.new(token).send(:active_question) }
@@ -27,14 +27,14 @@ class DestinationConcernTest < ActiveSupport::TestCase
   end
 
   test 'should return no next question (all in draft status)' do
-    create(:question, consultation: consultation)
+    create(:question, consultation:)
 
     assert subject.blank?
   end
 
   test 'should return the first open question' do
-    question = create(:question, consultation: consultation, status: :opened)
-    create(:events_question, question: question, consultation: consultation, status: :opened)
+    question = create(:question, consultation:, status: :opened)
+    create(:events_question, question:, consultation:, status: :opened)
 
     assert subject.present?
     assert_equal subject, question.id
@@ -57,8 +57,8 @@ class DestinationConcernTest < ActiveSupport::TestCase
       init_questions(status, event)
     end
 
-    create(:receipt, token: token, question: questions.first)
-    create(:receipt, token: token, question: questions.second)
+    create(:receipt, token:, question: questions.first)
+    create(:receipt, token:, question: questions.second)
 
     assert subject.present?
     assert_equal subject, questions.third.id
@@ -67,14 +67,14 @@ class DestinationConcernTest < ActiveSupport::TestCase
   test 'should return the first open question when multiple consultations are active' do
     events = [
       create(:event, status: :opened),
-      create(:event, consultation: consultation, status: :opened)
+      create(:event, consultation:, status: :opened)
     ]
 
     events.map do |event|
       event.consultation.opened!
 
       question = create(:question, consultation: event.consultation, status: :opened)
-      create(:events_question, event: event, question: question, consultation: event.consultation, status: :opened)
+      create(:events_question, event:, question:, consultation: event.consultation, status: :opened)
 
       question
     end
@@ -86,10 +86,10 @@ class DestinationConcernTest < ActiveSupport::TestCase
   private
 
   def init_questions(status, event)
-    question = create(:question, consultation: consultation, status: status)
+    question = create(:question, consultation:, status:)
     event_status = status == :draft ? :closed : status
 
-    create(:events_question, consultation: consultation, question: question, event: event, status: event_status)
+    create(:events_question, consultation:, question:, event:, status: event_status)
 
     question
   end

@@ -8,8 +8,8 @@ class EventsHelperTest < ActionView::TestCase
   # rubocop:disable Layout/LineLength
   setup do
     consultation = create(:consultation, status: :opened)
-    @event = create(:event, consultation: consultation)
-    @question = create(:question, consultation: consultation, status: :opened)
+    @event = create(:event, consultation:)
+    @question = create(:question, consultation:, status: :opened)
 
     @expected = {
       open: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/open?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" autocomplete=\"off\" /><button class=\"btn btn-link py-0\" type=\"submit\">Open</button></form>",
@@ -25,12 +25,12 @@ class EventsHelperTest < ActionView::TestCase
   end
 
   test 'return open link' do
-    create(:events_question, event: event, question: question)
+    create(:events_question, event:, question:)
     assert_equal expected[:open], subject
   end
 
   test 'return close link' do
-    create(:events_question, event: event, question: question, status: :opened)
+    create(:events_question, event:, question:, status: :opened)
     assert_equal expected[:close], subject
   end
 

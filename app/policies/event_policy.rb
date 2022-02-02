@@ -45,7 +45,7 @@ class EventPolicy < ApplicationPolicy
     def resolve
       consultation = token.consultation
 
-      scope.where(consultation: consultation)
+      scope.where(consultation:)
     end
   end
 end

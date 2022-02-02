@@ -13,11 +13,11 @@ class Question < ApplicationRecord
   after_save :invalidate_cache
 
   def valid_option?(value)
-    options.exists?(value: value)
+    options.exists?(value:)
   end
 
   def voted?(token)
-    receipts.exists?(token: token)
+    receipts.exists?(token:)
   end
 
   def position

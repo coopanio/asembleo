@@ -8,7 +8,7 @@ class VoteCastJob < ApplicationJob
     question = Question.find(question_id)
     token = Token.find(token_id)
 
-    envelope = Envelope.new(question, token, value: value, created_at: created_at)
+    envelope = Envelope.new(question, token, value:, created_at:)
     envelope.save
   end
 end

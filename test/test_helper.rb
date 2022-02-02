@@ -13,9 +13,9 @@ module ActiveSupport
 
     include FactoryBot::Syntax::Methods
 
-    def self.subject(&block)
+    def self.subject(&)
       define_method(:subject) do
-        @subject ||= instance_eval(&block)
+        @subject ||= instance_eval(&)
       end
     end
   end

@@ -3,13 +3,13 @@
 class EventsController < ApplicationController
   def new
     authorize Event
-    @event = Event.new(consultation: consultation)
+    @event = Event.new(consultation:)
   end
 
   def create
     authorize Event
-    @event = Event.new(create_params.merge(consultation: consultation))
-    token = Token.new(role: :manager, event: event, consultation: consultation)
+    @event = Event.new(create_params.merge(consultation:))
+    token = Token.new(role: :manager, event:, consultation:)
 
     @event.transaction do
       @event.save!
@@ -62,7 +62,7 @@ class EventsController < ApplicationController
     authorize event
 
     status = update_token_params
-    Token.find(params[:token_id]).update!(status: status)
+    Token.find(params[:token_id]).update!(status:)
 
     if token.enabled?
       success('Token enabled.')
@@ -89,10 +89,10 @@ class EventsController < ApplicationController
 
   def create_token(identifier, flash: true)
     token = if identifier.blank?
-              Token.new(consultation: consultation, event: event)
+              Token.new(consultation:, event:)
             else
               identifier = Token.sanitize(identifier)
-              Token.find_or_initialize_by(alias: identifier, consultation: consultation, event: event)
+              Token.find_or_initialize_by(alias: identifier, consultation:, event:)
             end
 
     if token.new_record?

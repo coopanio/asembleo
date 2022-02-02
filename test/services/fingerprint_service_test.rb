@@ -8,7 +8,7 @@ class FingerprintServiceTest < ActiveSupport::TestCase
   setup do
     Timecop.freeze(Time.utc(2020, 9, 11, 0, 0)) do
       @token = create(:token)
-      @receipt = create(:receipt, id: nil, token: token)
+      @receipt = create(:receipt, id: nil, token:)
     end
   end
 

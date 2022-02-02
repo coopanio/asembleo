@@ -16,7 +16,7 @@ class ConsultationsController < ApplicationController
 
       if @consultation.synchronous?
         event = Event.create(title: 'Default', consultation: @consultation)
-        manager_token = Token.create(role: :manager, consultation: @consultation, event: event)
+        manager_token = Token.create(role: :manager, consultation: @consultation, event:)
       end
     end
 

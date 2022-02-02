@@ -9,18 +9,18 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     @params = { consultation: { title: 'Test', description: 'Description' } }
     @token = create(:token, :admin)
     event = create(:event, consultation: @token.consultation)
-    @token.update!(event: event)
+    @token.update!(event:)
   end
 
   test 'should create consultation' do
-    post consultations_url, params: params
+    post(consultations_url, params:)
 
     consultation = Consultation.last
     assert_response :redirect
     assert session[:token].present?
     assert_not_equal token.id, session[:token]
-    assert Token.exists?(role: :manager, consultation: consultation)
-    assert_equal 1, Event.where(consultation: consultation).count
+    assert Token.exists?(role: :manager, consultation:)
+    assert_equal 1, Event.where(consultation:).count
     assert_equal params[:consultation][:title], consultation.title
     assert_equal params[:consultation][:description], consultation.description
   end
@@ -37,7 +37,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     login
 
     @params = { consultation: { status: 'opened' } }
-    patch consultation_url(token.consultation.id), params: params
+    patch(consultation_url(token.consultation.id), params:)
 
     consultation = Consultation.all.first
     assert_response :redirect

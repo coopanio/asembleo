@@ -36,7 +36,7 @@ module DestinationConcern
     join = questions.join(receipts, Arel::Nodes::OuterJoin).on(*join_condition)
     query = EventsQuestion.joins(join.join_sources).where(**where).order(:id)
 
-    @active_question = query.pluck(:question_id).first
+    @active_question = query.pick(:question_id)
   end
 
   def consultation

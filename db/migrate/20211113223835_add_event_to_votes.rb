@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddEventToVotes < ActiveRecord::Migration[6.1]
   def change
     add_reference :votes, :event, foreign_key: true

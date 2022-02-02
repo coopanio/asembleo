@@ -18,13 +18,12 @@ class ApplicationController < ActionController::Base
 
   def check_token
     return if current_user.blank?
+    return unless current_user.disabled?
 
-    if current_user.disabled?
-      error('Token disabled.')
+    error('Token disabled.')
 
-      reset_session
-      redirect_to root_path
-    end
+    reset_session
+    redirect_to root_path
   end
 
   def current_user

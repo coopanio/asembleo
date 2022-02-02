@@ -13,8 +13,8 @@ class Envelope
 
   def vote
     @vote ||= Vote.new(
-      question: question,
-      value: value,
+      question:,
+      value:,
       weight: token.weight,
       event: token.event,
       alias: vote_alias
@@ -41,7 +41,7 @@ class Envelope
   end
 
   private
-  
+
   def vote_alias
     return unless consultation.ballot == 'open'
 

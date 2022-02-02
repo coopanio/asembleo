@@ -4,7 +4,7 @@ module EventsHelper
   def question_opener_closer_link(event, question)
     return '-' unless question.consultation.opened?
 
-    rel = EventsQuestion.find_by(event: event, question: question)
+    rel = EventsQuestion.find_by(event:, question:)
     if rel.nil? || rel.closed?
       return button_to('Open', question_action_params('open', event, question), **button_params)
     end

@@ -3,7 +3,7 @@
 require 'csv'
 
 namespace :asembleo do
-  task :send_tokens, [:filename, :consultation_id] => :environment do |t, args|
+  task :send_tokens, %i[filename consultation_id] => :environment do |_t, args|
     p args
     consultation = Consultation.find(args[:consultation_id])
     csv_file = File.open(args[:filename])
@@ -12,7 +12,7 @@ namespace :asembleo do
       to = row[0]
       event_name = row[1]
 
-      token = Token.new(consultation: consultation, event: consultation.events.find_by(title: event_name))
+      token = Token.new(consultation:, event: consultation.events.find_by(title: event_name))
 
       token.save!
       token.reload

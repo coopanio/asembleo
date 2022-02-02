@@ -5,8 +5,8 @@ require 'digest'
 class FingerprintService
   def self.generate(*args, short: false)
     values = args.flat_map do |arg|
-      if arg.respond_to?('attributes')
-        arg.attributes.values.reject(&:nil?)
+      if arg.respond_to?(:attributes)
+        arg.attributes.values.compact
       else
         arg
       end

@@ -7,10 +7,10 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @question = create(:question)
-    create(:option, question: question, value: 'yes')
-    create(:option, question: question, value: 'no')
+    create(:option, question:, value: 'yes')
+    create(:option, question:, value: 'no')
     event = create(:event, consultation: question.consultation)
-    @token = create(:token, event: event, consultation: question.consultation)
+    @token = create(:token, event:, consultation: question.consultation)
     @value = 'yes'
 
     post sessions_url, params: { token: token.to_hash }
@@ -28,7 +28,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_equal @token.event, votes.first.event
     end
 
-    Receipt.find_by(token: token, question: question).tap do |receipt|
+    Receipt.find_by(token:, question:).tap do |receipt|
       assert receipt.present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
@@ -56,7 +56,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 400
     assert_empty Vote.all
-    assert_not Receipt.exists?(token: token, question: question)
+    assert_not Receipt.exists?(token:, question:)
   end
 
   test 'should fail if value is not valid' do
@@ -65,7 +65,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_empty Vote.all
-    assert_not Receipt.exists?(token: token, question: question)
+    assert_not Receipt.exists?(token:, question:)
   end
 
   test 'should fail if a second vote is attempted' do

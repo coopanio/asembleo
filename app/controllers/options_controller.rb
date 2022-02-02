@@ -5,13 +5,13 @@ class OptionsController < ApplicationController
     authorize question
     authorize Option
 
-    @option = Option.new(question: question)
+    @option = Option.new(question:)
   end
 
   def create
     authorize question
 
-    @option = Option.new(create_params.merge(question: question))
+    @option = Option.new(create_params.merge(question:))
     authorize option
 
     option.save!

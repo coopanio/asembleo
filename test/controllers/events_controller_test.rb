@@ -14,7 +14,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should create event' do
     params = { event: { title: 'Test' } }
 
-    post events_url, params: params
+    post(events_url, params:)
 
     event = Event.first
     assert_response :redirect
@@ -26,7 +26,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     params = { event: { title: 'Test 2' } }
     event = create(:event, consultation: token.consultation)
 
-    patch event_url(event.id), params: params
+    patch(event_url(event.id), params:)
 
     event = Event.first
     assert_response :redirect
@@ -45,12 +45,12 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should create unaliased token' do
     event = create(:event, consultation: token.consultation)
 
-    token.update!(role: :manager, event: event)
+    token.update!(role: :manager, event:)
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: {}
 
-    tokens = Token.where(event: event, role: :voter)
+    tokens = Token.where(event:, role: :voter)
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_not tokens.first.alias
@@ -60,12 +60,12 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
     identifier = Faker::PhoneNumber.cell_phone
 
-    token.update!(role: :manager, event: event)
+    token.update!(role: :manager, event:)
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
 
-    tokens = Token.where(event: event, role: :voter)
+    tokens = Token.where(event:, role: :voter)
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal Token.sanitize(identifier), tokens.first.alias
@@ -74,14 +74,14 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should reenable disabled token' do
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
-    create(:token, consultation: token.consultation, event: event, alias: identifier, status: :disabled)
-    token.update!(role: :manager, event: event)
+    create(:token, consultation: token.consultation, event:, alias: identifier, status: :disabled)
+    token.update!(role: :manager, event:)
 
     post sessions_url, params: { token: token.to_hash }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
 
-    tokens = Token.where(event: event, role: :voter)
+    tokens = Token.where(event:, role: :voter)
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal identifier, tokens.first.alias

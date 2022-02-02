@@ -38,6 +38,6 @@ class Consultation < ApplicationRecord
 
   def invalidate_cache
     Rails.cache.delete("consultations:#{id}")
-    Rails.cache.delete_matched("tokens/consultation:*")
+    Rails.cache.delete_matched('tokens/consultation:*')
   end
 end
