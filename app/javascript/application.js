@@ -1,5 +1,5 @@
-require("@rails/ujs").start()
-require("@rails/activestorage").start()
-require("bootstrap")
-import "./channels"
-import * as bootstrap from "bootstrap"
+import * as ujs from "@rails/ujs"
+import * as activestorage from "@rails/activestorage"
+
+ujs.start()
+activestorage.start()
