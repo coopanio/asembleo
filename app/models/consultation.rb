@@ -24,7 +24,6 @@ class Consultation < ApplicationRecord
   validates :config, store_model: { merge_errors: true }
 
   after_update :update_default_event, if: :synchronous?
-  after_save :invalidate_cache
 
   private
 
@@ -34,10 +33,5 @@ class Consultation < ApplicationRecord
     else
       events.first.update!(status: :closed)
     end
-  end
-
-  def invalidate_cache
-    Rails.cache.delete("consultations:#{id}")
-    Rails.cache.delete_matched('tokens/consultation:*')
   end
 end
