@@ -9,6 +9,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cssbundling-rails', '~> 1.0'
 gem 'hashids'
 gem 'hiredis'
+gem 'interactor', '~> 3.0'
 gem 'jbuilder', '~> 2.7'
 gem 'jsbundling-rails', '~> 1.0'
 gem 'paper_trail'

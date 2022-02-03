@@ -6,31 +6,21 @@ class ConsultationsController < ApplicationController
   end
 
   def create
-    @consultation = Consultation.new(create_params)
-    token = Token.new(role: :admin, consultation: @consultation)
-    manager_token = nil
-
-    @consultation.transaction do
-      @consultation.save!
-      token.save!
-
-      if @consultation.synchronous?
-        event = Event.create(title: 'Default', consultation: @consultation)
-        manager_token = Token.create(role: :manager, consultation: @consultation, event:)
-      end
-    end
+    result = CreateConsultation.call(create_params)
+    raise result.error unless result.success?
 
     reset_session
-    session[:token] = token.id
+    session[:token] = result.admin_token.id
 
     message = [
       'Consultation created.',
-      "Admin token is <strong>#{token}</strong>."
+      "Admin token is <strong>#{result.admin_token}</strong>."
     ]
-    message << "Manager token is <strong>#{manager_token}</strong>." if manager_token.present?
+    message << "Manager token is <strong>#{result.manager_token}</strong>." if result.manager_token.present?
     success(message.join(' '))
 
-    redirect_to action: 'edit', id: @consultation.id
+    @consultation = result.consultation
+    redirect_to action: 'edit', id: result.consultation.id
   end
 
   def edit

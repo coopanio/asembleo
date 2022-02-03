@@ -8,15 +8,11 @@ class EventsController < ApplicationController
 
   def create
     authorize Event
-    @event = Event.new(create_params.merge(consultation:))
-    token = Token.new(role: :manager, event:, consultation:)
 
-    @event.transaction do
-      @event.save!
-      token.save!
-    end
+    result = CreateEvent.call(create_params.merge(consultation:))
+    raise result.error unless result.success?
 
-    redirect_to action: 'edit', id: event.id
+    redirect_to action: 'edit', id: result.event.id
   end
 
   def edit
