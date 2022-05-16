@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include DestinationConcern
   include Errors
   include FlashConcern
-  include Pundit
+  include Pundit::Authorization
 
   def set_raven_context
     Sentry.set_user(id: current_user.try(:id))
