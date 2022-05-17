@@ -4,6 +4,10 @@
     <%= f.text_area :description, class: 'form-control' %>
   </div>
   <div class="row mb-3">
+    <%= f.label :max_options, class: 'form-label' %>
+    <%= f.number_field :max_options, class: 'form-control' %>
+  </div>
+  <div class="row mb-3">
     <div class="col d-flex justify-content-end">
       <%= link_to 'Cancel', { controller: 'consultations', action: 'edit', id: @question.consultation_id }, class: 'btn btn-link link-danger' %>
       <%= f.submit 'Save', class: 'btn btn-primary' %>

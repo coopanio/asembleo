@@ -16,12 +16,19 @@ class VotesController < ApplicationController
   private
 
   def validate
-    raise Errors::InvalidVoteOption unless question.valid_option?(vote_params[:value])
     raise Errors::AlreadyVoted if question.voted?(current_user)
+
+    if params[:vote][:multiple]
+      vote_params[:value].each do |value|
+        raise Errors::InvalidVoteOption unless question.valid_option?(value)
+      end
+    else
+      raise Errors::InvalidVoteOption unless question.valid_option?(vote_params[:value])
+    end
   end
 
   def vote_params
-    params.require(:vote).permit(:question_id, :value)
+    params.require(:vote).permit(:question_id, :multiple, :value)
   end
 
   def question

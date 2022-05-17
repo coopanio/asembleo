@@ -101,11 +101,11 @@ class QuestionsController < ApplicationController
   end
 
   def create_params
-    params.require(:question).permit(:description)
+    params.require(:question).permit(:description, :max_options)
   end
 
   def update_params
-    params.require(:question).permit(:description, :status)
+    params.require(:question).permit(:description, :status, :max_options)
   end
 
   def open_params
