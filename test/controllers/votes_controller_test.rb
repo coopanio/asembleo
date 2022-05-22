@@ -13,10 +13,12 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @token = create(:token, event:, consultation: question.consultation)
     @value = 'yes'
 
+    @params = { vote: { question_id: question.id, value: [@value] } }
+
     post sessions_url, params: { token: token.to_hash }
   end
 
-  subject { post votes_url, params: { vote: { question_id: question.id, value: @value } } }
+  subject { post votes_url, params: @params }
 
   test 'should create vote' do
     subject
@@ -26,6 +28,24 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_equal 1, votes.length
       assert_equal 'yes', votes.first.value
       assert_equal @token.event, votes.first.event
+    end
+
+    Receipt.find_by(token:, question:).tap do |receipt|
+      assert receipt.present?
+      assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
+    end
+  end
+
+  test 'should create multiple votes' do
+    selected_votes = %w[yes no]
+    @params[:vote][:value] = selected_votes
+
+    subject
+
+    Vote.all.tap do |votes|
+      assert_equal selected_votes.size, votes.length
+      assert_equal selected_votes.sort, votes.map(&:value).sort
+      assert(votes.map(&:event).all? { |e| e == @token.event })
     end
 
     Receipt.find_by(token:, question:).tap do |receipt|
@@ -51,7 +71,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if question_id is unknown' do
-    @question.id = nil
+    @params[:vote][:question_id] = nil
     subject
 
     assert_response 400
@@ -60,7 +80,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if value is not valid' do
-    @value = 'nay'
+    @params[:vote][:value] = %w[nay]
     subject
 
     assert_response :redirect
@@ -72,7 +92,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     subject
     assert_response :success
 
-    post votes_url, params: { vote: { question_id: question.id, value: 'no' } }
+    post votes_url, params: { vote: { question_id: question.id, value: %w[no] } }
     assert_response :redirect
   end
 end

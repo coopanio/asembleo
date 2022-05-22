@@ -7,6 +7,8 @@ class FingerprintService
     values = args.flat_map do |arg|
       if arg.respond_to?(:attributes)
         arg.attributes.values.compact
+      elsif arg.respond_to?(:append)
+        arg.sort
       else
         arg
       end

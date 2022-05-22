@@ -1,24 +1,33 @@
 # frozen_string_literal: true
 
 class Envelope
-  attr_reader :question, :consultation, :token, :value, :created_at
+  attr_reader :question, :consultation, :token, :values, :created_at
 
   def initialize(question, token, created_at: Time.now.utc, **kwargs)
     @question = question
     @consultation = question.consultation
     @token = token
-    @value = kwargs[:value]
+    @values = kwargs[:value].is_a?(Array) ? kwargs[:value] : [kwargs[:value]]
     @created_at = created_at
   end
 
-  def vote
-    @vote ||= Vote.new(
-      question:,
-      value:,
-      weight: token.weight,
-      event: token.event,
-      alias: vote_alias
-    )
+  def votes
+    return @votes if defined?(@votes)
+
+    @votes = []
+    @values.each do |value|
+      @votes.append(
+        Vote.new(
+          question:,
+          value: value,
+          weight: token.weight,
+          event: token.event,
+          alias: vote_alias
+        )
+      )
+    end
+
+    @votes
   end
 
   def receipt
@@ -28,15 +37,15 @@ class Envelope
       r.token = token
       r.question = question
       r.created_at = created_at
-      r.fingerprint = FingerprintService.generate(r, token.to_hash, value)
+      r.fingerprint = FingerprintService.generate(r, token.to_hash, values)
     end
   end
 
   def save(async: false)
     if async
-      VoteCastJob.perform_later(question.id, token.id, value, receipt.created_at)
+      VoteCastJob.perform_later(question.id, token.id, values, receipt.created_at)
     else
-      vote.save!
+      votes.map(&:save!)
     end
   end
 

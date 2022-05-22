@@ -8,7 +8,7 @@
               <% if @question.max_options > 1 %>
                 <%= f.check_box :value, { class: 'form-check-input', disabled: @question.draft?, include_hidden: false, multiple: true }, option.value %>
               <% else %>
-                <%= f.radio_button :value, option.value, class: 'form-check-input', disabled: @question.draft? %>
+                <%= f.radio_button :value, option.value, class: 'form-check-input', disabled: @question.draft?, multiple: true %>
               <% end %>
               <%= f.label option.description, for: "vote_value_#{option.value}", class: 'form-check-label' %>
             </div>
@@ -18,9 +18,6 @@
     </tbody>
   </table>
   <%= f.hidden_field :question_id, value: @question.id %>
-  <% if @question.max_options > 1 %>
-    <%= f.hidden_field :multiple, value: true %>
-  <% end %>
   <% unless @question.draft? %>
     <%= f.submit 'Votar', class: 'btn btn-primary' %>
   <% end %>
