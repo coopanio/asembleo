@@ -31,8 +31,26 @@ class Question < ApplicationRecord
     end
 
     results['_meta'] = {
+      'breakdown' => tally_by_event,
       'total_votes' => results.values.sum
     }
+
+    results
+  end
+
+  private
+
+  def tally_by_event
+    results = {}
+
+    votes.each do |vote|
+      event_results = results[vote.event_id] || {}
+      result = event_results[vote.value] || 0
+      event_results[vote.value] = result + (1 * vote.weight)
+
+      results[vote.event_id] = event_results
+    end
+
     results
   end
 end
