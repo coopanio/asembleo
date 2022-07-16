@@ -56,7 +56,7 @@ class ConsultationsController < ApplicationController
   end
 
   def update_params
-    params.require(:consultation).permit(:title, :description, :status)
+    params.require(:consultation).permit(:title, :description, :status, config: [:mode, :ballot])
   end
 
   def consultation

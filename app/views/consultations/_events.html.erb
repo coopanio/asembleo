@@ -12,14 +12,12 @@
       <thead>
         <tr>
           <th>Title</th>
-          <th>Manager</th>
           <th colspan="2">
         </tr>
       <thead>
       <% @consultation.events.each do |event| %>
       <tr>
         <td><%= event.title %></td>
-        <td><%= event.managers.first %></td>
         <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-link py-0' %></td>
         <td><%= link_to 'Delete',
                 event_path(event),

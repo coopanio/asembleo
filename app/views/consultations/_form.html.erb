@@ -11,11 +11,23 @@
       <%= f.text_area :description, class: 'form-control' %>
     </div>
   </div>
+  <%= f.fields_for :config, @consultation.config do |f| %>
+  <div class="row mb-3">
+      <%= f.label :mode, class: 'col-2 col-form-label' %>
+      <div class="col-4">
+        <%= f.select :mode, Consultation::Config.new.mode_values.keys, {},  { class: 'form-select' } %>
+      </div>
+      <%= f.label :ballot, class: 'col-2 col-form-label' %>
+      <div class="col-4">
+        <%= f.select :ballot, Consultation::Config.new.ballot_values.keys, {},  { class: 'form-select' } %>
+      </div>
+  </div>
+  <% end %>
   <% if @consultation.id %>
     <div class="row mb-3">
       <%= f.label :status, class: 'col-2 col-form-label' %>
       <div class="col-10">
-        <%= f.select :status, Consultation.statuses.keys.to_a, {}, { class: 'form-select' } %>
+        <%= f.select :status, Consultation.statuses.keys, {}, { class: 'form-select' } %>
       </div>
     </div>
   <% end %>
