@@ -23,7 +23,11 @@
         <td><%= question.description %></td>
         <td><%= question.status %></td>
         <td><%= link_to 'Edit', edit_question_url(question)  %></td>
+        <% if @consultation.synchronous? %>
         <td><%= question_opener_closer_link(@event, question)  %></td>
+        <% elsif @consultation.asynchronous? %>
+        <td><%= all_events_question_opener_closer_link(question)  %></td>
+        <% end %>
         <% if question.closed? %>
           <td><%= link_to 'Results', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
         <% end %>
