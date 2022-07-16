@@ -17,7 +17,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
       token = create(:token, event:, consultation: question.consultation, weight: weights[i])
 
       post sessions_url, params: { token: token.to_hash }
-      post votes_url, params: { vote: { question_id: question.id, value: values[i] } }
+      post votes_url, params: { vote: { question_id: question.id, value: [values[i]] } }
     end
   end
 
