@@ -4,17 +4,8 @@
     <%= raw(@question.description) %>
   </div>
 <% end %>
-<table class="table table-hover">
-  <tbody>
-    <%= render "questions/ballot/#{@consultation.ballot}" %>
-  </tbody>
-</table>
+<%= render "questions/ballot/#{@consultation.ballot}" %>
 <% if @consultation.ballot == 'open' %>
-  <h3>Results</h3>
-  <table class="table table-hover">
-    <tbody>
-      <%= render 'questions/ballot/secret' %>
-    </tbody>
-  </table>
+  <%= render 'questions/ballot/secret' %>
 <% end %>
 <%= link_to 'Back', :back %>
