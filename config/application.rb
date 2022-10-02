@@ -24,6 +24,8 @@ module Asembleo
     config.x.asembleo.title = 'Asembleo'
     config.x.asembleo.default_from = 'asembleo@coopanio.com'
     config.x.asembleo.async_vote = false
+    config.x.asembleo.primary_color = '#0d6efd'
+    config.x.asembleo.secondary_color = '#6c757d'
 
     config.action_mailer.default_url_options = { host: 'example.com' }
   end

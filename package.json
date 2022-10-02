@@ -3,16 +3,17 @@
   "private": true,
   "dependencies": {
     "@popperjs/core": "^2.11.2",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "bootstrap": "^5.1.3",
-    "esbuild": "^0.14.14",
-    "sass": "^1.49.0"
+    "@rails/actioncable": "^7.0.0",
+    "@rails/activestorage": "^7.0.0",
+    "@rails/ujs": "^7.0.0",
+    "bootstrap": "^5.0.0",
+    "esbuild": "^0.15.0",
+    "sass": "^1.55.0"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:application.css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:theme.css": "bin/rake asembleo:compile_theme && sass ./app/assets/stylesheets/theme.sass.scss ./app/assets/builds/theme.css --no-source-map --load-path=node_modules"
   }
 }

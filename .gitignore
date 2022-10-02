@@ -43,5 +43,8 @@ yarn-debug.log*
 # Bundle
 .vendor
 /bin
+
+# Builds
+/.sass-cache/*
 /app/assets/builds/*
 !/app/assets/builds/.keep

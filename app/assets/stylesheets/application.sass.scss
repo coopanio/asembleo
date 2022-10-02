@@ -1,5 +1,110 @@
-@import 'bootstrap/scss/bootstrap';
+// @import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
  
 :root {
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  // Root
+  --bs-link-color: var(--asembleo-primary);
+  --bs-link-hover-color: var(--asembleo-primary-shifted-20);
+}
+
+.alert-primary {
+  --bs-alert-bg: var(--asembleo-primary-shifted-down-80);
+  --bs-alert-border-color: var(--asembleo-primary-shifted-down-70);
+  --bs-alert-color: var(--asembleo-primary-shifted-40);
+}
+
+.alert-primary .alert-link {
+  color: var(--asembleo-primary-shade-20);
+}
+
+.alert-secondary {
+  --bs-alert-bg: var(--asembleo-secondary-shifted-down-80);
+  --bs-alert-border-color: var(--asembleo-secondary-shifted-down-70);
+  --bs-alert-color: var(--asembleo-secondary-shifted-40);
+}
+
+.alert-secondary .alert-link {
+  color: var(--asembleo-secondary-shade-20);
+}
+
+.btn {
+  --bs-btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--asembleo-primary-focus-shadow-rgb), .5);
+}
+
+.btn-primary {
+  --bs-btn-active-bg: var(--asembleo-primary-shade-20);
+  --bs-btn-active-border-color: var(--asembleo-primary-shade-25);
+  --bs-btn-bg: var(--asembleo-primary);
+  --bs-btn-border-color: var(--asembleo-primary);
+  --bs-btn-disabled-bg: var(--asembleo-primary);
+  --bs-btn-disabled-border-color: var(--asembleo-primary);
+  --bs-btn-hover-bg: var(--asembleo-primary-shade-15);
+  --bs-btn-hover-border-color: var(--asembleo-primary-shade-20);
+}
+
+.btn-secondary {
+  --bs-btn-active-bg: var(--asembleo-secondary-shade-20);
+  --bs-btn-active-border-color: var(--asembleo-secondary-shade-25);
+  --bs-btn-bg: var(--asembleo-secondary);
+  --bs-btn-border-color: var(--asembleo-secondary);
+  --bs-btn-disabled-bg: var(--asembleo-secondary);
+  --bs-btn-disabled-border-color: var(--asembleo-secondary);
+  --bs-btn-hover-bg: var(--asembleo-secondary-shade-15);
+  --bs-btn-hover-border-color: var(--asembleo-secondary-shade-20);
+}
+
+.form-check-input:checked, .form-check-input[type=checkbox]:indeterminate {
+  background-color: var(--asembleo-primary);
+  border-color: var(--asembleo-primary);
+}
+
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 $form-select-focus-width rgba(var(--asembleo-primary-rgb), $input-btn-focus-color-opacity);
+}
+
+.link-primary {
+  color: var(--asembleo-primary) !important;
+}
+
+.link-secondary {
+  color: var(--asembleo-secondary) !important;
+}
+
+.nav {
+  --bs-nav-link-color: var(--asembleo-primary);
+  --bs-nav-link-hover-color: var(--asembleo-primary-shifted-20);
 }

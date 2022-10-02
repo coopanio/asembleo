@@ -1,0 +1,28 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+:root {
+  $primary: <%= Rails.configuration.x.asembleo.primary_color %>;
+  $secondary: <%= Rails.configuration.x.asembleo.secondary_color %>;
+
+  --asembleo-primary: #{$primary};
+  --asembleo-primary-focus-shadow-rgb: #{to-rgb(mix(color-contrast($primary), $primary, 15%))};
+  --asembleo-primary-rgb: #{to-rgb($primary)};
+  --asembleo-primary-shade-15: #{shade-color($primary, 15%)};
+  --asembleo-primary-shade-20: #{shade-color($primary, 20%)};
+  --asembleo-primary-shade-25: #{shade-color($primary, 25%)};
+  --asembleo-primary-shifted-20: #{shift-color($primary, 20%)};
+  --asembleo-primary-shifted-40: #{shift-color($primary, 40%)};
+  --asembleo-primary-shifted-down-70: #{shift-color($primary, 70%)};
+  --asembleo-primary-shifted-down-80: #{shift-color($primary, 80%)};
+
+  --asembleo-secondary: #{$secondary};
+  --asembleo-secondary-rgb: #{to-rgb($secondary)};
+  --asembleo-secondary-shade-15: #{shade-color($secondary, 15%)};
+  --asembleo-secondary-shade-20: #{shade-color($secondary, 20%)};
+  --asembleo-secondary-shade-25: #{shade-color($secondary, 25%)};
+  --asembleo-secondary-shifted-20: #{shift-color($secondary, 20%)};
+  --asembleo-secondary-shifted-40: #{shift-color($secondary, 40%)};
+  --asembleo-secondary-shifted-down-70: #{shift-color($secondary, 70%)};
+  --asembleo-secondary-shifted-down-80: #{shift-color($secondary, 80%)};
+}

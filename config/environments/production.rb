@@ -99,6 +99,8 @@ Rails.application.configure do
   config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
   config.x.asembleo.default_from = ENV['ASEMBLEO_DEFAULT_FROM'].presence
   config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
+  config.x.asembleo.primary_color = ENV['ASEMBLEO_PRIMARY_COLOR'].presence || '#0d6efd'
+  config.x.asembleo.secondary_color = ENV['ASEMBLEO_SECONDARY_COLOR'].presence || '#6c757d'
 
   config.action_mailer.smtp_settings = {
     address: ENV['ASEMBLEO_SMTP_HOST'].presence,
