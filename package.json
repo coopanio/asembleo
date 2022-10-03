@@ -15,6 +15,6 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "yarn run build:css:application && yarn run build:css:theme",
     "build:css:application": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
-    "build:css:theme": "bin/rake asembleo:compile_theme && sass ./app/assets/stylesheets/theme.sass.scss ./app/assets/builds/theme.css --no-source-map --load-path=node_modules"
+    "build:css:theme": "rake asembleo:compile_theme && sass ./app/assets/stylesheets/theme.sass.scss ./app/assets/builds/theme.css --no-source-map --load-path=node_modules"
   }
 }
