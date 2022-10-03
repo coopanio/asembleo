@@ -12,7 +12,7 @@
   </head>
   <body class="d-flex flex-column h-100">
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-md navbar-header">
         <div class="container">
           <%= render 'navbar' %>
         </div>
@@ -25,8 +25,8 @@
       </div>
     </main>
     <% if Rails.configuration.x.asembleo.footer %>
-      <footer class="mt-auto py-3 bg-light">
-        <div class="container text-muted"><%= Rails.configuration.x.asembleo.footer %></div>
+      <footer class="mt-auto py-3">
+        <div class="container"><%= Rails.configuration.x.asembleo.footer %></div>
       </footer>
     <% end %>
   </body>

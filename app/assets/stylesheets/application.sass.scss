@@ -108,3 +108,22 @@
   --bs-nav-link-color: var(--asembleo-primary);
   --bs-nav-link-hover-color: var(--asembleo-primary-shifted-20);
 }
+
+.navbar-header {
+  --bs-navbar-color: var(--asembleo-header-color);
+  --bs-navbar-hover-color: var(--asembleo-header-color);
+  --bs-navbar-disabled-color: var(--asembleo-header-color);
+  --bs-navbar-active-color: var(--asembleo-header-color);
+  --bs-navbar-brand-color: var(--asembleo-header-color);
+  --bs-navbar-brand-hover-color: var(--asembleo-header-color);
+  --bs-bg-opacity: 1;
+
+  background-color: rgba(var(--asembleo-header-background-rgb), var(--bs-bg-opacity)) !important;
+}
+
+footer {
+  --bs-bg-opacity: 1;
+
+  color: var(--asembleo-footer-color);
+  background-color: rgba(var(--asembleo-footer-background-rgb), var(--bs-bg-opacity)) !important;
+}

@@ -26,6 +26,11 @@ module Asembleo
     config.x.asembleo.async_vote = false
     config.x.asembleo.primary_color = '#0d6efd'
     config.x.asembleo.secondary_color = '#6c757d'
+    config.x.asembleo.header_background_color = '#212529'
+    config.x.asembleo.header_color = '#ffffff'
+    config.x.asembleo.footer_background_color = '#f8f9fa'
+    config.x.asembleo.footer_color = '#6c757d'
+    config.x.asembleo.footer = 'Asembleo is a free software project developed by Coopanio'
 
     config.action_mailer.default_url_options = { host: 'example.com' }
   end
