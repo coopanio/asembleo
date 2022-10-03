@@ -13,7 +13,8 @@
   "version": "0.1.1",
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:application.css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
-    "build:theme.css": "bin/rake asembleo:compile_theme && sass ./app/assets/stylesheets/theme.sass.scss ./app/assets/builds/theme.css --no-source-map --load-path=node_modules"
+    "build:css": "yarn run build:css:application && yarn run build:css:theme",
+    "build:css:application": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:theme": "bin/rake asembleo:compile_theme && sass ./app/assets/stylesheets/theme.sass.scss ./app/assets/builds/theme.css --no-source-map --load-path=node_modules"
   }
 }
