@@ -121,6 +121,12 @@
   background-color: rgba(var(--asembleo-header-background-rgb), var(--bs-bg-opacity)) !important;
 }
 
+main {
+  --bs-bg-opacity: 0.85;
+
+  background-color: rgba($white, var(--bs-bg-opacity));
+}
+
 footer {
   --bs-bg-opacity: 1;
 

@@ -93,19 +93,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.x.asembleo.public_instance = ENV['ASEMBLEO_PUBLIC_INSTANCE'].present?
-  config.x.asembleo.title = ENV['ASEMBLEO_TITLE'].presence || 'Asembleo'
-  config.x.asembleo.footer = ENV['ASEMBLEO_FOOTER'].presence
-  config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
-  config.x.asembleo.default_from = ENV['ASEMBLEO_DEFAULT_FROM'].presence
-  config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
-  config.x.asembleo.primary_color = ENV['ASEMBLEO_PRIMARY_COLOR'].presence || '#0d6efd'
-  config.x.asembleo.secondary_color = ENV['ASEMBLEO_SECONDARY_COLOR'].presence || '#6c757d'
-  config.x.asembleo.header_background_color = ENV['ASEMBLEO_HEADER_BACKGROUND_COLOR'].presence || '#212529'
-  config.x.asembleo.header_color = ENV['ASEMBLEO_HEADER_COLOR'].presence || '#ffffff'
-  config.x.asembleo.footer_background_color = ENV['ASEMBLEO_FOOTER_BACKGROUND_COLOR'].presence || '#f8f9fa'
-  config.x.asembleo.footer_color = ENV['ASEMBLEO_FOOTER_COLOR'].presence || '#212529'
-
   config.action_mailer.smtp_settings = {
     address: ENV['ASEMBLEO_SMTP_HOST'].presence,
     user_name: ENV['ASEMBLEO_SMTP_USERNAME'].presence,

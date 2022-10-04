@@ -36,3 +36,9 @@
   --asembleo-footer-background-rgb: #{to-rgb($footer-background)};
   --asembleo-footer-color: #{$footer-color};
 }
+
+<% if Rails.configuration.x.asembleo.background_css %>
+  body {
+    background: <%= Rails.configuration.x.asembleo.background_css %>;
+  }
+<% end %>
