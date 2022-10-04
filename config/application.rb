@@ -37,7 +37,7 @@ module Asembleo
     config.x.asembleo.header_background_color = ENV['ASEMBLEO_HEADER_BACKGROUND_COLOR'].presence || '#212529'
     config.x.asembleo.header_color = ENV['ASEMBLEO_HEADER_COLOR'].presence || '#ffffff'
     config.x.asembleo.footer_background_color = ENV['ASEMBLEO_FOOTER_BACKGROUND_COLOR'].presence || '#f8f9fa'
-    config.x.asembleo.footer_color = ENV['ASEMBLEO_FOOTER_COLOR'].presence || '#212529'
+    config.x.asembleo.footer_color = ENV['ASEMBLEO_FOOTER_COLOR'].presence || '#6c757d'
     config.x.asembleo.background_css = ENV['ASEMBLEO_BACKGROUND_CSS'].presence
 
     config.action_mailer.default_url_options = { host: 'example.com' }
