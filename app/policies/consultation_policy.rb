@@ -1,25 +1,27 @@
 # frozen_string_literal: true
 
 class ConsultationPolicy < ApplicationPolicy
-  def edit?
-    update?
+  def create?
+    return current_user.admin? if Rails.configuration.x.asembleo.private_instance
+
+    true
   end
 
   def update?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def destroy?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def show?
-    record.id == token.consultation_id
+    record.id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      consultation = token.consultation
+      consultation = current_user.consultation
 
       scope.where(id: consultation)
     end

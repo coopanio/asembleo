@@ -1,33 +1,25 @@
 # frozen_string_literal: true
 
 class OptionPolicy < ApplicationPolicy
-  def new?
-    create?
-  end
-
   def create?
-    token.admin?
-  end
-
-  def edit?
-    update?
+    current_user.admin?
   end
 
   def update?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def destroy?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def show?
-    record.question.consultation == token.consultation
+    record.question.consultation == current_user.consultation
   end
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: token.consultation)
+      scope.where(consultation: current_user.consultation)
     end
   end
 end

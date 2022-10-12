@@ -17,7 +17,7 @@ class AuthenticateCredentials < Actor
   private
 
   def authenticate_user
-    self.identity = User.find_by!(email: identifier)
+    self.identity = User.find_by!(identifier:)
     fail!(error: Errors::AccessDenied) unless identity.authenticate(password)
   end
 

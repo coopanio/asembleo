@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  def new
+    return if Rails.configuration.x.asembleo.private_instance
+
+    redirect_to controller: 'main', action: 'index'
+  end
+
   def create
     result = AuthenticateCredentials.result(identifier:, password:)
     raise result.error if result.failure?

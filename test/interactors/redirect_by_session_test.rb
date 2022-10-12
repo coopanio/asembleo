@@ -3,14 +3,14 @@
 require 'test_helper'
 
 class RedirectBySessionTest < ActiveSupport::TestCase
-  attr_reader :consultation, :token
+  attr_reader :consultation, :identity
 
   setup do
     @consultation = create(:consultation)
-    @token = create(:token, consultation:)
+    @identity = create(:token, consultation:)
   end
 
-  subject { RedirectBySession.call(identity: token).destination }
+  subject { RedirectBySession.call(identity:).destination }
 
   test 'should return the consultation' do
     assert_equal subject, "/consultations/#{consultation.id}"
@@ -47,8 +47,8 @@ class RedirectBySessionTest < ActiveSupport::TestCase
       init_questions(status, event)
     end
 
-    create(:receipt, token:, question: questions.first)
-    create(:receipt, token:, question: questions.second)
+    create(:receipt, token: identity, question: questions.first)
+    create(:receipt, token: identity, question: questions.second)
 
     assert_predicate subject, :present?
     assert_equal subject, "/questions/#{questions.third.id}"
@@ -71,6 +71,13 @@ class RedirectBySessionTest < ActiveSupport::TestCase
 
     assert_predicate subject, :present?
     assert_equal subject, "/questions/#{events.second.consultation.questions.first.id}"
+  end
+
+  test 'should return the front page when user is an instance user' do
+    @identity = create(:user)
+
+    assert_predicate subject, :present?
+    assert_equal '/consultations', subject
   end
 
   private

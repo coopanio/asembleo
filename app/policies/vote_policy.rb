@@ -2,6 +2,6 @@
 
 class VotePolicy < ApplicationPolicy
   def create?
-    token.voter?
+    current_user.voter?
   end
 end

@@ -3,7 +3,7 @@
 class RedirectBySession < Actor
   include Rails.application.routes.url_helpers
 
-  input :identity, type: [Token], allow_nil: false
+  input :identity, type: [Token, User], allow_nil: false
 
   output :destination
 
@@ -14,6 +14,7 @@ class RedirectBySession < Actor
   private
 
   def find_destination
+    return consultations_url(only_path: true) if identity.is_a? User
     return edit_consultation_url(identity.consultation_id, only_path: true) if identity.admin?
     return edit_event_url(identity.event_id, only_path: true) if identity.manager?
     return consultation_url(identity.consultation_id, only_path: true) if active_question.blank?

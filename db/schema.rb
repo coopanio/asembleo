@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_072829) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.integer "record_id", null: false
     t.integer "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.string "service_name", null: false
     t.integer "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -44,16 +43,16 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.string "title"
     t.text "description"
     t.integer "status", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.json "config", default: {}
   end
 
   create_table "events", force: :cascade do |t|
     t.integer "status", default: 0
     t.bigint "consultation_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title"
     t.index ["consultation_id"], name: "index_events_on_consultation_id"
   end
@@ -62,8 +61,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.integer "event_id"
     t.integer "question_id"
     t.integer "status", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "consultation_id"
     t.index ["consultation_id"], name: "index_events_questions_on_consultation_id"
     t.index ["event_id"], name: "index_events_questions_on_event_id"
@@ -81,8 +80,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.text "description"
     t.integer "status", default: 0
     t.integer "consultation_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "max_options", default: 1
     t.index ["consultation_id"], name: "index_questions_on_consultation_id"
   end
@@ -91,8 +90,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.text "fingerprint"
     t.bigint "token_id", null: false
     t.bigint "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_receipts_on_question_id"
     t.index ["token_id", "question_id"], name: "index_receipts_on_token_id_and_question_id", unique: true
     t.index ["token_id"], name: "index_receipts_on_token_id"
@@ -101,8 +100,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
   create_table "tokens", force: :cascade do |t|
     t.integer "role", default: 0
     t.integer "salt"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "consultation_id", null: false
     t.integer "event_id"
     t.string "alias"
@@ -113,13 +112,21 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.index ["event_id"], name: "index_tokens_on_event_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "identifier"
+    t.string "password_digest"
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object", limit: 1073741823
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.text "object_changes", limit: 1073741823
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
@@ -128,8 +135,8 @@ ActiveRecord::Schema.define(version: 2022_02_02_072829) do
     t.string "value"
     t.text "fingerprint"
     t.integer "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.decimal "weight"
     t.string "alias"
     t.integer "event_id"

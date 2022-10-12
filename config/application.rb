@@ -21,7 +21,7 @@ module Asembleo
     # in config/environments, which are processed later.
     #
     # Voting
-    config.x.asembleo.public_instance = ENV['ASEMBLEO_PUBLIC_INSTANCE'].present?
+    config.x.asembleo.private_instance = ENV['ASEMBLEO_PRIVATE_INSTANCE'].present?
     config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
     config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
 

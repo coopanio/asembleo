@@ -2,10 +2,13 @@
 
 class ConsultationsController < ApplicationController
   def new
+    authorize Consultation
     @consultation = Consultation.new
   end
 
   def create
+    authorize Consultation
+
     result = CreateConsultation.result(create_params)
     raise result.error if result.failure?
 
@@ -56,7 +59,7 @@ class ConsultationsController < ApplicationController
   end
 
   def update_params
-    params.require(:consultation).permit(:title, :description, :status, config: [:mode, :ballot])
+    params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot])
   end
 
   def consultation

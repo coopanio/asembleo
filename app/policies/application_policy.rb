@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :token, :record
+  attr_reader :current_user, :record
 
-  def initialize(token, record)
-    raise Errors::AccessDenied if token.blank?
-
-    @token = token
+  def initialize(current_user, record)
+    @current_user = current_user
     @record = record
   end
 
@@ -39,12 +37,12 @@ class ApplicationPolicy
   end
 
   class Scope
-    attr_reader :token, :scope
+    attr_reader :current_user, :scope
 
-    def initialize(token, scope)
-      raise Errors::AccessDenied if token.blank?
+    def initialize(current_user, scope)
+      raise Errors::AccessDenied if current_user.blank?
 
-      @token = token
+      @current_user = current_user
       @scope = scope
     end
 

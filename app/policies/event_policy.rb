@@ -1,20 +1,12 @@
 # frozen_string_literal: true
 
 class EventPolicy < ApplicationPolicy
-  def new?
-    create?
-  end
-
   def create?
-    token.admin?
-  end
-
-  def edit?
-    update?
+    current_user.admin?
   end
 
   def update?
-    show? && !token.voter?
+    show? && !current_user.voter?
   end
 
   def new_tokens?
@@ -26,24 +18,24 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create_tokens?
-    show? && !token.voter?
+    show? && !current_user.voter?
   end
 
   def next_question?
-    show? && token.voter?
+    show? && current_user.voter?
   end
 
   def destroy?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def show?
-    record.consultation_id == token.consultation_id
+    record.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      consultation = token.consultation
+      consultation = current_user.consultation
 
       scope.where(consultation:)
     end

@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'argon2', '~> 2.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cssbundling-rails', '~> 1.0'
 gem 'hashids'

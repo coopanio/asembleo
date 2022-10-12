@@ -1,24 +1,16 @@
 # frozen_string_literal: true
 
 class QuestionPolicy < ApplicationPolicy
-  def new?
-    create?
-  end
-
   def create?
-    token.admin?
-  end
-
-  def edit?
-    update?
+    current_user.admin?
   end
 
   def update?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def destroy?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def open?
@@ -30,16 +22,16 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def close?
-    show? && token.admin?
+    show? && current_user.admin?
   end
 
   def show?
-    record.consultation_id == token.consultation_id
+    record.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: token.consultation_id)
+      scope.where(consultation: current_user.consultation_id)
     end
   end
 end

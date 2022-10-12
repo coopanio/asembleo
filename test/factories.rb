@@ -2,6 +2,11 @@
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
+  factory :user do
+    sequence(:identifier) { |n| "user#{n}" }
+    password { 'wubbalubba' }
+  end
+
   factory :token do
     consultation
     salt { 9_999 }
