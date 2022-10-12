@@ -10,6 +10,7 @@
         </div>
         <div class="col">
           <%= f.submit 'Create', class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Add admin', { controller: :events, action: :create_tokens, id: @event.id, role: Token.roles[:admin] }, class: 'btn btn-link btn-sm', method: :post %>
           <%= link_to 'Bulk creation', { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link btn-sm' %>
         </div>
       <% end %>

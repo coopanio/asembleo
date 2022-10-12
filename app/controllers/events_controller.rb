@@ -38,10 +38,10 @@ class EventsController < ApplicationController
   def create_tokens
     authorize event
 
-    value = create_token_params
+    params = create_token_params
     Token.transaction do
       if params[:multiple].present?
-        value.each_line do |line|
+        params[:value].each_line do |line|
           create_token(line, flash: false)
         end
 
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
         result = RedirectBySession.call(identity: current_user)
         redirect_to result.destination
       else
-        create_token(value)
+        create_token(params[:value], params[:role].to_i)
 
         success('Token created.')
         redirect_back(fallback_location: root_path)
@@ -87,12 +87,13 @@ class EventsController < ApplicationController
 
   private
 
-  def create_token(identifier, flash: true)
+  def create_token(identifier, role, flash: true)
+    role = Token.roles[:voter] if role.blank?
     token = if identifier.blank?
-              Token.new(consultation:, event:)
+              Token.new(consultation:, event:, role:)
             else
               identifier = Token.sanitize(identifier)
-              Token.find_or_initialize_by(alias: identifier, consultation:, event:)
+              Token.find_or_initialize_by(alias: identifier, consultation:, event:, role:)
             end
 
     if token.new_record?
@@ -123,7 +124,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params[:value]
+    params.permit(:value, :multiple, :role)
   end
 
   def update_token_params
