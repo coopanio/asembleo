@@ -47,6 +47,6 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def login
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 end

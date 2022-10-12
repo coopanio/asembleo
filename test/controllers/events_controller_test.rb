@@ -8,7 +8,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @token = create(:token, :admin)
 
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 
   test 'should create event' do
@@ -46,7 +46,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
 
     token.update!(role: :manager, event:)
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
 
     post "/events/#{event.id}/tokens", params: {}
 
@@ -61,7 +61,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     identifier = Faker::PhoneNumber.cell_phone
 
     token.update!(role: :manager, event:)
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
 
@@ -77,7 +77,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     create(:token, consultation: token.consultation, event:, alias: identifier, status: :disabled)
     token.update!(role: :manager, event:)
 
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
 

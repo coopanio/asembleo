@@ -1,28 +1,18 @@
 # frozen_string_literal: true
 
-class CreateEvent
-  include Interactor
+class CreateEvent < Actor
+  input :title, type: String, allow_nil: false
+  input :consultation, type: Consultation, allow_nil: false
+
+  output :event
 
   def call
-    init_event
-    init_manager_token
-    save_models
-  end
+    self.event = Event.new(title:, consultation:)
+    @manager_token = Token.new(role: :manager, event:, consultation:)
 
-  private
-
-  def init_event
-    context.event = Event.new(context.to_h)
-  end
-
-  def init_manager_token
-    context.manager_token = Token.new(role: :manager, event: context.event, consultation: context.consultation)
-  end
-  
-  def save_models
-    context.event.transaction do
-      context.event.save!
-      context.manager_token.save!
+    event.transaction do
+      event.save!
+      @manager_token.save!
     end
   end
 end

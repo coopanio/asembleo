@@ -9,7 +9,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
     @token = create(:token, :admin)
     @question = create(:question, consultation: token.consultation)
 
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 
   test 'should create option' do

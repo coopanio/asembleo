@@ -7,26 +7,28 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @token = create(:token)
-    @params = { token: token.to_s }
+    @params = { session: { identifier: token.to_s } }
   end
 
-  subject { post sessions_url, params: params }
+  subject { post sessions_url, params: }
 
   test 'should create session' do
     subject
 
     assert_response :redirect
-    assert_equal token.id, session[:token]
+    assert_equal token.id, session[:identity_id]
   end
 
   test 'should create session with aliased token' do
-    @params = { token: Faker::PhoneNumber.cell_phone }
-    token.update!(alias: Token.sanitize(@params[:token]))
+    aliased_token = Faker::PhoneNumber.cell_phone
+    @params = { session: { identifier: aliased_token } }
+
+    token.update!(alias: Token.sanitize(aliased_token))
 
     subject
 
     assert_response :redirect
-    assert_equal token.id, session[:token]
+    assert_equal token.id, session[:identity_id]
   end
 
   test 'should fail on deleted token' do
@@ -40,6 +42,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     get "#{sessions_url}/#{token.to_hash}/login"
 
     assert_response :redirect
-    assert_equal token.id, session[:token]
+    assert_equal token.id, session[:identity_id]
   end
 end

@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class CreateConsultation
-  include Interactor
+class CreateConsultation < Actor
+  input :title, type: String, allow_nil: false
+  input :description, type: String, allow_nil: false
+
+  output :consultation
+  output :admin_token
+  output :manager_token
 
   def call
     init_consultation
-    init_default_event
     init_admin_token
     init_manager_token
     save_models
@@ -14,31 +18,33 @@ class CreateConsultation
   private
 
   def init_consultation
-    context.consultation = Consultation.new(context.to_h)
+    self.consultation = Consultation.new(title:, description:)
   end
 
   def init_admin_token
-    context.admin_token = Token.new(role: :admin, consultation: context.consultation)
+    self.admin_token = Token.new(role: :admin, consultation:)
   end
 
   def init_manager_token
-    return unless context.consultation.synchronous?
+    return unless consultation.synchronous?
 
-    context.manager_token = Token.new(role: :manager, consultation: context.consultation, event: context.default_event)
+    self.manager_token = Token.new(role: :manager, consultation:, event: default_event)
   end
 
-  def init_default_event
-    return unless context.consultation.synchronous?
+  def default_event
+    return unless consultation.synchronous?
+    return @default_event if defined?(@default_event)
 
-    context.default_event = Event.new(title: 'Default', consultation: context.consultation)
+    @default_event = Event.new(title: 'Default', consultation:)
   end
 
   def save_models
-    context.consultation.transaction do
-      context.consultation.save!
-      context.admin_token.save!
-      context.default_event.save! if context.default_event.present?
-      context.manager_token.save! if context.manager_token.present?
+    consultation.transaction do
+      consultation.save!
+      admin_token.save!
+
+      default_event.save! if default_event.present?
+      manager_token.save! if manager_token.present?
     end
   end
 end

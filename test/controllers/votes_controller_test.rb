@@ -15,7 +15,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     @params = { vote: { question_id: question.id, value: [@value] } }
 
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 
   subject { post votes_url, params: @params }

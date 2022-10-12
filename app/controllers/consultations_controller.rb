@@ -6,11 +6,11 @@ class ConsultationsController < ApplicationController
   end
 
   def create
-    result = CreateConsultation.call(create_params)
-    raise result.error unless result.success?
+    result = CreateConsultation.result(create_params)
+    raise result.error if result.failure?
 
     reset_session
-    session[:token] = result.admin_token.id
+    session[:identity_id] = result.admin_token.id
 
     message = [
       'Consultation created.',

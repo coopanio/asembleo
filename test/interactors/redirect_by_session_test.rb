@@ -2,42 +2,32 @@
 
 require 'test_helper'
 
-class DestinationConcernTest < ActiveSupport::TestCase
+class RedirectBySessionTest < ActiveSupport::TestCase
   attr_reader :consultation, :token
-
-  class Stub
-    include DestinationConcern
-
-    attr_reader :token
-
-    def initialize(token)
-      @token = token
-    end
-  end
 
   setup do
     @consultation = create(:consultation)
     @token = create(:token, consultation:)
   end
 
-  subject { Stub.new(token).send(:active_question) }
+  subject { RedirectBySession.call(identity: token).destination }
 
-  test 'should return no next question' do
-    assert subject.blank?
+  test 'should return the consultation' do
+    assert_equal subject, "/consultations/#{consultation.id}"
   end
 
-  test 'should return no next question (all in draft status)' do
+  test 'should return the consultation (all in draft status)' do
     create(:question, consultation:)
 
-    assert subject.blank?
+    assert_equal subject, "/consultations/#{consultation.id}"
   end
 
   test 'should return the first open question' do
     question = create(:question, consultation:, status: :opened)
     create(:events_question, question:, consultation:, status: :opened)
 
-    assert subject.present?
-    assert_equal subject, question.id
+    assert_predicate subject, :present?
+    assert_equal subject, "/questions/#{question.id}"
   end
 
   test 'should return the first open question (second)' do
@@ -47,8 +37,8 @@ class DestinationConcernTest < ActiveSupport::TestCase
       init_questions(status, event)
     end
 
-    assert subject.present?
-    assert_equal subject, questions.second.id
+    assert_predicate subject, :present?
+    assert_equal subject, "/questions/#{questions.second.id}"
   end
 
   test 'should return the first un-voted and open question (third)' do
@@ -60,8 +50,8 @@ class DestinationConcernTest < ActiveSupport::TestCase
     create(:receipt, token:, question: questions.first)
     create(:receipt, token:, question: questions.second)
 
-    assert subject.present?
-    assert_equal subject, questions.third.id
+    assert_predicate subject, :present?
+    assert_equal subject, "/questions/#{questions.third.id}"
   end
 
   test 'should return the first open question when multiple consultations are active' do
@@ -79,8 +69,8 @@ class DestinationConcernTest < ActiveSupport::TestCase
       question
     end
 
-    assert subject.present?
-    assert_equal consultation.id, Question.find(subject).consultation.id
+    assert_predicate subject, :present?
+    assert_equal subject, "/questions/#{events.second.consultation.questions.first.id}"
   end
 
   private

@@ -9,8 +9,8 @@ class EventsController < ApplicationController
   def create
     authorize Event
 
-    result = CreateEvent.call(create_params.merge(consultation:))
-    raise result.error unless result.success?
+    result = CreateEvent.result(create_params.merge(consultation:))
+    raise result.error if result.failure?
 
     redirect_to action: 'edit', id: result.event.id
   end
@@ -30,7 +30,9 @@ class EventsController < ApplicationController
 
   def next_question
     authorize event
-    redirect_to destination
+
+    result = RedirectBySession.call(identity: current_user)
+    redirect_to result.destination
   end
 
   def create_tokens
@@ -44,7 +46,9 @@ class EventsController < ApplicationController
         end
 
         success('Tokens created.')
-        redirect_to destination
+
+        result = RedirectBySession.call(identity: current_user)
+        redirect_to result.destination
       else
         create_token(value)
 
@@ -126,5 +130,7 @@ class EventsController < ApplicationController
     params.require(:status)
   end
 
-  alias token current_user
+  def consultation
+    current_user.consultation
+  end
 end

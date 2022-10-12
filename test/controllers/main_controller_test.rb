@@ -38,7 +38,7 @@ class MainControllerTest < ActionDispatch::IntegrationTest
   def login_as(role)
     event = create(:event)
     token = create(:token, role:, consultation: event.consultation, event:)
-    post sessions_url, params: { token: token.to_hash }
+    post sessions_url, params: { session: { identifier: token.to_hash } }
 
     assert_response :redirect
   end

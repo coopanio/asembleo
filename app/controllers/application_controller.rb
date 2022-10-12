@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :set_raven_context
   before_action :check_token
 
-  include DestinationConcern
   include Errors
   include FlashConcern
   include Pundit::Authorization
@@ -27,8 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return unless session[:token]
+    return unless session[:identity_id]
 
-    @current_user ||= Token.find(session[:token])
+    @current_user ||= Token.find(session[:identity_id])
   end
 end

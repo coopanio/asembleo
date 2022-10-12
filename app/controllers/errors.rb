@@ -14,7 +14,7 @@ module Errors
 
       rescue_from AlreadyVoted do |_e|
         error('You already voted for this question.')
-        redirect_to controller: 'consultations', action: 'show', id: consultation.id
+        redirect_to controller: 'consultations', action: 'show', id: current_user.consultation.id
       end
 
       rescue_from AccessDenied do |_e|
