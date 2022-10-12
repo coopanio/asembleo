@@ -24,7 +24,7 @@ module Asembleo
     config.x.asembleo.public_instance = ENV['ASEMBLEO_PUBLIC_INSTANCE'].present?
     config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
     config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
-    
+
     # Branding
     config.x.asembleo.title = ENV['ASEMBLEO_TITLE'].presence || 'Asembleo'
     config.x.asembleo.footer = ENV['ASEMBLEO_FOOTER'].presence || 'Asembleo is a free software project developed by Coopanio'

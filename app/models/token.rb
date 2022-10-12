@@ -13,7 +13,7 @@ class Token < ApplicationRecord
   enum role:   { voter: 0, manager: 1, admin: 2 }
   enum status: { enabled: 1, disabled: 0 }
 
-  validates_uniqueness_of :alias, scope: :consultation_id, if: proc { |t| t.alias.present? }
+  validates :alias, uniqueness: { scope: :consultation_id, if: proc { |t| t.alias.present? } }
 
   # TODO: not sure this is the best way to do this
   after_initialize :init

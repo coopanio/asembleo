@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return unless session[:identity_id]
+    return unless session[:identity_id].present?
 
     @current_user ||= Token.find(session[:identity_id])
   end

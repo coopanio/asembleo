@@ -85,6 +85,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal identifier, tokens.first.alias
-    assert tokens.first.enabled?
+    assert_predicate tokens.first, :enabled?
   end
 end

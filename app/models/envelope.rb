@@ -19,7 +19,7 @@ class Envelope
       @votes.append(
         Vote.new(
           question:,
-          value: value,
+          value:,
           weight: token.weight,
           event: token.event,
           alias: vote_alias

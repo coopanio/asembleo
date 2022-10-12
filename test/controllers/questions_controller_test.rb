@@ -26,16 +26,16 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   test 'should tally votes' do
     results = subject
 
-    assert_equal(4.0, results['yes'])
-    assert_equal(1.5, results['no'])
+    assert_in_delta(4.0, results['yes'])
+    assert_in_delta(1.5, results['no'])
 
     meta = results['_meta']
-    assert_equal(5.5, meta['total_votes'])
+    assert_in_delta(5.5, meta['total_votes'])
 
     breakdown = meta['breakdown']
     assert_not_nil(breakdown)
-    assert_equal(4.0, breakdown.dig(1, 'yes'))
-    assert_equal(1.5, breakdown.dig(1, 'no'))
+    assert_in_delta(4.0, breakdown.dig(1, 'yes'))
+    assert_in_delta(1.5, breakdown.dig(1, 'no'))
   end
 
   test 'should tally votes by event' do
@@ -44,7 +44,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     weights = %w[1.0 1.0 1.0 2.0]
 
     values.each_with_index do |value, i|
-      token = create(:token, event: event, consultation: question.consultation, weight: weights[i])
+      token = create(:token, event:, consultation: question.consultation, weight: weights[i])
 
       post sessions_url, params: { session: { identifier: token.to_hash } }
       post votes_url, params: { vote: { question_id: question.id, value: [value] } }
@@ -52,20 +52,20 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
     results = subject
 
-    assert_equal(6.0, results['yes'])
-    assert_equal(4.5, results['no'])
+    assert_in_delta(6.0, results['yes'])
+    assert_in_delta(4.5, results['no'])
 
     meta = results['_meta']
-    assert_equal(10.5, meta['total_votes'])
+    assert_in_delta(10.5, meta['total_votes'])
 
     breakdown = meta['breakdown']
     assert_not_nil(breakdown)
-    assert_equal(4.0, breakdown.dig(1, 'yes'))
-    assert_equal(1.5, breakdown.dig(1, 'no'))
+    assert_in_delta(4.0, breakdown.dig(1, 'yes'))
+    assert_in_delta(1.5, breakdown.dig(1, 'no'))
 
     breakdown = meta['breakdown']
     assert_not_nil(breakdown)
-    assert_equal(2.0, breakdown.dig(2, 'yes'))
-    assert_equal(3.0, breakdown.dig(2, 'no'))
+    assert_in_delta(2.0, breakdown.dig(2, 'yes'))
+    assert_in_delta(3.0, breakdown.dig(2, 'no'))
   end
 end

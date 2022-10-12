@@ -16,9 +16,7 @@ module EventsHelper
     return '-' unless question.consultation.opened?
 
     rels = EventsQuestion.where(question:)
-    if rels.all?(&:closed?)
-      return button_to('Open', question_action_params('open_all', nil, question), **button_params)
-    end
+    return button_to('Open', question_action_params('open_all', nil, question), **button_params) if rels.all?(&:closed?)
 
     button_to('Close', question_action_params('close_all', nil, question), **button_params)
   end
@@ -39,8 +37,8 @@ module EventsHelper
   def question_action_params(action, event, question)
     params = {
       controller: 'questions',
-      action: action,
-      id: question.id,
+      action:,
+      id: question.id
     }
 
     return params if event.nil?
@@ -58,7 +56,7 @@ module EventsHelper
       action: 'update_token',
       id: token.event.id,
       token_id: token.id,
-      status: status
+      status:
     }
   end
 

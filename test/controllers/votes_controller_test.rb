@@ -31,7 +31,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     Receipt.find_by(token:, question:).tap do |receipt|
-      assert receipt.present?
+      assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
   end
@@ -45,11 +45,11 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     Vote.all.tap do |votes|
       assert_equal selected_votes.size, votes.length
       assert_equal selected_votes.sort, votes.map(&:value).sort
-      assert(votes.map(&:event).all? { |e| e == @token.event })
+      assert(votes.map(&:event).all?(@token.event))
     end
 
     Receipt.find_by(token:, question:).tap do |receipt|
-      assert receipt.present?
+      assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
   end
