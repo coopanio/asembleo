@@ -3,13 +3,13 @@
 class EventsController < ApplicationController
   def new
     authorize Event
-    @event = Event.new(consultation:)
+    @event = Event.new(consultation: current_user.consultation)
   end
 
   def create
     authorize Event
 
-    result = CreateEvent.result(create_params.merge(consultation:))
+    result = CreateEvent.result(create_params.merge(consultation: current_user.consultation))
     raise result.error if result.failure?
 
     redirect_to action: 'edit', id: result.event.id
@@ -39,10 +39,12 @@ class EventsController < ApplicationController
     authorize event
 
     params = create_token_params
+    role = params.fetch(:role, :voter)
+
     Token.transaction do
       if params[:multiple].present?
         params[:value].each_line do |line|
-          create_token(line, flash: false)
+          CreateToken.call(identifier: line, event:)
         end
 
         success('Tokens created.')
@@ -50,9 +52,16 @@ class EventsController < ApplicationController
         result = RedirectBySession.call(identity: current_user)
         redirect_to result.destination
       else
-        create_token(params[:value], params[:role].to_i)
+        result = CreateToken.result(identifier: params[:value], role: role, event:)
 
-        success('Token created.')
+        if result.token.new_record?
+          success('Token created.')
+        elsif result.token.disabled?
+          info('Token enabled again.')
+        elsif
+          info('Token exists and enabled.')
+        end
+
         redirect_back(fallback_location: root_path)
       end
     end
@@ -79,6 +88,8 @@ class EventsController < ApplicationController
 
   def destroy
     authorize event
+
+    consultation = event.consultation
     event.destroy!
 
     success('Event deleted.')
@@ -86,26 +97,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-  def create_token(identifier, role, flash: true)
-    role = Token.roles[:voter] if role.blank?
-    token = if identifier.blank?
-              Token.new(consultation:, event:, role:)
-            else
-              identifier = Token.sanitize(identifier)
-              Token.find_or_initialize_by(alias: identifier, consultation:, event:, role:)
-            end
-
-    if token.new_record?
-      token.save!
-      success('Token created.') if flash
-    elsif token.disabled?
-      token.update!(status: :enabled)
-      info('Token enabled again.') if flash
-    elsif flash
-      info('Token exists and enabled.')
-    end
-  end
 
   def event
     @event ||= policy_scope(Event).find(params[:id])
@@ -129,9 +120,5 @@ class EventsController < ApplicationController
 
   def update_token_params
     params.require(:status)
-  end
-
-  def consultation
-    current_user.consultation
   end
 end
