@@ -12,7 +12,7 @@ class FingerprintService
       else
         arg
       end
-    end << Rails.application.credentials.secret_key_base
+    end << Rails.application.secret_key_base
 
     # A single question receipt is not truncated, but the result of hashing
     # all the questions' fingerprints will be truncated to 20 bytes to use it

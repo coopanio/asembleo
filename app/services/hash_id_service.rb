@@ -11,7 +11,7 @@ class HashIdService
 
   def initialize
     @hasher = Hashids.new(
-      Rails.application.credentials.secret_key_base,
+      Rails.application.secret_key_base,
       Rails.configuration.hash_service.hash_length,
       Rails.configuration.hash_service.alphabet
     )
