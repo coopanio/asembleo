@@ -42,7 +42,6 @@ yarn-debug.log*
 
 # Bundle
 .vendor
-/bin
 
 # Builds
 /.sass-cache/*
