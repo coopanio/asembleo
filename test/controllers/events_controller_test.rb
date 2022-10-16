@@ -56,11 +56,11 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_not tokens.first.alias
   end
 
-  test 'should create aliased token' do
+  test 'should reenable disabled unaliased token' do
     event = create(:event, consultation: token.consultation)
-    identifier = Faker::PhoneNumber.cell_phone
-
+    identifier = create(:token, consultation: token.consultation, event:, status: :disabled).to_s
     token.update!(role: :manager, event:)
+
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
     post "/events/#{event.id}/tokens", params: { value: identifier }
@@ -68,10 +68,26 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     tokens = Token.where(event:, role: :voter)
     assert_response :redirect
     assert_equal 1, tokens.size
+    assert_equal identifier, tokens.first.to_s
+    assert_predicate tokens.first, :enabled?
+  end
+
+  test 'should create aliased token' do
+    event = create(:event, consultation: token.consultation)
+    identifier = Faker::PhoneNumber.cell_phone
+
+    token.update!(role: :manager, event:)
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: 'true' }
+
+    tokens = Token.where(event:, role: :voter)
+    assert_response :redirect
+    assert_equal 1, tokens.size
     assert_equal Token.sanitize(identifier), tokens.first.alias
   end
 
-  test 'should reenable disabled token' do
+  test 'should reenable disabled aliased token' do
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
     create(:token, consultation: token.consultation, event:, alias: identifier, status: :disabled)
@@ -79,7 +95,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
-    post "/events/#{event.id}/tokens", params: { value: identifier }
+    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: 'true' }
 
     tokens = Token.where(event:, role: :voter)
     assert_response :redirect

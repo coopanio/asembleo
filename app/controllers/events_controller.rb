@@ -44,15 +44,27 @@ class EventsController < ApplicationController
     Token.transaction do
       if params[:multiple].present?
         params[:value].each_line do |line|
-          CreateToken.call(identifier: line, event:)
+          CreateToken.call(
+            identifier: line,
+            role: role,
+            aliased: params.fetch(:aliased, false).present?,
+            send_magic_link: params.fetch(:send_magic_link, false).present?,
+            event:
+          )
         end
 
-        success('Tokens created.')
+        success('Tokens created or enabled.')
 
         result = RedirectBySession.call(identity: current_user)
         redirect_to result.destination
       else
-        result = CreateToken.result(identifier: params[:value], role: role, event:)
+        result = CreateToken.result(
+          identifier: params[:value],
+          role: role,
+          aliased: params.fetch(:aliased, false).present?,
+          send_magic_link: params.fetch(:send_magic_link, false).present?,
+          event:
+        )
 
         if result.token.new_record?
           success('Token created.')
@@ -115,7 +127,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.permit(:value, :multiple, :role)
+    params.permit(:value, :aliased, :multiple, :send_magic_link, :role)
   end
 
   def update_token_params
