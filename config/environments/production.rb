@@ -98,6 +98,9 @@ Rails.application.configure do
     user_name: ENV['ASEMBLEO_SMTP_USERNAME'].presence,
     password: ENV['ASEMBLEO_SMTP_PASSWORD'].presence
   }
-  config.action_mailer.default_url_options = { host: ENV['ASEMBLEO_HOST'].presence }
+  config.action_mailer.default_url_options = {
+    host: ENV['ASEMBLEO_HOST'].presence,
+    protocol: 'https'
+  }
   config.action_mailer.raise_delivery_errors = true
 end
