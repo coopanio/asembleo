@@ -59,7 +59,7 @@ class EventsController < ApplicationController
         redirect_to result.destination
       else
         result = CreateToken.result(
-          identifier: params[:value],
+          identifier: params[:value].presence,
           role: role,
           aliased: params.fetch(:aliased, false).present?,
           send_magic_link: params.fetch(:send_magic_link, false).present?,
