@@ -7,6 +7,11 @@ module Errors
         render plain: 'Bad request', status: :bad_request
       end
 
+      rescue_from TooManyOptions do |e|
+        error("You can only choose up to #{e.max_options} options.")
+        redirect_back fallback_location: root_path
+      end
+
       rescue_from InvalidVoteOption do |_e|
         error('Choose a valid option.')
         redirect_back fallback_location: root_path
@@ -30,6 +35,14 @@ module Errors
   end
 
   class AccessDenied < ActionController::ActionControllerError; end
+
+  class TooManyOptions < ActionController::BadRequest
+    attr_reader :max_options
+
+    def initialize(max_options)
+      @max_options = max_options
+    end
+  end
 
   class InvalidVoteOption < ActionController::BadRequest; end
 

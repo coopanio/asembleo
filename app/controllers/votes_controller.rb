@@ -17,6 +17,7 @@ class VotesController < ApplicationController
 
   def validate
     raise Errors::AlreadyVoted if question.voted?(current_user)
+    raise Errors::TooManyOptions, question.max_options if vote_params[:value].size > question.max_options
 
     vote_params[:value].each do |value|
       raise Errors::InvalidVoteOption unless question.valid_option?(value)
