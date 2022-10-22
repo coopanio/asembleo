@@ -6,7 +6,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   attr_reader :question, :token, :value
 
   setup do
-    @question = create(:question)
+    @question = create(:question, max_options: 2)
     create(:option, question:, value: 'yes')
     create(:option, question:, value: 'no')
     event = create(:event, consultation: question.consultation)

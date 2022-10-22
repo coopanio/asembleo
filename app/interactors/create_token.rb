@@ -10,11 +10,11 @@ class CreateToken < Actor
   output :token
 
   def call
-    if token_alias.present?
-      self.token = Token.find_or_initialize_by(alias: token_alias, consultation:, event:, role:)
-    else
-      self.token = Token.create(consultation:, event:, role:)
-    end
+    self.token = if token_alias.present?
+                   Token.find_or_initialize_by(alias: token_alias, consultation:, event:, role:)
+                 else
+                   Token.find_or_initialize_by(consultation:, event:, role:)
+                 end
 
     token.status = :enabled if token.disabled?
     token.save! if token.new_record? || token.changed?

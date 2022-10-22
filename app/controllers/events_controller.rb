@@ -46,7 +46,7 @@ class EventsController < ApplicationController
         params[:value].each_line do |line|
           CreateToken.call(
             identifier: line,
-            role: role,
+            role:,
             aliased: params.fetch(:aliased, false).present?,
             send_magic_link: params.fetch(:send_magic_link, false).present?,
             event:
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
       else
         result = CreateToken.result(
           identifier: params[:value].presence,
-          role: role,
+          role:,
           aliased: params.fetch(:aliased, false).present?,
           send_magic_link: params.fetch(:send_magic_link, false).present?,
           event:
@@ -70,7 +70,7 @@ class EventsController < ApplicationController
           success('Token created.')
         elsif result.token.disabled?
           info('Token enabled again.')
-        elsif
+        else
           info('Token exists and enabled.')
         end
 
