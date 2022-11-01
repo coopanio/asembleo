@@ -8,17 +8,23 @@ class CreateToken < Actor
   input :send_magic_link, type: [TrueClass, FalseClass], default: false
 
   output :token
+  output :skip
 
   def call
-    self.token = if token_alias.present?
-                   Token.find_or_initialize_by(alias: token_alias, consultation:, event:, role:)
-                 else
-                   Token.find_or_initialize_by(consultation:, event:, role:)
-                 end
+    if already_issued?
+      self.skip = true
 
-    token.status = :enabled if token.disabled?
-    token.save! if token.new_record? || token.changed?
+      return
+    end
 
+    self.token = find_or_initialize_token
+
+    new_token = token.new_record?
+    token.save! if new_token || token.changed?
+
+    return unless new_token
+
+    issue_receipt
     deliver if send_magic_link
   end
 
@@ -33,6 +39,31 @@ class CreateToken < Actor
     return nil unless aliased
 
     @token_alias ||= Token.sanitize(identifier)
+  end
+
+  def already_issued?
+    return false if identifier.blank?
+    return true unless TokenReceipt.generate(consultation:, identifier:).new_record?
+
+    false
+  end
+
+  def find_or_initialize_token
+    tkn = if token_alias.present?
+            Token.find_or_initialize_by(alias: token_alias, consultation:, event:, role:)
+          else
+            Token.find_or_initialize_by(consultation:, event:, role:)
+          end
+
+    tkn.status = :enabled if tkn.disabled?
+
+    tkn
+  end
+
+  def issue_receipt
+    return if identifier.blank?
+
+    TokenReceipt.generate(consultation:, identifier:).save!
   end
 
   def deliver

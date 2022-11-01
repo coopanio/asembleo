@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
 
   create_table "events", force: :cascade do |t|
     t.integer "status", default: 0
-    t.bigint "consultation_id", null: false
+    t.integer "consultation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
@@ -72,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
   create_table "options", force: :cascade do |t|
     t.string "value"
     t.string "description"
-    t.bigint "question_id", null: false
+    t.integer "question_id", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -88,13 +88,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
 
   create_table "receipts", force: :cascade do |t|
     t.text "fingerprint"
-    t.bigint "token_id", null: false
-    t.bigint "question_id", null: false
+    t.integer "token_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_receipts_on_question_id"
     t.index ["token_id", "question_id"], name: "index_receipts_on_token_id_and_question_id", unique: true
     t.index ["token_id"], name: "index_receipts_on_token_id"
+  end
+
+  create_table "token_receipts", id: false, force: :cascade do |t|
+    t.integer "consultation_id", null: false
+    t.string "fingerprint", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["consultation_id"], name: "index_token_receipts_on_consultation_id"
+    t.index ["fingerprint", "consultation_id"], name: "index_token_receipts_on_fingerprint_and_consultation_id", unique: true
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -154,6 +163,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_163444) do
   add_foreign_key "questions", "consultations"
   add_foreign_key "receipts", "questions"
   add_foreign_key "receipts", "tokens"
+  add_foreign_key "token_receipts", "consultations"
   add_foreign_key "tokens", "consultations"
   add_foreign_key "tokens", "events"
   add_foreign_key "votes", "events"

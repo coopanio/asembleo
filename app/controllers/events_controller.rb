@@ -66,7 +66,9 @@ class EventsController < ApplicationController
           event:
         )
 
-        if result.token.new_record?
+        if result.skip
+          success('Token already issued.')
+        elsif result.token.new_record?
           success('Token created.')
         elsif result.token.disabled?
           info('Token enabled again.')

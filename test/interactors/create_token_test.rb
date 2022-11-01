@@ -15,6 +15,7 @@ class CreateTokenTest < ActionDispatch::IntegrationTest
     subject
 
     assert_equal 1, Token.count
+    assert_equal 0, TokenReceipt.count
     assert_no_enqueued_emails
   end
 
@@ -26,5 +27,6 @@ class CreateTokenTest < ActionDispatch::IntegrationTest
 
     assert_enqueued_emails 1
     assert_equal 1, Token.count
+    assert_equal 1, TokenReceipt.count
   end
 end
