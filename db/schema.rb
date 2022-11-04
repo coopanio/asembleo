@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_04_134933) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
 
   create_table "events", force: :cascade do |t|
     t.integer "status", default: 0
-    t.integer "consultation_id", null: false
+    t.bigint "consultation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
@@ -72,8 +72,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
   create_table "options", force: :cascade do |t|
     t.string "value"
     t.string "description"
-    t.integer "question_id", null: false
+    t.bigint "question_id", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "question_groups", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "question_links", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "question_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_group_id"], name: "index_question_links_on_question_group_id"
+    t.index ["question_id"], name: "index_question_links_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -88,8 +103,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
 
   create_table "receipts", force: :cascade do |t|
     t.text "fingerprint"
-    t.integer "token_id", null: false
-    t.integer "question_id", null: false
+    t.bigint "token_id", null: false
+    t.bigint "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_receipts_on_question_id"
@@ -160,6 +175,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_172617) do
   add_foreign_key "events_questions", "events"
   add_foreign_key "events_questions", "questions"
   add_foreign_key "options", "questions"
+  add_foreign_key "question_links", "question_groups"
+  add_foreign_key "question_links", "questions"
   add_foreign_key "questions", "consultations"
   add_foreign_key "receipts", "questions"
   add_foreign_key "receipts", "tokens"

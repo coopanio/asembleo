@@ -1,24 +1,5 @@
-<%= form_with scope: :vote, url: { controller: :votes, action: :create }, local: true do |f| %>
-  <table class="table table-hover table-borderless">
-    <tbody>
-      <% @question.options.each do |option| %>
-        <tr>
-          <td>
-            <div class="form-check form-control-lg m-3 ml-0">
-              <% if @question.max_options > 1 %>
-                <%= f.check_box :value, { class: 'form-check-input', disabled: @question.draft?, include_hidden: false, multiple: true }, option.value %>
-              <% else %>
-                <%= f.radio_button :value, option.value, class: 'form-check-input', disabled: @question.draft?, multiple: true %>
-              <% end %>
-              <%= f.label option.description, for: "vote_value_#{option.value}", class: 'form-check-label' %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= f.hidden_field :question_id, value: @question.id %>
-  <% unless @question.draft? %>
-    <%= f.submit 'Votar', class: 'btn btn-primary' %>
-  <% end %>
+<% if @question.group %>
+  <%= render 'questions/booth/group' %>
+<% else %>
+  <%= render 'questions/booth/single' %>
 <% end %>

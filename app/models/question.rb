@@ -4,6 +4,8 @@ class Question < ApplicationRecord
   has_paper_trail
 
   belongs_to :consultation
+  has_one :link, class_name: 'QuestionLink'
+  has_one :group, class_name: 'QuestionGroup', through: :link, source: :question_group
   has_many :options, dependent: :destroy
   has_many :receipts, dependent: :destroy
   has_many :votes, dependent: :destroy
@@ -53,4 +55,6 @@ class Question < ApplicationRecord
 
     results
   end
+
+  private :link, :link=
 end
