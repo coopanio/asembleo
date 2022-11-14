@@ -35,9 +35,9 @@ class EventPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      consultation = current_user.consultation
+      consultation_id = current_user.consultation_id
 
-      scope.where(consultation:)
+      scope.where(consultation_id:)
     end
   end
 end

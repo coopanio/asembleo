@@ -1,0 +1,32 @@
+<div class="card mt-3">
+  <%= form_with scope: :question_group, url: question_groups_path, local: true do |f| %>
+    <div class="card-header d-flex justify-content-between">
+      <strong>Questions</strong>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <%= f.submit 'Create', class: 'btn btn-primary py-1' %>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @available_questions.order(:id).each do |question| %>
+            <tr>
+              <td scope="row"><%= f.check_box :question_ids, { multiple: true }, question.id, nil %></td>
+              <td><%= question.id %></td>
+              <td><%= question.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

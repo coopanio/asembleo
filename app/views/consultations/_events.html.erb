@@ -11,12 +11,14 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Title</th>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
           <th colspan="2">
         </tr>
-      <thead>
+      </thead>
       <% @consultation.events.each do |event| %>
       <tr>
+        <td><%= event.id %></td>
         <td><%= event.title %></td>
         <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-link py-0' %></td>
         <td><%= link_to 'Delete',

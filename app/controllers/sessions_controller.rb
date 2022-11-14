@@ -35,8 +35,4 @@ class SessionsController < ApplicationController
   def password
     params.dig(:session, :password)
   end
-
-  def create_params
-    params.require(:session).permit(:identifier, :password)
-  end
 end

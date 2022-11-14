@@ -31,7 +31,7 @@ class QuestionPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: current_user.consultation_id)
+      scope.where(consultation_id: current_user.consultation_id)
     end
   end
 end

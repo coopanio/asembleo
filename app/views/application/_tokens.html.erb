@@ -9,9 +9,9 @@
             <%= f.text_field :value, class: 'form-control form-control-sm' %>
         </div>
         <div class="col">
-          <%= f.submit 'Create', class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'Add admin', { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link btn-sm', method: :post %>
-          <%= link_to 'Bulk creation', { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link btn-sm' %>
+          <%= f.submit 'Create', class: 'btn btn-primary py-1' %>
+          <%= link_to 'Add admin', { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
+          <%= link_to 'Bulk creation', { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
         </div>
       <% end %>
     </div>
@@ -20,11 +20,11 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Token</th>
-          <th>Role</th>
-          <th></th>
+          <th scope="col">Token</th>
+          <th scope="col">Role</th>
+          <th colspan="1"></th>
         </tr>
-      <thead>
+      </thead>
       <% @event.tokens.order(:alias).each do |token| %>
         <tr>
           <td><%= token.alias || token.to_s %></td>

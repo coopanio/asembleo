@@ -1,0 +1,6 @@
+<% if @question.max_options > 1 %>
+  <%= form.check_box :value, { class: 'form-check-input', disabled: @question.draft?, include_hidden: false, multiple: true }, option.value %>
+<% else %>
+  <%= form.radio_button :value, option.value, class: 'form-check-input', disabled: @question.draft?, multiple: true %>
+<% end %>
+<%= form.label option.description, for: "vote_value_#{option.value}", class: 'form-check-label' %>

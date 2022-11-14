@@ -1,9 +1,17 @@
 <% cache @question do %>
   <h2><%= @question.consultation.title %></h2>
-  <% if @question.description %>
-    <div class="mb-3">
-      <%= raw(@question.description) %>
-    </div>
+  <% if @question.group.present? %>
+    <% if @question.group.description %>
+      <div class="mb-3">
+        <%= raw(@question.group.description) %>
+      </div>
+    <% end %>
+  <% else %>
+    <% if @question.description %>
+      <div class="mb-3">
+        <%= raw(@question.description) %>
+      </div>
+    <% end %>
   <% end %>
   <%= render @question.status %>
 <% end %>

@@ -31,10 +31,21 @@ module Errors
         error('You are not authorized.')
         redirect_back fallback_location: root_path
       end
+
+      rescue_from InvalidParameters do |e|
+        error(e.message)
+        redirect_back fallback_location: root_path
+      end
     end
   end
 
   class AccessDenied < ActionController::ActionControllerError; end
+
+  class InvalidParameters < ActionController::BadRequest
+    def initialize(msg = 'Invalid parameters.')
+      super
+    end
+  end
 
   class TooManyOptions < ActionController::BadRequest
     attr_reader :max_options

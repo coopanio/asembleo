@@ -14,12 +14,12 @@ class OptionPolicy < ApplicationPolicy
   end
 
   def show?
-    record.question.consultation == current_user.consultation
+    record.question.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      scope.where(consultation: current_user.consultation)
+      scope.where(consultation_id: current_user.consultation_id)
     end
   end
 end

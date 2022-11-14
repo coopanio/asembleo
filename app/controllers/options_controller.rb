@@ -17,6 +17,8 @@ class OptionsController < ApplicationController
     option.save!
     question.save!
 
+    SyncQuestionOptions.call(question: question)
+
     success('Option created.')
     redirect_to controller: 'questions', action: 'edit', id: question.id
   end
@@ -33,6 +35,8 @@ class OptionsController < ApplicationController
     option.update!(update_params)
     question.save!
 
+    SyncQuestionOptions.call(question: question)
+
     success('Option updated.')
     redirect_to controller: 'questions', action: 'edit', id: question.id
   end
@@ -43,6 +47,8 @@ class OptionsController < ApplicationController
 
     option.destroy!
     question.save!
+
+    SyncQuestionOptions.call(question: question)
 
     success('Option deleted.')
     redirect_to controller: 'questions', action: 'edit', id: question.id

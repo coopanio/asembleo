@@ -1,0 +1,13 @@
+<%= form_with scope: :question_group, model: @question_group, class: 'container', local: true do |f| %>
+  <div class="row mb-3">
+    <%= f.label :description, class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col d-flex justify-content-end">
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

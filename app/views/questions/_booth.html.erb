@@ -1,4 +1,4 @@
-<% if @question.group %>
+<% if @question.group.present? %>
   <%= render 'questions/booth/group' %>
 <% else %>
   <%= render 'questions/booth/single' %>

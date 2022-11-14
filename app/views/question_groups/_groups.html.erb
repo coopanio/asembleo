@@ -1,0 +1,27 @@
+<div class="card mt-3">
+  <div class="card-header d-flex justify-content-between">
+    <strong>Groups</strong>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Grouped questions</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.order(:id).each do |group| %>
+          <tr>
+            <td><%= group.id %></td>
+            <td><%= group.questions.order(:id).map(&:id).join(', ') %></td>
+            <td><%= link_to 'Edit', edit_question_group_path(group) %></td>
+            <td><%= link_to 'Delete', question_group_path(group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

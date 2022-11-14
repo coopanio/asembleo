@@ -2,9 +2,12 @@
   <div class="card-header d-flex justify-content-between">
     <strong>Questions</strong>
     <% if @current_user.admin? %>
-      <ul class="nav">
+      <ul class="nav nav-pills">
         <li class="nav-item">
-          <%= link_to 'Create', new_question_path, class: 'nav-link p-0 text-decoration-underline' %>
+          <%= link_to 'Create', new_question_path, class: 'nav-link active btn py-1' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Group', question_groups_path, class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>
@@ -13,13 +16,15 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Question</th>
-          <th>Status</th>
+          <th scope="col">ID</th>
+          <th scope="col">Question</th>
+          <th scope="col">Status</th>
           <th colspan="3"></th>
         </tr>
-      <thead>
+      </thead>
       <% @consultation.questions.order(:id).each do |question| %>
       <tr>
+        <td><%= question.id %></td>
         <td><%= question.description %></td>
         <td><%= question.status %></td>
         <td><%= link_to 'Edit', edit_question_url(question)  %></td>
