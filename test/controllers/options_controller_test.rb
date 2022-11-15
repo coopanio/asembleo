@@ -13,13 +13,15 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create option' do
-    params = { option: { value: 'yes', description: 'Sí' } }
+    params = { option: { value: 'yes', description: 'Sí', principal: true } }
 
     post(question_options_url(question), params:)
 
     option = Option.first
     assert_response :redirect
     assert_equal option.value, params[:option][:value]
+    assert_equal option.description, params[:option][:description]
+    assert_equal option.principal, params[:option][:principal]
   end
 
   test 'should update option' do
