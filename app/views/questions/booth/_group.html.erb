@@ -6,13 +6,15 @@
           <td><%= question.description %></td>
         </tr>
         <tr>
-          <% question.options.each do |option| %>
-            <td>
-              <div class="form-check form-control-lg m-3 ml-0">
-                <%= render 'questions/booth/option', form: f, option: option %>
-              </div>
-            </td>
-          <% end %>
+          <td>  
+            <div class="row">
+              <% question.options.each do |option| %>
+                <div class="form-check col m-3 ml-0">
+                  <%= render 'questions/booth/option', form: f, option: option %>
+                </div>
+              <% end %>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>
