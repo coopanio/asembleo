@@ -13,7 +13,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @token = create(:token, event:, consultation: question.consultation)
     @value = 'yes'
 
-    @params = { vote: { question_id: question.id, value: [@value] } }
+    @params = { vote: { question.id => { value: [@value] } }.stringify_keys }
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
   end
@@ -38,7 +38,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create multiple votes' do
     selected_votes = %w[yes no]
-    @params[:vote][:value] = selected_votes
+    @params[:vote][question.id.to_s][:value] = selected_votes
 
     subject
 
@@ -55,7 +55,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should asynchronously create vote' do
-    VotesController.stub_any_instance(:async?, true) do
+    CastVotes.stub_any_instance(:async?, true) do
       subject
     end
 
@@ -71,7 +71,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if question_id is unknown' do
-    @params[:vote][:question_id] = nil
+    @params[:vote] = { '999' => { value: [@value] } }
     subject
 
     assert_response 400
@@ -80,7 +80,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if value is not valid' do
-    @params[:vote][:value] = %w[nay]
+    @params[:vote][question.id.to_s][:value] = %w[nay]
     subject
 
     assert_response :redirect
@@ -92,7 +92,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     subject
     assert_response :success
 
-    post votes_url, params: { vote: { question_id: question.id, value: %w[no] } }
+    post votes_url, params: { vote: { question.id => { value: %w[no] } }.stringify_keys }
     assert_response :redirect
   end
 end

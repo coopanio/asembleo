@@ -4,6 +4,8 @@ class SyncQuestionOptions < Actor
   input :question, type: Question, allow_nil: false
 
   def call
+    return unless group
+
     options = question.options
 
     group.questions.where.not(id: question.id).each do |q|

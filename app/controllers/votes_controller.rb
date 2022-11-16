@@ -3,40 +3,35 @@
 class VotesController < ApplicationController
   def create
     authorize Vote
-    authorize question, :show?
-    validate
 
-    envelope = Envelope.new(question, token, **vote_params.to_h.symbolize_keys)
-    envelope.save(async: async?)
+    questions.each do |question|
+      authorize question, :show?
+    end
 
-    @receipt = envelope.receipt
-    @receipt.save!
+    result = CastVotes.result(votes_params:, current_user:)
+    raise result.error if result.failure?
+
+    @receipt = result.receipts.last
   end
 
   private
 
-  def validate
-    raise Errors::AlreadyVoted if question.voted?(current_user)
-    raise Errors::TooManyOptions, question.max_options if vote_params[:value].size > question.max_options
+  def votes_params
+    vps = []
 
-    vote_params[:value].each do |value|
-      raise Errors::InvalidVoteOption unless question.valid_option?(value)
+    questions.each do |question|
+      vp = params.require(:vote).require(question.id.to_s).permit(value: []).to_h
+      vps << vp.merge(question: question)
     end
+
+    vps
   end
 
-  def vote_params
-    params.require(:vote).permit(:question_id, value: [])
+  def questions
+    @questions ||= policy_scope(Question).find(question_ids)
   end
 
-  def question
-    @question ||= policy_scope(Question).find(vote_params[:question_id])
-  end
-
-  def token
-    current_user
-  end
-
-  def async?
-    Rails.configuration.x.asembleo.async_vote
+  def question_ids
+    params.require(:vote).keys.map(&:to_i)
   end
 end

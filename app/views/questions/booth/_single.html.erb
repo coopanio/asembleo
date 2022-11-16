@@ -12,7 +12,6 @@
       <% end %>
     </tbody>
   </table>
-  <%= f.hidden_field :question_id, value: @question.id %>
   <% unless @question.draft? %>
     <%= f.submit 'Votar', class: 'btn btn-primary' %>
   <% end %>

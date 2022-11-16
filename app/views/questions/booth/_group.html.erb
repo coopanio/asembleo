@@ -1,4 +1,4 @@
-<%= form_with scope: :vote, url: { controller: :votes, action: :create }, local: true do |f| %>
+<%= form_with url: { controller: :votes, action: :create }, local: true do |f| %>
   <table class="table table-borderless">
     <tbody>
       <% @question.group.questions.each do |question| %>
@@ -10,7 +10,7 @@
             <div class="row">
               <% question.options.each do |option| %>
                 <div class="form-check col m-3 ml-0">
-                  <%= render 'questions/booth/option', form: f, option: option %>
+                  <%= render 'questions/booth/option', form: f, question: question, option: option %>
                 </div>
               <% end %>
             </div>
@@ -19,8 +19,6 @@
       <% end %>
     </tbody>
   </table>
-  <%= f.hidden_field :question_id, value: @question.id %>
-  <%= f.hidden_field :group_id, value: @question.group.id %>
   <% unless @question.draft? %>
     <%= f.submit 'Vote', class: 'btn btn-primary' %>
   <% end %>
