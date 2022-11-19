@@ -15,7 +15,6 @@ class Token < ApplicationRecord
 
   validates :alias, uniqueness: { scope: :consultation_id, if: proc { |t| t.alias.present? } }
 
-  # TODO: not sure this is the best way to do this
   after_initialize :init
 
   def self.from_value(value)

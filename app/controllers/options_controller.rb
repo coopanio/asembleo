@@ -59,7 +59,7 @@ class OptionsController < ApplicationController
   end
 
   def create_params
-    params.require(:option).permit(:value, :description, :principal)
+    params.require(:option).permit(:value, :description, :main)
   end
 
   alias update_params create_params
