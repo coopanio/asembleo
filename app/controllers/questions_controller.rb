@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
 
   def update
     authorize question
+
     question.update!(update_params)
 
     success('Question updated.')
@@ -41,12 +42,7 @@ class QuestionsController < ApplicationController
   def open
     authorize question
 
-    EventsQuestion.transaction do
-      rel = EventsQuestion.find_or_create_by(event:, question:, consultation:)
-      rel.update!(status: :opened)
-
-      question.update!(status: :opened) if consultation.synchronous?
-    end
+    update_status(:opened)
 
     success('Question opened.')
     redirect_back(fallback_location: root_path)
@@ -55,14 +51,7 @@ class QuestionsController < ApplicationController
   def open_all
     authorize question, :open?
 
-    EventsQuestion.transaction do
-      question.consultation.events.each do |event|
-        rel = EventsQuestion.find_or_create_by(event:, question:, consultation:)
-        rel.update!(status: :opened)
-      end
-
-      question.update!(status: :opened)
-    end
+    update_status(:opened, events: question.consultation.events)
 
     success('Question opened.')
     redirect_back(fallback_location: root_path)
@@ -70,6 +59,7 @@ class QuestionsController < ApplicationController
 
   def tally
     authorize question
+
     unless question.closed?
       error('Results not available while the question is open.')
       redirect_to controller: 'consultations', action: 'edit', id: consultation.id
@@ -83,12 +73,7 @@ class QuestionsController < ApplicationController
   def close
     authorize question
 
-    EventsQuestion.transaction do
-      rel = EventsQuestion.find_by(event:, question:)
-      rel.update!(status: :closed)
-
-      question.update!(status: :closed) if consultation.synchronous?
-    end
+    update_status(:closed)
 
     success('Question closed.')
     redirect_back(fallback_location: root_path)
@@ -97,14 +82,7 @@ class QuestionsController < ApplicationController
   def close_all
     authorize question, :close?
 
-    EventsQuestion.transaction do
-      question.consultation.events.each do |event|
-        rel = EventsQuestion.find_by(event:, question:)
-        rel.update!(status: :closed)
-      end
-
-      question.update!(status: :closed)
-    end
+    update_status(:closed, events: question.consultation.events)
 
     success('Question closed.')
     redirect_back(fallback_location: root_path)
@@ -119,6 +97,17 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def update_status(status, events: [event])
+    EventsQuestion.transaction do
+      events.each do |event|
+        rel = EventsQuestion.find_by(event:, question:)
+        rel.update!(status:)
+
+        question.update!(status:) if consultation.synchronous?
+      end
+    end
+  end
 
   def consultation
     current_user.consultation

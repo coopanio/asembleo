@@ -12,6 +12,8 @@ class Question < ApplicationRecord
 
   enum status: { draft: 0, opened: 1, closed: 2 }
 
+  after_save :sync_siblings
+
   def valid_option?(value)
     options.exists?(value:)
   end
@@ -54,6 +56,10 @@ class Question < ApplicationRecord
     end
 
     results
+  end
+
+  def sync_siblings
+    SyncQuestionSiblings.call(question: self)
   end
 
   private :link, :link=

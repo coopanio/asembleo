@@ -18,7 +18,7 @@ class QuestionGroupsController < ApplicationController
     question_ids = question_ids.map(&:to_i)
     QuestionGroup.transaction do
       CreateQuestionGroup.call(question_ids: question_ids)
-      SyncQuestionOptions.call(question: Question.find(question_ids.first))
+      SyncQuestionSiblings.call(question: Question.find(question_ids.first))
     end
 
     redirect_to question_groups_path
