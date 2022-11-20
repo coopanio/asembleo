@@ -10,18 +10,24 @@ class CastVotes < Actor
   def call
     self.receipts = []
 
-    votes_params.each do |vote_params|
-      validate(vote_params)
-    end
-
-    votes_params.each do |vote_params|
-      cast(vote_params)
-    end
+    validate
+    cast
   end
 
   private
 
-  def validate(vote_params)
+  def validate
+    validate_votes
+    validate_main_option
+  end
+
+  def validate_votes
+    votes_params.each do |vote_params|
+      validate_vote(vote_params)
+    end
+  end
+
+  def validate_vote(vote_params)
     question = vote_params[:question]
     values = vote_params[:value]
 
@@ -33,7 +39,23 @@ class CastVotes < Actor
     end
   end
 
-  def cast(vote_params)
+  def validate_main_option
+    question = votes_params.first[:question]
+    main_option = question.options.detect { |option| option.main }
+
+    return if main_option.blank?
+
+    values = votes_params.map { |vote_params| vote_params[:value] }.flatten.tally
+    raise Errors::TooManyMainOptions, main_option if values[main_option.value] > 1
+  end
+
+  def cast
+    votes_params.each do |vote_params|
+      cast_vote(vote_params)
+    end
+  end
+
+  def cast_vote(vote_params)
     question = vote_params[:question]
 
     envelope = Envelope.new(question, current_user, **vote_params.to_h.symbolize_keys)

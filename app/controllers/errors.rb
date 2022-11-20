@@ -12,6 +12,11 @@ module Errors
         redirect_back fallback_location: root_path
       end
 
+      rescue_from TooManyMainOptions do |e|
+        error("You can only choose #{e.option.value} once.")
+        redirect_back fallback_location: root_path
+      end
+
       rescue_from InvalidVoteOption do |_e|
         error('Choose a valid option.')
         redirect_back fallback_location: root_path
@@ -52,6 +57,14 @@ module Errors
 
     def initialize(max_options)
       @max_options = max_options
+    end
+  end
+
+  class TooManyMainOptions < ActionController::BadRequest
+    attr_reader :option
+
+    def initialize(option)
+      @option = option
     end
   end
 

@@ -13,7 +13,8 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @token = create(:token, event:, consultation: question.consultation)
     @value = 'yes'
 
-    @params = { vote: { question.id => { value: [@value] } }.stringify_keys }
+    @votes = { question.id => { value: [@value] } }
+    reload_params!
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
   end
@@ -38,7 +39,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create multiple votes' do
     selected_votes = %w[yes no]
-    @params[:vote][question.id.to_s][:value] = selected_votes
+    @params['vote'][question.id][:value] = selected_votes
 
     subject
 
@@ -52,6 +53,26 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
+  end
+
+  test "should not create multiple votes if group's main option is selected too many times" do
+    other_question = create(:question, consultation: question.consultation, max_options: 1)
+    CreateQuestionGroup.call(question_ids: [question.id, other_question.id])
+
+    [question, other_question].map(&:reload)
+
+    question.options.find_by(value: 'yes').update!(main: true)
+    question.update!(max_options: 1)
+
+    @votes = {
+      question.id => { value: [@value] },
+      other_question.id => { value: [@value] }
+    }
+    reload_params!
+
+    subject
+
+    assert_response :redirect
   end
 
   test 'should asynchronously create vote' do
@@ -71,7 +92,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if question_id is unknown' do
-    @params[:vote] = { '999' => { value: [@value] } }
+    @params['vote'] = { '999' => { value: [@value] } }
     subject
 
     assert_response 400
@@ -80,7 +101,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should fail if value is not valid' do
-    @params[:vote][question.id.to_s][:value] = %w[nay]
+    @params['vote'][question.id][:value] = %w[nay]
     subject
 
     assert_response :redirect
@@ -92,7 +113,16 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     subject
     assert_response :success
 
-    post votes_url, params: { vote: { question.id => { value: %w[no] } }.stringify_keys }
+    @value = 'no'
+    reload_params!
+
+    post votes_url, params: @params
     assert_response :redirect
+  end
+
+  private
+
+  def reload_params!
+    @params = { vote: @votes }.stringify_keys
   end
 end
