@@ -6,10 +6,10 @@
   <% end %>
   <%= form_with scope: :session, url: sessions_path, class: 'row g-2', local: true do |f| %>
     <div class="col-12">
-      <%= f.text_field :identifier, class: 'form-control form-control-lg', autofocus: '', autocomplete: 'off', placeholder: '' %>
+      <%= f.text_field :identifier, class: 'form-control form-control-lg', autofocus: '', autocomplete: 'off', placeholder: 'Identifier' %>
     </div>
     <div class="col-12">
-      <%= f.password_field :password, class: 'form-control form-control-lg', autocomplete: 'off', placeholder: '' %>
+      <%= f.password_field :password, class: 'form-control form-control-lg', autocomplete: 'off', placeholder: 'Password' %>
     </div>
     <div class="col-12">
       <%= f.submit 'Log in', class: 'btn btn-primary btn-lg w-100' %>

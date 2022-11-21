@@ -2,6 +2,12 @@
 
 class ConsultationsController < ApplicationController
   def new
+    if Rails.configuration.x.asembleo.private_instance && current_user.blank?
+      redirect_to controller: 'sessions', action: 'new'
+
+      return
+    end
+
     authorize Consultation
     @consultation = Consultation.new
   end
