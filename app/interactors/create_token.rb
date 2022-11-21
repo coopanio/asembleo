@@ -49,8 +49,12 @@ class CreateToken < Actor
   end
 
   def find_or_initialize_token
-    tkn = if token_alias.present?
-            Token.find_or_initialize_by(alias: token_alias, consultation:, event:, role:)
+    tkn = if aliased
+            begin
+              Token.from_value(token_alias)
+            rescue ActiveRecord::RecordNotFound
+              Token.new(alias: token_alias, consultation:, event:, role:)
+            end
           else
             Token.find_or_initialize_by(consultation:, event:, role:)
           end
