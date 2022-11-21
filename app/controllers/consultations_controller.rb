@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ConsultationsController < ApplicationController
+  def index
+  end
+
   def new
     if Rails.configuration.x.asembleo.private_instance && current_user.blank?
       redirect_to controller: 'sessions', action: 'new'
