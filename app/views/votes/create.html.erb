@@ -1,6 +1,6 @@
 <h2><%= @current_user.consultation.title %></h2>
 <div class="alert alert-primary" role="alert">
-  <p>El teu vot s'ha registrat correctament. Procedeix a la següent pregunta.</p>
-  <p>L'empremta del teu vot és <%= @receipt.fingerprint %></p>
-  <%= link_to 'Següent', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
+  <p>Your vote has been correctly registered. Please proceed to the next question.</p>
+  <p>Your vote's fingerpint is <%= @receipt.fingerprint %></p>
+  <%= link_to 'Next', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
 </div>

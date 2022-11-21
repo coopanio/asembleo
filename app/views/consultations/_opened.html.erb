@@ -1,10 +1,10 @@
 <div class="alert alert-primary" role="alert">
   <% if @current_user.receipts.count == @consultation.questions.count %>
-    Ja has fet totes les votacions d'aquest bloc.
+    You have answered all the questions.
   <% else %>
-    <p>La votació està oberta però no té preguntes actives. Prova més tard.</p>
+    <p>The consultation is open but there are no active questions. Try it again later.</p>
     <% if @current_user.voter? %>
-      <%= link_to 'Refrescar', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'Refresh', { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
     <% end %>
   <% end %>
 </div>
