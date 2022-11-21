@@ -75,6 +75,26 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "should create multiple votes if group's main option is selected up to max" do
+    other_question = create(:question, consultation: question.consultation, max_options: 1)
+    CreateQuestionGroup.call(question_ids: [question.id, other_question.id], limits: [{ value: 'yes', max: 2 }])
+
+    [question, other_question].map(&:reload)
+
+    question.options.find_by(value: 'yes').update!(main: true)
+    question.update!(max_options: 1)
+
+    @votes = {
+      question.id => { value: [@value] },
+      other_question.id => { value: [@value] }
+    }
+    reload_params!
+
+    subject
+
+    assert_response :success
+  end
+
   test 'should asynchronously create vote' do
     CastVotes.stub_any_instance(:async?, true) do
       subject

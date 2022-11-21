@@ -2,11 +2,12 @@
 
 class CreateQuestionGroup < Actor
   input :question_ids, type: Array, allow_nil: false
+  input :limits, type: Array, default: -> { [] }
 
   output :question_group
 
   def call
-    self.question_group = QuestionGroup.new
+    self.question_group = QuestionGroup.new(config: { limits: limits })
 
     question_group.transaction do
       question_group.save!

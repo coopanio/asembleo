@@ -18,7 +18,7 @@ class CastVotes < Actor
 
   def validate
     validate_votes
-    validate_main_option
+    validate_group_main_option
   end
 
   def validate_votes
@@ -39,14 +39,17 @@ class CastVotes < Actor
     end
   end
 
-  def validate_main_option
+  def validate_group_main_option
     question = votes_params.first[:question]
-    main_option = question.options.detect { |option| option.main }
+    group = question.group
+    return if question.group.blank?
 
+    main_option = question.options.detect { |option| option.main }
     return if main_option.blank?
 
+    main_value = main_option.value
     values = votes_params.map { |vote_params| vote_params[:value] }.flatten.tally
-    raise Errors::TooManyMainOptions, main_option if values[main_option.value] > 1
+    raise Errors::TooManyMainOptions, main_option if values[main_value] > group.config.limit_for(main_value)
   end
 
   def cast
