@@ -101,7 +101,7 @@ class QuestionsController < ApplicationController
   def update_status(status, events: [event])
     EventsQuestion.transaction do
       events.each do |event|
-        rel = EventsQuestion.find_by(event:, question:)
+        rel = EventsQuestion.find_or_create_by(consultation:, question:, event:)
         rel.update!(status:)
 
         question.update!(status:) if consultation.synchronous?
