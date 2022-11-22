@@ -19,6 +19,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= f.hidden_field :group_id, value: @question.group.id %>
   <% unless @question.draft? %>
     <%= f.submit 'Vote', class: 'btn btn-primary' %>
   <% end %>

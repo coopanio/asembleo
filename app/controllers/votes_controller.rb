@@ -4,6 +4,13 @@ class VotesController < ApplicationController
   def create
     authorize Vote
 
+    if params.to_unsafe_h.fetch(:vote, {}).length != questions.length
+      error('Please cast a vote for each question')
+      redirect_back fallback_location: root_path
+
+      return
+    end
+
     questions.each do |question|
       authorize question, :show?
     end
@@ -28,10 +35,18 @@ class VotesController < ApplicationController
   end
 
   def questions
-    @questions ||= policy_scope(Question).find(question_ids)
+    @questions ||= policy_scope(Question).where(id: question_ids)
   end
 
   def question_ids
-    params.require(:vote).keys.map(&:to_i)
+    return group.questions.map(&:id) if group.present?
+
+    params.require(:question_id).to_i
+  end
+
+  def group
+    return nil if params.fetch(:group_id, nil).blank?
+
+    @group ||= QuestionGroup.find(params[:group_id])
   end
 end
