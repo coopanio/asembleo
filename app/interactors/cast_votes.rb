@@ -48,8 +48,10 @@ class CastVotes < Actor
     return if main_option.blank?
 
     main_value = main_option.value
+    limit = group.config.limit_for(main_value)
     values = votes_params.map { |vote_params| vote_params[:value] }.flatten.tally
-    raise Errors::TooManyMainOptions, main_option if values[main_value] > group.config.limit_for(main_value)
+
+    raise Errors::TooManyMainOptions.new(main_option, limit) if values[main_value] > limit
   end
 
   def cast

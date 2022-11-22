@@ -13,7 +13,7 @@ module Errors
       end
 
       rescue_from TooManyMainOptions do |e|
-        error("You can only choose #{e.option.value} once.")
+        error("You can only choose #{e.option.value} up to #{e.limit} times.")
         redirect_back fallback_location: root_path
       end
 
@@ -61,10 +61,11 @@ module Errors
   end
 
   class TooManyMainOptions < ActionController::BadRequest
-    attr_reader :option
+    attr_reader :option, :limit
 
-    def initialize(option)
+    def initialize(option, limit)
       @option = option
+      @limit = limit
     end
   end
 
