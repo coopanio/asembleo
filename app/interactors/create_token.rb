@@ -18,8 +18,9 @@ class CreateToken < Actor
     end
 
     self.token = find_or_initialize_token
-
     new_token = token.new_record?
+
+    token.status = :enabled if token.disabled?
     token.save! if new_token || token.changed?
 
     return unless new_token
@@ -34,13 +35,6 @@ class CreateToken < Actor
     event.consultation
   end
 
-  def token_alias
-    return nil if identifier.blank?
-    return nil unless aliased
-
-    @token_alias ||= Token.sanitize(identifier)
-  end
-
   def already_issued?
     return false if identifier.blank?
     return true unless TokenReceipt.generate(consultation:, identifier:).new_record?
@@ -49,19 +43,28 @@ class CreateToken < Actor
   end
 
   def find_or_initialize_token
-    tkn = if aliased
-            begin
-              Token.from_value(token_alias)
-            rescue ActiveRecord::RecordNotFound
-              Token.new(alias: token_alias, consultation:, event:, role:)
-            end
-          else
-            Token.find_or_initialize_by(consultation:, event:, role:)
-          end
+    tkn = find_token
+    return tkn if tkn.present?
 
-    tkn.status = :enabled if tkn.disabled?
+    create_token
+  end
 
-    tkn
+  def find_token
+    Token.from_value(cleaned_identifier) if identifier.present?
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
+  def create_token
+    if aliased
+      Token.new(alias: cleaned_identifier, consultation:, event:, role:)
+    else
+      Token.new(consultation:, event:, role:)
+    end
+  end
+
+  def cleaned_identifier
+    @cleaned_identifier ||= Token.sanitize(identifier)
   end
 
   def issue_receipt
