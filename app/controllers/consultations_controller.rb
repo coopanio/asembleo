@@ -23,6 +23,7 @@ class ConsultationsController < ApplicationController
 
     reset_session
     session[:identity_id] = result.admin_token.id
+    session[:identity_type] = result.admin_token.class.name
 
     message = [
       'Consultation created.',

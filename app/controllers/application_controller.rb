@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return if session[:identity_id].blank?
 
-    @current_user ||= Token.find(session[:identity_id])
+    resource_class = session[:identity_type].constantize
+    @current_user ||= resource_class.find(session[:identity_id])
   end
 end
