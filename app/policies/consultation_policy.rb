@@ -25,7 +25,7 @@ class ConsultationPolicy < ApplicationPolicy
     def resolve
       return scope if current_user.admin?
 
-      scope.where(id: current_user.consultation)
+      scope.where(id: current_user.consultation_id)
     end
   end
 end

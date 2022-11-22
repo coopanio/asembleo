@@ -30,14 +30,16 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
+    return true if current_user.admin?
+
     record.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      consultation_id = current_user.consultation_id
+      return scope if current_user.admin?
 
-      scope.where(consultation_id:)
+      scope.where(consultation_id: current_user.consultation_id)
     end
   end
 end
