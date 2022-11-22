@@ -51,6 +51,8 @@ class ConsultationsController < ApplicationController
 
   def show
     authorize consultation
+
+    return redirect_to controller: 'consultations', action: 'edit', id: consultation.id if current_user.admin?
   end
 
   def destroy

@@ -110,6 +110,8 @@ class QuestionsController < ApplicationController
   end
 
   def consultation
+    return question.consultation if current_user.admin?
+
     current_user.consultation
   end
 
