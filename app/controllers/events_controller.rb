@@ -85,7 +85,7 @@ class EventsController < ApplicationController
     authorize event
 
     status = update_token_params
-    Token.find(params[:token_id]).update!(status:)
+    token = Token.find(params[:token_id]).update!(status:)
 
     if token.enabled?
       success('Token enabled.')
