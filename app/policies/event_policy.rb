@@ -6,7 +6,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    show? && !current_user.voter?
+    show? && (current_user.admin? || current_user.manager?)
   end
 
   def new_tokens?
@@ -18,7 +18,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create_tokens?
-    show? && !current_user.voter?
+    show? && (current_user.admin? || current_user.manager?)
   end
 
   def next_question?
