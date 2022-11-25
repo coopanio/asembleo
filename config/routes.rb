@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :consultations
+  resources :consultations do
+    resources :question_groups
+  end
   resources :events
   resources :questions do
     resources :options
   end
-  resources :question_groups
   resources :sessions
   resources :votes
 

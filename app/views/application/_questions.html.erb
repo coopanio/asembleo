@@ -7,7 +7,7 @@
           <%= link_to 'Create', new_question_path, class: 'nav-link active btn py-1' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Group', question_groups_path, class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
+          <%= link_to 'Group', consultation_question_groups_path(consultation_id: @consultation.id), class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>

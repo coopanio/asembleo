@@ -114,7 +114,7 @@ class EventsController < ApplicationController
   private
 
   def event
-    @event ||= policy_scope(Event).find(params[:id])
+    @event ||= Event.find(params[:id])
   end
 
   def create_params
@@ -135,5 +135,9 @@ class EventsController < ApplicationController
 
   def update_token_params
     params.require(:status)
+  end
+
+  def consultation
+    @consultation ||= event.consultation
   end
 end

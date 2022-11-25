@@ -16,8 +16,6 @@ class ConsultationPolicy < ApplicationPolicy
   end
 
   def show?
-    return true if current_user.admin?
-
     record.id == current_user.consultation_id
   end
 

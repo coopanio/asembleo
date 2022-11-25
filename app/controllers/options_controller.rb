@@ -62,5 +62,9 @@ class OptionsController < ApplicationController
     params.require(:option).permit(:value, :description, :main)
   end
 
+  def consultation
+    question.consultation
+  end
+
   alias update_params create_params
 end

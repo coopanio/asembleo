@@ -26,15 +26,11 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def show?
-    return true if current_user.admin?
-
     record.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
-      return scope if current_user.admin?
-
       scope.where(consultation_id: current_user.consultation_id)
     end
   end

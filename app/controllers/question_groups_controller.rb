@@ -10,7 +10,7 @@ class QuestionGroupsController < ApplicationController
 
   def create
     authorize QuestionGroup
-    raise Errors::InvalidParameters unless params[:question_group].present?
+    raise Errors::InvalidParameters, 'Choose at least two questions' unless params[:question_group].present?
 
     question_ids = create_params[:question_ids]
     raise Errors::InvalidParameters, 'Choose at least two questions' if question_ids.empty? || question_ids.size < 2
@@ -21,20 +21,21 @@ class QuestionGroupsController < ApplicationController
       SyncQuestionSiblings.call(question: Question.find(question_ids.first))
     end
 
-    redirect_to question_groups_path
+    redirect_to consultation_question_groups_path
   end
 
   def edit
-    @question_group = policy_scope(QuestionGroup).find(params[:id])
+    @consultation = Consultation.find(params[:consultation_id])
+    @question_group = QuestionGroup.find(params[:id])
     authorize @question_group
   end
 
   def update
-    question_group = policy_scope(QuestionGroup).find(params[:id])
+    question_group = QuestionGroup.find(params[:id])
     authorize question_group
 
     question_group.update!(update_params)
-    redirect_to question_groups_path
+    redirect_to consultation_question_groups_path
   end
 
   def destroy
@@ -42,7 +43,7 @@ class QuestionGroupsController < ApplicationController
     authorize group
 
     group.destroy!
-    redirect_to question_groups_path
+    redirect_to consultation_question_groups_path
   end
 
   private
@@ -53,5 +54,9 @@ class QuestionGroupsController < ApplicationController
 
   def update_params
     params.require(:question_group).permit(:description)
+  end
+
+  def consultation
+    @consultation ||= Consultation.find(params[:consultation_id])
   end
 end

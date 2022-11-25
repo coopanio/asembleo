@@ -116,11 +116,11 @@ class QuestionsController < ApplicationController
   end
 
   def question
-    @question ||= policy_scope(Question).find(params[:id])
+    @question ||= Question.find(params[:id])
   end
 
   def event
-    @event ||= policy_scope(Event).find(open_params[:id])
+    @event ||= Event.find(open_params[:id])
   end
 
   def create_params

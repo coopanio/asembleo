@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
     resource_class = session[:identity_type].constantize
     @current_user ||= resource_class.find(session[:identity_id])
   end
+
+  def pundit_user
+    return unless current_user.present?
+    return current_user if current_user.respond_to?(:consultation_id)
+
+    OpenStruct.new(consultation_id: consultation&.id, admin?: current_user.admin?)
+  end
 end

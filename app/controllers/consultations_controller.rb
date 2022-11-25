@@ -75,6 +75,8 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation
-    @consultation ||= policy_scope(Consultation).find(params[:id])
+    return nil if params[:id].blank?
+
+    @consultation ||= Consultation.find(params[:id])
   end
 end

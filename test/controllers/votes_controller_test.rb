@@ -119,6 +119,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @params['question_id'] = 999
     subject
 
+    # Not sure about this, the redirection is caused because not enough questions where found...
     assert_response :redirect
     assert_empty Vote.all
     assert_not Receipt.exists?(token:, question:)
