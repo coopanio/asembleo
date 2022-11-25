@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class VotesControllerTest < ActionDispatch::IntegrationTest
-  attr_reader :question, :token, :value
+  attr_reader :question, :question_params, :token, :value
 
   setup do
     @question = create(:question, max_options: 2)
@@ -14,6 +14,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     @value = 'yes'
 
     @votes = { question.id => { value: [@value] } }
+    @question_params = { question_id: question.id }
     reload_params!
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
@@ -68,6 +69,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       question.id => { value: [@value] },
       other_question.id => { value: [@value] }
     }
+    @question_params = { group_id: question.group.id }
     reload_params!
 
     subject
@@ -88,6 +90,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       question.id => { value: [@value] },
       other_question.id => { value: [@value] }
     }
+    @question_params = { group_id: question.group.id }
     reload_params!
 
     subject
@@ -113,9 +116,10 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should fail if question_id is unknown' do
     @params['vote'] = { '999' => { value: [@value] } }
+    @params['question_id'] = 999
     subject
 
-    assert_response 400
+    assert_response :redirect
     assert_empty Vote.all
     assert_not Receipt.exists?(token:, question:)
   end
@@ -143,6 +147,6 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   private
 
   def reload_params!
-    @params = { vote: @votes }.stringify_keys
+    @params = { vote: @votes }.merge(question_params).stringify_keys
   end
 end

@@ -17,7 +17,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
       token = create(:token, event:, consultation: question.consultation, weight: weights[i])
 
       post sessions_url, params: { session: { identifier: token.to_hash } }
-      post votes_url, params: { vote: { question.id => { value: [value] } }.stringify_keys }
+      post votes_url, params: { vote: { question.id => { value: [value] } }, question_id: question.id }.stringify_keys
     end
   end
 
@@ -47,7 +47,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
       token = create(:token, event:, consultation: question.consultation, weight: weights[i])
 
       post sessions_url, params: { session: { identifier: token.to_hash } }
-      post votes_url, params: { vote: { question.id => { value: [value] } }.stringify_keys }
+      post votes_url, params: { vote: { question.id => { value: [value] } }, question_id: question.id }.stringify_keys
     end
 
     results = subject

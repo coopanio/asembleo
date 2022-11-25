@@ -11,6 +11,8 @@ class VotesController < ApplicationController
       return
     end
 
+    raise ActiveRecord::RecordNotFound if questions.empty?
+
     questions.each do |question|
       authorize question, :show?
     end
