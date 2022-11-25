@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     authorize event
 
     params = create_token_params
-    role = params.fetch(:role, :voter)
+    role = params.fetch(:role, :voter).to_sym
 
     Token.transaction do
       if params[:multiple].present?
