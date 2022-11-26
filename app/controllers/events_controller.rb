@@ -43,12 +43,13 @@ class EventsController < ApplicationController
 
     Token.transaction do
       if params[:multiple].present?
-        params[:value].each_line do |line|
+        lines = params[:value].open
+        lines.each_line do |line|
           CreateToken.call(
             identifier: line,
             role:,
-            aliased: params.fetch(:aliased, false).present?,
-            send_magic_link: params.fetch(:send_magic_link, false).present?,
+            aliased: params.fetch(:aliased, '0').to_i == 1,
+            send_magic_link: params.fetch(:send_magic_link, '0').to_i == 1,
             event:
           )
         end
@@ -61,8 +62,8 @@ class EventsController < ApplicationController
         result = CreateToken.result(
           identifier: params[:value].presence,
           role:,
-          aliased: params.fetch(:aliased, false).present?,
-          send_magic_link: params.fetch(:send_magic_link, false).present?,
+          aliased: params.fetch(:aliased, '0').to_i == 1,
+          send_magic_link: params.fetch(:send_magic_link, '0').to_i == 1,
           event:
         )
 
@@ -114,7 +115,7 @@ class EventsController < ApplicationController
   private
 
   def event
-    @event ||= Event.find(params[:id])
+    @event ||= Event.find(params.require(:id))
   end
 
   def create_params

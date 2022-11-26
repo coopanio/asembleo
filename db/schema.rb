@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_174853) do
 
   create_table "events", force: :cascade do |t|
     t.integer "status", default: 0
-    t.bigint "consultation_id", null: false
+    t.integer "consultation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
@@ -105,8 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_174853) do
 
   create_table "receipts", force: :cascade do |t|
     t.text "fingerprint"
-    t.bigint "token_id", null: false
-    t.bigint "question_id", null: false
+    t.integer "token_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_receipts_on_question_id"

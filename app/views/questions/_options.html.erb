@@ -4,7 +4,7 @@
     <% if @current_user.admin? %>
       <ul class="nav">
         <li class="nav-item">
-          <%= link_to 'Create', new_question_option_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
+          <%= link_to 'Create', new_consultation_question_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>

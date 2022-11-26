@@ -2,12 +2,14 @@
 
 Rails.application.routes.draw do
   resources :consultations do
+    resources :questions do
+      resources :options
+    end
+
     resources :question_groups
   end
+
   resources :events
-  resources :questions do
-    resources :options
-  end
   resources :sessions
   resources :votes
 

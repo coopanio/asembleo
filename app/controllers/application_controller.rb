@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return if session[:identity_id].blank?
+    return @current_user if defined?(@current_user)
 
     resource_class = session[:identity_type].constantize
     @current_user ||= resource_class.find(session[:identity_id])
