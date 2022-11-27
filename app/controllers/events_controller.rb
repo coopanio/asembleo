@@ -49,7 +49,7 @@ class EventsController < ApplicationController
             identifier: line,
             role:,
             aliased: params.fetch(:aliased, '0').to_i == 1,
-            send_magic_link: params.fetch(:send_magic_link, '0').to_i == 1,
+            send_magic_link: params.fetch(:send, '0').to_i == 1,
             event:
           )
         end
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
           identifier: params[:value].presence,
           role:,
           aliased: params.fetch(:aliased, '0').to_i == 1,
-          send_magic_link: params.fetch(:send_magic_link, '0').to_i == 1,
+          send_magic_link: params.fetch(:send, '0').to_i == 1,
           event:
         )
 
@@ -131,7 +131,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.permit(:value, :aliased, :multiple, :send_magic_link, :role)
+    params.permit(:value, :aliased, :multiple, :send, :role)
   end
 
   def update_token_params
