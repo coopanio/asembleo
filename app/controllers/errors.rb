@@ -29,7 +29,12 @@ module Errors
 
       rescue_from AccessDenied do |_e|
         error('Access denied.')
-        redirect_to root_path
+
+        if Rails.configuration.x.asembleo.private_instance
+          redirect_to new_session_path
+        else
+          redirect_to root_path
+        end
       end
 
       rescue_from Pundit::NotAuthorizedError do |_e|

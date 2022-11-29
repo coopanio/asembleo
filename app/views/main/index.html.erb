@@ -14,7 +14,11 @@
   <% end %>
   <div class="row justify-content-end">
     <div class="col-auto">
-      <%= link_to 'Create consultation', new_consultation_path, class: 'btn btn-link link-secondary btn-sm p-0 m-1' %>
+      <% if Rails.configuration.x.asembleo.private_instance %>
+        <%= link_to 'Log in', new_session_path, class: 'btn btn-link link-secondary btn-sm p-0 m-1' %>
+      <% else %>
+        <%= link_to 'Create consultation', new_consultation_path, class: 'btn btn-link link-secondary btn-sm p-0 m-1' %>
+      <% end %>
     </div>
   </div>
 </div>
