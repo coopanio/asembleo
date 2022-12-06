@@ -27,7 +27,7 @@ class RedirectBySessionTest < ActiveSupport::TestCase
     create(:events_question, question:, consultation:, status: :opened)
 
     assert_predicate subject, :present?
-    assert_equal subject, "/questions/#{question.id}"
+    assert_equal subject, "/consultations/#{consultation.id}/questions/#{question.id}"
   end
 
   test 'should return the first open question (second)' do
@@ -38,7 +38,7 @@ class RedirectBySessionTest < ActiveSupport::TestCase
     end
 
     assert_predicate subject, :present?
-    assert_equal subject, "/questions/#{questions.second.id}"
+    assert_equal subject, "/consultations/#{consultation.id}/questions/#{questions.second.id}"
   end
 
   test 'should return the first un-voted and open question (third)' do
@@ -51,7 +51,7 @@ class RedirectBySessionTest < ActiveSupport::TestCase
     create(:receipt, token: identity, question: questions.second)
 
     assert_predicate subject, :present?
-    assert_equal subject, "/questions/#{questions.third.id}"
+    assert_equal subject, "/consultations/#{consultation.id}/questions/#{questions.third.id}"
   end
 
   test 'should return the first open question when multiple consultations are active' do
@@ -70,7 +70,7 @@ class RedirectBySessionTest < ActiveSupport::TestCase
     end
 
     assert_predicate subject, :present?
-    assert_equal subject, "/questions/#{events.second.consultation.questions.first.id}"
+    assert_equal subject, "/consultations/#{consultation.id}/questions/#{events.second.consultation.questions.first.id}"
   end
 
   test 'should return the front page when user is an instance user' do

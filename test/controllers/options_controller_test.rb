@@ -15,7 +15,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
   test 'should create option' do
     params = { option: { value: 'yes', description: 'Sí', main: true } }
 
-    post(question_options_url(question), params:)
+    post(consultation_question_options_url(token.consultation, question), params:)
 
     option = Option.first
     assert_response :redirect
@@ -28,7 +28,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
     option = create(:option, question:)
     params = { option: { value: 'no' } }
 
-    patch(question_option_url(question, option), params:)
+    patch(consultation_question_option_url(token.consultation, question, option), params:)
 
     option = Option.first
     assert_response :redirect

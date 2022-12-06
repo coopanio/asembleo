@@ -19,7 +19,7 @@ class RedirectBySession < Actor
     return edit_event_url(identity.event_id, only_path: true) if identity.manager?
     return consultation_url(identity.consultation_id, only_path: true) if active_question.blank?
 
-    question_url(active_question, only_path: true)
+    consultation_question_url(identity.consultation_id, active_question, only_path: true)
   end
 
   def active_question

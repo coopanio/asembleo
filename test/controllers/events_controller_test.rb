@@ -74,12 +74,12 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create aliased token' do
     event = create(:event, consultation: token.consultation)
-    identifier = Faker::PhoneNumber.cell_phone
+    identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
 
     token.update!(role: :manager, event:)
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
-    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: 'true' }
+    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
 
     tokens = Token.where(event:, role: :voter)
     assert_response :redirect
@@ -90,12 +90,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should reenable disabled aliased token' do
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
+
     create(:token, consultation: token.consultation, event:, alias: identifier, status: :disabled)
     token.update!(role: :manager, event:)
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
-    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: 'true' }
+    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
 
     tokens = Token.where(event:, role: :voter)
     assert_response :redirect
