@@ -139,12 +139,12 @@ GEM
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.0)
+    net-protocol (0.2.1)
       timeout
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     paper_trail (14.0.0)
@@ -162,7 +162,7 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (5.0.0)
+    public_suffix (5.0.1)
     puma (6.0.0)
       nio4r (~> 2.0)
     pundit (2.2.0)
@@ -210,7 +210,7 @@ GEM
     request_store (1.5.1)
       rack (>= 1.4)
     rexml (3.2.5)
-    rubocop (1.39.0)
+    rubocop (1.40.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -331,7 +331,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.1.3p185
 
 BUNDLED WITH
-   2.3.7
+   2.3.26
