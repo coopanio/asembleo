@@ -2,10 +2,9 @@
 
 namespace :asembleo do
   task compile_theme: :environment do
-    theme = File.read('app/assets/stylesheets/theme.sass.erb')
+    theme = File.read('app/assets/stylesheets/theme.scss.erb')
     template = ERB.new(theme)
 
-    css = Sass::Engine.new(template.result, syntax: :scss, load_paths: ['node_modules/']).render
-    File.write('app/assets/stylesheets/theme.sass.scss', css)
+    File.write('app/assets/stylesheets/theme.sass.scss', template.result)
   end
 end

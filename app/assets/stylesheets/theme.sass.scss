@@ -1,24 +1,40 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
 :root {
-  --asembleo-primary: #0d6efd;
-  --asembleo-primary-focus-shadow-rgb: 49, 132, 253;
-  --asembleo-primary-rgb: 13, 110, 253;
-  --asembleo-primary-shade-15: #0b5ed7;
-  --asembleo-primary-shade-20: #0a58ca;
-  --asembleo-primary-shade-25: #0a53be;
-  --asembleo-primary-shifted-20: #0a58ca;
-  --asembleo-primary-shifted-40: #084298;
-  --asembleo-primary-shifted-down-70: #b6d4fe;
-  --asembleo-primary-shifted-down-80: #cfe2ff;
-  --asembleo-secondary: #6c757d;
-  --asembleo-secondary-rgb: 108, 117, 125;
-  --asembleo-secondary-shade-15: #5c636a;
-  --asembleo-secondary-shade-20: #565e64;
-  --asembleo-secondary-shade-25: #51585e;
-  --asembleo-secondary-shifted-20: #565e64;
-  --asembleo-secondary-shifted-40: #41464b;
-  --asembleo-secondary-shifted-down-70: #202326;
-  --asembleo-secondary-shifted-down-80: #161719;
-  --asembleo-header-background-rgb: 33, 37, 41;
-  --asembleo-header-color: #ffffff;
-  --asembleo-footer-background-rgb: 248, 249, 250;
-  --asembleo-footer-color: #6c757d; }
+  $primary: #0d6efd;
+  $secondary: #6c757d;
+  $header-background: #212529;
+  $header-color: #ffffff;
+  $footer-background: #f8f9fa;
+  $footer-color: #6c757d;
+
+  --asembleo-primary: #{$primary};
+  --asembleo-primary-focus-shadow-rgb: #{to-rgb(mix(color-contrast($primary), $primary, 15%))};
+  --asembleo-primary-rgb: #{to-rgb($primary)};
+  --asembleo-primary-shade-15: #{shade-color($primary, 15%)};
+  --asembleo-primary-shade-20: #{shade-color($primary, 20%)};
+  --asembleo-primary-shade-25: #{shade-color($primary, 25%)};
+  --asembleo-primary-shifted-20: #{shift-color($primary, 20%)};
+  --asembleo-primary-shifted-40: #{shift-color($primary, 40%)};
+  --asembleo-primary-shifted-down-70: #{shift-color($primary, -70%)};
+  --asembleo-primary-shifted-down-80: #{shift-color($primary, -80%)};
+
+  --asembleo-secondary: #{$secondary};
+  --asembleo-secondary-rgb: #{to-rgb($secondary)};
+  --asembleo-secondary-shade-15: #{shade-color($secondary, 15%)};
+  --asembleo-secondary-shade-20: #{shade-color($secondary, 20%)};
+  --asembleo-secondary-shade-25: #{shade-color($secondary, 25%)};
+  --asembleo-secondary-shifted-20: #{shift-color($secondary, 20%)};
+  --asembleo-secondary-shifted-40: #{shift-color($secondary, 40%)};
+  --asembleo-secondary-shifted-down-70: #{shift-color($secondary, 70%)};
+  --asembleo-secondary-shifted-down-80: #{shift-color($secondary, 80%)};
+
+  --asembleo-header-background-rgb: #{to-rgb($header-background)};
+  --asembleo-header-color: #{$header-color};
+
+  --asembleo-footer-background-rgb: #{to-rgb($footer-background)};
+  --asembleo-footer-color: #{$footer-color};
+}
+
+

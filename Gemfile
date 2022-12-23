@@ -17,11 +17,10 @@ gem 'puma', '< 7'
 gem 'pundit'
 gem 'rails', '~> 7.0'
 gem 'redis'
-gem 'sass'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'service_actor', '~> 3.4'
-gem 'sprockets-rails'
+gem 'sprockets-rails', '~> 3.4'
 gem 'store_model'
 
 group :production do
