@@ -1,1 +1,1 @@
-web: bundle exec puma -C config/puma.rb
+web: MALLOC_ARENA_MAX=2 RUBYOPT='--yjit' bundle exec puma -C config/puma.rb
