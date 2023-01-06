@@ -6,7 +6,7 @@ class CastVotes < Actor
 
   output :receipts
 
-  # TODO allow to vote multiple times the main option
+  # TODO: allow to vote multiple times the main option
   def call
     self.receipts = []
 
