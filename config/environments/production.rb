@@ -91,6 +91,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['ASEMBLEO_SMTP_HOST'].presence,
     port: ENV['ASEMBLEO_SMTP_PORT'].presence,
+    ssl: ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_SMTP_SSL'].presence) || false,
     user_name: ENV['ASEMBLEO_SMTP_USERNAME'].presence,
     password: ENV['ASEMBLEO_SMTP_PASSWORD'].presence
   }
