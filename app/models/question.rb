@@ -31,7 +31,7 @@ class Question < ApplicationRecord
 
     votes.each do |vote|
       result = results[vote.value] || 0
-      results[vote.value] = result + (1 * vote.weight)
+      results[vote.value] = result + (vote.weight * 1)
     end
 
     results['_meta'] = {
@@ -50,7 +50,7 @@ class Question < ApplicationRecord
     votes.each do |vote|
       event_results = results[vote.event_id] || {}
       result = event_results[vote.value] || 0
-      event_results[vote.value] = result + (1 * vote.weight)
+      event_results[vote.value] = result + (vote.weight * 1)
 
       results[vote.event_id] = event_results
     end
