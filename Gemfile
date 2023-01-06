@@ -5,55 +5,50 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.3'
 
-gem 'argon2', '~> 2.1'
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'cssbundling-rails', '~> 1.0'
-gem 'hashids'
-gem 'hiredis'
-gem 'jbuilder', '~> 2.7'
-gem 'jsbundling-rails', '~> 1.0'
-gem 'paper_trail'
-gem 'puma', '< 7'
-gem 'pundit'
+gem 'argon2', '~> 2.2'
+gem 'bootsnap', '~> 1.15', require: false
+gem 'cssbundling-rails', '~> 1.1'
+gem 'hashids', '~> 1.0'
+gem 'hiredis', '~> 0.6'
+gem 'jsbundling-rails', '~> 1.1'
+gem 'paper_trail', '~> 14.0'
+gem 'puma', '~> 6.0'
+gem 'pundit', '~> 2.3'
 gem 'rails', '~> 7.0'
-gem 'redis'
-gem 'sentry-rails'
-gem 'sentry-ruby'
-gem 'service_actor', '~> 3.4'
+gem 'redis', '~> 5.0'
+gem 'sentry-rails', '~> 5.7'
+gem 'sentry-ruby', '~> 5.7'
+gem 'service_actor', '~> 3.6'
 gem 'sprockets-rails', '~> 3.4'
-gem 'store_model'
+gem 'store_model', '~> 1.3'
 
 group :production do
-  gem 'connection_pool'
-  gem 'pg'
-  gem 'sucker_punch'
+  gem 'pg', '~> 1.4'
+  gem 'sucker_punch', '~> 3.1'
 end
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry-rails'
-  gem 'sqlite3', '~> 1.4'
+  gem 'pry-rails', '~> 0.3'
+  gem 'sqlite3', '~> 1.5'
 end
 
 group :development do
-  gem 'listen', '~> 3.2'
-  gem 'rubocop', require: false
-  gem 'rubocop-minitest', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
+  gem 'listen', '~> 3.7'
+  gem 'rubocop', '~> 1.42', require: false
+  gem 'rubocop-minitest', '~> 0.25', require: false
+  gem 'rubocop-performance', '~> 1.15', require: false
+  gem 'rubocop-rails', '~> 2.17', require: false
   gem 'web-console', '~> 4.2'
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'factory_bot'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'minitest-stub_any_instance'
-  gem 'policy-assertions'
-  gem 'selenium-webdriver'
-  gem 'timecop'
-  gem 'webdrivers'
+  gem 'capybara', '~> 3.38'
+  gem 'factory_bot', '~> 6.2'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'faker', '~> 3.1'
+  gem 'minitest-stub_any_instance', '~> 1.0'
+  gem 'policy-assertions', '~> 0.2'
+  gem 'selenium-webdriver', '~> 4.7'
+  gem 'timecop', '~> 0.9'
+  gem 'webdrivers', '~> 5.2'
 end
-
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
