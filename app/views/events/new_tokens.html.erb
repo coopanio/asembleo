@@ -1,7 +1,7 @@
 <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id, multiple: true }, class: 'container', local: true do |f| %>
   <div class="row mb-3">
     <div class="form-group">
-      <%= f.label :token_count, 'List of tokens to create', for: :value, class: 'form-label' %>
+      <%= f.label :tokens, 'List of tokens to create', for: :value, class: 'form-label' %>
       <%= f.file_field :value, class: 'form-control' %>
       <small class="form-text text-muted">
         One value per line.

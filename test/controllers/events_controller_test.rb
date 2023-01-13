@@ -56,6 +56,20 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_not tokens.first.alias
   end
 
+  test 'should create multiple unaliased tokens' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager, event:)
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    census = StringIO.new("johndoe@exampl.es\rjanedoe@piraten.lu")
+    post "/events/#{event.id}/tokens", params: { value:  Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+
+    tokens = Token.where(event:, role: :voter)
+    assert_response :redirect
+    assert_equal 2, tokens.size
+  end
+
   test 'should reenable disabled unaliased token' do
     event = create(:event, consultation: token.consultation)
     identifier = create(:token, consultation: token.consultation, event:, status: :disabled).to_s

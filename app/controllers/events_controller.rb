@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 class EventsController < ApplicationController
   def new
     authorize Event
@@ -44,9 +46,9 @@ class EventsController < ApplicationController
     Token.transaction do
       if params[:multiple].present?
         lines = params[:value].open
-        lines.each_line do |line|
+        CSV.new(lines).read.each do |line|
           CreateToken.call(
-            identifier: line,
+            identifier: line.first,
             role:,
             aliased: params.fetch(:aliased, '0').to_i == 1,
             send_magic_link: params.fetch(:send, '0').to_i == 1,
