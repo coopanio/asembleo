@@ -3,14 +3,13 @@
 class QuestionsController < ApplicationController
   def new
     authorize Question
-    @consultation = current_user.consultation
     @question = Question.new(consultation:)
   end
 
   def create
     authorize Question
 
-    @question = Question.new(create_params.merge(consultation: current_user.consultation))
+    @question = Question.new(create_params.merge(consultation:))
     @question.save!
 
     success('Question created.')
@@ -18,7 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @consultation = current_user.consultation
+    @consultation = consultation
     authorize question
   end
 
@@ -68,7 +67,7 @@ class QuestionsController < ApplicationController
       return
     end
 
-    @consultation = question.consultation
+    @consultation = consultation
     @results = question.tally
   end
 
@@ -112,10 +111,7 @@ class QuestionsController < ApplicationController
   end
 
   def consultation
-    return nil if @question.blank?
-    return question.consultation if current_user.admin?
-
-    current_user.consultation
+    @consultation = Consultation.find(params[:consultation_id])
   end
 
   def question

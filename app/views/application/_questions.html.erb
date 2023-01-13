@@ -34,7 +34,7 @@
         <td><%= all_events_question_opener_closer_link(question)  %></td>
         <% end %>
         <% if question.closed? %>
-          <td><%= link_to 'Results', { controller: :questions, action: :tally, id: question.id }, class: 'btn btn-link py-0' %></td>
+          <td><%= link_to 'Results', { controller: :questions, action: :tally, consultation_id: @consultation.id, id: question.id }, class: 'btn btn-link py-0' %></td>
         <% end %>
         <% if question.draft? %>
           <td><%= button_to 'Delete', consultation_question_path(@consultation, question), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>

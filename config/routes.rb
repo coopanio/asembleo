@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   resources :votes
 
   get   'sessions/:token/login',      to: 'sessions#create'
-  patch 'questions/:id/open',         to: 'questions#open'
-  patch 'questions/:id/open_all',     to: 'questions#open_all'
-  patch 'questions/:id/close',        to: 'questions#close'
-  patch 'questions/:id/close_all',    to: 'questions#close_all'
-  get   'questions/:id/option',       to: 'questions#new_option'
-  get   'questions/:id/tally',        to: 'questions#tally'
+  patch 'consultations/:consultation_id/questions/:id/open',         to: 'questions#open'
+  patch 'consultations/:consultation_id/questions/:id/open_all',     to: 'questions#open_all'
+  patch 'consultations/:consultation_id/questions/:id/close',        to: 'questions#close'
+  patch 'consultations/:consultation_id/questions/:id/close_all',    to: 'questions#close_all'
+  get   'consultations/:consultation_id/questions/:id/option',       to: 'questions#new_option'
+  get   'consultations/:consultation_id/questions/:id/tally',        to: 'questions#tally'
   post  'events/:id/tokens',          to: 'events#create_tokens'
   get   'events/:id/tokens',          to: 'events#new_tokens'
   patch 'events/:id/token/:token_id', to: 'events#update_token'

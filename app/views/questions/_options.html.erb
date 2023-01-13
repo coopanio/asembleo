@@ -4,7 +4,7 @@
     <% if @current_user.admin? %>
       <ul class="nav">
         <li class="nav-item">
-          <%= link_to 'Create', new_consultation_question_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
+          <%= link_to 'Create', new_consultation_question_option_path(question_id: @question), class: 'nav-link p-0 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>
@@ -22,8 +22,8 @@
       <tr>
         <td><%= option.description %></td>
         <td><%= option.value %></td>
-        <td><%= link_to 'Edit', edit_question_option_url(@question, option)  %></td>
-        <td><%= button_to 'Delete', question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
+        <td><%= link_to 'Edit', edit_consultation_question_option_url(@question, option)  %></td>
+        <td><%= button_to 'Delete', consultation_question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
       </tr>
       <% end %>
     </table>

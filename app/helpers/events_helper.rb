@@ -38,6 +38,7 @@ module EventsHelper
     params = {
       controller: 'questions',
       action:,
+      consultation_id: question.consultation_id,
       id: question.id
     }
 

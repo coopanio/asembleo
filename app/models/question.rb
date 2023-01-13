@@ -34,9 +34,10 @@ class Question < ApplicationRecord
       results[vote.value] = result + (vote.weight * 1)
     end
 
+    total_votes = results.values.sum
     results['_meta'] = {
       'breakdown' => tally_by_event,
-      'total_votes' => results.values.sum
+      'total_votes' => total_votes.zero? ? nil : total_votes
     }
 
     results

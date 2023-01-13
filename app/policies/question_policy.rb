@@ -5,6 +5,10 @@ class QuestionPolicy < ApplicationPolicy
     current_user.admin?
   end
 
+  def edit?
+    create?
+  end
+
   def update?
     show? && current_user.admin?
   end
