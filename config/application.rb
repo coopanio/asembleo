@@ -33,6 +33,7 @@ module Asembleo
     config.x.asembleo.private_instance = ENV['ASEMBLEO_PRIVATE_INSTANCE'].present?
     config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
     config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
+    config.x.asembleo.hide_receipt = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_HIDE_RECEIPT'].presence) || false
 
     # Branding
     config.x.asembleo.title = ENV['ASEMBLEO_TITLE'].presence || 'Asembleo'

@@ -20,6 +20,8 @@ class VotesController < ApplicationController
     result = CastVotes.result(votes_params:, current_user:)
     raise result.error if result.failure?
 
+    redirect_to controller: 'events', action: 'next_question', id: current_user.event_id if Rails.configuration.x.asembleo.hide_receipt
+
     @receipt = result.receipts.last
   end
 
