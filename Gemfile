@@ -10,11 +10,12 @@ gem 'cssbundling-rails', '~> 1.1'
 gem 'hashids', '~> 1.0'
 gem 'hiredis', '~> 0.6'
 gem 'jsbundling-rails', '~> 1.1'
-gem 'nokogiri', '~> 1.14.0.rc1'
+gem 'nokogiri', '~> 1.14'
 gem 'paper_trail', '~> 14.0'
 gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.3'
 gem 'rails', '~> 7.0'
+gem "rails-i18n", '~> 7.0'
 gem 'redis', '~> 5.0'
 gem 'sentry-rails', '~> 5.7'
 gem 'sentry-ruby', '~> 5.7'
@@ -39,6 +40,7 @@ group :development do
   gem 'rubocop-performance', '~> 1.15', require: false
   gem 'rubocop-rails', '~> 2.17', require: false
   gem 'web-console', '~> 4.2'
+  gem 'extract_i18n', '~> 0.6'
 end
 
 group :test do
