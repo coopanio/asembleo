@@ -1,0 +1,21 @@
+[Unit]
+Description=Asembleo - Pseudoanonymous voting system for general assemblies
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/asembleo
+Environment=RAILS_ENV=production
+Environment=ASEMBLEO_WORKERS=4
+Environment=PORT=5000
+Environment=PS=web.1
+Environment=MALLOC_ARENA_MAX=2
+Environment=RUBYOPT='--yjit'
+Environment=PATH=/root/.asdf/shims:/root/.asdf/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# bundle binstubs puma
+ExecStart=/opt/asembleo/bin/puma -C /opt/asembleo/config/puma.rb
+PIDFile=/opt/asembleo/tmp/pids/server.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
