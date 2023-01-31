@@ -27,10 +27,15 @@ class ConsultationsController < ApplicationController
     session[:identity_type] = result.admin_token.class.name
 
     message = [
-      'Consultation created.',
-      "Admin token is <strong>#{result.admin_token}</strong>."
+      I18n.t("consultations.consultation_created")
     ]
-    message << "Manager token is <strong>#{result.manager_token}</strong>." if result.manager_token.present?
+
+    result.tokens.each do |token|
+      next if token.blank?
+
+      message << I18n.t("consultations.consultation_token_created", token:, role: token.translated_role)
+    end
+
     success(message.join(' '))
 
     @consultation = result.consultation
@@ -61,7 +66,7 @@ class ConsultationsController < ApplicationController
     consultation.destroy!
 
     reset_session
-    success('Consultation deleted.')
+    success(I18n.t("consultations.consultation_deleted"))
     redirect_to controller: 'main', action: 'index'
   end
 

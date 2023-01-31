@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
   before_action :check_token
+  before_action :set_locale
 
   include Errors
   include FlashConcern
@@ -19,7 +20,7 @@ class ApplicationController < ActionController::Base
     return if current_user.blank?
     return unless current_user.disabled?
 
-    error('Token disabled.')
+    error(I18n.t("events.token_disabled"))
 
     reset_session
     redirect_to root_path

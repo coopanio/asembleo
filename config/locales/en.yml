@@ -1,33 +1,196 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  hello: "Hello world"
+  attributes:
+    description: &description Description
+    id: &id ID
+    status: &status Status
+    title: &title Title
+    role: &role Role
+    role_list:
+      admin: Admin
+      manager: Manager
+      voter: Voter
+  activemodel:
+    attributes:
+      "consultation/config":
+        mode_list:
+          synchronous: Synchronous
+          asynchronous: Asynchronous
+        ballot_list:
+          open: Open
+          secret: Secret
+  activerecord:
+    models:
+      consultation:
+        one: Consultation
+        other: Consultations
+      option:
+        one: Option
+        other: Options
+      question:
+        one: Question
+        other: Questions
+      event:
+        one: Event
+        other: Events
+      token:
+        one: Token
+        other: Tokens
+    attributes:
+      consultation:
+        ballot: &ballot Ballot
+        description: *description
+        mode: &mode Mode
+        status: *status
+        status_list:
+          draft: Draft
+          opened: Open
+          closed: Closed
+          archived: Archived
+        title: *title
+      event:
+        id: *id
+        status: *status
+        status_list:
+          opened: Open
+          closed: Closed
+        title: *title
+      option:
+        description: *description
+        value: Value
+      question:
+        id: *id
+        description: *description
+        status: *status
+      question_group:
+        id: *id
+      user:
+        role: *role
+      token:
+        role: *role
+  application:
+    back: Back
+    cancel: Cancel
+    confirm: Are you sure?
+    create: Create
+    edit: Edit
+    delete: Delete
+    log_in: Log in
+    log_out: Log out
+    refresh: Refresh
+    save: Save
+    upload: Upload
+  consultations:
+    consultation_token_created: "%{role} token is <strong>%{token}</strong>."
+    consultation_create: Create consultation
+    consultation_created: Consultation created.
+    consultation_draft: The consultation is still in draft mode.
+    consultation_finished: You have answered all the questions.
+    consultation_open: The consultation is open but there are no active questions. Try it again later.
+    consultation_archived: The consultation has been archived.
+    consultation_closed: The consultation is closed.
+    consultation_deleted: Consultation deleted.
+  errors:
+    bad_request: Bad request
+    you_can_only_choose_up_to: You can only choose up to %{e_max_options} options.
+    you_can_only_choose_up_to2: You can only choose %{e_option_value} up to %{e_limit} times.
+    choose_a_valid_option: Choose a valid option.
+    you_already_voted_for_this: You already voted for this question.
+    access_denied: Access denied.
+    not_authorized: You are not authorized.
+    invalid_parameters: Invalid parameters.
+  events:
+    tokens_created_or_enabled: Tokens created or enabled.
+    token_already_issued: Token already issued.
+    token_created: Token created.
+    token_enabled_again: Token enabled again.
+    token_exists_and_enabled: Token exists and enabled.
+    token_enabled: Token enabled.
+    token_disabled: Token disabled.
+    token_add_admin: Add admin
+    token_bulk_creation: Bulk creation
+    event_deleted: Event deleted.
+    created_tokens: Created Tokens
+  options:
+    option_created: Option created.
+    option_updated: Option updated.
+    option_deleted: Option deleted.
+  question_groups:
+    group:
+      one: Group
+      other: Groups
+    grouped_questions: Grouped questions
+    required_questions: Choose at least two questions.
+  questions:
+    question_closed: Question closed.
+    question_created: Question created.
+    question_deleted: Question deleted.
+    question_is_closed: This question is closed.
+    question_opened: Question opened.
+    question_results: Results
+    question_still_draft: The question is still in draft.
+    question_updated: Question updated.
+    results_not_available: Results not available while the question is open.
+  sessions:
+    log_in_as_admin: Log in as admin
+  sessions_mailer:
+    magic_link_email: |
+      Hello,
+
+      You are receiving this email to sign in to vote using your email address.
+
+      Please click the link below to sign in:
+
+      %{sessions_url}/%{token}/login
+
+      This link is valid while the vote is open.
+
+      If the link doesn't work for you, go to %{root_url} and use the token %{token} to sign in.
+
+      If you did not request this link, ignore this email.
+
+      Thanks,
+  votes:
+    required_cast: Please cast a vote for each question.
+    casted: Your vote has been correctly registered. Please proceed to the next question.
+    fingerprint: Your vote's fingerpint is %{fingerprint}
+  helpers:
+    label:
+      consultation:
+        ballot: *ballot
+        description: *description
+        mode: *mode
+        status: *status
+        title: *title
+      event:
+        aliased: Use values as aliases
+        send: Send magic links
+        status: *status
+        title: *title
+        tokens: List of tokens to create
+        hints:
+          aliased: If checked, the values will be used as aliases for the tokens. This allows users to log in with the alias.
+          send: If checked, values must be e-mails to send personal magic links to access the consultation. Tokens will be generated without storing their related e-mail. Known e-mail addresses won't be sent a new magic link.
+          value: One value per line.
+      option:
+        value: Internal value
+        main: Main option
+      question:
+        description: *description
+        max_options: Max options
+      question_group:
+        description: *description
+      session:
+        identifier: Identifier
+        password: Password
+    events_helper:
+      open: Open
+      close: Close
+      disable: Disable
+      enable: Enable
+  interactors:
+    create_consultation:
+      default: Default
+  mailers:
+    sessions_mailer:
+      new_consultation: New consultation

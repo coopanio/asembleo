@@ -8,6 +8,8 @@ class User < ApplicationRecord
   enum role: { user: 0, manager: 1, admin: 2 }
   enum status: { enabled: 1, disabled: 0 }
 
+  translate_enum :role
+
   def password=(raw_password)
     if raw_password.nil?
       @password = nil

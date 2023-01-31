@@ -51,5 +51,8 @@ module Asembleo
     config.x.asembleo.background_css = ENV['ASEMBLEO_BACKGROUND_CSS'].presence
 
     config.action_mailer.default_url_options = { host: 'example.com' }
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = %i[en es]
   end
 end

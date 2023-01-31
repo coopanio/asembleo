@@ -1,16 +1,5 @@
-Hello,
-
-You are receiving this email to sign in to vote using your email address.
-
-Please click the link below to sign in:
-
-<%= sessions_url %>/<%= @token.to_hash %>/login
-
-This link is valid while the vote is open.
-
-If the link doesn't work for you, go to <%= root_url %> and use the token <%= @token.to_hash %> to sign in.
-
-If you did not request this link, ignore this email.
-
-Thanks,
+<%= t('sessions_mailer.magic_link_email',
+    sessions_url: sessions_url,
+    root_url: root_url,
+    token: @token.to_hash) %>
 <%= Rails.configuration.x.asembleo.title %>

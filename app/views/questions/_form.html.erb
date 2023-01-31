@@ -9,8 +9,8 @@
   </div>
   <div class="row mb-3">
     <div class="col d-flex justify-content-end">
-      <%= link_to 'Cancel', { controller: 'consultations', action: 'edit', id: @consultation.id }, class: 'btn btn-link link-danger' %>
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= link_to t('application.cancel'), { controller: 'consultations', action: 'edit', id: @consultation.id }, class: 'btn btn-link link-danger' %>
+      <%= f.submit t('application.save'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

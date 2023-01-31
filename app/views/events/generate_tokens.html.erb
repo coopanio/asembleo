@@ -1,7 +1,7 @@
-<p>Created tokens:</p>
+<p><%= t('events.created_tokens') %>:</p>
 <ul>
   <% @tokens.each do |token| %>
     <li><%= token %></li>
   <% end %>
 </ul>
-<%= link_to 'Back', :back, class: 'btn btn-link px-0' %>
+<%= link_to t('application.back'), :back, class: 'btn btn-link px-0' %>

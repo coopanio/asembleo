@@ -5,14 +5,14 @@
   </div>
   <div class="row mb-3">
     <%= f.label :status, class: 'form-label' %>
-    <%= f.select :status, Event.statuses.keys.to_a, {}, { class: 'form-select' } %>
+    <%= f.select :status, Event.translated_statuses.map { |translation, k, _v| [translation, k] }, {}, { class: 'form-select' } %>
   </div>
   <div class="row mb-3">
     <div class="col d-flex justify-content-end">
       <% if @current_user.admin? %>
-        <%= link_to 'Cancel', :back, class: 'btn btn-link link-danger' %>
+        <%= link_to t('application.cancel'), :back, class: 'btn btn-link link-danger' %>
       <% end %>
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= f.submit t('application.save'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

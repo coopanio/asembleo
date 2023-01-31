@@ -13,6 +13,8 @@ class Token < ApplicationRecord
   enum role:   { voter: 0, manager: 1, admin: 2 }
   enum status: { enabled: 1, disabled: 0 }
 
+  translate_enum :role
+
   validates :alias, uniqueness: { scope: :consultation_id, if: proc { |t| t.alias.present? } }
 
   after_initialize :init

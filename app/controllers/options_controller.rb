@@ -17,7 +17,7 @@ class OptionsController < ApplicationController
     option.save!
     question.save!
 
-    success('Option created.')
+    success(I18n.t("options.option_created"))
     redirect_to controller: 'questions', action: 'edit', id: question.id
   end
 
@@ -33,7 +33,7 @@ class OptionsController < ApplicationController
     option.update!(update_params)
     question.save!
 
-    success('Option updated.')
+    success(I18n.t("options.option_updated"))
     redirect_to controller: 'questions', action: 'edit', id: question.id
   end
 
@@ -44,7 +44,7 @@ class OptionsController < ApplicationController
     option.destroy!
     question.save!
 
-    success('Option deleted.')
+    success(I18n.t("options.option_deleted"))
     redirect_to controller: 'questions', action: 'edit', id: question.id
   end
 

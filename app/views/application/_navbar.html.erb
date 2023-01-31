@@ -1,17 +1,17 @@
 <a class="navbar-brand" href="/"><%= Rails.configuration.x.asembleo.title %></a>
-<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse">
   <span class="navbar-toggler-icon"></span>
 </button>
 <div class="navbar-collapse collapse mb-2 mb-md-0" id="navbarCollapse">
   <% if @current_user %>
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <span class="badge bg-info"><%= @current_user.role %></span>
+        <span class="badge bg-info"><%= @current_user.translated_role %></span>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <%= link_to 'Log out', session_path('current'), method: :delete, class: 'nav-link' %>
+        <%= link_to t('application.log_out'), session_path('current'), method: :delete, class: 'nav-link' %>
       </li>
     </ul>
   <% end %>

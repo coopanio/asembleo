@@ -56,7 +56,7 @@ class EventsController < ApplicationController
           )
         end
 
-        success('Tokens created or enabled.')
+        success(I18n.t("events.tokens_created_or_enabled"))
 
         result = RedirectBySession.call(identity: current_user)
         redirect_to result.destination
@@ -70,13 +70,13 @@ class EventsController < ApplicationController
         )
 
         if result.skip
-          success('Token already issued.')
+          success(I18n.t("events.token_already_issued"))
         elsif result.token.new_record?
-          success('Token created.')
+          success(I18n.t("events.token_created"))
         elsif result.token.disabled?
-          info('Token enabled again.')
+          info(I18n.t("events.token_enabled_again"))
         else
-          info('Token exists and enabled.')
+          info(I18n.t("events.token_exists_and_enabled"))
         end
 
         redirect_back(fallback_location: root_path)
@@ -92,9 +92,9 @@ class EventsController < ApplicationController
     token.update!(status:)
 
     if token.enabled?
-      success('Token enabled.')
+      success(I18n.t("events.token_enabled"))
     else
-      success('Token disabled.')
+      success(I18n.t("events.token_disabled"))
     end
 
     redirect_back(fallback_location: root_path)
@@ -110,7 +110,7 @@ class EventsController < ApplicationController
     consultation = event.consultation
     event.destroy!
 
-    success('Event deleted.')
+    success(I18n.t("events.event_deleted"))
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 

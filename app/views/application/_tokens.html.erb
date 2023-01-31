@@ -1,7 +1,7 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between align-items-center">
     <div class="col">
-      <strong>Tokens</strong>
+      <strong><%= t('activerecord.models.token', count: 2) %></strong>
     </div>
     <div class="col-auto">
       <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id }, class: 'row row-cols-auto g-1 align-items-center', local: true do |f| %>
@@ -9,9 +9,9 @@
             <%= f.text_field :value, class: 'form-control form-control-sm' %>
         </div>
         <div class="col">
-          <%= f.submit 'Create', class: 'btn btn-primary py-1' %>
-          <%= link_to 'Add admin', { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
-          <%= link_to 'Bulk creation', { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
+          <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
+          <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
+          <%= link_to t('events.token_bulk_creation'), { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
         </div>
       <% end %>
     </div>
@@ -20,15 +20,15 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Token</th>
-          <th scope="col">Role</th>
+          <th scope="col"><%= t('activerecord.models.token', count: 1) %></th>
+          <th scope="col"><%= t('activerecord.attributes.token.role') %></th>
           <th colspan="1"></th>
         </tr>
       </thead>
       <% @event.tokens.order(:alias).each do |token| %>
         <tr>
           <td><%= token.alias || token.to_s %></td>
-          <td><%= token.role %></td>
+          <td><%= token.translated_role %></td>
           <td><%= token_enabler_disabler_link(token)  %></td>
         </tr>
       <% end %>

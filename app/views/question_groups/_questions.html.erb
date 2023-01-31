@@ -1,10 +1,10 @@
 <div class="card mt-3">
   <%= form_with scope: :question_group, url: consultation_question_groups_path, local: true do |f| %>
     <div class="card-header d-flex justify-content-between">
-      <strong>Questions</strong>
+      <strong><%= t('activerecord.models.question', count: 2) %></strong>
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <%= f.submit 'Create', class: 'btn btn-primary py-1' %>
+          <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
         </li>
       </ul>
     </div>
@@ -13,8 +13,8 @@
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">ID</th>
-            <th scope="col">Question</th>
+            <th scope="col"><%= t('activerecord.attributes.question.id') %></th>
+            <th scope="col"><%= t('activerecord.models.question', count: 1) %></th>
           </tr>
         </thead>
         <tbody>

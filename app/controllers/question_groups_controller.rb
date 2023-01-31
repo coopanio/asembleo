@@ -10,10 +10,10 @@ class QuestionGroupsController < ApplicationController
 
   def create
     authorize QuestionGroup
-    raise Errors::InvalidParameters, 'Choose at least two questions' unless params[:question_group].present?
+    raise Errors::InvalidParameters, I18n.t("question_groups.required_questions") unless params[:question_group].present?
 
     question_ids = create_params[:question_ids]
-    raise Errors::InvalidParameters, 'Choose at least two questions' if question_ids.empty? || question_ids.size < 2
+    raise Errors::InvalidParameters, I18n.t("question_groups.required_questions") if question_ids.empty? || question_ids.size < 2
 
     question_ids = question_ids.map(&:to_i)
     QuestionGroup.transaction do

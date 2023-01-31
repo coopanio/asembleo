@@ -1,24 +1,24 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between align-items-center">
     <div class="col">
-      <strong>Consultations</strong>
+      <strong><%= t('activerecord.models.consultation', count: 2) %></strong>
     </div>
     <div class="col-auto">
-      <%= link_to 'Create consultation', { controller: :consultations, action: :new }, class: 'btn btn-link link-secondary' %>
+      <%= link_to t('consultations.consultation_create'), { controller: :consultations, action: :new }, class: 'btn btn-link link-secondary' %>
     </div>
   </div>
   <div class="card-body">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Title</th>
+          <th scope="col"><%= t('activerecord.attributes.consultation.title') %></th>
           <th colspan="1"></th>
         </tr>
       </thead>
       <% @consultations.each do |consultation| %>
         <tr>
           <td><%= consultation.title %></td>
-          <td><%= link_to 'Edit', { controller: :consultations, action: :edit, id: consultation.id }, class: 'btn btn-link py-0' %></td>
+          <td><%= link_to t('application.edit'), { controller: :consultations, action: :edit, id: consultation.id }, class: 'btn btn-link py-0' %></td>
         </tr>
       <% end %>
     </table>

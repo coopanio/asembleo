@@ -5,7 +5,7 @@ class VotesController < ApplicationController
     authorize Vote
 
     if params.to_unsafe_h.fetch(:vote, {}).length != questions.length
-      error('Please cast a vote for each question')
+      error(I18n.t("votes.required_cast"))
       redirect_back fallback_location: root_path
 
       return

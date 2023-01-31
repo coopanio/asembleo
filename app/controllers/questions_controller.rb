@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(create_params.merge(consultation:))
     @question.save!
 
-    success('Question created.')
+    success(I18n.t("questions.question_created"))
     redirect_to action: 'edit', id: @question.id
   end
 
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
 
     question.update!(update_params)
 
-    success('Question updated.')
+    success(I18n.t("questions.question_updated"))
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
 
     update_status(:opened)
 
-    success('Question opened.')
+    success(I18n.t("questions.question_opened"))
     redirect_back(fallback_location: root_path)
   end
 
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
 
     update_status(:opened, events: question.consultation.events)
 
-    success('Question opened.')
+    success(I18n.t("questions.question_opened"))
     redirect_back(fallback_location: root_path)
   end
 
@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
     authorize question
 
     unless question.closed?
-      error('Results not available while the question is open.')
+      error(I18n.t("questions.results_not_available"))
       redirect_to controller: 'consultations', action: 'edit', id: consultation.id
       return
     end
@@ -76,7 +76,7 @@ class QuestionsController < ApplicationController
 
     update_status(:closed)
 
-    success('Question closed.')
+    success(I18n.t("questions.question_closed"))
     redirect_back(fallback_location: root_path)
   end
 
@@ -85,7 +85,7 @@ class QuestionsController < ApplicationController
 
     update_status(:closed, events: question.consultation.events)
 
-    success('Question closed.')
+    success(I18n.t("questions.question_closed"))
     redirect_back(fallback_location: root_path)
   end
 
@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
     authorize question
     question.destroy!
 
-    success('Question deleted.')
+    success(I18n.t("questions.question_deleted"))
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 

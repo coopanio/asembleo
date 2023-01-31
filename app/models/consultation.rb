@@ -5,9 +5,13 @@ class Consultation < ApplicationRecord
 
   class Config
     include StoreModel::Model
+    include TranslateStoreModel
 
     enum :mode, %i[synchronous asynchronous], default: :synchronous
     enum :ballot, %i[open secret], default: :secret
+
+    translate_enum :mode
+    translate_enum :ballot
   end
 
   has_many :events, dependent: :destroy
@@ -17,6 +21,8 @@ class Consultation < ApplicationRecord
   attribute :config, Config.to_type
 
   enum status: { draft: 0, opened: 1, closed: 2, archived: 3 }
+
+  translate_enum :status
 
   delegate :synchronous?, :asynchronous?, to: :config
   delegate :ballot, to: :config

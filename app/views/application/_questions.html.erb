@@ -1,13 +1,13 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
-    <strong>Questions</strong>
+    <strong><%= t('activerecord.models.question', count: 2) %></strong>
     <% if @current_user.admin? %>
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <%= link_to 'Create', new_consultation_question_path(consultation_id: @consultation.id), class: 'nav-link active btn py-1' %>
+          <%= link_to t('application.create'), new_consultation_question_path(consultation_id: @consultation.id), class: 'nav-link active btn py-1' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Group', consultation_question_groups_path(consultation_id: @consultation.id), class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
+          <%= link_to t('question_groups.group', count: 1), consultation_question_groups_path(consultation_id: @consultation.id), class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>
@@ -16,9 +16,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Question</th>
-          <th scope="col">Status</th>
+          <th scope="col"><%= t('activerecord.attributes.question.id') %></th>
+          <th scope="col"><%= t('activerecord.models.question', count: 1) %></th>
+          <th scope="col"><%= t('activerecord.attributes.question.status') %></th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -27,17 +27,21 @@
         <td><%= question.id %></td>
         <td><%= question.description %></td>
         <td><%= question.status %></td>
-        <td><%= link_to 'Edit', edit_consultation_question_url(@consultation, question) %></td>
+        <td><%= link_to t('application.edit'), edit_consultation_question_url(@consultation, question) %></td>
         <% if @consultation.synchronous? %>
         <td><%= question_opener_closer_link(@event, question)  %></td>
         <% elsif @consultation.asynchronous? %>
         <td><%= all_events_question_opener_closer_link(question)  %></td>
         <% end %>
         <% if question.closed? %>
-          <td><%= link_to 'Results', { controller: :questions, action: :tally, consultation_id: @consultation.id, id: question.id }, class: 'btn btn-link py-0' %></td>
+          <td><%= link_to t('questions.question_results'), { controller: :questions, action: :tally, consultation_id: @consultation.id, id: question.id }, class: 'btn btn-link py-0' %></td>
         <% end %>
         <% if question.draft? %>
-          <td><%= button_to 'Delete', consultation_question_path(@consultation, question), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
+          <td><%= button_to t('application.delete'),
+                  consultation_question_path(@consultation, question),
+                  method: :delete,
+                  class: 'btn btn-link py-0 link-danger',
+                  data: { confirm: t('application.confirm') } %></td>
         <% end %>
       </tr>
       <% end %>

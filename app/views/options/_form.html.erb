@@ -4,23 +4,23 @@
     <%= f.text_field :description, class: 'form-control' %>
   </div>
   <div class="row mb-3">
-    <%= f.label 'Internal value', class: 'form-label' %>
+    <%= f.label :value, class: 'form-label' %>
     <%= f.text_field :value, class: 'form-control' %>
   </div>
   <% if @option.question.group.present? %>
     <div class="row mb-3">
       <div class="form-check">
         <%= f.check_box :main, class: 'form-check-input' %>
-        <%= f.label 'main', class: 'form-check-label' %>
+        <%= f.label :main, class: 'form-check-label' %>
       </div>
     </div>
   <% else %>
-    <%= f.hidden_field :principal, value: false %>
+    <%= f.hidden_field :main, value: false %>
   <% end %>
   <div class="row mb-3">
     <div class="col d-flex justify-content-end">
-      <%= link_to 'Cancel', { controller: 'questions', action: 'edit', id: @question.id }, class: 'btn btn-link link-danger' %>
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= link_to t('application.cancel'), { controller: 'questions', action: 'edit', id: @question.id }, class: 'btn btn-link link-danger' %>
+      <%= f.submit t('application.save'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

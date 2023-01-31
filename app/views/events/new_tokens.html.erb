@@ -1,10 +1,10 @@
 <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id, multiple: true }, class: 'container', local: true do |f| %>
   <div class="row mb-3">
     <div class="form-group">
-      <%= f.label :tokens, 'List of tokens to create', for: :value, class: 'form-label' %>
+      <%= f.label :tokens, t('helpers.label.event.tokens'), for: :value, class: 'form-label' %>
       <%= f.file_field :value, class: 'form-control' %>
       <small class="form-text text-muted">
-        One value per line.
+        <%= t('helpers.label.event.hints.value') %>
       </small>
     </div>
   </div>
@@ -12,23 +12,23 @@
     <div class="form-group">
       <div class="form-check">
         <%= f.check_box :aliased, class: 'form-check-input' %>
-        <%= f.label :aliased, 'Use values as aliases', class: 'form-check-label' %>
+        <%= f.label :aliased, t('helpers.label.event.aliased'), class: 'form-check-label' %>
         <small class="form-text text-muted">
-          If checked, the values will be used as aliases for the tokens. This allows users to log in with the alias.
+          <%= t('helpers.label.event.hints.aliased') %>
         </small>
       </div>
       <div class="form-check">
         <%= f.check_box :send, class: 'form-check-input' %>
-        <%= f.label :send, 'Send magic links', class: 'form-check-label' %>
+        <%= f.label :send, t('helpers.label.event.send'), class: 'form-check-label' %>
         <small class="form-text text-muted">
-          If checked, values must be e-mails to send personal magic links to access the consultation. Tokens will be generated without storing their related e-mail. Known e-mail addresses won't be sent a new magic link.
+          <%= t('helpers.label.event.hints.send') %>
         </small>
       </div>
     </div>
   </div>
   <div class="row mb-3">
     <div class="col d-flex justify-content-end">
-      <%= f.submit 'Upload', class: 'btn btn-primary' %>
+      <%= f.submit t('application.upload'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

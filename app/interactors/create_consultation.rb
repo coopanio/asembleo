@@ -5,13 +5,12 @@ class CreateConsultation < Actor
   input :description, type: String, allow_nil: false
 
   output :consultation
+  output :tokens
   output :admin_token
-  output :manager_token
 
   def call
     init_consultation
-    init_admin_token
-    init_manager_token
+    init_tokens
     save_models
   end
 
@@ -21,30 +20,28 @@ class CreateConsultation < Actor
     self.consultation = Consultation.new(title:, description:)
   end
 
-  def init_admin_token
+  def init_tokens
     self.admin_token = Token.new(role: :admin, consultation:)
-  end
+    self.tokens = [admin_token]
 
-  def init_manager_token
     return unless consultation.synchronous?
 
-    self.manager_token = Token.new(role: :manager, consultation:, event: default_event)
+    self.tokens << Token.new(role: :manager, consultation:, event: default_event)
   end
 
   def default_event
     return unless consultation.synchronous?
     return @default_event if defined?(@default_event)
 
-    @default_event = Event.new(title: 'Default', consultation:)
+    @default_event = Event.new(title: I18n.t("interactors.create_consultation.default"), consultation:)
   end
 
   def save_models
     consultation.transaction do
       consultation.save!
-      admin_token.save!
+      tokens.each(&:save!)
 
       default_event.save! if default_event.present?
-      manager_token.save! if manager_token.present?
     end
   end
 end
