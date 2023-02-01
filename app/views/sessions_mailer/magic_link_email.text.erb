@@ -1,5 +1,5 @@
 <%= t('sessions_mailer.magic_link_email',
     sessions_url: sessions_url,
     root_url: root_url,
-    token: @token.to_hash) %>
+    token: @token.to_hash).strip %>
 <%= Rails.configuration.x.asembleo.title %>

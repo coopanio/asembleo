@@ -12,8 +12,8 @@ class EventsHelperTest < ActionView::TestCase
     @question = create(:question, consultation:, status: :opened)
 
     @expected = {
-      open: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/open?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" autocomplete=\"off\" /><button class=\"btn btn-link py-0\" type=\"submit\">Open</button></form>",
-      close: "<form class=\"button_to\" method=\"post\" action=\"/questions/#{question.id}/close?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" autocomplete=\"off\" /><button class=\"btn btn-link py-0\" type=\"submit\">Close</button></form>"
+      open: "<form class=\"button_to\" method=\"post\" action=\"/consultations/#{consultation.id}/questions/#{question.id}/open?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" autocomplete=\"off\" /><button class=\"btn btn-link py-0\" type=\"submit\">Open</button></form>",
+      close: "<form class=\"button_to\" method=\"post\" action=\"/consultations/#{consultation.id}/questions/#{question.id}/close?event%5Bid%5D=#{event.id}\"><input type=\"hidden\" name=\"_method\" value=\"patch\" autocomplete=\"off\" /><button class=\"btn btn-link py-0\" type=\"submit\">Close</button></form>"
     }
   end
   # rubocop:enable Layout/LineLength
