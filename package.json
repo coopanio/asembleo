@@ -7,11 +7,15 @@
     "@rails/activestorage": "^7.0.0",
     "@rails/ujs": "^7.0.0",
     "bootstrap": "^5.0.0",
+    "chart.js": "^4.2.0",
+    "chartkick": "^5.0.1",
     "esbuild": "^0.15.0",
     "sass": "^1.57.1"
   },
   "version": "0.1.1",
   "scripts": {
+    "hmr": "yarn hmr:start --watch",
+    "hmr:start": "node esbuild-dev.config.js",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "yarn run build:css:application && yarn run build:css:theme",
     "build:css:application": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",

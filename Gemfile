@@ -57,3 +57,5 @@ group :test do
 end
 
 gem "translation", "~> 1.35"
+
+gem "chartkick", "~> 5.0"

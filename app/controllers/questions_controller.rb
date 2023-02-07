@@ -69,6 +69,12 @@ class QuestionsController < ApplicationController
 
     @consultation = consultation
     @results = question.tally
+    @results['_meta']['graph'] = question.options.map do |option|
+      [
+        option.description,
+        @results[option.value]
+      ]
+    end
   end
 
   def close
