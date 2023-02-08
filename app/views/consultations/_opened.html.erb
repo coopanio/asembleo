@@ -1,5 +1,5 @@
 <div class="alert alert-primary" role="alert">
-  <% if @current_user.receipts.count == @consultation.questions.count %>
+  <% if @consultation.exhausted_for?(@current_user) %>
     <%= t('consultations.consultation_finished') %>
   <% else %>
     <p><%= t('consultations.consultation_open') %></p>

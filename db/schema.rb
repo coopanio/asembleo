@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_20_174853) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_07_211602) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -123,6 +123,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_174853) do
     t.index ["fingerprint", "consultation_id"], name: "index_token_receipts_on_fingerprint_and_consultation_id", unique: true
   end
 
+  create_table "token_tags", force: :cascade do |t|
+    t.string "value"
+    t.integer "token_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token_id"], name: "index_token_tags_on_token_id"
+  end
+
   create_table "tokens", force: :cascade do |t|
     t.integer "role", default: 0
     t.integer "salt"
@@ -183,6 +191,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_174853) do
   add_foreign_key "receipts", "questions"
   add_foreign_key "receipts", "tokens"
   add_foreign_key "token_receipts", "consultations"
+  add_foreign_key "token_tags", "tokens"
   add_foreign_key "tokens", "consultations"
   add_foreign_key "tokens", "events"
   add_foreign_key "votes", "events"

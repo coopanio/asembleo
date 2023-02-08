@@ -68,6 +68,7 @@ en:
         role: *role
       token:
         role: *role
+        tags: Tags
   application:
     back: Back
     cancel: Cancel
@@ -80,6 +81,10 @@ en:
     refresh: Refresh
     save: Save
     upload: Upload
+    yes: Yes
+    no: No
+    token:
+      exhausted: Exhausted?
   consultations:
     consultation_token_created: "%{role} token is <strong>%{token}</strong>."
     consultation_create: Create consultation
@@ -131,6 +136,7 @@ en:
     question_still_draft: The question is still in draft.
     question_updated: Question updated.
     results_not_available: Results not available while the question is open.
+    vote: Vote
   sessions:
     log_in_as_admin: Log in as admin
   sessions_mailer:

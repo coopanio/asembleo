@@ -21,6 +21,6 @@
   </table>
   <%= f.hidden_field :group_id, value: @question.group.id %>
   <% unless @question.draft? %>
-    <%= f.submit 'Vote', class: 'btn btn-primary' %>
+    <%= f.submit t('questions.vote'), class: 'btn btn-primary' %>
   <% end %>
 <% end %>

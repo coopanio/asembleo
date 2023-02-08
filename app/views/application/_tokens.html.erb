@@ -22,6 +22,8 @@
         <tr>
           <th scope="col"><%= t('activerecord.models.token', count: 1) %></th>
           <th scope="col"><%= t('activerecord.attributes.token.role') %></th>
+          <th scope="col"><%= t('activerecord.attributes.token.tags', count: 1) %></th>
+          <th scope="col"><%= t('application.token.exhausted', count: 1) %></th>
           <th colspan="1"></th>
         </tr>
       </thead>
@@ -29,6 +31,8 @@
         <tr>
           <td><%= token.alias || token.to_s %></td>
           <td><%= token.translated_role %></td>
+          <td><%= token.tags.pluck(:value).join(', ') %></td>
+          <td><%= @consultation.exhausted_for?(token) ? t('application.yes') : t('application.no') %></td>
           <td><%= token_enabler_disabler_link(token)  %></td>
         </tr>
       <% end %>
