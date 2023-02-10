@@ -1,0 +1,9 @@
+<%= t('application_mailer.greeting') %>,
+
+<%= t('consultations_mailer.default_tokens_email').strip %>
+
+<% @tokens.each do |token| %>
+  - <%= t('consultations.consultation_token_created', token:, role: token.translated_role) %>
+<% end %>
+
+<%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>

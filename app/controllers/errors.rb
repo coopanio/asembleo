@@ -77,4 +77,6 @@ module Errors
   class InvalidVoteOption < ActionController::BadRequest; end
 
   class AlreadyVoted < ActionController::BadRequest; end
+
+  class InvalidEmail < ActionController::BadRequest; end
 end

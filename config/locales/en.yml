@@ -85,6 +85,11 @@ en:
     no: No
     token:
       exhausted: Exhausted?
+  application_mailer:
+    greeting: Hello
+    complimentary_close: |
+      Thanks,
+      %{recipient}
   consultations:
     consultation_token_created: "%{role} token is <strong>%{token}</strong>."
     consultation_create: Create consultation
@@ -95,6 +100,11 @@ en:
     consultation_archived: The consultation has been archived.
     consultation_closed: The consultation is closed.
     consultation_deleted: Consultation deleted.
+  consultations_mailer:
+    default_tokens_email: |
+      Hello,
+
+      The following tokens were created:
   errors:
     bad_request: Bad request
     you_can_only_choose_up_to: You can only choose up to %{e_max_options} options.
@@ -141,8 +151,6 @@ en:
     log_in_as_admin: Log in as admin
   sessions_mailer:
     magic_link_email: |
-      Hello,
-
       You are receiving this email to sign in to vote using your email address.
 
       Please click the link below to sign in:
@@ -154,8 +162,6 @@ en:
       If the link doesn't work for you, go to %{root_url} and use the token %{token} to sign in.
 
       If you did not request this link, ignore this email.
-
-      Thanks,
   votes:
     required_cast: Please cast a vote for each question.
     casted: Your vote has been correctly registered. Please proceed to the next question.

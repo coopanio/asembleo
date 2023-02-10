@@ -59,3 +59,5 @@ end
 gem "translation", "~> 1.35"
 
 gem "chartkick", "~> 5.0"
+
+gem "email_validator", "~> 2.2"

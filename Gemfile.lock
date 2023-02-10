@@ -95,6 +95,8 @@ GEM
     date (3.3.3)
     diff-lcs (1.5.0)
     diffy (3.4.2)
+    email_validator (2.2.4)
+      activemodel
     erubi (1.12.0)
     extract_i18n (0.6.1)
       diff-lcs
@@ -335,6 +337,7 @@ DEPENDENCIES
   capybara (~> 3.38)
   chartkick (~> 5.0)
   cssbundling-rails (~> 1.1)
+  email_validator (~> 2.2)
   extract_i18n (~> 0.6)
   factory_bot (~> 6.2)
   factory_bot_rails (~> 6.2)

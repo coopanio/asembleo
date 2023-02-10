@@ -25,6 +25,18 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal params[:consultation][:description], consultation.description
   end
 
+  test 'should create consultation with admin user' do
+    @token = create(:user, :admin, identifier: 'admin@coopanio.com', password: 'notverysafe')
+    login_user
+
+    assert_emails 1 do
+      post(consultations_url, params:)
+    end
+
+    consultation = Consultation.last
+    assert_response :redirect
+  end
+
   test 'should edit consultation' do
     login
 
@@ -48,5 +60,9 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
 
   def login
     post sessions_url, params: { session: { identifier: token.to_hash } }
+  end
+
+  def login_user
+    post sessions_url, params: { session: { identifier: token.identifier, password: 'notverysafe' } }
   end
 end

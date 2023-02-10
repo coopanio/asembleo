@@ -3,6 +3,7 @@
 class CreateConsultation < Actor
   input :title, type: String, allow_nil: false
   input :description, type: String, allow_nil: false
+  input :admin_email_address, type: String, allow_nil: true, default: nil
 
   output :consultation
   output :tokens
@@ -12,6 +13,7 @@ class CreateConsultation < Actor
     init_consultation
     init_tokens
     save_models
+    deliver_tokens if admin_email_address.present?
   end
 
   private
@@ -43,5 +45,9 @@ class CreateConsultation < Actor
 
       default_event.save! if default_event.present?
     end
+  end
+
+  def deliver_tokens
+    ConsultationsMailer.default_tokens_email(admin_email_address, self.tokens).deliver_later
   end
 end

@@ -23,4 +23,10 @@ class User < ApplicationRecord
   def authenticate(raw_password)
     Argon2::Password.verify_password(raw_password, password_digest)
   end
+
+  def email
+    return identifier if EmailValidator.valid?(identifier, mode: :strict)
+
+    nil
+  end
 end
