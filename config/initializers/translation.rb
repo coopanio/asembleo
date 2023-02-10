@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 TranslationIO.configure do |config|
+  next unless Rails.env.development?
+
   config.api_key        = Rails.application.credentials.translation_io[:api_key]
   config.source_locale  = 'en'
   config.target_locales = ['es']
