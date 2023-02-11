@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/.vendor
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -30,6 +31,9 @@
 /public/assets
 .byebug_history
 
+# Ignore coverage reports
+/coverage/
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -39,9 +43,6 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-# Bundle
-.vendor
 
 # Builds
 /.sass-cache/*

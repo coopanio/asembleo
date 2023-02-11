@@ -6,7 +6,9 @@ ruby '3.2.0'
 
 gem 'argon2', '~> 2.2'
 gem 'bootsnap', '~> 1.15', require: false
+gem 'chartkick', '~> 5.0'
 gem 'cssbundling-rails', '~> 1.1'
+gem 'email_validator', '~> 2.2'
 gem 'hashids', '~> 1.0'
 gem 'hiredis', '~> 0.6'
 gem 'jsbundling-rails', '~> 1.1'
@@ -22,7 +24,8 @@ gem 'sentry-ruby', '~> 5.7'
 gem 'service_actor', '~> 3.6'
 gem 'sprockets-rails', '~> 3.4'
 gem 'store_model', '~> 1.3'
-gem "translate_enum", '~> 0.2.0', require: 'translate_enum/active_record'
+gem 'translate_enum', '~> 0.2.0', require: 'translate_enum/active_record'
+gem 'translation', '~> 1.35'
 
 group :production do
   gem 'pg', '~> 1.4'
@@ -46,6 +49,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.38'
+  gem 'coveralls', require: false
   gem 'factory_bot', '~> 6.2'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.1'
@@ -55,9 +59,3 @@ group :test do
   gem 'timecop', '~> 0.9'
   gem 'webdrivers', '~> 5.2'
 end
-
-gem "translation", "~> 1.35"
-
-gem "chartkick", "~> 5.0"
-
-gem "email_validator", "~> 2.2"
