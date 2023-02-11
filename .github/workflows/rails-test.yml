@@ -8,7 +8,6 @@ on:
 
 env:
   RAILS_ENV: test
-  SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
 
 permissions:
   contents: read
@@ -27,6 +26,12 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
+    - name: Create development_secret.txt
+      env:
+        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      run: |
+        touch tmp/development_secret.txt
+        echo $SECRET_KEY_BASE > tmp/development_secret.txt
     - name: Precompile assets
       run: bundle exec rake assets:precompile
     - name: Run tests
