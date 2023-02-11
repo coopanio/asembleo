@@ -6,6 +6,9 @@ on:
   pull_request:
     branches-ignore: [ main ]
 
+env:
+  RAILS_ENV: test
+
 permissions:
   contents: read
 
