@@ -49,7 +49,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.38'
-  gem 'coveralls', require: false
+  gem 'simplecov-lcov', '~> 0.8.0'
   gem 'factory_bot', '~> 6.2'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.1'

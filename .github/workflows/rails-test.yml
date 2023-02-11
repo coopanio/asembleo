@@ -22,6 +22,8 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
+    - name: Precompile assets
+      run: bundle exec rake assets:precompile
     - name: Run tests
       run: bundle exec rails test
     - name: Upload coverage
