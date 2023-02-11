@@ -2,9 +2,9 @@ name: Rails test
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches-ignore: [ main ]
   pull_request:
-    branches: [ $default-branch ]
+    branches-ignore: [ main ]
 
 permissions:
   contents: read
