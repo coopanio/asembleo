@@ -1,4 +1,4 @@
-# Asembleo 
+# Asembleo
   
 [![CodeQL](https://github.com/coopanio/asembleo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/coopanio/asembleo/actions/workflows/codeql-analysis.yml)
 [![Semgrep](https://github.com/coopanio/asembleo/actions/workflows/semgrep.yml/badge.svg)](https://github.com/coopanio/asembleo/actions/workflows/semgrep.yml)
