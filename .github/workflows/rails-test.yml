@@ -8,6 +8,7 @@ on:
 
 env:
   RAILS_ENV: test
+  SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
 
 permissions:
   contents: read
