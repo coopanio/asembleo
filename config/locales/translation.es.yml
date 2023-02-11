@@ -179,6 +179,7 @@ es:
         role:
       token:
         role:
+        tags:
   datetime:
     distance_in_words:
       half_a_minute: medio minuto
@@ -296,6 +297,8 @@ es:
     refresh:
     save:
     upload:
+    token:
+      exhausted:
   consultations:
     consultation_token_created:
     consultation_create:
@@ -338,6 +341,7 @@ es:
     question_still_draft:
     question_updated:
     results_not_available:
+    vote:
   sessions:
     log_in_as_admin:
   votes:
@@ -352,3 +356,8 @@ es:
       new_consultation:
   sessions_mailer:
     magic_link_email:
+  application_mailer:
+    greeting:
+    complimentary_close:
+  consultations_mailer:
+    default_tokens_email:
