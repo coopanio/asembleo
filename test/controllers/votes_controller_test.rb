@@ -76,6 +76,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     subject
 
     assert_response :redirect
+    assert_equal flash[:alert].message, 'You can only choose yes up to 1 times.'
   end
 
   test "should create multiple votes if group's main option is selected up to max" do
