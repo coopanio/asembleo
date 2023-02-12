@@ -61,6 +61,8 @@ module Errors
     attr_reader :max_options
 
     def initialize(max_options)
+      super(nil)
+
       @max_options = max_options
     end
   end
@@ -69,6 +71,8 @@ module Errors
     attr_reader :option, :limit
 
     def initialize(option, limit)
+      super(nil)
+
       @option = option
       @limit = limit
     end

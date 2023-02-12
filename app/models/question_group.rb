@@ -14,7 +14,7 @@ class QuestionGroup < ApplicationRecord
     attribute :limits, Limit.to_array_type, default: []
 
     def limit_for(value)
-      limit = limits.detect { |limit| limit.value == value }
+      limit = limits.detect { |l| l.value == value }
       return 1 if limit.blank?
 
       limit.max

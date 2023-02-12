@@ -8,3 +8,7 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - update_all
+    - update_columns

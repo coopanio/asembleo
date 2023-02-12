@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pundit_user
-    return unless current_user.present?
+    return if current_user.blank?
     return current_user if current_user.respond_to?(:consultation_id)
 
     OpenStruct.new(consultation_id: consultation&.id, admin?: current_user.admin?)

@@ -10,7 +10,7 @@ class QuestionGroupsController < ApplicationController
 
   def create
     authorize QuestionGroup
-    raise Errors::InvalidParameters, I18n.t('question_groups.required_questions') unless params[:question_group].present?
+    raise Errors::InvalidParameters, I18n.t('question_groups.required_questions') if params[:question_group].blank?
 
     question_ids = create_params[:question_ids]
     raise Errors::InvalidParameters, I18n.t('question_groups.required_questions') if question_ids.empty? || question_ids.size < 2
