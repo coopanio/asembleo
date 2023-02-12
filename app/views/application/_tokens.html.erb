@@ -33,7 +33,7 @@
           <td><%= token.translated_role %></td>
           <td><%= token.tags.pluck(:value).join(', ') %></td>
           <td><%= @consultation.exhausted_for?(token) ? t('application.yes') : t('application.no') %></td>
-          <td><%= token_enabler_disabler_link(token)  %></td>
+          <td><%= token_enabler_disabler_link(token, @current_user)  %></td>
         </tr>
       <% end %>
     </table>

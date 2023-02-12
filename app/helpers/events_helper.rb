@@ -21,9 +21,9 @@ module EventsHelper
     button_to(I18n.t('helpers.events_helper.close'), question_action_params('close_all', nil, question), **button_params)
   end
 
-  def token_enabler_disabler_link(token)
+  def token_enabler_disabler_link(token, current_user)
     return '-' if token.event.consultation.closed?
-    return '-' if token == @current_user
+    return '-' if token == current_user
 
     if token.enabled?
       button_to(I18n.t('helpers.events_helper.disable'), update_token_action_params(token, :disabled), **button_params)
