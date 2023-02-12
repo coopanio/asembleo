@@ -32,6 +32,13 @@ jobs:
       run: |
         touch tmp/development_secret.txt
         echo -n $SECRET_KEY_BASE > tmp/development_secret.txt
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'yarn'
+    - name: Install Node.js dependencies
+      run: yarn install --prefer-offline --frozen-lockfile --immutable
     - name: Precompile assets
       run: bundle exec rake assets:precompile
     - name: Run tests
