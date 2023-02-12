@@ -17,7 +17,7 @@ gem 'paper_trail', '~> 14.0'
 gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.3'
 gem 'rails', '~> 7.0'
-gem "rails-i18n", '~> 7.0'
+gem 'rails-i18n', '~> 7.0'
 gem 'redis', '~> 5.0'
 gem 'sentry-rails', '~> 5.7'
 gem 'sentry-ruby', '~> 5.7'
@@ -49,7 +49,8 @@ end
 
 group :test do
   gem 'capybara', '~> 3.38'
-  gem 'coveralls', require: false
+  gem 'simplecov', '~> 0.22.0'
+  gem 'simplecov-lcov', '~> 0.8.0'
   gem 'factory_bot', '~> 6.2'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.1'

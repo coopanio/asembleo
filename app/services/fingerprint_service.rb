@@ -6,7 +6,7 @@ class FingerprintService
   def self.generate(*args, short: false)
     values = args.flat_map do |arg|
       if arg.respond_to?(:attributes)
-        arg.attributes.values.compact
+        arg.attributes.sort.map(&:last).compact
       elsif arg.respond_to?(:append)
         arg.sort
       else
