@@ -59,7 +59,4 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
-
-  Rails.logger = Logger.new(STDOUT)
-  config.log_level = :info
 end

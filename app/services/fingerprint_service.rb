@@ -14,10 +14,6 @@ class FingerprintService
       end
     end << Rails.application.secret_key_base
 
-    Rails.logger.warn values.map(&:to_s).join(':')
-    Rails.logger.warn Base64.encode64(values.map(&:to_s).join(':'))
-    Rails.logger.warn Base64.encode64(Rails.application.secret_key_base)
-
     # A single question receipt is not truncated, but the result of hashing
     # all the questions' fingerprints will be truncated to 20 bytes to use it
     # as validation identifier in the published audit.

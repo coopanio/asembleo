@@ -10,7 +10,6 @@ class HashIdService
   end
 
   def initialize
-    Rails.logger.warn Rails.application.secret_key_base
     @hasher = Hashids.new(
       Rails.application.secret_key_base,
       Rails.configuration.hash_service.hash_length,
