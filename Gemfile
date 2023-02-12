@@ -39,9 +39,9 @@ end
 
 group :development do
   gem 'listen', '~> 3.7'
-  gem 'rubocop', '~> 1.42', require: false
-  gem 'rubocop-minitest', '~> 0.25', require: false
-  gem 'rubocop-performance', '~> 1.15', require: false
+  gem 'rubocop', '~> 1.45', require: false
+  gem 'rubocop-minitest', '~> 0.27', require: false
+  gem 'rubocop-performance', '~> 1.16', require: false
   gem 'rubocop-rails', '~> 2.17', require: false
   gem 'web-console', '~> 4.2'
   gem 'extract_i18n', '~> 0.6'
