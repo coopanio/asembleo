@@ -2,20 +2,7 @@
 
 require 'simplecov'
 
-SimpleCov.start 'rails' do
-  if ENV['CI'].present?
-    require 'simplecov-lcov'
-
-    SimpleCov::Formatter::LcovFormatter.config do |c|
-      c.report_with_single_file = true
-      c.single_report_path = 'coverage/lcov.info'
-    end
-
-    formatter SimpleCov::Formatter::LcovFormatter
-  end
-
-  add_filter %w[version.rb initializer.rb]
-end
+SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -25,6 +12,14 @@ require 'policy_assertions'
 module ActiveSupport
   class TestCase
     parallelize(workers: :number_of_processors)
+
+    parallelize_setup do |worker|
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    end
+
+    parallelize_teardown do |worker|
+      SimpleCov.result
+    end
 
     fixtures :all
 
