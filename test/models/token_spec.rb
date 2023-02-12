@@ -10,6 +10,7 @@ class TokenTest < ActiveSupport::TestCase
       { value: ' ohai_thxby ', expected: 'ohaithxby' },
       { value: '69a 334 x 13.ç', expected: '69a334x13' }
     ]
+
     cases.each do |c|
       assert_equal c[:expected], Token.sanitize(c[:value])
     end

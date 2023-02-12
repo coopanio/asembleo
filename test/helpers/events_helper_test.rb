@@ -26,16 +26,19 @@ class EventsHelperTest < ActionView::TestCase
 
   test 'return open link' do
     create(:events_question, event:, question:)
+
     assert_equal expected[:open], subject
   end
 
   test 'return close link' do
     create(:events_question, event:, question:, status: :opened)
+
     assert_equal expected[:close], subject
   end
 
   test 'return no link when consultation is not open' do
     question.consultation.update!(status: :draft)
+
     assert_equal '-', subject
   end
 end

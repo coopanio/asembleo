@@ -11,11 +11,13 @@ class QuestionPolicyTest < PolicyAssertions::Test
 
   test 'should allow access to question to associated token' do
     question = create(:question, consultation: token.consultation)
+
     assert_permit token, question, :show?
   end
 
   test 'should allow access to question to not associated token' do
     question = create(:question)
+
     refute_permit token, question, :show?
   end
 end

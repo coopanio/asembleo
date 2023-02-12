@@ -30,9 +30,11 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_in_delta(1.5, results['no'])
 
     meta = results['_meta']
+
     assert_in_delta(5.5, meta['total_votes'])
 
     breakdown = meta['breakdown']
+
     assert_not_nil(breakdown)
     assert_in_delta(4.0, breakdown.dig(1, 'yes'))
     assert_in_delta(1.5, breakdown.dig(1, 'no'))
@@ -56,14 +58,17 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_in_delta(4.5, results['no'])
 
     meta = results['_meta']
+
     assert_in_delta(10.5, meta['total_votes'])
 
     breakdown = meta['breakdown']
+
     assert_not_nil(breakdown)
     assert_in_delta(4.0, breakdown.dig(1, 'yes'))
     assert_in_delta(1.5, breakdown.dig(1, 'no'))
 
     breakdown = meta['breakdown']
+
     assert_not_nil(breakdown)
     assert_in_delta(2.0, breakdown.dig(2, 'yes'))
     assert_in_delta(3.0, breakdown.dig(2, 'no'))
