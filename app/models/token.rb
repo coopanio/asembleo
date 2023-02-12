@@ -8,7 +8,7 @@ class Token < ApplicationRecord
   belongs_to :consultation
   belongs_to :event, optional: true
 
-  has_many :receipts
+  has_many :receipts, dependent: :destroy
   has_many :tags, foreign_key: 'token_id', class_name: 'TokenTag', dependent: :destroy
 
   enum role:   { voter: 0, manager: 1, admin: 2 }
