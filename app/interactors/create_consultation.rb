@@ -35,7 +35,7 @@ class CreateConsultation < Actor
     return unless consultation.synchronous?
     return @default_event if defined?(@default_event)
 
-    @default_event = Event.new(title: I18n.t("interactors.create_consultation.default"), consultation:)
+    @default_event = Event.new(title: I18n.t('interactors.create_consultation.default'), consultation:)
   end
 
   def save_models

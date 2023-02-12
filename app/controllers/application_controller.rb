@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     return if current_user.blank?
     return unless current_user.disabled?
 
-    error(I18n.t("events.token_disabled"))
+    error(I18n.t('events.token_disabled'))
 
     reset_session
     redirect_to root_path
