@@ -24,6 +24,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create vote' do
     subject
+
     assert_response :success
 
     Vote.all.tap do |votes|
@@ -104,6 +105,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     perform_enqueued_jobs
+
     assert_performed_jobs 1
 
     Vote.all.tap do |votes|
@@ -136,12 +138,14 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should fail if a second vote is attempted' do
     subject
+
     assert_response :success
 
     @value = 'no'
     reload_params!
 
     post votes_url, params: @params
+
     assert_response :redirect
   end
 

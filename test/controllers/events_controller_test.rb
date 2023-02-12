@@ -17,6 +17,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post(events_url, params:)
 
     event = Event.first
+
     assert_response :redirect
     assert_equal event.title, params[:event][:title]
     assert_equal 2, Token.all.size
@@ -29,6 +30,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch(event_url(event.id), params:)
 
     event = Event.first
+
     assert_response :redirect
     assert_equal 'Test 2', event.title
   end
@@ -51,6 +53,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post "/events/#{event.id}/tokens", params: {}
 
     tokens = Token.where(event:, role: :voter)
+
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_not tokens.first.alias
@@ -63,9 +66,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
     census = StringIO.new("johndoe@exampl.es\rjanedoe@piraten.lu")
-    post "/events/#{event.id}/tokens", params: { value:  Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+    post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
 
     tokens = Token.where(event:, role: :voter)
+
     assert_response :redirect
     assert_equal 2, tokens.size
   end
@@ -80,6 +84,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post "/events/#{event.id}/tokens", params: { value: identifier }
 
     tokens = Token.where(event:, role: :voter)
+
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal identifier, tokens.first.to_s
@@ -96,6 +101,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
 
     tokens = Token.where(event:, role: :voter)
+
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal Token.sanitize(identifier), tokens.first.alias
@@ -113,6 +119,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
 
     tokens = Token.where(event:, role: :voter)
+
     assert_response :redirect
     assert_equal 1, tokens.size
     assert_equal identifier, tokens.first.alias

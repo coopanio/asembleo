@@ -2,10 +2,8 @@
 
 module TranslateStoreModel
   class Builder
-    attr_accessor :i18n_scope
-    attr_accessor :i18n_key
-    attr_accessor :model
-    attr_accessor :attribute
+    attr_accessor :model, :attribute
+    attr_writer :i18n_scope, :i18n_key
 
     def initialize(model, attribute)
       @model = model

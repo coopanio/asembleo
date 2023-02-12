@@ -16,6 +16,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     post(consultations_url, params:)
 
     consultation = Consultation.last
+
     assert_response :redirect
     assert_predicate session[:identity_id], :present?
     assert_not_equal token.id, session[:identity_id]
@@ -34,7 +35,10 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     consultation = Consultation.last
+
     assert_response :redirect
+    assert_equal params[:consultation][:title], consultation.title
+    assert_equal params[:consultation][:description], consultation.description
   end
 
   test 'should edit consultation' do
@@ -52,6 +56,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     patch(consultation_url(token.consultation.id), params:)
 
     consultation = Consultation.all.first
+
     assert_response :redirect
     assert_equal params[:consultation][:status], consultation.status
   end

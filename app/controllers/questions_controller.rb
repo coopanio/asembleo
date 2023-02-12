@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(create_params.merge(consultation:))
     @question.save!
 
-    success(I18n.t("questions.question_created"))
+    success(I18n.t('questions.question_created'))
     redirect_to action: 'edit', id: @question.id
   end
 
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
 
     question.update!(update_params)
 
-    success(I18n.t("questions.question_updated"))
+    success(I18n.t('questions.question_updated'))
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
 
     update_status(:opened)
 
-    success(I18n.t("questions.question_opened"))
+    success(I18n.t('questions.question_opened'))
     redirect_back(fallback_location: root_path)
   end
 
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
 
     update_status(:opened, events: question.consultation.events)
 
-    success(I18n.t("questions.question_opened"))
+    success(I18n.t('questions.question_opened'))
     redirect_back(fallback_location: root_path)
   end
 
@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
     authorize question
 
     unless question.closed?
-      error(I18n.t("questions.results_not_available"))
+      error(I18n.t('questions.results_not_available'))
       redirect_to controller: 'consultations', action: 'edit', id: consultation.id
       return
     end
@@ -82,7 +82,7 @@ class QuestionsController < ApplicationController
 
     update_status(:closed)
 
-    success(I18n.t("questions.question_closed"))
+    success(I18n.t('questions.question_closed'))
     redirect_back(fallback_location: root_path)
   end
 
@@ -91,7 +91,7 @@ class QuestionsController < ApplicationController
 
     update_status(:closed, events: question.consultation.events)
 
-    success(I18n.t("questions.question_closed"))
+    success(I18n.t('questions.question_closed'))
     redirect_back(fallback_location: root_path)
   end
 
@@ -99,7 +99,7 @@ class QuestionsController < ApplicationController
     authorize question
     question.destroy!
 
-    success(I18n.t("questions.question_deleted"))
+    success(I18n.t('questions.question_deleted'))
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 

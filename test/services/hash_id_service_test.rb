@@ -10,11 +10,13 @@ class HashIdServiceTest < ActiveSupport::TestCase
 
   test 'encode' do
     encoded = HashIdService.encode(*ids)
+
     assert_equal(value, encoded)
   end
 
   test 'decode' do
     decoded = HashIdService.decode(value)
+
     assert_equal(ids, decoded)
   end
 
@@ -23,6 +25,7 @@ class HashIdServiceTest < ActiveSupport::TestCase
     @value = '6pdhgtr6'
     encoded = HashIdService.encode(*ids)
     decoded = HashIdService.decode(encoded)
+
     assert_equal(value, encoded)
     assert_equal(ids.map { |id| id.nil? ? 0 : id }, decoded)
   end

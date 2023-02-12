@@ -18,6 +18,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
     post(consultation_question_options_url(token.consultation, question), params:)
 
     option = Option.first
+
     assert_response :redirect
     assert_equal option.value, params[:option][:value]
     assert_equal option.description, params[:option][:description]
@@ -31,6 +32,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
     patch(consultation_question_option_url(token.consultation, question, option), params:)
 
     option = Option.first
+
     assert_response :redirect
     assert_equal option.value, params[:option][:value]
   end
