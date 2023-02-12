@@ -66,7 +66,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
     census = StringIO.new("johndoe@exampl.es\rjanedoe@piraten.lu")
-    post "/events/#{event.id}/tokens", params: { value:  Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+    post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
 
     tokens = Token.where(event:, role: :voter)
 

@@ -37,6 +37,8 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     consultation = Consultation.last
 
     assert_response :redirect
+    assert_equal params[:consultation][:title], consultation.title
+    assert_equal params[:consultation][:description], consultation.description
   end
 
   test 'should edit consultation' do

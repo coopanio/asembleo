@@ -17,7 +17,7 @@ class QuestionGroupsControllerTest < ActionDispatch::IntegrationTest
   test 'should create a question group' do
     post consultation_question_groups_url(consultation_id: @consultation.id), params: params
 
-    assert_equal 1, QuestionGroup.count 
+    assert_equal 1, QuestionGroup.count
     assert_equal 2, QuestionLink.count
   end
 
@@ -27,7 +27,7 @@ class QuestionGroupsControllerTest < ActionDispatch::IntegrationTest
     post consultation_question_groups_url(consultation_id: @consultation.id), params: params
 
     assert_response :redirect
-    assert_equal 0, QuestionGroup.count 
+    assert_equal 0, QuestionGroup.count
     assert_equal 0, QuestionLink.count
   end
 end

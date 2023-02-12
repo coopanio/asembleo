@@ -8,12 +8,12 @@ module Errors
       end
 
       rescue_from TooManyOptions do |e|
-        error(I18n.t('errors.you_can_only_choose_up_to', e_max_options: (e.max_options)))
+        error(I18n.t('errors.you_can_only_choose_up_to', e_max_options: e.max_options))
         redirect_back fallback_location: root_path
       end
 
       rescue_from TooManyMainOptions do |e|
-        error(I18n.t('errors.you_can_only_choose_up_to2', e_option_value: (e.option.value), e_limit: (e.limit)))
+        error(I18n.t('errors.you_can_only_choose_up_to2', e_option_value: e.option.value, e_limit: e.limit))
         redirect_back fallback_location: root_path
       end
 
