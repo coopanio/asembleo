@@ -10,7 +10,7 @@ Sentry.init do |config|
   config.enabled_environments = %w[production]
   config.traces_sample_rate = 1.0
 
-  config.before_send do |event, hint|
+  config.before_send do |event, _hint|
     event.tags[:domain] = ENV['ASEMBLEO_HOST']
     event
   end
