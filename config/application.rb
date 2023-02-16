@@ -37,7 +37,7 @@ module Asembleo
 
     # Branding
     config.x.asembleo.title = ENV['ASEMBLEO_TITLE'].presence || 'Asembleo'
-    config.x.asembleo.footer = ENV['ASEMBLEO_FOOTER'].presence || 'Asembleo is a free software project developed by Coopanio'
+    config.x.asembleo.footer = ENV['ASEMBLEO_FOOTER'].presence
     config.x.asembleo.logo_url = ENV['ASEMBLEO_LOGO_URL'].presence
     config.x.asembleo.default_from = ENV['ASEMBLEO_DEFAULT_FROM'].presence || 'asembleo@example.com'
 

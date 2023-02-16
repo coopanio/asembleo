@@ -76,6 +76,7 @@ en:
     create: Create
     edit: Edit
     delete: Delete
+    footer: Asembleo is a free software project developed by Coopanio
     log_in: Log in
     log_out: Log out
     refresh: Refresh
