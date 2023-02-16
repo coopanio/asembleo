@@ -24,10 +24,8 @@
         <%= yield %>
       </div>
     </main>
-    <% if Rails.configuration.x.asembleo.footer %>
-      <footer class="mt-auto py-3">
-        <div class="container"><%= Rails.configuration.x.asembleo.footer %></div>
-      </footer>
-    <% end %>
+    <footer class="mt-auto py-3">
+      <div class="container"><%= Rails.configuration.x.asembleo.footer || t('application.footer') %></div>
+    </footer>
   </body>
 </html>

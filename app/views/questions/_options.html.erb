@@ -22,8 +22,8 @@
       <tr>
         <td><%= option.description %></td>
         <td><%= option.value %></td>
-        <td><%= link_to t('application.edit'), edit_consultation_question_option_url(@question, option) %></td>
-        <td><%= button_to t('application.delete'), consultation_question_option_path(@question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
+        <td><%= link_to t('application.edit'), edit_consultation_question_option_url(@consultation, @question, option) %></td>
+        <td><%= button_to t('application.delete'), consultation_question_option_path(@consultation, @question, option), method: :delete, class: 'btn btn-link py-0 link-danger' %></td>
       </tr>
       <% end %>
     </table>
