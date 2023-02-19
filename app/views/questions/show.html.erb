@@ -3,13 +3,13 @@
   <% if @question.group.present? %>
     <% if @question.group.description %>
       <div class="mb-3">
-        <%= raw(@question.group.description) %>
+        <%= markdown @question.group.description %>
       </div>
     <% end %>
   <% else %>
     <% if @question.description %>
       <div class="mb-3">
-        <%= raw(@question.description) %>
+        <%= markdown @question.description %>
       </div>
     <% end %>
   <% end %>

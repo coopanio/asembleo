@@ -1,9 +1,9 @@
 <%= form_with url: { controller: :votes, action: :create }, local: true do |f| %>
-  <table class="table">
+  <table class="table table-hover">
     <tbody>
       <% (@question.group.random_order ? @question.group.questions.shuffle : @question.group.questions).each do |question| %>
         <tr>
-          <td><%= question.description %></td>
+          <td><%= markdown question.description %></td>
           <% question.options.each do |option| %>
           <td>  
             <div class="row">

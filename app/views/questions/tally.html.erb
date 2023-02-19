@@ -1,7 +1,7 @@
 <h2><%= @consultation.title %></h2>
 <% if @question.description %>
   <div class="mb-3">
-    <%= raw(@question.description) %>
+    <%= markdown @question.short_description, plain_text: true %>
   </div>
 <% end %>
 <%= render "questions/ballot/#{@consultation.ballot}" %>

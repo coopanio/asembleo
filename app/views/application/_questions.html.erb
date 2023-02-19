@@ -25,7 +25,7 @@
       <% @consultation.questions.order(:id).each do |question| %>
       <tr>
         <td><%= question.id %></td>
-        <td><%= question.description %></td>
+        <td><%= markdown question.short_description, plain_text: true %></td>
         <td><%= question.status %></td>
         <td><%= link_to t('application.edit'), edit_consultation_question_url(@consultation, question) %></td>
         <% if @consultation.synchronous? %>
