@@ -1,7 +1,7 @@
 <%= form_with url: { controller: :votes, action: :create }, local: true do |f| %>
   <table class="table table-borderless">
     <tbody>
-      <% @question.group.questions.each do |question| %>
+      <% (@question.group.random_order ? @question.group.questions.shuffle : @question.group.questions).each do |question| %>
         <tr>
           <td><%= question.description %></td>
         </tr>

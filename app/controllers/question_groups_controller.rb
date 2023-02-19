@@ -53,7 +53,7 @@ class QuestionGroupsController < ApplicationController
   end
 
   def update_params
-    params.require(:question_group).permit(:description)
+    params.require(:question_group).permit(:description, config: %i[random_order])
   end
 
   def consultation
