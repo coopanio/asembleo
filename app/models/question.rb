@@ -22,6 +22,10 @@ class Question < ApplicationRecord
     receipts.exists?(token:)
   end
 
+  def short_description
+    description.split("\n").first.strip
+  end
+
   def position
     weight + 1
   end

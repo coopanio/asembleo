@@ -127,6 +127,10 @@ main {
   background-color: rgba($white, var(--bs-bg-opacity));
 }
 
+td > p {
+  margin-bottom: 0;
+}
+
 footer {
   --bs-bg-opacity: 1;
 

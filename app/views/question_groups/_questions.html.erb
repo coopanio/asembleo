@@ -22,7 +22,7 @@
             <tr>
               <td scope="row"><%= f.check_box :question_ids, { multiple: true }, question.id, nil %></td>
               <td><%= question.id %></td>
-              <td><%= question.description %></td>
+              <td><%= markdown question.short_description, plain_text: true %></td>
             </tr>
           <% end %>
         </tbody>

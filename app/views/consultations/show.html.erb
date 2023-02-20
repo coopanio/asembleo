@@ -1,5 +1,5 @@
 <h2><%= @consultation.title %></h2>
 <div class="mb-3">
-  <%= raw(@consultation.description) %>
+  <%= markdown @consultation.description %>
 </div>
 <%= render @consultation.status %>
