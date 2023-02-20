@@ -8,26 +8,29 @@ class QuestionGroupsController < ApplicationController
     @available_questions = policy_scope(Question).joins('LEFT JOIN question_links ON questions.id = question_links.question_id').where(question_links: { question_group_id: nil })
   end
 
+  def edit
+    @consultation = Consultation.find(params[:consultation_id])
+    @question_group = QuestionGroup.find(params[:id])
+    authorize @question_group
+  end
+
   def create
     authorize QuestionGroup
     raise Errors::InvalidParameters, I18n.t('question_groups.required_questions') if params[:question_group].blank?
 
     question_ids = create_params[:question_ids]
-    raise Errors::InvalidParameters, I18n.t('question_groups.required_questions') if question_ids.empty? || question_ids.size < 2
+
+    if question_ids.empty? || question_ids.size < 2
+      raise Errors::InvalidParameters, I18n.t('question_groups.required_questions')
+    end
 
     question_ids = question_ids.map(&:to_i)
     QuestionGroup.transaction do
-      CreateQuestionGroup.call(question_ids: question_ids)
+      CreateQuestionGroup.call(question_ids:)
       SyncQuestionSiblings.call(question: Question.find(question_ids.first))
     end
 
     redirect_to consultation_question_groups_path
-  end
-
-  def edit
-    @consultation = Consultation.find(params[:consultation_id])
-    @question_group = QuestionGroup.find(params[:id])
-    authorize @question_group
   end
 
   def update

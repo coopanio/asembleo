@@ -10,12 +10,17 @@ class MarkdownService < Redcarpet::Render::HTML
   }.freeze
 
   def self.render(text, plain_text: false)
-    if plain_text
-      markdown = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
-    else
-      markdown = Redcarpet::Markdown.new(self, **OPTIONS)
-    end
+    markdown = if plain_text
+                 Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
+               else
+                 Redcarpet::Markdown.new(self, **OPTIONS)
+               end
 
-    markdown.render(text).html_safe
+    content = markdown.render(text)
+    ActionController::Base.helpers.sanitize(content)
+  end
+
+  def header(text, _header_level)
+    %(<strong>#{text}</strong>)
   end
 end
