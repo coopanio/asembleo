@@ -2,6 +2,8 @@
 
 class ConsultationsController < ApplicationController
   def index
+    authorize Consultation
+
     @consultations = Consultation.all
   end
 

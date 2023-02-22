@@ -41,6 +41,12 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal params[:consultation][:description], consultation.description
   end
 
+  test 'should redirect on list consultations if not identified' do
+    get consultations_url
+
+    assert_response :redirect
+  end
+
   test 'should edit consultation' do
     login
 
