@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class ConsultationPolicy < ApplicationPolicy
+  def index?
+    return current_user.admin? if Rails.configuration.x.asembleo.private_instance
+
+    false
+  end
+
   def create?
     return current_user.admin? if Rails.configuration.x.asembleo.private_instance
 
