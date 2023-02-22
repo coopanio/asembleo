@@ -27,10 +27,10 @@ module Errors
         redirect_to controller: 'consultations', action: 'show', id: current_user.consultation.id
       end
 
-      rescue_from AccessDenied do |_e|
+      rescue_from AccessDenied do |e|
         error(I18n.t('errors.access_denied'))
 
-        if Rails.configuration.x.asembleo.private_instance
+        if e.identifier_type == :user
           redirect_to new_session_path
         else
           redirect_to root_path
@@ -49,7 +49,15 @@ module Errors
     end
   end
 
-  class AccessDenied < ActionController::ActionControllerError; end
+  class AccessDenied < ActionController::ActionControllerError
+    attr_reader :identifier_type
+
+    def initialize(msg = I18n.t('errors.access_denied'), identifier_type: Token.name.underscore.to_sym)
+      @identifier_type = identifier_type
+
+      super(msg)
+    end
+  end
 
   class InvalidParameters < ActionController::BadRequest
     def initialize(msg = I18n.t('errors.invalid_parameters'))

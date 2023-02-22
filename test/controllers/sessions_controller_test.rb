@@ -36,6 +36,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     subject
 
     assert_response :redirect
+    assert_redirected_to root_path
   end
 
   test 'should autologin' do
@@ -54,5 +55,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal principal.id, session[:identity_id]
     assert_equal principal.class.name, session[:identity_type]
+  end
+
+  test 'should fail on not found instance user' do
+    @params = { session: { identifier: 'rick@c137.io', password: 'wubbalubba' } }
+
+    subject
+
+    assert_response :redirect
+    assert_redirected_to new_session_path
   end
 end

@@ -16,6 +16,8 @@ class ConsultationPolicy < ApplicationPolicy
   end
 
   def show?
+    return false if current_user.blank?
+
     record.id == current_user.consultation_id
   end
 
