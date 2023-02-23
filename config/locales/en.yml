@@ -105,8 +105,6 @@ en:
     default_tokens_email:
       subject: Tokens created for %{consultation.title}
       body: |
-        Hello,
-
         The following tokens were created:
   errors:
     bad_request: Bad request

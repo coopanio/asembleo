@@ -3,7 +3,7 @@
 <%= t('consultations_mailer.default_tokens_email.body').strip %>
 
 <% @tokens.each do |token| %>
-  - <%= t('consultations.consultation_token_created', token:, role: token.translated_role) %>
+  - <%= sanitize t('consultations.consultation_token_created', token:, role: token.translated_role), tags: [] %>
 <% end %>
 
 <%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>
