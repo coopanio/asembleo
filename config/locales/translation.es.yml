@@ -299,6 +299,7 @@ es:
     upload:
     token:
       exhausted:
+    footer:
   consultations:
     consultation_token_created:
     consultation_create:
@@ -361,3 +362,5 @@ es:
     complimentary_close:
   consultations_mailer:
     default_tokens_email:
+      subject:
+      body:
