@@ -1,6 +1,6 @@
 <%= t('application_mailer.greeting') %>,
 
-<%= t('consultations_mailer.default_tokens_email').strip %>
+<%= t('consultations_mailer.default_tokens_email.body').strip %>
 
 <% @tokens.each do |token| %>
   - <%= t('consultations.consultation_token_created', token:, role: token.translated_role) %>

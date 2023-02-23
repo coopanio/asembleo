@@ -102,10 +102,12 @@ en:
     consultation_closed: The consultation is closed.
     consultation_deleted: Consultation deleted.
   consultations_mailer:
-    default_tokens_email: |
-      Hello,
+    default_tokens_email:
+      subject: Tokens created for %{consultation.title}
+      body: |
+        Hello,
 
-      The following tokens were created:
+        The following tokens were created:
   errors:
     bad_request: Bad request
     you_can_only_choose_up_to: You can only choose up to %{e_max_options} options.
