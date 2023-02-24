@@ -5,7 +5,7 @@
         <tr>
           <td><%= markdown question.description %></td>
           <% question.options.each do |option| %>
-          <td>  
+          <td style="width: 10%">  
             <div class="row">
                 <div class="form-check col">
                   <%= render 'questions/booth/option', form: f, question: question, option: option %>
