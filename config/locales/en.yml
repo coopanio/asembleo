@@ -152,9 +152,7 @@ en:
     log_in_as_admin: Log in as admin
   sessions_mailer:
     magic_link_email: |
-      You are receiving this email to sign in to vote using your email address.
-
-      Please click the link below to sign in:
+      You are receiving this email to vote. Please click the link below to sign in:
 
       %{sessions_url}/%{token}/login
 
