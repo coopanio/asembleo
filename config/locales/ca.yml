@@ -1,1 +1,193 @@
-{}
+activerecord:
+  attributes:
+    event:
+      status_list:
+        closed: ''
+        opened: ''
+      title: ''
+      id: ''
+      status: ''
+    option:
+      description: ''
+      value: ''
+    question_group:
+      id: ''
+    consultation:
+      mode: ''
+      status_list:
+        draft: ''
+        archived: ''
+        closed: ''
+        opened: ''
+      title: ''
+      description: ''
+      status: ''
+      ballot: ''
+    token:
+      tags: ''
+      role: ''
+    question:
+      status: ''
+      id: ''
+      description: ''
+    user:
+      role: ''
+  models:
+    token:
+      one: ''
+      other: ''
+    event:
+      one: ''
+      other: ''
+    consultation:
+      one: ''
+      other: ''
+    option:
+      one: ''
+      other: ''
+    question:
+      one: ''
+      other: ''
+consultations:
+  consultation_open: ''
+  consultation_archived: ''
+  consultation_closed: ''
+  consultation_deleted: ''
+  consultation_create: ''
+  consultation_token_created: ''
+  consultation_draft: ''
+  consultation_created: ''
+  consultation_finished: ''
+questions:
+  question_created: ''
+  question_results: ''
+  question_still_draft: ''
+  question_updated: ''
+  question_is_closed: ''
+  results_not_available: ''
+  vote: ''
+  question_closed: ''
+  question_deleted: ''
+  question_opened: ''
+helpers:
+  events_helper:
+    disable: ''
+    open: ''
+    close: ''
+    enable: ''
+  label:
+    event:
+      aliased: ''
+      status: ''
+      hints:
+        send: ''
+        aliased: ''
+        value: ''
+      tokens: ''
+      title: ''
+      send: ''
+    consultation:
+      ballot: ''
+      title: ''
+      status: ''
+      mode: ''
+      description: ''
+    session:
+      password: ''
+      identifier: ''
+    option:
+      value: ''
+      main: ''
+    question_group:
+      description: ''
+    question:
+      max_options: ''
+      description: ''
+mailers:
+  sessions_mailer:
+    new_consultation: ''
+activemodel:
+  attributes:
+    "consultation/config":
+      ballot_list:
+        secret: ''
+        open: ''
+      mode_list:
+        asynchronous: ''
+        synchronous: ''
+attributes:
+  role_list:
+    manager: ''
+    voter: ''
+    admin: ''
+  description: ''
+  status: ''
+  id: ''
+  title: ''
+  role: ''
+errors:
+  access_denied: ''
+  invalid_parameters: ''
+  bad_request: ''
+  you_can_only_choose_up_to: ''
+  you_already_voted_for_this: ''
+  choose_a_valid_option: ''
+  you_can_only_choose_up_to2: ''
+  not_authorized: ''
+application_mailer:
+  complimentary_close: ''
+  greeting: ''
+votes:
+  casted: ''
+  required_cast: ''
+  fingerprint: ''
+application:
+  save: ''
+  yes: ''
+  back: ''
+  cancel: ''
+  log_out: ''
+  refresh: ''
+  upload: ''
+  confirm: ''
+  delete: ''
+  create: ''
+  edit: ''
+  token:
+    exhausted: ''
+  log_in: ''
+  no: ''
+  footer: ''
+events:
+  token_disabled: ''
+  token_created: ''
+  token_add_admin: ''
+  tokens_created_or_enabled: ''
+  token_already_issued: ''
+  token_enabled_again: ''
+  event_deleted: ''
+  token_exists_and_enabled: ''
+  token_enabled: ''
+  token_bulk_creation: ''
+  created_tokens: ''
+interactors:
+  create_consultation:
+    default: ''
+question_groups:
+  grouped_questions: ''
+  required_questions: ''
+  group:
+    one: ''
+    other: ''
+consultations_mailer:
+  default_tokens_email:
+    body: ''
+    subject: ''
+options:
+  option_updated: ''
+  option_deleted: ''
+  option_created: ''
+sessions:
+  log_in_as_admin: ''
+sessions_mailer:
+  magic_link_email: ''
