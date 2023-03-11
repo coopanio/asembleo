@@ -1,4 +1,3 @@
----
 en:
   attributes:
     description: &description Description
@@ -99,7 +98,8 @@ en:
     consultation_created: Consultation created.
     consultation_draft: The consultation is still in draft mode.
     consultation_finished: You have answered all the questions.
-    consultation_open: The consultation is open but there are no active questions. Try it again later.
+    consultation_open: The consultation is open, but there are no active questions.
+      Try it again later.
     consultation_archived: The consultation has been archived.
     consultation_closed: The consultation is closed.
     consultation_deleted: Consultation deleted.
@@ -111,7 +111,8 @@ en:
   errors:
     bad_request: Bad request
     you_can_only_choose_up_to: You can only choose up to %{e_max_options} options.
-    you_can_only_choose_up_to2: You can only choose %{e_option_value} up to %{e_limit} times.
+    you_can_only_choose_up_to2: You can only choose %{e_option_value} up to %{e_limit}
+      times.
     choose_a_valid_option: Choose a valid option.
     you_already_voted_for_this: You already voted for this question.
     access_denied: Access denied.
@@ -221,8 +222,11 @@ en:
         title: *title
         tokens: List of tokens to create
         hints:
-          aliased: If checked, the values will be used as aliases for the tokens. This allows users to log in with the alias.
-          send: If checked, values must be e-mails to send personal magic links to access the consultation. Tokens will be generated without storing their related e-mail. Known e-mail addresses won't be sent a new magic link.
+          aliased: Uses values as aliases for the tokens. This allows users to log
+            in with the alias.
+          send: If checked, values must be e-mails to send personal magic links to
+            access the consultation. Tokens will be generated without storing their
+            related e-mail. Known e-mail addresses won't be sent a new magic link.
           value: One value per line.
       option:
         value: Internal value
