@@ -79,6 +79,7 @@ consultations:
   consultation_deleted: ''
   consultation_draft: ''
   consultation_token_created: ''
+  consultation_open: ''
 consultations_mailer:
   default_tokens_email:
     subject: ''
@@ -106,6 +107,7 @@ helpers:
       hints:
         value: ''
         send: ''
+        aliased: ''
       status: ''
       tokens: ''
       aliased: ''
@@ -193,3 +195,5 @@ mailers:
     new_consultation: ''
 sessions:
   log_in_as_admin: ''
+sessions_mailer:
+  magic_link_email: ''
