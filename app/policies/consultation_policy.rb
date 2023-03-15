@@ -2,9 +2,9 @@
 
 class ConsultationPolicy < ApplicationPolicy
   def index?
-    return current_user.admin? if Rails.configuration.x.asembleo.private_instance
+    return true if current_user.admin?
 
-    false
+    current_user.user?
   end
 
   def create?
@@ -22,8 +22,6 @@ class ConsultationPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if current_user.blank?
-
     record.id == current_user.consultation_id
   end
 

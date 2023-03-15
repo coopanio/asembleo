@@ -22,9 +22,9 @@ module Errors
         redirect_back fallback_location: root_path
       end
 
-      rescue_from AlreadyVoted do |_e|
+      rescue_from AlreadyVoted do |e|
         error(I18n.t('errors.you_already_voted_for_this'))
-        redirect_to controller: 'consultations', action: 'show', id: current_user.consultation.id
+        redirect_to controller: 'consultations', action: 'show', id: e.consultation.id
       end
 
       rescue_from AccessDenied do |e|
@@ -42,6 +42,16 @@ module Errors
         redirect_back fallback_location: root_path
       end
 
+      rescue_from InvalidEmail do |e|
+        error(e.message)
+        redirect_back fallback_location: root_path
+      end
+
+      rescue_from InvalidIdentity do |e|
+        error(e.message)
+        redirect_back fallback_location: root_path
+      end
+
       rescue_from InvalidParameters do |e|
         error(e.message)
         redirect_back fallback_location: root_path
@@ -56,6 +66,18 @@ module Errors
       @identifier_type = identifier_type
 
       super(msg)
+    end
+  end
+
+  class InvalidEmail < ActionController::BadRequest
+    def initialize(msg = I18n.t('errors.invalid_email'))
+      super
+    end
+  end
+
+  class InvalidIdentity < ActionController::BadRequest
+    def initialize(msg = I18n.t('errors.invalid_identity'))
+      super
     end
   end
 
@@ -88,7 +110,13 @@ module Errors
 
   class InvalidVoteOption < ActionController::BadRequest; end
 
-  class AlreadyVoted < ActionController::BadRequest; end
+  class AlreadyVoted < ActionController::BadRequest
+    attr_reader :consultation
 
-  class InvalidEmail < ActionController::BadRequest; end
+    def initialize(msg = I18n.t('errors.you_already_voted_for_this'), consultation: nil)
+      super(msg)
+
+      @consultation = consultation
+    end
+  end
 end

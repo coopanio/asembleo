@@ -6,7 +6,7 @@ class SessionsMailer < ApplicationMailer
     raise Errors::InvalidEmail unless EmailValidator.valid?(to, mode: :strict)
 
     tag = TokenTag.sent
-    mail(to:, template_name: 'magic_link_email', subject: I18n.t('mailers.sessions_mailer.new_consultation')) do |format|
+    mail(to:, template_name:, subject:) do |format|
       format.text
     end
   rescue StandardError => e
@@ -16,5 +16,19 @@ class SessionsMailer < ApplicationMailer
   ensure
     token.tags << tag
     token.save!
+  end
+
+  private
+
+  def template_name
+    return 'user_magic_link_email' if @token.scope == 'global'
+
+    'magic_link_email'
+  end
+
+  def subject
+    return I18n.t('sessions_mailer.user_magic_link_email.subject') if @token.scope == 'global'
+
+    I18n.t('sessions_mailer.magic_link_email.subject')
   end
 end

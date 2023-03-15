@@ -71,9 +71,11 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
 
   def login
     post sessions_url, params: { session: { identifier: token.to_hash } }
+    assert_predicate session[:identity_id], :present?
   end
 
   def login_user
     post sessions_url, params: { session: { identifier: token.identifier, password: 'notverysafe' } }
+    assert_predicate session[:identity_id], :present?
   end
 end

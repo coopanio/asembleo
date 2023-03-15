@@ -1,0 +1,6 @@
+<%= t('application_mailer.greeting') %>,
+
+<%= t('users_mailer.confirmation_email.body',
+    confirmation_url: confirmations_url(@receipt.to_hash(@user_id))).strip %>
+
+<%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>

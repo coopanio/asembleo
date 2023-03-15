@@ -3,8 +3,6 @@
     <%= t('consultations.consultation_finished') %>
   <% else %>
     <p><%= t('consultations.consultation_open') %></p>
-    <% if @current_user.voter? %>
-      <%= link_to t('application.refresh'), { controller: 'events', action: 'next_question', id: @current_user.event_id }, class: 'btn btn-primary btn-lg' %>
-    <% end %>
+    <%= link_to t('application.refresh'), { controller: 'events', action: 'next_question', id: @event.id }, class: 'btn btn-primary btn-lg' %>
   <% end %>
 </div>

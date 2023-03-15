@@ -5,8 +5,10 @@ require 'argon2'
 class User < ApplicationRecord
   has_paper_trail
 
-  enum role: { user: 0, manager: 1, admin: 2 }
-  enum status: { enabled: 1, disabled: 0 }
+  has_many :receipts, foreign_key: 'token_id', dependent: :destroy
+
+  enum :role, { voter: 0, manager: 1, admin: 2 }, default: :voter
+  enum :status, { enabled: 1, disabled: 0 }, default: :disabled
 
   translate_enum :role
 
@@ -28,5 +30,9 @@ class User < ApplicationRecord
     return identifier if EmailValidator.valid?(identifier, mode: :strict)
 
     nil
+  end
+
+  def to_hash
+    HashIdService.encode(id)
   end
 end

@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :events
+  resources :users
   resources :sessions
   resources :votes
 
-  get   'sessions/:token/login', to: 'sessions#create'
   patch 'consultations/:consultation_id/questions/:id/open',         to: 'questions#open'
   patch 'consultations/:consultation_id/questions/:id/open_all',     to: 'questions#open_all'
   patch 'consultations/:consultation_id/questions/:id/close',        to: 'questions#close'
@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   get   'events/:id/tokens',          to: 'events#new_tokens'
   patch 'events/:id/token/:token_id', to: 'events#update_token'
   get   'events/:id/next',            to: 'events#next_question'
-  get   '/',                          to: 'main#index'
+  get   'sessions/:token/login',      to: 'sessions#create', as: 'magic_link'
+  get   'confirmations/:hash',        to: 'users#confirm', as: 'confirmations'
+  get   'approvals/:hash',            to: 'users#approve', as: 'approvals'
+  get   '',                           to: 'main#index'
 
   root to: 'main#index'
 end

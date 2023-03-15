@@ -21,7 +21,7 @@ class Envelope
           question:,
           value:,
           weight: token.weight,
-          event: token.event,
+          event:,
           alias: vote_alias
         )
       )
@@ -34,7 +34,7 @@ class Envelope
     return @receipt if defined?(@receipt)
 
     @receipt ||= Receipt.new.tap do |r|
-      r.token = token
+      r.token_id = token.id
       r.question = question
       r.created_at = created_at
       r.fingerprint = FingerprintService.generate(r, token.to_hash, values)
@@ -55,5 +55,11 @@ class Envelope
     return unless consultation.ballot == 'open'
 
     token.on_behalf_of || token.alias || token.to_hash
+  end
+
+  def event
+    return token.event if token.is_a?(Token)
+
+    consultation.events.first
   end
 end

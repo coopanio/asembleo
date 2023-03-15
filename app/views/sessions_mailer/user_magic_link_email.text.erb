@@ -1,0 +1,6 @@
+<%= t('application_mailer.greeting') %>,
+
+<%= t('sessions_mailer.user_magic_link_email.body',
+    magic_link_url: magic_link_url(@token.to_hash)).strip %>
+
+<%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>

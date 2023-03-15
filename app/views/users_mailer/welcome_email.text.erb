@@ -1,0 +1,6 @@
+<%= t('application_mailer.greeting') %>,
+
+<%= t('users_mailer.welcome_email.body',
+      magic_link_url: @magic_link_url).strip %>
+
+<%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>

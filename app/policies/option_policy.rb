@@ -2,14 +2,20 @@
 
 class OptionPolicy < ApplicationPolicy
   def create?
+    return false if current_user.blank?
+
     current_user.admin?
   end
 
   def update?
+    return false if current_user.blank?
+
     show? && current_user.admin?
   end
 
   def destroy?
+    return false if current_user.blank?
+
     show? && current_user.admin?
   end
 

@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
   def show
     authorize question
 
-    raise Errors::AlreadyVoted if question.voted?(current_user)
+    raise Errors::AlreadyVoted.new(consultation: question.consultation) if question.voted?(current_user)
   end
 
   def new_option
@@ -105,7 +105,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def update_status(status, events: [event])
+  def update_status(status, events: [question_event])
     EventsQuestion.transaction do
       events.each do |event|
         rel = EventsQuestion.find_or_create_by(consultation:, question:, event:)
@@ -124,8 +124,8 @@ class QuestionsController < ApplicationController
     @question ||= Question.find(params[:id])
   end
 
-  def event
-    @event ||= Event.find(open_params[:id])
+  def question_event
+    @question_event ||= Event.find(open_params[:id])
   end
 
   def create_params

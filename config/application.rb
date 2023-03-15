@@ -31,6 +31,7 @@ module Asembleo
     #
     # Voting
     config.x.asembleo.private_instance = ENV['ASEMBLEO_PRIVATE_INSTANCE'].present?
+    config.x.asembleo.open_registration = ENV['ASEMBLEO_OPEN_REGISTRATION'].present?
     config.x.asembleo.token_alias = ENV['ASEMBLEO_TOKEN_ALIAS'].presence
     config.x.asembleo.async_vote = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_ASYNC_VOTE'].presence) || false
     config.x.asembleo.hide_receipt = ActiveModel::Type::Boolean.new.cast(ENV['ASEMBLEO_HIDE_RECEIPT'].presence) || false
@@ -51,6 +52,7 @@ module Asembleo
     config.x.asembleo.background_css = ENV['ASEMBLEO_BACKGROUND_CSS'].presence
 
     config.action_mailer.default_url_options = { host: 'example.com' }
+    routes.default_url_options = config.action_mailer.default_url_options
 
     config.i18n.default_locale = :en
     config.i18n.available_locales = %i[en es]

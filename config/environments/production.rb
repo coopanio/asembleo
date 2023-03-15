@@ -100,4 +100,6 @@ Rails.application.configure do
     protocol: 'https'
   }
   config.action_mailer.raise_delivery_errors = true
+
+  routes.default_url_options = config.action_mailer.default_url_options
 end

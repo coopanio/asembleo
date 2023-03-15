@@ -5,7 +5,7 @@ require 'securerandom'
 class Token < ApplicationRecord
   has_paper_trail
 
-  belongs_to :consultation
+  belongs_to :consultation, optional: true
   belongs_to :event, optional: true
 
   has_many :receipts, dependent: :destroy
@@ -13,6 +13,7 @@ class Token < ApplicationRecord
 
   enum role:   { voter: 0, manager: 1, admin: 2 }
   enum status: { enabled: 1, disabled: 0 }
+  enum :scope, { consultation: 0, global: 1 }, default: :consultation
 
   translate_enum :role
 

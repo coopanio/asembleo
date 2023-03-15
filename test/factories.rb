@@ -5,11 +5,13 @@ FactoryBot.define do
   factory :user do
     sequence(:identifier) { |n| "user#{n}" }
     password { 'wubbalubba' }
+    status { :enabled }
   end
 
   factory :token do
     consultation
     salt { 9_999 }
+    status { :enabled }
 
     trait :admin do
       role { :admin }
