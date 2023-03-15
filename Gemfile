@@ -8,6 +8,7 @@ gem 'argon2', '~> 2.2'
 gem 'bootsnap', '~> 1.15', require: false
 gem 'chartkick', '~> 5.0'
 gem 'cssbundling-rails', '~> 1.1'
+gem 'dni_nie', '~> 0.3.91'
 gem 'email_validator', '~> 2.2'
 gem 'hashids', '~> 1.0'
 gem 'hiredis', '~> 0.6'

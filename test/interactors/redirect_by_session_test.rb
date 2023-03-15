@@ -8,9 +8,13 @@ class RedirectBySessionTest < ActiveSupport::TestCase
   setup do
     @consultation = create(:consultation)
     @identity = create(:token, consultation:)
+
+    Context.reset
+    Context.identity = identity
+    Context.consultation_id = consultation.id
   end
 
-  subject { RedirectBySession.call(identity:).destination }
+  subject { RedirectBySession.call(Context.to_h).destination }
 
   test 'should return the consultation' do
     assert_equal subject, "/consultations/#{consultation.id}"
@@ -76,8 +80,22 @@ class RedirectBySessionTest < ActiveSupport::TestCase
   test 'should return the front page when user is an instance user' do
     @identity = create(:user)
 
+    Context.reset
+    Context.identity = identity
+
     assert_predicate subject, :present?
     assert_equal '/consultations', subject
+  end
+
+  test 'should return the consultation page when user is an instance user and the consultation is known' do
+    @identity = create(:user)
+
+    Context.reset
+    Context.identity = identity
+    Context.consultation_id = consultation.id
+
+    assert_predicate subject, :present?
+    assert_equal "/consultations/#{consultation.id}", subject
   end
 
   private

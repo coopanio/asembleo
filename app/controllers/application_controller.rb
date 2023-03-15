@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_raven_context
   before_action :check_token
   before_action :set_locale
+  before_action :set_context
 
   include Errors
   include FlashConcern
@@ -34,10 +35,19 @@ class ApplicationController < ActionController::Base
     @current_user ||= resource_class.find(session[:identity_id])
   end
 
-  def pundit_user
-    return if current_user.blank?
-    return current_user if current_user.respond_to?(:consultation_id)
+  def set_context
+    Context.reset
 
-    OpenStruct.new(consultation_id: consultation&.id, admin?: current_user.admin?)
+    Context.identity = @current_user
+
+    Context.consultation_id = self.consultation_id if respond_to?(:consultation_id, true)
+    Context.consultation_id = self.consultation&.id if respond_to?(:consultation, true)
+
+    Context.event_id = self.event_id if respond_to?(:event_id, true)
+    Context.event_id = self.event&.id if respond_to?(:event, true)
+  end
+
+  def pundit_user
+    Context.context
   end
 end

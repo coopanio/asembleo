@@ -1,0 +1,6 @@
+<%= t('application_mailer.greeting') %>,
+
+<%= t('users_mailer.approval_email.body',
+    approval_url: approvals_url(@receipt.to_salted_hash(@user_id))).strip %>
+
+<%= t('application_mailer.complimentary_close', recipient: Rails.configuration.x.asembleo.title).strip %>

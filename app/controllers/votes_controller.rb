@@ -20,7 +20,7 @@ class VotesController < ApplicationController
     result = CastVotes.result(votes_params:, current_user:)
     raise result.error if result.failure?
 
-    redirect_to controller: 'events', action: 'next_question', id: current_user.event_id if Rails.configuration.x.asembleo.hide_receipt
+    redirect_to controller: 'events', action: 'next_question', id: event.id if Rails.configuration.x.asembleo.hide_receipt
 
     @receipt = result.receipts.last
   end
@@ -38,6 +38,20 @@ class VotesController < ApplicationController
     vps
   end
 
+  def event
+    return @event if defined?(@event)
+    return @event ||= current_user.event if current_user.is_a?(Token)
+
+    @event ||= consultation.events.first
+  end
+
+  def consultation
+    return @consultation if defined?(@consultation)
+    return @consultation ||= current_user.consultation if current_user.is_a?(Token)
+
+    @consultation ||= questions.first.consultation
+  end
+
   def questions
     @questions ||= policy_scope(Question).where(id: question_ids)
   end
@@ -45,7 +59,7 @@ class VotesController < ApplicationController
   def question_ids
     return group.questions.map(&:id) if group.present?
 
-    params.require(:question_id).to_i
+    [params.require(:question_id).to_i]
   end
 
   def group

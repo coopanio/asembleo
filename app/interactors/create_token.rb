@@ -3,19 +3,18 @@
 class CreateToken < Actor
   input :identifier, type: String, allow_nil: true, default: nil
   input :role, type: Symbol, in: Token.roles.keys.map(&:to_sym)
-  input :event, type: Event, allow_nil: false
+  input :event, type: Event, allow_nil: true, default: nil
   input :aliased, type: [TrueClass, FalseClass], default: false
   input :send_magic_link, type: [TrueClass, FalseClass], default: false
+  input :scope, type: Symbol, in: %i[consultation global], default: :consultation
+  input :scope_context, type: Hash, default: -> { {} }
 
   output :token
   output :skip
 
   def call
-    if already_issued?
-      self.skip = true
-
-      return
-    end
+    validate
+    return if skip
 
     self.token = find_or_initialize_token
     new_token = token.new_record?
@@ -32,7 +31,14 @@ class CreateToken < Actor
   private
 
   def consultation
+    return nil if event.nil?
+
     event.consultation
+  end
+
+  def validate
+    fail!(error: Errors::InvalidTokenScope) if scope == :consultation && consultation.nil?
+    self.skip = true if already_issued?
   end
 
   def already_issued?
@@ -56,11 +62,18 @@ class CreateToken < Actor
   end
 
   def create_token
-    if aliased
-      Token.new(alias: cleaned_identifier, consultation:, event:, role:)
-    else
-      Token.new(consultation:, event:, role:)
-    end
+    return create_global_token if scope == :global
+    return create_aliased_token if aliased
+
+    Token.new(consultation:, event:, role:, scope:, scope_context:)
+  end
+
+  def create_global_token
+    Token.new(role:, scope:, scope_context:)
+  end
+
+  def create_aliased_token
+    Token.new(alias: cleaned_identifier, consultation:, event:, role:, scope:, scope_context:)
   end
 
   def cleaned_identifier

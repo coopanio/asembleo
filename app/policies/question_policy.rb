@@ -30,13 +30,13 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if current_user.blank?
-
     record.consultation_id == current_user.consultation_id
   end
 
   class Scope < Scope
     def resolve
+      return scope if current_user.consultation_id.nil?
+
       scope.where(consultation_id: current_user.consultation_id)
     end
   end

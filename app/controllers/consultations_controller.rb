@@ -8,12 +8,6 @@ class ConsultationsController < ApplicationController
   end
 
   def new
-    if Rails.configuration.x.asembleo.private_instance && current_user.blank?
-      redirect_to controller: 'sessions', action: 'new'
-
-      return
-    end
-
     authorize Consultation
     @consultation = Consultation.new
   end
@@ -80,6 +74,14 @@ class ConsultationsController < ApplicationController
 
   def update_params
     params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot])
+  end
+
+  def event
+    return @event if defined?(@event)
+    return @event = current_user.event if current_user.respond_to?(:event)
+    return @event = nil if consultation.nil?
+
+    @event = consultation.events.first
   end
 
   def consultation

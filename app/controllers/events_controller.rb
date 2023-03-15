@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def next_question
     authorize event
 
-    result = RedirectBySession.call(identity: current_user)
+    result = RedirectBySession.call(Context.to_h)
     redirect_to result.destination
   end
 
@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 
         success(I18n.t('events.tokens_created_or_enabled'))
 
-        result = RedirectBySession.call(identity: current_user)
+        result = RedirectBySession.call(Context.to_h)
         redirect_to result.destination
       else
         result = CreateToken.result(
@@ -117,6 +117,8 @@ class EventsController < ApplicationController
   private
 
   def event
+    return nil if params[:id].blank?
+
     @event ||= Event.find(params.require(:id))
   end
 
@@ -141,6 +143,8 @@ class EventsController < ApplicationController
   end
 
   def consultation
+    return nil if event.nil?
+
     @consultation ||= event.consultation
   end
 end

@@ -1,17 +1,15 @@
-<% cache @question do %>
-  <h2><%= @question.consultation.title %></h2>
-  <% if @question.group.present? %>
-    <% if @question.group.description %>
-      <div class="mb-3">
-        <%= markdown @question.group.description %>
-      </div>
-    <% end %>
-  <% else %>
-    <% if @question.description %>
-      <div class="mb-3">
-        <%= markdown @question.description %>
-      </div>
-    <% end %>
+<h2><%= @question.consultation.title %></h2>
+<% if @question.group.present? %>
+  <% if @question.group.description %>
+    <div class="mb-3">
+      <%= markdown @question.group.description %>
+    </div>
   <% end %>
-  <%= render @question.status %>
+<% else %>
+  <% if @question.description %>
+    <div class="mb-3">
+      <%= markdown @question.description %>
+    </div>
+  <% end %>
 <% end %>
+<%= render @question.status %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_211602) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_232746) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,6 +67,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_211602) do
     t.index ["consultation_id"], name: "index_events_questions_on_consultation_id"
     t.index ["event_id"], name: "index_events_questions_on_event_id"
     t.index ["question_id"], name: "index_events_questions_on_question_id"
+  end
+
+  create_table "identity_receipts", force: :cascade do |t|
+    t.string "fingerprint"
+    t.boolean "confirmed"
+    t.datetime "confirmed_at"
+    t.boolean "approved"
+    t.datetime "approved_at"
+    t.integer "salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "options", force: :cascade do |t|
@@ -136,12 +147,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_211602) do
     t.integer "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "consultation_id", null: false
+    t.integer "consultation_id"
     t.integer "event_id"
     t.string "alias"
     t.integer "status", default: 1
     t.decimal "weight", default: "1.0"
     t.string "on_behalf_of"
+    t.integer "scope"
+    t.json "scope_context", default: {}
     t.index ["consultation_id"], name: "index_tokens_on_consultation_id"
     t.index ["event_id"], name: "index_tokens_on_event_id"
   end
@@ -152,6 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_211602) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
+    t.decimal "weight", default: "1.0"
   end
 
   create_table "versions", force: :cascade do |t|

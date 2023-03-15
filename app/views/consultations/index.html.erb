@@ -3,9 +3,11 @@
     <div class="col">
       <strong><%= t('activerecord.models.consultation', count: 2) %></strong>
     </div>
-    <div class="col-auto">
-      <%= link_to t('consultations.consultation_create'), { controller: :consultations, action: :new }, class: 'btn btn-link link-secondary' %>
-    </div>
+    <% if @current_user.admin? %>
+      <div class="col-auto">
+        <%= link_to t('consultations.consultation_create'), { controller: :consultations, action: :new }, class: 'btn btn-link link-secondary' %>
+      </div>
+    <% end %>
   </div>
   <div class="card-body">
     <table class="table table-striped">
@@ -18,7 +20,11 @@
       <% @consultations.each do |consultation| %>
         <tr>
           <td><%= consultation.title %></td>
-          <td><%= link_to t('application.edit'), { controller: :consultations, action: :edit, id: consultation.id }, class: 'btn btn-link py-0' %></td>
+          <% if @current_user.admin? %>
+            <td><%= link_to t('application.edit'), { controller: :consultations, action: :edit, id: consultation.id }, class: 'btn btn-link py-0' %></td>
+          <% else %>
+            <td><%= link_to t('questions.vote'), { controller: :consultations, action: :show, id: consultation.id }, class: 'btn btn-link py-0' %></td>
+          <% end %>
         </tr>
       <% end %>
     </table>

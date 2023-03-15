@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CastVotes < Actor
-  input :current_user, type: Token, allow_nil: false
+  input :current_user, type: [Token, User], allow_nil: false
   input :votes_params, allow_nil: false
 
   output :receipts
@@ -31,7 +31,7 @@ class CastVotes < Actor
     question = vote_params[:question]
     values = vote_params[:value]
 
-    raise Errors::AlreadyVoted if question.voted?(current_user)
+    raise Errors::AlreadyVoted.new(consultation: question.consultation) if question.voted?(current_user)
     raise Errors::TooManyOptions, question.max_options if values.size > question.max_options
 
     values.each do |value|
