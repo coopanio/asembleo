@@ -103,9 +103,7 @@ helpers:
     question:
       max_options: ''
       description: ''
-mailers:
-  sessions_mailer:
-    new_consultation: ''
+mailers: {}
 activemodel:
   attributes:
     "consultation/config":
@@ -189,5 +187,3 @@ options:
   option_created: ''
 sessions:
   log_in_as_admin: ''
-sessions_mailer:
-  magic_link_email: ''

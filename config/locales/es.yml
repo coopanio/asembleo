@@ -190,10 +190,6 @@ application_mailer:
 interactors:
   create_consultation:
     default: ''
-mailers:
-  sessions_mailer:
-    new_consultation: ''
+mailers: {}
 sessions:
   log_in_as_admin: ''
-sessions_mailer:
-  magic_link_email: ''
