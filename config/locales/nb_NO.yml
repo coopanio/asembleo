@@ -1,0 +1,202 @@
+attributes:
+  description: Beskrivelse
+  id: ID
+  role_list:
+    manager: Vedlikeholder
+    voter: Stemmegiver
+    admin: Administrator
+  status: Status
+  role: Rolle
+  title: Navn
+activerecord:
+  models:
+    option:
+      one: Alternativ
+      other: Alternativer
+    question:
+      one: Spørsmål
+      other: Spørsmål
+    event:
+      one: Begivenhet
+      other: Begivenheter
+    consultation:
+      one: Konsultasjon
+      other: Konsultasjoner
+    token:
+      one: Symbol
+      other: Symboler
+  attributes:
+    consultation:
+      description: Beskrivelse
+      mode: Modus
+      status: Status
+      status_list:
+        opened: Åpen
+        closed: Lukket
+        archived: Arkivert
+        draft: Kladd
+      ballot: Stemmeseddel
+      title: Navn
+    event:
+      id: ID
+      status: Status
+      status_list:
+        opened: Åpen
+        closed: Lukket
+      title: Navn
+    option:
+      value: Verdi
+      description: Beskrivelse
+    token:
+      role: Rolle
+      tags: Etiketter
+    question:
+      description: Beskrivelse
+      status: Status
+      id: ID
+    question_group:
+      id: ID
+    user:
+      role: Rolle
+activemodel:
+  attributes:
+    "consultation/config":
+      mode_list:
+        synchronous: Synkron
+        asynchronous: Asynkron
+      ballot_list:
+        open: Åpen
+        secret: Hemmelig
+application:
+  back: Tilbake
+  cancel: Avbryt
+  confirm: Er du sikker?
+  delete: Slett
+  footer: Assembleo er fri programvare utvilket av Coopanio
+  yes: Ja
+  no: Nei
+  token:
+    exhausted: Oppbrukt?
+  create: Opprett
+  log_in: Logg inn
+  edit: Rediger
+  log_out: Logg ut
+  refresh: Gjenoppfrisk
+  save: Lagre
+  upload: Las opp
+consultations:
+  consultation_token_created: '%{role}-symbolet er <strong>%{token}</strong>.'
+  consultation_create: Opprett konsultasjon
+  consultation_draft: Konsultasjonen er fremdeles i kladdemodus.
+  consultation_finished: Du har besvart alle spørsmålene.
+  consultation_archived: Konsultasjonen har blitt arkivert.
+  consultation_deleted: Konsultasjon slettet.
+  consultation_closed: Konsultasjonen er lukket.
+  consultation_created: Konsultasjon opprettet.
+  consultation_open: Konsultasjonen er åpen, men det er ingen aktive spørsmål. Prøv
+    igjen senere.
+consultations_mailer:
+  default_tokens_email:
+    subject: Symboler opprettet for %{consultation.title}
+    body: "Følgende symboler ble opprettet:\n"
+errors:
+  bad_request: Feilaktig forespørsel
+  choose_a_valid_option: Velg et gyldig alternativ.
+  you_already_voted_for_this: Du har allerede stemt i dette spørsmålet.
+  access_denied: Tilgang nektet.
+  not_authorized: Du har ikke tilgang.
+  you_can_only_choose_up_to: Du kan velge opptil %{e_max_options} alternativer.
+  invalid_parameters: Ugyldige parametre.
+  you_can_only_choose_up_to2: Du kan kun velge %{e_option_value} opptil %{e_limit}
+    ganger.
+events:
+  token_enabled_again: Symbol opprettet igjen.
+  created_tokens: Opprettet symboler
+  token_exists_and_enabled: Symbolet finnes og er påskrudd.
+  token_enabled: Symbol påskrudd.
+  token_disabled: Symbol avskrudd.
+  event_deleted: Begivenhet slettet.
+  token_bulk_creation: Masseopprettelse
+  token_created: Symbol opprettet.
+  token_already_issued: Symbol allerede utstedt.
+  tokens_created_or_enabled: Symboler opprettet eller påslått.
+  token_add_admin: Legg til administrator
+question_groups:
+  group:
+    one: Gruppe
+    other: Grupper
+  grouped_questions: Grupperte spørsmål
+  required_questions: Velg minst to spørsmål.
+options:
+  option_created: Alternativ opprettet.
+  option_updated: Alternativ oppdatert.
+  option_deleted: Alternativ slettet.
+questions:
+  question_closed: Spørsmål lukket.
+  question_created: Spørsmål opprettet.
+  question_deleted: Spørsmål slettet.
+  question_is_closed: Spørsmålet er lukket.
+  question_opened: Spørsmål åpnet.
+  question_results: Resultater
+  question_still_draft: Spørsmålet er fremdeles i kladdemodus.
+  question_updated: Spørsmål oppdatert.
+  results_not_available: Resultater er ikke tilgjengelig når spørsmålet er åpent.
+  vote: Stem
+sessions:
+  log_in_as_admin: Logg inn som administrator
+votes:
+  required_cast: Avgi stemme for hvert spørsmål.
+  fingerprint: Din stemmes fingeravtrukk %{fingerprint}
+  casted: Stemmen din er registrert. Fortsett til neste spørsmål.
+helpers:
+  label:
+    consultation:
+      ballot: Stemmeseddel
+      description: Beskrivelse
+      title: Navn
+      mode: Modus
+      status: Status
+    event:
+      aliased: Bruk verdier som alternative navn
+      hints:
+        value: En verdi per linje.
+        aliased: Bruker alias for sumbolene. Dette tillater brukerinnlogging med aliaset.
+        send: Verdier må være e-postadresser for å sende personlige magiske lenker
+          for å få tilgang til konsultasjonen. Symboler vil bli generert uten å lagre
+          deres relaterte e-postadresser. Kjente e-postadresser vil ikke bli sendt
+          en ny magisk lenke.
+      title: Navn
+      send: Send magiske lenker
+      status: Status
+      tokens: Liste over symboler å opprette
+    option:
+      main: Hovedalternativ
+      value: Intern verdi
+    question:
+      description: Beskrivelse
+      max_options: Maks. alternativer
+    session:
+      password: Passord
+      identifier: Identifikator
+    question_group:
+      description: Beskrivelse
+  events_helper:
+    open: Åpne
+    close: Lukk
+    disable: Skru av
+    enable: Skru på
+interactors:
+  create_consultation:
+    default: Forvalg
+mailers:
+  sessions_mailer:
+    new_consultation: Ny konsultasjon
+application_mailer:
+  complimentary_close: "Takk,\n%{recipient}\n"
+  greeting: Hei
+sessions_mailer:
+  magic_link_email: "Du mottar denne e-posten for å logge inn for å stemme ved bruk\
+    \ av din e-postadresse.\n\nKlikk på lenken nedenfor for å logge inn:\n\n%{sessions_url}/%{token}/login\n\
+    \nLenken er gyldig mens stemmegivningen er åpen.\n\nHvis lenken ikke fungerer\
+    \ for deg kan du gå til %{root_url} og bruke symbolet «%{token}» for å logge inn.\n\
+    \nHvis du ikke forepurte en lenke kan du se bort fra denne e-posten.\n"
