@@ -3,7 +3,8 @@
 [![CodeQL](https://github.com/coopanio/asembleo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/coopanio/asembleo/actions/workflows/codeql-analysis.yml)
 [![Semgrep](https://github.com/coopanio/asembleo/actions/workflows/semgrep.yml/badge.svg)](https://github.com/coopanio/asembleo/actions/workflows/semgrep.yml)
 [![Coverage Status](https://coveralls.io/repos/github/coopanio/asembleo/badge.svg?branch=main)](https://coveralls.io/github/coopanio/asembleo?branch=main)
-[![DeepSource](https://deepsource.io/gh/coopanio/asembleo.svg/?label=active+issues&show_trend=true&token=G_FrkdoCFPuIPKU-lYa2OSnT)](https://deepsource.io/gh/coopanio/asembleo/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/coopanio/asembleo.svg/?label=active+issues&show_trend=true&token=G_FrkdoCFPuIPKU-lYa2OSnT)](https://deepsource.io/gh/coopanio/asembleo/?ref=repository-badge) 
+[![Weblate](https://hosted.weblate.org/widgets/asembleo/-/asembleo/svg-badge.svg)](https://hosted.weblate.org/engage/asembleo/)
 
 Pseudoanonymous voting system for general assemblies
 
