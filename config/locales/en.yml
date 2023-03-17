@@ -179,8 +179,10 @@ en:
         If you did not request this link, ignore this email.
   users:
     user_approved: Account approved.
-    user_created: Account creation request registered succesfully. You will receive an email to confirmate it if everything is correct.
-    user_confirmed: Account confirmed. You will receive an email with the admins' approval.
+    user_created: Account creation request registered succesfully. You will receive
+      an email to confirmate it if everything is correct.
+    user_confirmed: Account confirmed. You will receive an email with the admins'
+      approval.
     voter_sign_up: Sign up as voter
   users_mailer:
     approval_email:
@@ -224,9 +226,10 @@ en:
         hints:
           aliased: Uses values as aliases for the tokens. This allows users to log
             in with the alias.
-          send: If checked, values must be e-mails to send personal magic links to
-            access the consultation. Tokens will be generated without storing their
-            related e-mail. Known e-mail addresses won't be sent a new magic link.
+          send: Requires values to be e-mail addresses to send personal magic links
+            to access the consultation. Tokens will be generated without storing their
+            related e-mail addresses. Known e-mail addresses won't be sent a new magic
+            link.
           value: One value per line.
       option:
         value: Internal value
