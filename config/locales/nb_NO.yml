@@ -144,6 +144,20 @@ questions:
   vote: Stem
 sessions:
   log_in_as_admin: Logg inn som administrator
+sessions_mailer:
+  magic_link_email:
+    subject: Ny konsultasjon
+    body: "Du mottar denne e-posten for å logge inn for å stemme ved bruk\
+    \ av din e-postadresse.\n\nKlikk på lenken nedenfor for å logge inn:\n\n%{magic_link_url}\n\
+    \nLenken er gyldig mens stemmegivningen er åpen.\n\nHvis lenken ikke fungerer\
+    \ for deg kan du gå til %{root_url} og bruke symbolet «%{token}» for å logge inn.\n\
+    \nHvis du ikke forepurte en lenke kan du se bort fra denne e-posten.\n"
+  user_magic_link_email:
+    subject: Magisk lenke for å logge inn
+    body: |
+      Du mottar denne e-posten for å logge på. Klikk på lenken nedenfor:
+      %{magic_link_url}
+      Hvis du ikke forepurte en lenke kan du se bort fra denne e-posten.
 votes:
   required_cast: Avgi stemme for hvert spørsmål.
   fingerprint: Din stemmes fingeravtrukk %{fingerprint}
@@ -188,7 +202,6 @@ helpers:
 interactors:
   create_consultation:
     default: Forvalg
-mailers: {}
 application_mailer:
   complimentary_close: "Takk,\n%{recipient}\n"
   greeting: Hei
