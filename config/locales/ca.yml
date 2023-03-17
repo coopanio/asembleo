@@ -2,52 +2,52 @@ activerecord:
   attributes:
     event:
       status_list:
-        closed: ''
-        opened: ''
-      title: ''
+        closed: 'Tancat'
+        opened: 'Obert'
+      title: 'Títol'
       id: ''
-      status: ''
+      status: 'Estat'
     option:
-      description: ''
-      value: ''
+      description: 'Descripció'
+      value: 'Valor'
     question_group:
       id: ''
     consultation:
       mode: ''
       status_list:
-        draft: ''
+        draft: 'Esborrany'
         archived: ''
-        closed: ''
-        opened: ''
-      title: ''
-      description: ''
-      status: ''
+        closed: 'Tancada'
+        opened: 'Oberta'
+      title: 'Títol'
+      description: 'Descripció'
+      status: 'Estat'
       ballot: ''
     token:
-      tags: ''
-      role: ''
+      tags: 'Etiquetes'
+      role: 'Rol'
     question:
-      status: ''
+      status: 'Estat'
       id: ''
-      description: ''
+      description: 'Descripció'
     user:
-      role: ''
+      role: 'Rol'
   models:
     token:
-      one: ''
-      other: ''
+      one: Testimoni
+      other: Testimonis
     event:
-      one: ''
-      other: ''
+      one: Esdeveniment
+      other: Esdeveniments
     consultation:
       one: ''
       other: ''
     option:
-      one: ''
-      other: ''
+      one: Opció
+      other: Opcions
     question:
-      one: ''
-      other: ''
+      one: Pregunta
+      other: Preguntes
 consultations:
   consultation_open: ''
   consultation_archived: ''
@@ -60,73 +60,74 @@ consultations:
   consultation_finished: ''
 questions:
   question_created: ''
-  question_results: ''
+  question_results: 'Resultats'
   question_still_draft: ''
   question_updated: ''
   question_is_closed: ''
   results_not_available: ''
-  vote: ''
+  vote: 'Votar'
   question_closed: ''
   question_deleted: ''
   question_opened: ''
 helpers:
   events_helper:
-    disable: ''
-    open: ''
-    close: ''
-    enable: ''
+    disable: 'Desactivar'
+    open: 'Obrir'
+    close: 'Tancar'
+    enable: 'Activar'
   label:
     event:
       aliased: ''
-      status: ''
+      status: 'Estat'
       hints:
         send: ''
         aliased: ''
         value: ''
       tokens: ''
-      title: ''
+      title: 'Títol'
       send: ''
     consultation:
       ballot: ''
-      title: ''
-      status: ''
+      title: 'Títol'
+      status: 'Estat'
       mode: ''
-      description: ''
+      description: 'Descripció'
     session:
-      password: ''
-      identifier: ''
+      password: 'Contrassenya'
+      identifier: 'Identificador'
     option:
       value: ''
       main: ''
     question_group:
-      description: ''
+      description: 'Descripció'
     question:
       max_options: ''
-      description: ''
+      description: 'Descripció'
 mailers: {}
 activemodel:
   attributes:
     "consultation/config":
       ballot_list:
-        secret: ''
-        open: ''
+        secret: 'Secret'
+        open: 'Oberta'
       mode_list:
         asynchronous: ''
         synchronous: ''
 attributes:
   role_list:
-    manager: ''
+    manager: 'Gestor'
     voter: ''
-    admin: ''
-  description: ''
-  status: ''
+    admin: 'Administrador'
+    user: Usuari
+  description: 'Descripció'
+  status: 'Estat'
   id: ''
-  title: ''
-  role: ''
+  title: 'Títol'
+  role: 'Rol'
 errors:
-  access_denied: ''
+  access_denied: 'Accés denegat.'
   invalid_parameters: ''
-  bad_request: ''
+  bad_request: 'Petició errònia'
   you_can_only_choose_up_to: ''
   you_already_voted_for_this: ''
   choose_a_valid_option: ''
@@ -134,28 +135,29 @@ errors:
   not_authorized: ''
 application_mailer:
   complimentary_close: ''
-  greeting: ''
+  greeting: 'Hola'
 votes:
   casted: ''
   required_cast: ''
   fingerprint: ''
 application:
-  save: ''
-  yes: ''
-  back: ''
-  cancel: ''
-  log_out: ''
-  refresh: ''
-  upload: ''
-  confirm: ''
-  delete: ''
-  create: ''
-  edit: ''
+  save: 'Desar'
+  yes: 'Sí'
+  back: 'Enrere'
+  cancel: 'Cancel·lar'
+  log_out: 'Tancar sessió'
+  refresh: 'Refrescar'
+  upload: 'Pujar'
+  confirm: 'N''estàs segur?'
+  delete: 'Eliminar'
+  create: 'Crear'
+  edit: 'Modificar'
   token:
     exhausted: ''
-  log_in: ''
-  no: ''
+  log_in: 'Iniciar sessió'
+  no: 'No'
   footer: ''
+  sign_up: Registrar-se
 events:
   token_disabled: ''
   token_created: ''
@@ -170,13 +172,13 @@ events:
   created_tokens: ''
 interactors:
   create_consultation:
-    default: ''
+    default: 'Per defecte'
 question_groups:
   grouped_questions: ''
   required_questions: ''
   group:
-    one: ''
-    other: ''
+    one: Grup
+    other: Grups
 consultations_mailer:
   default_tokens_email:
     body: ''
@@ -187,3 +189,6 @@ options:
   option_created: ''
 sessions:
   log_in_as_admin: ''
+users_mailer:
+  welcome_email:
+    subject: Et donem la benvinguda
