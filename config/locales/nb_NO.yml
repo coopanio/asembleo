@@ -5,6 +5,7 @@ attributes:
     manager: Vedlikeholder
     voter: Stemmegiver
     admin: Administrator
+    user: ''
   status: Status
   role: Rolle
   title: Navn
@@ -84,6 +85,7 @@ application:
   refresh: Gjenoppfrisk
   save: Lagre
   upload: Las opp
+  sign_up: ''
 consultations:
   consultation_token_created: '%{role}-symbolet er <strong>%{token}</strong>.'
   consultation_create: Opprett konsultasjon
@@ -109,6 +111,8 @@ errors:
   invalid_parameters: Ugyldige parametre.
   you_can_only_choose_up_to2: Du kan kun velge %{e_option_value} opptil %{e_limit}
     ganger.
+  invalid_identity: ''
+  invalid_email: ''
 events:
   token_enabled_again: Symbol opprettet igjen.
   created_tokens: Opprettet symboler
@@ -202,6 +206,22 @@ helpers:
 interactors:
   create_consultation:
     default: Forvalg
+mailers: {}
 application_mailer:
   complimentary_close: "Takk,\n%{recipient}\n"
   greeting: Hei
+users_mailer:
+  welcome_email:
+    body: ''
+    subject: ''
+  approval_email:
+    body: ''
+    subject: ''
+  confirmation_email:
+    body: ''
+    subject: ''
+users:
+  user_confirmed: ''
+  user_created: ''
+  voter_sign_up: ''
+  user_approved: ''
