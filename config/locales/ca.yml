@@ -133,6 +133,8 @@ errors:
   choose_a_valid_option: ''
   you_can_only_choose_up_to2: ''
   not_authorized: ''
+  invalid_identity: ''
+  invalid_email: ''
 application_mailer:
   complimentary_close: ''
   greeting: 'Hola'
@@ -189,6 +191,26 @@ options:
   option_created: ''
 sessions:
   log_in_as_admin: ''
+  magic_link_sent: ''
 users_mailer:
   welcome_email:
     subject: Et donem la benvinguda
+    body: ''
+  approval_email:
+    subject: ''
+    body: ''
+  confirmation_email:
+    subject: ''
+    body: ''
+sessions_mailer:
+  user_magic_link_email:
+    body: ''
+    subject: ''
+  magic_link_email:
+    subject: ''
+    body: ''
+users:
+  user_created: ''
+  user_confirmed: ''
+  voter_sign_up: ''
+  user_approved: ''
