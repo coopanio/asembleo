@@ -70,6 +70,7 @@ application:
   no: ''
   log_in: ''
   yes: ''
+  sign_up: ''
 consultations:
   consultation_created: ''
   consultation_finished: ''
@@ -142,6 +143,8 @@ errors:
   you_can_only_choose_up_to: ''
   choose_a_valid_option: ''
   not_authorized: ''
+  invalid_identity: ''
+  invalid_email: ''
 question_groups:
   group:
     one: ''
@@ -156,6 +159,7 @@ attributes:
     admin: ''
     manager: ''
     voter: ''
+    user: ''
   title: ''
   role: ''
   description: ''
@@ -193,3 +197,26 @@ interactors:
 mailers: {}
 sessions:
   log_in_as_admin: ''
+  magic_link_sent: ''
+users_mailer:
+  approval_email:
+    body: ''
+    subject: ''
+  confirmation_email:
+    body: ''
+    subject: ''
+  welcome_email:
+    body: ''
+    subject: ''
+sessions_mailer:
+  magic_link_email:
+    body: ''
+    subject: ''
+  user_magic_link_email:
+    subject: ''
+    body: ''
+users:
+  user_created: ''
+  user_confirmed: ''
+  voter_sign_up: ''
+  user_approved: ''
