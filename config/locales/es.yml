@@ -17,9 +17,9 @@ activerecord:
       many: Eventos
       other: Eventos
     token:
-      one: Token
-      many: Tokens
-      other: Tokens
+      one: Identificador
+      many: Identificadores
+      other: Identificadores
   attributes:
     consultation:
       ballot: 'Voto'
@@ -61,7 +61,7 @@ application:
   save: 'Guardar'
   back: 'Volver'
   footer: 'Asembleo es un proyecto de software libre desarrollado por Coopanio'
-  upload: 'Subir imagen'
+  upload: 'Subir'
   log_out: 'Cerrar Sesión'
   confirm: '¿Está seguro?'
   delete: 'Borrar'
@@ -266,7 +266,7 @@ sessions_mailer:
       '
     subject: 'Nueva consulta'
   user_magic_link_email:
-    subject: 'Iniciar sesión con Magic Link'
+    subject: 'Enlace mágico para iniciar sesión'
     body: 'Estás recibiendo este correo electrónico para iniciar sesión. Haz clic
       en el siguiente enlace:
 
