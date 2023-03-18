@@ -1,222 +1,286 @@
 activerecord:
   models:
     option:
-      one: ''
-      many: ''
-      other: ''
+      one: Opción
+      many: Opciones
+      other: Opciones
     consultation:
-      one: ''
-      many: ''
-      other: ''
+      one: Consulta
+      many: Consultas
+      other: Consultas
     question:
-      one: ''
-      many: ''
-      other: ''
+      one: Pregunta
+      many: Preguntas
+      other: Preguntas
     event:
-      one: ''
-      many: ''
-      other: ''
+      one: Evento
+      many: Eventos
+      other: Eventos
     token:
-      one: ''
-      many: ''
-      other: ''
+      one: Identificador
+      many: Identificadores
+      other: Identificadores
   attributes:
     consultation:
-      ballot: ''
+      ballot: 'Voto'
       status_list:
-        archived: ''
-        draft: ''
-        closed: ''
-        opened: ''
-      title: ''
-      status: ''
-      mode: ''
-      description: ''
+        archived: 'Archivado'
+        draft: 'Borrador'
+        closed: 'Cerrado'
+        opened: 'Abierto'
+      title: 'Título'
+      status: 'Estado'
+      mode: 'Modo'
+      description: 'Descripción'
     event:
-      id: ''
-      title: ''
+      id: 'ID'
+      title: 'Título'
       status_list:
-        opened: ''
-        closed: ''
-      status: ''
+        opened: 'Abierto'
+        closed: 'Cerrado'
+      status: 'Estado'
     question:
-      description: ''
-      status: ''
-      id: ''
+      description: 'Descripción'
+      status: 'Estado'
+      id: 'ID'
     question_group:
-      id: ''
+      id: 'ID'
     user:
-      role: ''
+      role: 'Rol'
     option:
-      value: ''
-      description: ''
+      value: 'Valor'
+      description: 'Descripción'
     token:
-      role: ''
-      tags: ''
+      role: 'Rol'
+      tags: 'Etiquetas'
 application:
-  cancel: ''
-  create: ''
-  edit: ''
-  refresh: ''
-  save: ''
-  back: ''
-  footer: ''
-  upload: ''
-  log_out: ''
-  confirm: ''
-  delete: ''
+  cancel: 'Cancelar'
+  create: 'Crear'
+  edit: 'Editar'
+  refresh: 'Actualizar'
+  save: 'Guardar'
+  back: 'Volver'
+  footer: 'Asembleo es un proyecto de software libre desarrollado por Coopanio'
+  upload: 'Subir'
+  log_out: 'Cerrar Sesión'
+  confirm: '¿Está seguro?'
+  delete: 'Borrar'
   token:
-    exhausted: ''
-  no: ''
-  log_in: ''
-  yes: ''
-  sign_up: ''
+    exhausted: '¿Agotado?'
+  no: 'No'
+  log_in: 'Iniciar Sesión'
+  yes: 'Sí'
+  sign_up: 'Registrarse'
 consultations:
-  consultation_created: ''
-  consultation_finished: ''
-  consultation_archived: ''
-  consultation_create: ''
-  consultation_closed: ''
-  consultation_deleted: ''
-  consultation_draft: ''
-  consultation_token_created: ''
-  consultation_open: ''
+  consultation_created: 'La consulta ha sido creada.'
+  consultation_finished: 'Has respondido a todas las preguntas de la consulta.'
+  consultation_archived: 'La consulta ha sido archivada.'
+  consultation_create: 'Crear Consulta'
+  consultation_closed: 'La consulta está cerrada.'
+  consultation_deleted: 'Consulta eliminada.'
+  consultation_draft: 'La consulta todavía es un borrador.'
+  consultation_token_created: 'El token de %{role} es <strong>%{token}</strong>.'
+  consultation_open: 'La consulta está abierta, pero no tiene preguntas activas. Vuelve
+    a intentarlo más tarde.'
 consultations_mailer:
   default_tokens_email:
-    subject: ''
-    body: ''
+    subject: 'Se han creado los Tokens para %{consultation.title}'
+    body: 'Se han creado los siguientes Tokens:
+
+      '
 questions:
-  question_updated: ''
-  vote: ''
-  question_still_draft: ''
-  question_created: ''
-  question_closed: ''
-  question_opened: ''
-  question_deleted: ''
-  results_not_available: ''
-  question_results: ''
-  question_is_closed: ''
+  question_updated: 'Pregunta actualizada.'
+  vote: 'Votar'
+  question_still_draft: 'La pregunta todavía es un borrador.'
+  question_created: 'Pregunta creada.'
+  question_closed: 'Pregunta cerrada.'
+  question_opened: 'Pregunta abierta.'
+  question_deleted: 'Pregunta eliminada.'
+  results_not_available: 'No se pueden visualizar los resultados mientras la pregunta
+    esté abierta.'
+  question_results: 'Resultados'
+  question_is_closed: 'Esta pregunta está cerrada.'
 votes:
-  required_cast: ''
-  casted: ''
-  fingerprint: ''
+  required_cast: 'Por favor, emita un voto por cada una de las preguntas.'
+  casted: 'Su voto ha sido registrado correctamente. Por favor, prosiga con la siguiente
+    pregunta.'
+  fingerprint: 'La huella digital de su voto es %{fingerprint}'
 helpers:
   label:
     event:
-      send: ''
-      title: ''
+      send: 'Enviar magic links'
+      title: 'Título'
       hints:
-        value: ''
-        send: ''
-        aliased: ''
-      status: ''
-      tokens: ''
-      aliased: ''
+        value: 'Un valor por línea.'
+        send: 'Requiere que los valores sean direcciones de correo electrónico para
+          enviar enlaces mágicos personales para acceder a la consulta. Los tokens
+          se generarán sin almacenar sus direcciones de correo electrónico relacionadas.
+          A las direcciones de correo electrónico conocidas no se les enviará un nuevo
+          enlace mágico.'
+        aliased: 'Utiliza valores como alias para los tokens. Esto permite a los usuarios
+          iniciar sesión con el alias.'
+      status: 'Estado'
+      tokens: 'Listado de Tokens a crear'
+      aliased: 'Usar valores como alias'
     option:
-      value: ''
-      main: ''
+      value: 'Valor interno'
+      main: 'Opción principal'
     question:
-      max_options: ''
-      description: ''
+      max_options: 'Núm. Máx. de opciones'
+      description: 'Descripción'
     question_group:
-      description: ''
+      description: 'Descripción'
     consultation:
-      mode: ''
-      status: ''
-      ballot: ''
-      title: ''
-      description: ''
+      mode: 'Modo'
+      status: 'Estado'
+      ballot: 'Voto'
+      title: 'Título'
+      description: 'Descripción'
     session:
-      password: ''
-      identifier: ''
+      password: 'Contraseña'
+      identifier: 'Identificador'
   events_helper:
-    disable: ''
-    enable: ''
-    close: ''
-    open: ''
+    disable: 'Deshabilitar'
+    enable: 'Activar'
+    close: 'Cerrar'
+    open: 'Abierto'
 errors:
-  you_already_voted_for_this: ''
-  you_can_only_choose_up_to2: ''
-  bad_request: ''
-  invalid_parameters: ''
-  access_denied: ''
-  you_can_only_choose_up_to: ''
-  choose_a_valid_option: ''
-  not_authorized: ''
-  invalid_identity: ''
-  invalid_email: ''
+  you_already_voted_for_this: 'Ya has votado en esta pregunta.'
+  you_can_only_choose_up_to2: 'Sólo puedes elegir %{e_option_value} un máximo de %{e_limit}
+    veces.'
+  bad_request: 'Petición Incorrecta'
+  invalid_parameters: 'Parámetros inválidos.'
+  access_denied: 'Acceso denegado.'
+  you_can_only_choose_up_to: 'Sólo puedes elegir un máximo de %{e_max_options} opciones.'
+  choose_a_valid_option: 'Elige una opción válida.'
+  not_authorized: 'No estás autorizado.'
+  invalid_identity: 'Documento de Identidad inválido.'
+  invalid_email: 'eMail inválido.'
 question_groups:
   group:
-    one: ''
-    many: ''
-    other: ''
-  grouped_questions: ''
-  required_questions: ''
+    one: Grupo
+    many: Grupos
+    other: Grupos
+  grouped_questions: 'Preguntas agrupadas'
+  required_questions: 'Escoge al menos dos preguntas.'
 attributes:
-  status: ''
-  id: ''
+  status: 'Estado'
+  id: 'ID'
   role_list:
-    admin: ''
-    manager: ''
-    voter: ''
-    user: ''
-  title: ''
-  role: ''
-  description: ''
+    admin: 'Administrador'
+    manager: 'Gestor'
+    voter: 'Votante'
+    user: 'Usuario'
+  title: 'Título'
+  role: 'Rol'
+  description: 'Descripción'
 events:
-  token_bulk_creation: ''
-  token_exists_and_enabled: ''
-  token_enabled: ''
-  token_add_admin: ''
-  token_created: ''
-  created_tokens: ''
-  token_disabled: ''
-  event_deleted: ''
-  token_enabled_again: ''
-  token_already_issued: ''
-  tokens_created_or_enabled: ''
+  token_bulk_creation: 'Creación masiva'
+  token_exists_and_enabled: 'El Token existe y ha sido habilitado.'
+  token_enabled: 'Token habilitado.'
+  token_add_admin: 'Añadir administrador'
+  token_created: 'Token creado.'
+  created_tokens: 'Tokens creados'
+  token_disabled: 'Token deshabilitado.'
+  event_deleted: 'Evento eliminado.'
+  token_enabled_again: 'Token habilitado de nuevo.'
+  token_already_issued: 'Token ya emitido.'
+  tokens_created_or_enabled: 'Tokens creados o activados.'
 options:
-  option_updated: ''
-  option_deleted: ''
-  option_created: ''
+  option_updated: 'Opción actualizada.'
+  option_deleted: 'Opción eliminada.'
+  option_created: 'Opción creada.'
 activemodel:
   attributes:
     "consultation/config":
       ballot_list:
-        secret: ''
-        open: ''
+        secret: 'Secreto'
+        open: 'Abierto'
       mode_list:
-        synchronous: ''
-        asynchronous: ''
+        synchronous: 'Síncrono'
+        asynchronous: 'Asíncrono'
 application_mailer:
-  greeting: ''
-  complimentary_close: ''
+  greeting: 'Hola'
+  complimentary_close: 'Gracias,
+
+    %{recipient}
+
+    '
 interactors:
   create_consultation:
-    default: ''
+    default: 'Por defecto'
 mailers: {}
 sessions:
-  log_in_as_admin: ''
-  magic_link_sent: ''
+  log_in_as_admin: 'Iniciar sesión como Administrador'
+  magic_link_sent: 'Un eMail con un enlace mágico fue enviado a su dirección de correo
+    electrónico'
 users_mailer:
   approval_email:
-    body: ''
-    subject: ''
+    body: 'Has recibido este correo electrónico para aprobar una nueva cuenta. Haz
+      clic en el siguiente enlace para aprobarla:
+
+
+      %{approval_url}
+
+      '
+    subject: 'Aprobar esta solicitud de creación de cuenta'
   confirmation_email:
-    body: ''
-    subject: ''
+    body: 'Has recibido este correo electrónico para confirmar tu nueva cuenta. Haz
+      clic en el siguiente enlace para confirmar:
+
+
+      %{confirmation_url}
+
+      '
+    subject: 'Confirme su solicitud de creación de una cuenta'
   welcome_email:
-    body: ''
-    subject: ''
+    body: 'Tu cuenta ha sido aprobada. Puedes iniciar sesión y participar en el siguiente
+      enlace:
+
+
+      %{magic_link_url}
+
+
+      Si no solicitaste este enlace, ignora este correo electrónico.
+
+      '
+    subject: 'Bienvenido'
 sessions_mailer:
   magic_link_email:
-    body: ''
-    subject: ''
+    body: 'Estás recibiendo este correo electrónico para poder votar. Haz clic en
+      el siguiente enlace para iniciar sesión:
+
+
+      %{magic_link_url}
+
+
+      Este enlace es válido mientras la votación esté abierta.
+
+
+      Si el enlace no funciona, ve a %{root_url} y utilice el Token %{token} para
+      iniciar sesión.
+
+
+      Si no has solicitado este enlace, ignora este correo electrónico.
+
+      '
+    subject: 'Nueva consulta'
   user_magic_link_email:
-    subject: ''
-    body: ''
+    subject: 'Enlace mágico para iniciar sesión'
+    body: 'Estás recibiendo este correo electrónico para iniciar sesión. Haz clic
+      en el siguiente enlace:
+
+
+      %{magic_link_url}
+
+
+      Si no has solicitado acceso, ignora este correo electrónico.
+
+      '
 users:
-  user_created: ''
-  user_confirmed: ''
-  voter_sign_up: ''
-  user_approved: ''
+  user_created: 'La solicitud de creación de cuenta se ha registrado correctamente.
+    Si todo es correcto, recibirá un correo electrónico para confirmarlo.'
+  user_confirmed: 'Cuenta confirmada. Recibirá un correo electrónico con la aprobación
+    de los administradores.'
+  voter_sign_up: 'Inscribirse como votante'
+  user_approved: 'Cuenta aprobada.'
