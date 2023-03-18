@@ -23,6 +23,8 @@ class Question < ApplicationRecord
   end
 
   def short_description
+    return '' if description.blank?
+
     description.split("\n").first.strip
   end
 
