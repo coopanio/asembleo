@@ -5,43 +5,43 @@ activerecord:
         closed: 'Tancat'
         opened: 'Obert'
       title: 'Títol'
-      id: ''
+      id: 'ID'
       status: 'Estat'
     option:
       description: 'Descripció'
       value: 'Valor'
     question_group:
-      id: ''
+      id: 'ID'
     consultation:
-      mode: ''
+      mode: 'Mode'
       status_list:
         draft: 'Esborrany'
-        archived: ''
+        archived: 'Arxivada'
         closed: 'Tancada'
         opened: 'Oberta'
       title: 'Títol'
       description: 'Descripció'
       status: 'Estat'
-      ballot: ''
+      ballot: 'Votació'
     token:
       tags: 'Etiquetes'
       role: 'Rol'
     question:
       status: 'Estat'
-      id: ''
+      id: 'ID'
       description: 'Descripció'
     user:
       role: 'Rol'
   models:
     token:
-      one: Testimoni
-      other: Testimonis
+      one: Token
+      other: Tokens
     event:
       one: Esdeveniment
       other: Esdeveniments
     consultation:
-      one: ''
-      other: ''
+      one: Consulta
+      other: Consultes
     option:
       one: Opció
       other: Opcions
@@ -49,15 +49,16 @@ activerecord:
       one: Pregunta
       other: Preguntes
 consultations:
-  consultation_open: ''
-  consultation_archived: ''
-  consultation_closed: ''
-  consultation_deleted: ''
-  consultation_create: ''
-  consultation_token_created: ''
-  consultation_draft: ''
-  consultation_created: ''
-  consultation_finished: ''
+  consultation_open: 'La consulta és oberta, però no hi ha preguntes actives. Torna-ho
+    a provar més tard.'
+  consultation_archived: 'La consulta s''ha arxivat.'
+  consultation_closed: 'La consulta està tancada.'
+  consultation_deleted: 'Consulta suprimida.'
+  consultation_create: 'Crear consulta'
+  consultation_token_created: 'El token de %{role} és <strong>%{token}</strong>.'
+  consultation_draft: 'La consulta encara és un esborrany.'
+  consultation_created: 'Consulta creada.'
+  consultation_finished: 'Has contestat totes les preguntes.'
 questions:
   question_created: ''
   question_results: 'Resultats'
@@ -108,20 +109,20 @@ activemodel:
   attributes:
     "consultation/config":
       ballot_list:
-        secret: 'Secret'
+        secret: 'Secreta'
         open: 'Oberta'
       mode_list:
-        asynchronous: ''
-        synchronous: ''
+        asynchronous: 'Asíncron'
+        synchronous: 'Síncron'
 attributes:
   role_list:
     manager: 'Gestor'
-    voter: ''
+    voter: 'Votant'
     admin: 'Administrador'
     user: Usuari
   description: 'Descripció'
   status: 'Estat'
-  id: ''
+  id: 'ID'
   title: 'Títol'
   role: 'Rol'
 errors:
@@ -136,7 +137,11 @@ errors:
   invalid_identity: ''
   invalid_email: ''
 application_mailer:
-  complimentary_close: ''
+  complimentary_close: 'Gràcies,
+
+    %{recipient}
+
+    '
   greeting: 'Hola'
 votes:
   casted: ''
@@ -155,10 +160,10 @@ application:
   create: 'Crear'
   edit: 'Modificar'
   token:
-    exhausted: ''
+    exhausted: 'Exhaurit?'
   log_in: 'Iniciar sessió'
   no: 'No'
-  footer: ''
+  footer: 'Assembleo és un projecte de programari lliure desenvolupat per Coopanio'
   sign_up: Registrar-se
 events:
   token_disabled: ''
