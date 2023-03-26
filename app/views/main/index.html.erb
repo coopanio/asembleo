@@ -4,9 +4,13 @@
       <img src="<%= Rails.configuration.x.asembleo.logo_url %>" alt="Logo" width="256">
     </div>
   <% end %>
-  <%= form_with scope: :session, url: sessions_path, class: 'row g-2', local: true do |f| %>
+  <%= form_with scope: :session, url: @login_path, class: 'row g-2', local: true do |f| %>
     <div class="col-12">
-      <%= f.password_field :identifier, class: 'form-control form-control-lg', autofocus: '', autocomplete: 'off', placeholder: Rails.configuration.x.asembleo.token_alias.present? ? Rails.configuration.x.asembleo.token_alias : t('activerecord.models.token', count: 1) %>
+      <% if Rails.configuration.x.asembleo.open_registration %>
+        <%= f.email_field :identifier, class: 'form-control form-control-lg', autofocus: '', autocomplete: 'off', placeholder: t('application.email') %>
+      <% else %>
+        <%= f.password_field :identifier, class: 'form-control form-control-lg', autofocus: '', autocomplete: 'off', placeholder: Rails.configuration.x.asembleo.token_alias.present? ? Rails.configuration.x.asembleo.token_alias : t('activerecord.models.token', count: 1) %>
+      <% end %>
     </div>
     <div class="col-12">
       <%= f.submit t('application.log_in'), class: 'btn btn-primary btn-lg w-100' %>

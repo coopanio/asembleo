@@ -65,4 +65,15 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to new_session_path
   end
+
+  test 'should fail on not found instance user using open registration' do
+    Rails.configuration.x.asembleo.open_registration = true
+
+    @params = { session: { identifier: 'rick@c137.io' } }
+
+    subject
+
+    assert_response :redirect
+    assert_redirected_to new_session_path
+  end
 end
