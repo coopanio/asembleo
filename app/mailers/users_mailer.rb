@@ -13,11 +13,13 @@ class UsersMailer < ApplicationMailer
     end
   end
 
-  def approval_email(to, receipt, user_id)
+  def approval_email(to, receipt, user_id, nid, email)
     raise Errors::InvalidEmail unless EmailValidator.valid?(to, mode: :strict)
 
     @receipt = receipt
     @user_id = user_id
+    @nid = nid
+    @email = email
 
     mail(to:, template_name: 'approval_email', subject: I18n.t('users_mailer.approval_email.subject')) do |format|
       format.text
