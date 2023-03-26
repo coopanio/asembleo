@@ -9,6 +9,8 @@ class CreateMagicLink < Actor
   output :url
 
   def call
+    validate
+
     create_token
     create_link
 
@@ -16,6 +18,10 @@ class CreateMagicLink < Actor
   end
 
   private
+
+  def validate
+    fail!(error: Errors::AccessDenied) unless user.present?
+  end
 
   def create_token
     result = CreateToken.result(

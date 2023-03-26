@@ -75,6 +75,7 @@ en:
     confirm: Are you sure?
     create: Create
     edit: Edit
+    email: Email
     delete: Delete
     footer: Asembleo is a free software project developed by Coopanio
     log_in: Log in
@@ -188,9 +189,12 @@ en:
     approval_email:
       subject: 'Approve this account creation request'
       body: |
-        You are receiving this email to approve a new account. Please click the link below to approve:
+        You are receiving this email to approve a new account. Please check the information and click the link below to approve.
 
-        %{approval_url}
+        - National Identity Document: %{nid}
+        - Email: %{email}
+
+        Approve: %{approval_url}
     confirmation_email:
       subject: 'Confirm your account creation request'
       body: |

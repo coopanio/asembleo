@@ -5,7 +5,7 @@ class CreateUser < Actor
   input :nid, type: String, allow_nil: false
   input :send_confirmation_email, type: [TrueClass, FalseClass], default: false
 
-  output :user, type: User
+  output :user, type: User, allow_nil: true
   output :receipt, type: IdentityReceipt, allow_nil: true
   output :skip
 
@@ -42,6 +42,7 @@ class CreateUser < Actor
 
   def validate
     fail!(error: Errors::InvalidEmail) unless EmailValidator.valid?(email, mode: :strict)
+
     begin
       fail!(error: Errors::InvalidIdentity) unless DniNie.validate(nid)
     rescue ArgumentError
@@ -71,7 +72,7 @@ class CreateUser < Actor
     UsersMailer.confirmation_email(email, receipt, user.id).deliver_later
 
     User.where(role: :admin).each do |admin|
-      UsersMailer.approval_email(admin.email, receipt, user.id).deliver_later
+      UsersMailer.approval_email(admin.email, receipt, user.id, @nid, email).deliver_later
     end
   end
 end

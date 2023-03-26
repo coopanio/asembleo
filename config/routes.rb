@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get   'events/:id/tokens',          to: 'events#new_tokens'
   patch 'events/:id/token/:token_id', to: 'events#update_token'
   get   'events/:id/next',            to: 'events#next_question'
+  post  'sessions/email',             to: 'sessions#create_from_email', as: 'magic_login'
   get   'sessions/:token/login',      to: 'sessions#create', as: 'magic_link'
   get   'confirmations/:hash',        to: 'users#confirm', as: 'confirmations'
   get   'approvals/:hash',            to: 'users#approve', as: 'approvals'

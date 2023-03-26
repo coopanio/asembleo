@@ -7,15 +7,16 @@ class SessionsController < ApplicationController
     redirect_to controller: 'main', action: 'index'
   end
 
+  def create_from_email # for open registration login
+    result = CreateMagicLink.result(email: identifier, send_email: true)
+    raise result.error if result.failure?
+
+    info(t('sessions.magic_link_sent'))
+
+    redirect_to root_path
+  end
+
   def create
-    if Rails.configuration.x.asembleo.open_registration && request.post? && password.blank?
-      CreateMagicLink.call(email: identifier, send_email: true)
-      flash[:notice] = t('sessions.magic_link_sent')
-
-      redirect_to root_path
-      return
-    end
-
     result = AuthenticateCredentials.result(identifier:, password:)
     raise result.error if result.failure?
 
