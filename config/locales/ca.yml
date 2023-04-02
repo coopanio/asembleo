@@ -60,16 +60,17 @@ consultations:
   consultation_created: 'Consulta creada.'
   consultation_finished: 'Has contestat totes les preguntes.'
 questions:
-  question_created: ''
+  question_created: 'Pregunta creada.'
   question_results: 'Resultats'
-  question_still_draft: ''
-  question_updated: ''
-  question_is_closed: ''
-  results_not_available: ''
+  question_still_draft: 'La pregunta és encara un esborrany.'
+  question_updated: 'Pregunta modificada.'
+  question_is_closed: 'Aquesta pregunta s''ha tancat.'
+  results_not_available: 'Els resultats no estan disponibles mentre la pregunta es
+    troba oberta.'
   vote: 'Votar'
-  question_closed: ''
-  question_deleted: ''
-  question_opened: ''
+  question_closed: 'Pregunta tancada.'
+  question_deleted: 'Pregunta eliminada.'
+  question_opened: 'Pregunta oberta.'
 helpers:
   events_helper:
     disable: 'Desactivar'
@@ -127,15 +128,16 @@ attributes:
   role: 'Rol'
 errors:
   access_denied: 'Accés denegat.'
-  invalid_parameters: ''
+  invalid_parameters: 'Paràmetres invàlids.'
   bad_request: 'Petició errònia'
-  you_can_only_choose_up_to: ''
-  you_already_voted_for_this: ''
-  choose_a_valid_option: ''
-  you_can_only_choose_up_to2: ''
-  not_authorized: ''
-  invalid_identity: ''
-  invalid_email: ''
+  you_can_only_choose_up_to: 'Pots escollir fins a %{e_max_options} opcions.'
+  you_already_voted_for_this: 'Ja has votat aquesta pregunta.'
+  choose_a_valid_option: 'Escull una opció vàlida.'
+  you_can_only_choose_up_to2: 'Només pots escollir %{e_option_value} fins a %{e_limit}
+    vegades.'
+  not_authorized: 'No hi tens accés.'
+  invalid_identity: 'Document d''identitat invàlid.'
+  invalid_email: 'Correu invàlid.'
 application_mailer:
   complimentary_close: 'Gràcies,
 
@@ -165,38 +167,42 @@ application:
   no: 'No'
   footer: 'Assembleo és un projecte de programari lliure desenvolupat per Coopanio'
   sign_up: Registrar-se
+  email: Correu electrònic
 events:
-  token_disabled: ''
-  token_created: ''
-  token_add_admin: ''
-  tokens_created_or_enabled: ''
-  token_already_issued: ''
-  token_enabled_again: ''
-  event_deleted: ''
-  token_exists_and_enabled: ''
-  token_enabled: ''
-  token_bulk_creation: ''
-  created_tokens: ''
+  token_disabled: 'Testimoni desactivat.'
+  token_created: 'Testimoni creat.'
+  token_add_admin: 'Afegir administrador'
+  tokens_created_or_enabled: 'Testimonis creats o activats.'
+  token_already_issued: 'Testimoni ja enviat.'
+  token_enabled_again: 'Testimoni activat de nou.'
+  event_deleted: 'Esdeveniment eliminat.'
+  token_exists_and_enabled: 'El testimoni existeix i està activat.'
+  token_enabled: 'Testimoni activat.'
+  token_bulk_creation: 'Creació massiva'
+  created_tokens: 'Testimonis Creats'
 interactors:
   create_consultation:
     default: 'Per defecte'
 question_groups:
-  grouped_questions: ''
-  required_questions: ''
+  grouped_questions: 'Preguntes agrupades'
+  required_questions: 'Escull almenys dues preguntes.'
   group:
     one: Grup
     other: Grups
 consultations_mailer:
   default_tokens_email:
-    body: ''
-    subject: ''
+    body: 'Els següents testimonis s''han creat:
+
+      '
+    subject: 'Testimonis creats per %{consultation.title}'
 options:
-  option_updated: ''
-  option_deleted: ''
-  option_created: ''
+  option_updated: 'Opció modificada.'
+  option_deleted: 'Opció eliminada.'
+  option_created: 'Opció creada.'
 sessions:
-  log_in_as_admin: ''
-  magic_link_sent: ''
+  log_in_as_admin: 'Iniciar sessió com administrador'
+  magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça de
+    correu'
 users_mailer:
   welcome_email:
     subject: Et donem la benvinguda
@@ -209,13 +215,39 @@ users_mailer:
     body: ''
 sessions_mailer:
   user_magic_link_email:
-    body: ''
-    subject: ''
+    body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic al
+      següent enllaç per iniciar sessió:
+
+
+      %{magic_link_url}
+
+
+      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+      '
+    subject: 'Enllaç màgic per a iniciar sessió'
   magic_link_email:
-    subject: ''
-    body: ''
+    subject: 'Nova consulta'
+    body: 'Estàs rebent aquest correu electrònic per poder votar. Fes clic al següent
+      enllaç per iniciar sessió:
+
+
+      %{magic_link_url}
+
+
+      Aquest enllaç és vàlid mentre la votació es trobi oberta.
+
+
+      Si l''enllaç no funciona, vés a %{root_url} i utilitza el testimoni %{token}
+      per iniciar sessió.
+
+
+      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+      '
 users:
-  user_created: ''
+  user_created: 'Petició de creació de compte registrada. Rebràs un correu per a confirmar
+    que tot estigui bé.'
   user_confirmed: ''
   voter_sign_up: ''
-  user_approved: ''
+  user_approved: 'Compte aprovat.'
