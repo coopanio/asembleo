@@ -34,8 +34,8 @@ activerecord:
       role: 'Rol'
   models:
     token:
-      one: Token
-      other: Tokens
+      one: Testimoni
+      other: Testimonis
     event:
       one: Esdeveniment
       other: Esdeveniments
@@ -79,31 +79,35 @@ helpers:
     enable: 'Activar'
   label:
     event:
-      aliased: ''
+      aliased: 'Usar valors com àlies'
       status: 'Estat'
       hints:
-        send: ''
-        aliased: ''
-        value: ''
-      tokens: ''
+        send: 'Requereix que els valors siguin adreces de correu electrònic per enviar
+          enllaços màgics personals per accedir a la consulta. Els testimonis es generaran
+          sense emmagatzemar les seves adreces de correu electrònic. No s''enviarà
+          un nou enllaç màgic a les adreces de correu electrònic conegudes.'
+        aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris iniciar
+          sessió amb l''àlies.'
+        value: 'Un valor per línia.'
+      tokens: 'Llista de testimonis a crear'
       title: 'Títol'
-      send: ''
+      send: 'Enviar enllaços màgics'
     consultation:
-      ballot: ''
+      ballot: 'Vot'
       title: 'Títol'
       status: 'Estat'
-      mode: ''
+      mode: 'Mode'
       description: 'Descripció'
     session:
       password: 'Contrassenya'
       identifier: 'Identificador'
     option:
-      value: ''
-      main: ''
+      value: 'Valor intern'
+      main: 'Opció principal'
     question_group:
       description: 'Descripció'
     question:
-      max_options: ''
+      max_options: 'Número màxim d''opcions'
       description: 'Descripció'
 mailers: {}
 activemodel:
@@ -146,9 +150,10 @@ application_mailer:
     '
   greeting: 'Hola'
 votes:
-  casted: ''
-  required_cast: ''
-  fingerprint: ''
+  casted: 'El teu vot s''ha registrat correctament. Si us plau, continua a la següent
+    pregunta.'
+  required_cast: 'Si us plau, emet un vot per cada pregunta.'
+  fingerprint: 'L''empremta digital del teu vot és %{fingerprint}'
 application:
   save: 'Desar'
   yes: 'Sí'
@@ -206,13 +211,39 @@ sessions:
 users_mailer:
   welcome_email:
     subject: Et donem la benvinguda
-    body: ''
+    body: 'El teu compte ha estat aprovat. Pots iniciar sessió i participar al següent
+      enllaç:
+
+
+      %{magic_link_url}
+
+
+      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+      '
   approval_email:
-    subject: ''
-    body: ''
+    subject: 'Aprovar aquesta petició de creació de compte'
+    body: 'Estàs rebent aquest correu electrònic per aprovar un compte nou. Si us
+      plau, comprova la informació i fes clic a l''enllaç per aprovar.
+
+
+      - Document nacional d''identitat: %{nid}
+
+      - Correu electrònic: %{email}
+
+
+      Aprovar: %{approval_url}
+
+      '
   confirmation_email:
-    subject: ''
-    body: ''
+    subject: 'Confirmar la teva petició de creació de compte'
+    body: 'Has rebut aquest correu electrònic per confirmar el teu nou compte. Fes
+      clic al següent enllaç per confirmar:
+
+
+      %{confirmation_url}
+
+      '
 sessions_mailer:
   user_magic_link_email:
     body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic al
@@ -248,6 +279,6 @@ sessions_mailer:
 users:
   user_created: 'Petició de creació de compte registrada. Rebràs un correu per a confirmar
     que tot estigui bé.'
-  user_confirmed: ''
-  voter_sign_up: ''
+  user_confirmed: 'Compte confirmat. Rebràs un correu amb l''aprovació de l''administració.'
+  voter_sign_up: 'Registrar-se com votant'
   user_approved: 'Compte aprovat.'
