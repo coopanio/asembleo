@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
   before_action :check_token
-  before_action :set_locale
   before_action :set_context
 
   include Errors
