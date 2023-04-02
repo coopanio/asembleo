@@ -54,7 +54,7 @@ module Asembleo
     config.action_mailer.default_url_options = { host: 'example.com' }
     routes.default_url_options = config.action_mailer.default_url_options
 
-    config.i18n.default_locale = :en
-    config.i18n.available_locales = %i[en es]
+    config.i18n.default_locale = ENV['LOCALE'].presence || :en
+    config.i18n.available_locales = [:en, :es, :ca, :lb, 'nb-NO', :pl]
   end
 end
