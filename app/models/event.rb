@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_paper_trail
 
   belongs_to :consultation
-  has_many :tokens, dependent: :nullify
+  has_many :tokens, dependent: :destroy
 
   enum status: { opened: 1, closed: 0 }
 
