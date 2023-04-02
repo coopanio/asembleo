@@ -71,6 +71,7 @@ application:
   log_in: 'Iniciar Sesión'
   yes: 'Sí'
   sign_up: 'Registrarse'
+  email: Correo electrónico
 consultations:
   consultation_created: 'La consulta ha sido creada.'
   consultation_finished: 'Has respondido a todas las preguntas de la consulta.'
@@ -216,11 +217,16 @@ sessions:
     electrónico'
 users_mailer:
   approval_email:
-    body: 'Has recibido este correo electrónico para aprobar una nueva cuenta. Haz
-      clic en el siguiente enlace para aprobarla:
+    body: 'Está recibiendo este correo electrónico para aprobar una nueva cuenta.
+      Por favor, compruebe la información y haga clic en el enlace de abajo para aprobar.
 
 
-      %{approval_url}
+      - Documento nacional de identidad: %{nid}
+
+      - Correo electrónico: %{email}
+
+
+      Aprobar: %{approval_url}
 
       '
     subject: 'Aprobar esta solicitud de creación de cuenta'
