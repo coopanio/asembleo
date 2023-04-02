@@ -159,17 +159,19 @@ en:
     magic_link_sent: An email with a magic link was sent to your email address
   sessions_mailer:
     magic_link_email:
-      subject: New consultation
+      subject: Nei Consultatioun
       body: |
-        You are receiving this email to vote. Please click the link below to log in:
+        Dir krut eng Invitatioun fir op %{magic_link_url} eppes ofzestëmmen.
 
-        %{magic_link_url}
+        Klick op de Link hei driwwer.
 
-        This link is valid while the vote is open.
+        Kopéier de folgende Code %{token} a setz en op der Startsäit vun Asambleo eran: %{root_url}
 
-        If the link doesn't work for you, go to %{root_url} and use the token %{token} to log in.
+        Klick op Log in.
 
-        If you did not request this link, ignore this email.
+        Folleg den Uweisungen op Asambleo fir ofzestëmmen. Wiel eng Äntwert aus a bestäteg se.
+
+        Falls du dech.net kanns aloggen oder Problemer hues, da kontaktéier eis op ahoi@piraten.lu oder ruff eis un um 20 33 37.
     user_magic_link_email:
       subject: Magic link to log in
       body: |
