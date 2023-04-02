@@ -1,284 +1,271 @@
-activerecord:
+ca:
+  activerecord:
+    attributes:
+      event:
+        status_list:
+          closed: 'Tancat'
+          opened: 'Obert'
+        title: 'Títol'
+        id: 'ID'
+        status: 'Estat'
+      option:
+        description: 'Descripció'
+        value: 'Valor'
+      question_group:
+        id: 'ID'
+      consultation:
+        mode: 'Mode'
+        status_list:
+          draft: 'Esborrany'
+          archived: 'Arxivada'
+          closed: 'Tancada'
+          opened: 'Oberta'
+        title: 'Títol'
+        description: 'Descripció'
+        status: 'Estat'
+        ballot: 'Votació'
+      token:
+        tags: 'Etiquetes'
+        role: 'Rol'
+      question:
+        status: 'Estat'
+        id: 'ID'
+        description: 'Descripció'
+      user:
+        role: 'Rol'
+    models:
+      token:
+        one: Testimoni
+        other: Testimonis
+      event:
+        one: Esdeveniment
+        other: Esdeveniments
+      consultation:
+        one: Consulta
+        other: Consultes
+      option:
+        one: Opció
+        other: Opcions
+      question:
+        one: Pregunta
+        other: Preguntes
+  consultations:
+    consultation_open: 'La consulta és oberta, però no hi ha preguntes actives. Torna-ho
+      a provar més tard.'
+    consultation_archived: 'La consulta s''ha arxivat.'
+    consultation_closed: 'La consulta està tancada.'
+    consultation_deleted: 'Consulta suprimida.'
+    consultation_create: 'Crear consulta'
+    consultation_token_created: 'El token de %{role} és <strong>%{token}</strong>.'
+    consultation_draft: 'La consulta encara és un esborrany.'
+    consultation_created: 'Consulta creada.'
+    consultation_finished: 'Has contestat totes les preguntes.'
+  questions:
+    question_created: 'Pregunta creada.'
+    question_results: 'Resultats'
+    question_still_draft: 'La pregunta és encara un esborrany.'
+    question_updated: 'Pregunta modificada.'
+    question_is_closed: 'Aquesta pregunta s''ha tancat.'
+    results_not_available: 'Els resultats no estan disponibles mentre la pregunta es
+      troba oberta.'
+    vote: 'Votar'
+    question_closed: 'Pregunta tancada.'
+    question_deleted: 'Pregunta eliminada.'
+    question_opened: 'Pregunta oberta.'
+  helpers:
+    events_helper:
+      disable: 'Desactivar'
+      open: 'Obrir'
+      close: 'Tancar'
+      enable: 'Activar'
+    label:
+      event:
+        aliased: 'Usar valors com àlies'
+        status: 'Estat'
+        hints:
+          send: 'Requereix que els valors siguin adreces de correu electrònic per enviar
+            enllaços màgics personals per accedir a la consulta. Els testimonis es generaran
+            sense emmagatzemar les seves adreces de correu electrònic. No s''enviarà
+            un nou enllaç màgic a les adreces de correu electrònic conegudes.'
+          aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris iniciar
+            sessió amb l''àlies.'
+          value: 'Un valor per línia.'
+        tokens: 'Llista de testimonis a crear'
+        title: 'Títol'
+        send: 'Enviar enllaços màgics'
+      consultation:
+        ballot: 'Vot'
+        title: 'Títol'
+        status: 'Estat'
+        mode: 'Mode'
+        description: 'Descripció'
+      session:
+        password: 'Contrassenya'
+        identifier: 'Identificador'
+      option:
+        value: 'Valor intern'
+        main: 'Opció principal'
+      question_group:
+        description: 'Descripció'
+      question:
+        max_options: 'Número màxim d''opcions'
+        description: 'Descripció'
+  mailers: {}
+  activemodel:
+    attributes:
+      "consultation/config":
+        ballot_list:
+          secret: 'Secreta'
+          open: 'Oberta'
+        mode_list:
+          asynchronous: 'Asíncron'
+          synchronous: 'Síncron'
   attributes:
-    event:
-      status_list:
-        closed: 'Tancat'
-        opened: 'Obert'
-      title: 'Títol'
-      id: 'ID'
-      status: 'Estat'
-    option:
-      description: 'Descripció'
-      value: 'Valor'
-    question_group:
-      id: 'ID'
-    consultation:
-      mode: 'Mode'
-      status_list:
-        draft: 'Esborrany'
-        archived: 'Arxivada'
-        closed: 'Tancada'
-        opened: 'Oberta'
-      title: 'Títol'
-      description: 'Descripció'
-      status: 'Estat'
-      ballot: 'Votació'
+    role_list:
+      manager: 'Gestor'
+      voter: 'Votant'
+      admin: 'Administrador'
+      user: Usuari
+    description: 'Descripció'
+    status: 'Estat'
+    id: 'ID'
+    title: 'Títol'
+    role: 'Rol'
+  errors:
+    access_denied: 'Accés denegat.'
+    invalid_parameters: 'Paràmetres invàlids.'
+    bad_request: 'Petició errònia'
+    you_can_only_choose_up_to: 'Pots escollir fins a %{e_max_options} opcions.'
+    you_already_voted_for_this: 'Ja has votat aquesta pregunta.'
+    choose_a_valid_option: 'Escull una opció vàlida.'
+    you_can_only_choose_up_to2: 'Només pots escollir %{e_option_value} fins a %{e_limit}
+      vegades.'
+    not_authorized: 'No hi tens accés.'
+    invalid_identity: 'Document d''identitat invàlid.'
+    invalid_email: 'Correu invàlid.'
+  application_mailer:
+    complimentary_close: 'Gràcies,
+
+      %{recipient}'
+    greeting: 'Hola'
+  votes:
+    casted: 'El teu vot s''ha registrat correctament. Si us plau, continua a la següent
+      pregunta.'
+    required_cast: 'Si us plau, emet un vot per cada pregunta.'
+    fingerprint: 'L''empremta digital del teu vot és %{fingerprint}'
+  application:
+    save: 'Desar'
+    yes: 'Sí'
+    back: 'Enrere'
+    cancel: 'Cancel·lar'
+    log_out: 'Tancar sessió'
+    refresh: 'Refrescar'
+    upload: 'Pujar'
+    confirm: 'N''estàs segur?'
+    delete: 'Eliminar'
+    create: 'Crear'
+    edit: 'Modificar'
     token:
-      tags: 'Etiquetes'
-      role: 'Rol'
-    question:
-      status: 'Estat'
-      id: 'ID'
-      description: 'Descripció'
-    user:
-      role: 'Rol'
-  models:
-    token:
-      one: Testimoni
-      other: Testimonis
-    event:
-      one: Esdeveniment
-      other: Esdeveniments
-    consultation:
-      one: Consulta
-      other: Consultes
-    option:
-      one: Opció
-      other: Opcions
-    question:
-      one: Pregunta
-      other: Preguntes
-consultations:
-  consultation_open: 'La consulta és oberta, però no hi ha preguntes actives. Torna-ho
-    a provar més tard.'
-  consultation_archived: 'La consulta s''ha arxivat.'
-  consultation_closed: 'La consulta està tancada.'
-  consultation_deleted: 'Consulta suprimida.'
-  consultation_create: 'Crear consulta'
-  consultation_token_created: 'El token de %{role} és <strong>%{token}</strong>.'
-  consultation_draft: 'La consulta encara és un esborrany.'
-  consultation_created: 'Consulta creada.'
-  consultation_finished: 'Has contestat totes les preguntes.'
-questions:
-  question_created: 'Pregunta creada.'
-  question_results: 'Resultats'
-  question_still_draft: 'La pregunta és encara un esborrany.'
-  question_updated: 'Pregunta modificada.'
-  question_is_closed: 'Aquesta pregunta s''ha tancat.'
-  results_not_available: 'Els resultats no estan disponibles mentre la pregunta es
-    troba oberta.'
-  vote: 'Votar'
-  question_closed: 'Pregunta tancada.'
-  question_deleted: 'Pregunta eliminada.'
-  question_opened: 'Pregunta oberta.'
-helpers:
-  events_helper:
-    disable: 'Desactivar'
-    open: 'Obrir'
-    close: 'Tancar'
-    enable: 'Activar'
-  label:
-    event:
-      aliased: 'Usar valors com àlies'
-      status: 'Estat'
-      hints:
-        send: 'Requereix que els valors siguin adreces de correu electrònic per enviar
-          enllaços màgics personals per accedir a la consulta. Els testimonis es generaran
-          sense emmagatzemar les seves adreces de correu electrònic. No s''enviarà
-          un nou enllaç màgic a les adreces de correu electrònic conegudes.'
-        aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris iniciar
-          sessió amb l''àlies.'
-        value: 'Un valor per línia.'
-      tokens: 'Llista de testimonis a crear'
-      title: 'Títol'
-      send: 'Enviar enllaços màgics'
-    consultation:
-      ballot: 'Vot'
-      title: 'Títol'
-      status: 'Estat'
-      mode: 'Mode'
-      description: 'Descripció'
-    session:
-      password: 'Contrassenya'
-      identifier: 'Identificador'
-    option:
-      value: 'Valor intern'
-      main: 'Opció principal'
-    question_group:
-      description: 'Descripció'
-    question:
-      max_options: 'Número màxim d''opcions'
-      description: 'Descripció'
-mailers: {}
-activemodel:
-  attributes:
-    "consultation/config":
-      ballot_list:
-        secret: 'Secreta'
-        open: 'Oberta'
-      mode_list:
-        asynchronous: 'Asíncron'
-        synchronous: 'Síncron'
-attributes:
-  role_list:
-    manager: 'Gestor'
-    voter: 'Votant'
-    admin: 'Administrador'
-    user: Usuari
-  description: 'Descripció'
-  status: 'Estat'
-  id: 'ID'
-  title: 'Títol'
-  role: 'Rol'
-errors:
-  access_denied: 'Accés denegat.'
-  invalid_parameters: 'Paràmetres invàlids.'
-  bad_request: 'Petició errònia'
-  you_can_only_choose_up_to: 'Pots escollir fins a %{e_max_options} opcions.'
-  you_already_voted_for_this: 'Ja has votat aquesta pregunta.'
-  choose_a_valid_option: 'Escull una opció vàlida.'
-  you_can_only_choose_up_to2: 'Només pots escollir %{e_option_value} fins a %{e_limit}
-    vegades.'
-  not_authorized: 'No hi tens accés.'
-  invalid_identity: 'Document d''identitat invàlid.'
-  invalid_email: 'Correu invàlid.'
-application_mailer:
-  complimentary_close: 'Gràcies,
-
-    %{recipient}
-
-    '
-  greeting: 'Hola'
-votes:
-  casted: 'El teu vot s''ha registrat correctament. Si us plau, continua a la següent
-    pregunta.'
-  required_cast: 'Si us plau, emet un vot per cada pregunta.'
-  fingerprint: 'L''empremta digital del teu vot és %{fingerprint}'
-application:
-  save: 'Desar'
-  yes: 'Sí'
-  back: 'Enrere'
-  cancel: 'Cancel·lar'
-  log_out: 'Tancar sessió'
-  refresh: 'Refrescar'
-  upload: 'Pujar'
-  confirm: 'N''estàs segur?'
-  delete: 'Eliminar'
-  create: 'Crear'
-  edit: 'Modificar'
-  token:
-    exhausted: 'Exhaurit?'
-  log_in: 'Iniciar sessió'
-  no: 'No'
-  footer: 'Assembleo és un projecte de programari lliure desenvolupat per Coopanio'
-  sign_up: Registrar-se
-  email: Correu electrònic
-events:
-  token_disabled: 'Testimoni desactivat.'
-  token_created: 'Testimoni creat.'
-  token_add_admin: 'Afegir administrador'
-  tokens_created_or_enabled: 'Testimonis creats o activats.'
-  token_already_issued: 'Testimoni ja enviat.'
-  token_enabled_again: 'Testimoni activat de nou.'
-  event_deleted: 'Esdeveniment eliminat.'
-  token_exists_and_enabled: 'El testimoni existeix i està activat.'
-  token_enabled: 'Testimoni activat.'
-  token_bulk_creation: 'Creació massiva'
-  created_tokens: 'Testimonis Creats'
-interactors:
-  create_consultation:
-    default: 'Per defecte'
-question_groups:
-  grouped_questions: 'Preguntes agrupades'
-  required_questions: 'Escull almenys dues preguntes.'
-  group:
-    one: Grup
-    other: Grups
-consultations_mailer:
-  default_tokens_email:
-    body: 'Els següents testimonis s''han creat:
-
-      '
-    subject: 'Testimonis creats per %{consultation.title}'
-options:
-  option_updated: 'Opció modificada.'
-  option_deleted: 'Opció eliminada.'
-  option_created: 'Opció creada.'
-sessions:
-  log_in_as_admin: 'Iniciar sessió com administrador'
-  magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça de
-    correu'
-users_mailer:
-  welcome_email:
-    subject: Et donem la benvinguda
-    body: 'El teu compte ha estat aprovat. Pots iniciar sessió i participar al següent
-      enllaç:
+      exhausted: 'Exhaurit?'
+    log_in: 'Iniciar sessió'
+    no: 'No'
+    footer: 'Assembleo és un projecte de programari lliure desenvolupat per Coopanio'
+    sign_up: Registrar-se
+    email: Correu electrònic
+  events:
+    token_disabled: 'Testimoni desactivat.'
+    token_created: 'Testimoni creat.'
+    token_add_admin: 'Afegir administrador'
+    tokens_created_or_enabled: 'Testimonis creats o activats.'
+    token_already_issued: 'Testimoni ja enviat.'
+    token_enabled_again: 'Testimoni activat de nou.'
+    event_deleted: 'Esdeveniment eliminat.'
+    token_exists_and_enabled: 'El testimoni existeix i està activat.'
+    token_enabled: 'Testimoni activat.'
+    token_bulk_creation: 'Creació massiva'
+    created_tokens: 'Testimonis Creats'
+  interactors:
+    create_consultation:
+      default: 'Per defecte'
+  question_groups:
+    grouped_questions: 'Preguntes agrupades'
+    required_questions: 'Escull almenys dues preguntes.'
+    group:
+      one: Grup
+      other: Grups
+  consultations_mailer:
+    default_tokens_email:
+      body: 'Els següents testimonis s''han creat:'
+      subject: 'Testimonis creats per %{consultation.title}'
+  options:
+    option_updated: 'Opció modificada.'
+    option_deleted: 'Opció eliminada.'
+    option_created: 'Opció creada.'
+  sessions:
+    log_in_as_admin: 'Iniciar sessió com administrador'
+    magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça de
+      correu'
+  users_mailer:
+    welcome_email:
+      subject: Et donem la benvinguda
+      body: 'El teu compte ha estat aprovat. Pots iniciar sessió i participar al següent
+        enllaç:
 
 
-      %{magic_link_url}
+        %{magic_link_url}
 
 
-      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
-
-      '
-  approval_email:
-    subject: 'Aprovar aquesta petició de creació de compte'
-    body: 'Estàs rebent aquest correu electrònic per aprovar un compte nou. Si us
-      plau, comprova la informació i fes clic a l''enllaç per aprovar.
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+    approval_email:
+      subject: 'Aprovar aquesta petició de creació de compte'
+      body: 'Estàs rebent aquest correu electrònic per aprovar un compte nou. Si us
+        plau, comprova la informació i fes clic a l''enllaç per aprovar.
 
 
-      - Document nacional d''identitat: %{nid}
+        - Document nacional d''identitat: %{nid}
 
-      - Correu electrònic: %{email}
-
-
-      Aprovar: %{approval_url}
-
-      '
-  confirmation_email:
-    subject: 'Confirmar la teva petició de creació de compte'
-    body: 'Has rebut aquest correu electrònic per confirmar el teu nou compte. Fes
-      clic al següent enllaç per confirmar:
+        - Correu electrònic: %{email}
 
 
-      %{confirmation_url}
-
-      '
-sessions_mailer:
-  user_magic_link_email:
-    body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic al
-      següent enllaç per iniciar sessió:
+        Aprovar: %{approval_url}'
+    confirmation_email:
+      subject: 'Confirmar la teva petició de creació de compte'
+      body: 'Has rebut aquest correu electrònic per confirmar el teu nou compte. Fes
+        clic al següent enllaç per confirmar:
 
 
-      %{magic_link_url}
+        %{confirmation_url}'
+  sessions_mailer:
+    user_magic_link_email:
+      body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic al
+        següent enllaç per iniciar sessió:
 
 
-      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
-
-      '
-    subject: 'Enllaç màgic per a iniciar sessió'
-  magic_link_email:
-    subject: 'Nova consulta'
-    body: 'Estàs rebent aquest correu electrònic per poder votar. Fes clic al següent
-      enllaç per iniciar sessió:
+        %{magic_link_url}
 
 
-      %{magic_link_url}
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+      subject: 'Enllaç màgic per a iniciar sessió'
+    magic_link_email:
+      subject: 'Nova consulta'
+      body: 'Estàs rebent aquest correu electrònic per poder votar. Fes clic al següent
+        enllaç per iniciar sessió:
 
 
-      Aquest enllaç és vàlid mentre la votació es trobi oberta.
+        %{magic_link_url}
 
 
-      Si l''enllaç no funciona, vés a %{root_url} i utilitza el testimoni %{token}
-      per iniciar sessió.
+        Aquest enllaç és vàlid mentre la votació es trobi oberta.
 
 
-      Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+        Si l''enllaç no funciona, vés a %{root_url} i utilitza el testimoni %{token}
+        per iniciar sessió.
 
-      '
-users:
-  user_created: 'Petició de creació de compte registrada. Rebràs un correu per a confirmar
-    que tot estigui bé.'
-  user_confirmed: 'Compte confirmat. Rebràs un correu amb l''aprovació de l''administració.'
-  voter_sign_up: 'Registrar-se com votant'
-  user_approved: 'Compte aprovat.'
+
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+  users:
+    user_created: 'Petició de creació de compte registrada. Rebràs un correu per a confirmar
+      que tot estigui bé.'
+    user_confirmed: 'Compte confirmat. Rebràs un correu amb l''aprovació de l''administració.'
+    voter_sign_up: 'Registrar-se com votant'
+    user_approved: 'Compte aprovat.'
