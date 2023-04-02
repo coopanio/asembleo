@@ -5,10 +5,11 @@ class Question < ApplicationRecord
 
   belongs_to :consultation
   has_one :link, class_name: 'QuestionLink', dependent: :destroy
-  has_one :group, class_name: 'QuestionGroup', through: :link, source: :question_group
+  has_one :group, class_name: 'QuestionGroup', through: :link, source: :question_group, dependent: :destroy
   has_many :options, dependent: :destroy
   has_many :receipts, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :events_questions, dependent: :destroy
 
   enum status: { draft: 0, opened: 1, closed: 2 }
 
