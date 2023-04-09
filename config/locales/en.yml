@@ -234,6 +234,7 @@ en:
             to access the consultation. Tokens will be generated without storing their
             related e-mail addresses. Known e-mail addresses won't be sent a new magic
             link.
+          email_value: If the value is a valid e-mail address, a magic link will be sent.
           value: One value per line.
       option:
         value: Internal value

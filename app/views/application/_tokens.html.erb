@@ -10,6 +10,7 @@
         </div>
         <div class="col">
           <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
+          <span class="form-text text-muted" title="<%= t('helpers.label.event.hints.email_value') %>">🛈</span>
           <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
           <%= link_to t('events.token_bulk_creation'), { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
         </div>

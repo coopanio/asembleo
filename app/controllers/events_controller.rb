@@ -42,9 +42,10 @@ class EventsController < ApplicationController
 
     params = create_token_params
     role = params.fetch(:role, :voter).to_sym
+    multiple = params.fetch(:multiple, '0').to_i.positive?
 
     Token.transaction do
-      if params[:multiple].present?
+      if multiple
         lines = params[:value].open
         CSV.new(lines).read.each do |line|
           CreateToken.call(
@@ -61,11 +62,15 @@ class EventsController < ApplicationController
         result = RedirectBySession.call(Context.to_h)
         redirect_to result.destination
       else
+        identifier = params[:value].presence
+        send_magic_link = params.fetch(:send, '0').to_i == 1
+        send_magic_link ||= EmailValidator.valid?(identifier, mode: :strict)
+
         result = CreateToken.result(
-          identifier: params[:value].presence,
+          identifier:,
           role:,
           aliased: params.fetch(:aliased, '0').to_i == 1,
-          send_magic_link: params.fetch(:send, '0').to_i == 1,
+          send_magic_link:,
           event:
         )
 
