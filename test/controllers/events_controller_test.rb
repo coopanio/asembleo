@@ -66,12 +66,31 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
     census = StringIO.new("johndoe@exampl.es\rjanedoe@piraten.lu")
-    post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+
+    assert_emails 0 do
+      post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+    end
 
     tokens = Token.where(event:, role: :voter)
 
     assert_response :redirect
     assert_equal 2, tokens.size
+  end
+
+  test 'should create an unaliased token and deliver it' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager, event:)
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    assert_emails 1 do
+      post "/events/#{event.id}/tokens", params: { value: 'johndoe@exampl.es', multiple: '0' }
+    end
+
+    tokens = Token.where(event:, role: :voter)
+
+    assert_response :redirect
+    assert_equal 1, tokens.size
   end
 
   test 'should reenable disabled unaliased token' do
