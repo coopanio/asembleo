@@ -17,6 +17,7 @@ class Consultation < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :tokens, dependent: :destroy
+  has_many :token_receipts, dependent: :destroy
 
   attribute :config, Config.to_type
 

@@ -27,7 +27,6 @@ gem 'service_actor', '~> 3.6'
 gem 'sprockets-rails', '~> 3.4'
 gem 'store_model', '~> 1.3'
 gem 'translate_enum', '~> 0.2.0', require: 'translate_enum/active_record'
-gem 'translation', '~> 1.35'
 
 group :production do
   gem 'pg', '~> 1.4'

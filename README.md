@@ -35,3 +35,9 @@ yarn
 RAILS_ENV=production bundle exec rake assets:precompile
 RAILS_ENV=production bundle exec rake db:migrate
 ```
+
+## Localization
+
+[Asembleo](https://hosted.weblate.org/projects/asembleo/) is being translated using [Weblate](https://weblate.org/), a web tool designed to ease translating for both developers and translators. 
+
+Weblate graciously hosts Asembleo translation for free. The free hosting still costs us some money. If you're in a position to do that, you are welcome to [support Weblate](https://weblate.org/donate/) Weblate in providing this service to libre projects gratis.
