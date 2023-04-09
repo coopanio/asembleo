@@ -161,17 +161,20 @@ en:
     magic_link_email:
       subject: Nei Consultatioun
       body: |
-        Dir krut eng Invitatioun fir op %{magic_link_url} eppes ofzestëmmen.
+        Als Member vun de Piraten schécke mir dir eng Invitatioun fir op %{root_url} eppes ofzestëmmen.
 
-        Klick op de Link hei driwwer.
+        Asambleo ass eis online Ofstëmmplattform, op där d'Membere vun eiser Partei mat entscheede kënnen. D'Wal ass anonym: kee ka kucken, ob a wéi s du ofgestëmmt hues. Dat ass wichteg, fir dass du fräi an ouni Drock kanns entscheeden.
 
-        Kopéier de folgende Code %{token} a setz en op der Startsäit vun Asambleo eran: %{root_url}
+        Wat muss du elo maachen?
 
-        Klick op Log in.
+        1. Klick op de Link %{magic_link_url} an da kënns de op eiser Wal-Plattform Asambleo eraus.
+        2. Kopéier de folgende Code %{token} a schreif en op der Startsäit vun Asambleo an d'Feld.
+        3. Klick op Log in.
+        4. Wann dat geklappt huet, gesäis du elo d'Froen a kanns ofstëmmen. Lies dir d'Froen duerch a stëmm of, wéi s du et fir richteg häls.
 
-        Folleg den Uweisungen op Asambleo fir ofzestëmmen. Wiel eng Äntwert aus a bestäteg se.
+        Falls du dech net kanns aloggen oder sos Problemer hues, da kontaktéier eis op ahoi@piraten.lu oder ruff eis un um 20 33 37.
 
-        Falls du dech.net kanns aloggen oder Problemer hues, da kontaktéier eis op ahoi@piraten.lu oder ruff eis un um 20 33 37.
+        Vill Spaass beim Ofstëmmen !
     user_magic_link_email:
       subject: Magic link to log in
       body: |
