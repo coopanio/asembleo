@@ -6,10 +6,12 @@ en:
     title: &title Title
     role: &role Role
     role_list:
-      admin: Admin
-      manager: Manager
-      user: User
-      voter: Voter
+      admin: admin
+      manager: manager
+      user: user
+      voter:
+        one: voter
+        other: voters
   activemodel:
     attributes:
       "consultation/config":
@@ -237,6 +239,10 @@ en:
         %{magic_link_url}
 
         If you did not request this link, ignore this email.
+  stats:
+    title: Statistics
+    census: Census
+    participants: Participants
   users:
     user_approved: Account approved.
     user_created: Account creation request registered succesfully. You will receive
