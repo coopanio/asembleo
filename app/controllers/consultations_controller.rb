@@ -29,7 +29,7 @@ class ConsultationsController < ApplicationController
     result.tokens.each do |token|
       next if token.blank?
 
-      message << I18n.t('consultations.consultation_token_created', token:, role: token.translated_role)
+      message << I18n.t('consultations.consultation_token_created', token:, role: token.translated_role.titleize)
     end
 
     success(message.join(' '))
