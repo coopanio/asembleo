@@ -82,8 +82,8 @@ es:
     consultation_deleted: 'Consulta eliminada.'
     consultation_draft: 'La consulta todavía es un borrador.'
     consultation_token_created: 'El token de %{role} es <strong>%{token}</strong>.'
-    consultation_open: 'La consulta está abierta, pero no tiene preguntas activas. Vuelve
-      a intentarlo más tarde.'
+    consultation_open: 'La consulta está abierta, pero no tiene preguntas activas.
+      Vuelve a intentarlo más tarde.'
   consultations_mailer:
     default_tokens_email:
       subject: 'Se han creado los Tokens para %{consultation.title}'
@@ -117,10 +117,12 @@ es:
           send: 'Requiere que los valores sean direcciones de correo electrónico para
             enviar enlaces mágicos personales para acceder a la consulta. Los tokens
             se generarán sin almacenar sus direcciones de correo electrónico relacionadas.
-            A las direcciones de correo electrónico conocidas no se les enviará un nuevo
-            enlace mágico.'
-          aliased: 'Utiliza valores como alias para los tokens. Esto permite a los usuarios
-            iniciar sesión con el alias.'
+            A las direcciones de correo electrónico conocidas no se les enviará un
+            nuevo enlace mágico.'
+          aliased: 'Utiliza valores como alias para los tokens. Esto permite a los
+            usuarios iniciar sesión con el alias.'
+          email_value: Si el valor es una dirección de correo electrónico, se enviará
+            un enlace mágico.
         status: 'Estado'
         tokens: 'Listado de Tokens a crear'
         aliased: 'Usar valores como alias'
@@ -148,8 +150,8 @@ es:
       open: 'Abierto'
   errors:
     you_already_voted_for_this: 'Ya has votado en esta pregunta.'
-    you_can_only_choose_up_to2: 'Sólo puedes elegir %{e_option_value} un máximo de %{e_limit}
-      veces.'
+    you_can_only_choose_up_to2: 'Sólo puedes elegir %{e_option_value} un máximo de
+      %{e_limit} veces.'
     bad_request: 'Petición Incorrecta'
     invalid_parameters: 'Parámetros inválidos.'
     access_denied: 'Acceso denegado.'
@@ -214,12 +216,13 @@ es:
   mailers: {}
   sessions:
     log_in_as_admin: 'Iniciar sesión como Administrador'
-    magic_link_sent: 'Un eMail con un enlace mágico fue enviado a su dirección de correo
-      electrónico'
+    magic_link_sent: 'Un eMail con un enlace mágico fue enviado a su dirección de
+      correo electrónico'
   users_mailer:
     approval_email:
       body: 'Está recibiendo este correo electrónico para aprobar una nueva cuenta.
-        Por favor, compruebe la información y haga clic en el enlace de abajo para aprobar.
+        Por favor, compruebe la información y haga clic en el enlace de abajo para
+        aprobar.
 
 
         - Documento nacional de identidad: %{nid}
@@ -232,8 +235,8 @@ es:
         '
       subject: 'Aprobar esta solicitud de creación de cuenta'
     confirmation_email:
-      body: 'Has recibido este correo electrónico para confirmar tu nueva cuenta. Haz
-        clic en el siguiente enlace para confirmar:
+      body: 'Has recibido este correo electrónico para confirmar tu nueva cuenta.
+        Haz clic en el siguiente enlace para confirmar:
 
 
         %{confirmation_url}
@@ -241,8 +244,8 @@ es:
         '
       subject: 'Confirme su solicitud de creación de una cuenta'
     welcome_email:
-      body: 'Tu cuenta ha sido aprobada. Puedes iniciar sesión y participar en el siguiente
-        enlace:
+      body: 'Tu cuenta ha sido aprobada. Puedes iniciar sesión y participar en el
+        siguiente enlace:
 
 
         %{magic_link_url}

@@ -66,8 +66,8 @@ ca:
     question_still_draft: 'La pregunta és encara un esborrany.'
     question_updated: 'Pregunta modificada.'
     question_is_closed: 'Aquesta pregunta s''ha tancat.'
-    results_not_available: 'Els resultats no estan disponibles mentre la pregunta es
-      troba oberta.'
+    results_not_available: 'Els resultats no estan disponibles mentre la pregunta
+      es troba oberta.'
     vote: 'Votar'
     question_closed: 'Pregunta tancada.'
     question_deleted: 'Pregunta eliminada.'
@@ -83,13 +83,15 @@ ca:
         aliased: 'Usar valors com àlies'
         status: 'Estat'
         hints:
-          send: 'Requereix que els valors siguin adreces de correu electrònic per enviar
-            enllaços màgics personals per accedir a la consulta. Els testimonis es generaran
-            sense emmagatzemar les seves adreces de correu electrònic. No s''enviarà
-            un nou enllaç màgic a les adreces de correu electrònic conegudes.'
-          aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris iniciar
-            sessió amb l''àlies.'
+          send: 'Requereix que els valors siguin adreces de correu electrònic per
+            enviar enllaços màgics personals per accedir a la consulta. Els testimonis
+            es generaran sense emmagatzemar les seves adreces de correu electrònic.
+            No s''enviarà un nou enllaç màgic a les adreces de correu electrònic conegudes.'
+          aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris
+            iniciar sessió amb l''àlies.'
           value: 'Un valor per línia.'
+          email_value: Si el valor és una adreça de correu vàlida, s'enviarà un enllaç
+            màgic.
         tokens: 'Llista de testimonis a crear'
         title: 'Títol'
         send: 'Enviar enllaços màgics'
@@ -146,7 +148,9 @@ ca:
   application_mailer:
     complimentary_close: 'Gràcies,
 
-      %{recipient}'
+      %{recipient}
+
+      '
     greeting: 'Hola'
   votes:
     casted: 'El teu vot s''ha registrat correctament. Si us plau, continua a la següent
@@ -195,7 +199,9 @@ ca:
       other: Grups
   consultations_mailer:
     default_tokens_email:
-      body: 'Els següents testimonis s''han creat:'
+      body: 'Els següents testimonis s''han creat:
+
+        '
       subject: 'Testimonis creats per %{consultation.title}'
   options:
     option_updated: 'Opció modificada.'
@@ -203,8 +209,8 @@ ca:
     option_created: 'Opció creada.'
   sessions:
     log_in_as_admin: 'Iniciar sessió com administrador'
-    magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça de
-      correu'
+    magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça
+      de correu'
   users_mailer:
     welcome_email:
       subject: Et donem la benvinguda
@@ -215,7 +221,9 @@ ca:
         %{magic_link_url}
 
 
-        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+        '
     approval_email:
       subject: 'Aprovar aquesta petició de creació de compte'
       body: 'Estàs rebent aquest correu electrònic per aprovar un compte nou. Si us
@@ -227,24 +235,30 @@ ca:
         - Correu electrònic: %{email}
 
 
-        Aprovar: %{approval_url}'
+        Aprovar: %{approval_url}
+
+        '
     confirmation_email:
       subject: 'Confirmar la teva petició de creació de compte'
       body: 'Has rebut aquest correu electrònic per confirmar el teu nou compte. Fes
         clic al següent enllaç per confirmar:
 
 
-        %{confirmation_url}'
+        %{confirmation_url}
+
+        '
   sessions_mailer:
     user_magic_link_email:
-      body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic al
-        següent enllaç per iniciar sessió:
+      body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic
+        al següent enllaç per iniciar sessió:
 
 
         %{magic_link_url}
 
 
-        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+        '
       subject: 'Enllaç màgic per a iniciar sessió'
     magic_link_email:
       subject: 'Nova consulta'
@@ -262,10 +276,12 @@ ca:
         per iniciar sessió.
 
 
-        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.'
+        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+
+        '
   users:
-    user_created: 'Petició de creació de compte registrada. Rebràs un correu per a confirmar
-      que tot estigui bé.'
+    user_created: 'Petició de creació de compte registrada. Rebràs un correu per a
+      confirmar que tot estigui bé.'
     user_confirmed: 'Compte confirmat. Rebràs un correu amb l''aprovació de l''administració.'
     voter_sign_up: 'Registrar-se com votant'
     user_approved: 'Compte aprovat.'

@@ -6,7 +6,7 @@ nb-NO:
       manager: Vedlikeholder
       voter: Stemmegiver
       admin: Administrator
-      user: ''
+      user: 'Bruker'
     status: Status
     role: Rolle
     title: Navn
@@ -17,7 +17,7 @@ nb-NO:
         other: Alternativer
       question:
         one: Spørsmål
-        other: Spørsmål
+        other: Spørsmålene
       event:
         one: Begivenhet
         other: Begivenheter
@@ -86,7 +86,8 @@ nb-NO:
     refresh: Gjenoppfrisk
     save: Lagre
     upload: Las opp
-    sign_up: ''
+    sign_up: 'Meld deg på'
+    email: E-post
   consultations:
     consultation_token_created: '%{role}-symbolet er <strong>%{token}</strong>.'
     consultation_create: Opprett konsultasjon
@@ -112,8 +113,8 @@ nb-NO:
     invalid_parameters: Ugyldige parametre.
     you_can_only_choose_up_to2: Du kan kun velge %{e_option_value} opptil %{e_limit}
       ganger.
-    invalid_identity: ''
-    invalid_email: ''
+    invalid_identity: 'Ugyldig identitetsdokument.'
+    invalid_email: 'Ugyldig e-post.'
   events:
     token_enabled_again: Symbol opprettet igjen.
     created_tokens: Opprettet symboler
@@ -149,19 +150,22 @@ nb-NO:
     vote: Stem
   sessions:
     log_in_as_admin: Logg inn som administrator
+    magic_link_sent: En e-post med en magisk lenke ble sendt til e-postadressen din
   sessions_mailer:
     magic_link_email:
       subject: Ny konsultasjon
-      body: "Du mottar denne e-posten for å logge inn for å stemme ved bruk\
-      \ av din e-postadresse.\n\nKlikk på lenken nedenfor for å logge inn:\n\n%{magic_link_url}\n\
-      \nLenken er gyldig mens stemmegivningen er åpen.\n\nHvis lenken ikke fungerer\
-      \ for deg kan du gå til %{root_url} og bruke symbolet «%{token}» for å logge inn.\n\
-      \nHvis du ikke forepurte en lenke kan du se bort fra denne e-posten.\n"
+      body: "Du mottar denne e-posten for å logge inn for å stemme ved bruk av din\
+        \ e-postadresse. Klikk på lenken nedenfor for å logge inn:\n\n%{magic_link_url}\n\
+        \nLenken er gyldig mens stemmegivningen er åpen.\n\nHvis lenken ikke fungerer\
+        \ for deg kan du gå til %{root_url} og bruke symbolet «%{token}» for å logge\
+        \ inn.\n\nHvis du ikke forepurte en lenke kan du se bort fra denne e-posten.\n"
     user_magic_link_email:
       subject: Magisk lenke for å logge inn
       body: |
         Du mottar denne e-posten for å logge på. Klikk på lenken nedenfor:
+
         %{magic_link_url}
+
         Hvis du ikke forepurte en lenke kan du se bort fra denne e-posten.
   votes:
     required_cast: Avgi stemme for hvert spørsmål.
@@ -179,11 +183,13 @@ nb-NO:
         aliased: Bruk verdier som alternative navn
         hints:
           value: En verdi per linje.
-          aliased: Bruker alias for sumbolene. Dette tillater brukerinnlogging med aliaset.
+          aliased: Bruker alias for sumbolene. Dette tillater brukerinnlogging med
+            aliaset.
           send: Verdier må være e-postadresser for å sende personlige magiske lenker
-            for å få tilgang til konsultasjonen. Symboler vil bli generert uten å lagre
-            deres relaterte e-postadresser. Kjente e-postadresser vil ikke bli sendt
-            en ny magisk lenke.
+            for å få tilgang til konsultasjonen. Symboler vil bli generert uten å
+            lagre deres relaterte e-postadresser. Kjente e-postadresser vil ikke bli
+            sendt en ny magisk lenke.
+          email_value: Hvis verdien er en gyldig e-postadresse, sendes en magisk lenke.
         title: Navn
         send: Send magiske lenker
         status: Status
@@ -213,16 +219,43 @@ nb-NO:
     greeting: Hei
   users_mailer:
     welcome_email:
-      body: ''
-      subject: ''
+      body: 'Kontoen din ble godkjent. Du kan logge inn og delta i lenken nedenfor:
+
+
+        %{magic_link_url}
+
+
+        Hvis du ikke har bedt om denne lenken, ignorerer du denne e-posten.
+
+        '
+      subject: 'Velkommen'
     approval_email:
-      body: ''
-      subject: ''
+      body: 'Du mottar denne e-posten for å godkjenne en ny konto. Kontroller informasjonen
+        og klikk på lenken nedenfor for å godkjenne.
+
+
+        - Nasjonalt identitetsdokument: %{nid}
+
+        - E-post: %{email}
+
+
+        Godkjenn: %{approval_url}
+
+        '
+      subject: 'Godkjenn denne forespørselen om kontooppretting'
     confirmation_email:
-      body: ''
-      subject: ''
+      body: 'Du mottar denne e-posten for å bekrefte den nye kontoen din. Klikk på
+        lenken nedenfor for å bekrefte:
+
+
+        %{confirmation_url}
+
+        '
+      subject: 'Bekreft forespørselen om opprettelse av konto'
   users:
-    user_confirmed: ''
-    user_created: ''
-    voter_sign_up: ''
-    user_approved: ''
+    user_confirmed: 'Kontoen er bekreftet. Du vil motta en e-post med administratorens
+      godkjenning.'
+    user_created: 'Forespørselen om oppretting av konto er registrert. Du vil motta
+      en e-post for å bekrefte det hvis alt er riktig.'
+    voter_sign_up: 'Registrer deg som stemmegiver'
+    user_approved: 'Konto godkjent.'

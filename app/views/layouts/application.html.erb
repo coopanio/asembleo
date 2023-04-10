@@ -25,7 +25,10 @@
       </div>
     </main>
     <footer class="mt-auto py-3">
-      <div class="container"><%= Rails.configuration.x.asembleo.footer || t('application.footer') %></div>
+      <div class="container">
+        <%= Rails.configuration.x.asembleo.footer || t('application.footer') %>
+        <a href="/about">(<%= t('pages.about.title') %>)</a>
+      </div>
     </footer>
   </body>
 </html>
