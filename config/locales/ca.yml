@@ -285,3 +285,43 @@ ca:
     user_confirmed: 'Compte confirmat. Rebràs un correu amb l''aprovació de l''administració.'
     voter_sign_up: 'Registrar-se com votant'
     user_approved: 'Compte aprovat.'
+  pages:
+    about:
+      title: Quant a
+      body: "<h1>Què és Asembleo?</h1>\n<p>Asembleo és una plataforma de votació gratuïta\
+        \ i de codi obert que apodera\n  organitzacions de totes les mides per prendre\
+        \ decisions democràtiques en línia. Amb Assembleo,\n  podeu dur a terme votacions,\
+        \ enquestes i enquestes segures i transparents sense cap\n  coneixements tècnics\
+        \ o experiència.</p>\n<p>La nostra plataforma s'ha dissenyat tenint en compte\
+        \ la simplicitat, la privadesa i la confiança.\n  Creiem que tothom té dret\
+        \ a participar en el procés democràtic,\n  i per això hem fet Assembleo accessible\
+        \ per a tothom, independentment del seu\n  habilitats tècniques o pressupost.</p>\n\
+        <h1>Funcions principals</h1>\n<p>Les característiques principals d'Asembleo\
+        \ inclouen:</p>\n<ul>\n  <li>\n    <p><strong>Votació segura i transparent:</strong>\
+        \ Amb Asembleo, podeu\n      assegura la integritat de les teves eleccions\
+        \ i garanteix que cada vot sigui\n      anònim i a prova de manipulacions.</p>\n\
+        \  </li>\n  <li>\n    <p><strong>Disseny fàcil d'utilitzar:</strong> La nostra\
+        \ plataforma és fàcil d'utilitzar,\n      intuïtiu i accessible, cosa que\
+        \ facilita la participació de qualsevol persona\n      procés democràtic.</p>\n\
+        \  </li>\n  <li>\n    <p><strong>Privadesa i protecció de dades:</strong>\
+        \ Ens prenem seriosament la privadesa\n      i no recull cap dada personal.\
+        \ Tota la informació està xifrada i\n      emmagatzemat de manera segura als\
+        \ nostres servidors.</p>\n  </li>\n  <li>\n    <p><strong>Codi obert i impulsat\
+        \ per la comunitat:</strong> Asembleo és gratuït i\n      de codi obert, que\
+        \ vol dir que qualsevol persona pot contribuir al seu desenvolupament i\n\
+        \      millora. Creiem en el poder del programari impulsat per la comunitat\
+        \ i\n      transparència en la presa de decisions.</p>\n  </li>\n</ul>\n<h1>Per\
+        \ què triar Asembleo?</h1>\n<p>Asembleo és l'elecció perfecta per a qualsevol\
+        \ organització que busqui una conducta segura\n  i votació transparent en\
+        \ línia. Amb la nostra plataforma, podeu:</p>\n<ul>\n  <li>\n    <p><strong>Estalvieu\
+        \ temps i diners:</strong> Asembleo ho fa fàcil i\n      assequible per dur\
+        \ a terme decisions democràtiques sense necessitat de costoses\n      o programari\
+        \ complicat.</p>\n  </li>\n  <li>\n    <p><strong>Implica la teva comunitat:</strong>\
+        \ amb Asembleo, pots fomentar\n      un major compromís i participació entre\
+        \ els vostres membres o grups d'interès,\n      conduint a una presa de decisions\
+        \ més democràtica.</p>\n  </li>\n  <li>\n    <p><strong>Garantir la confiança\
+        \ i la transparència:</strong> el codi obert d'Asembleo\n      i la naturalesa\
+        \ impulsada per la comunitat significa que podeu tenir confiança en el\n \
+        \     integritat del vostre procés electoral i dels vostres resultats.</p>\n\
+        \  </li>\n</ul>\n<p>Trieu Asembleo per a una experiència de votació segura,\
+        \ fàcil d'utilitzar i fiable.</p>\n"

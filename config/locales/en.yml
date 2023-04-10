@@ -137,6 +137,65 @@ en:
     option_created: Option created.
     option_updated: Option updated.
     option_deleted: Option deleted.
+  pages:
+    about:
+      title: About
+      body: |
+        <h1>What is Asembleo?</h1>
+        <p>Asembleo is a free and open-source voting platform that empowers
+          organizations of all sizes to make democratic decisions online. With Asembleo,
+          you can conduct secure and transparent votes, polls, and surveys without any
+          technical knowledge or expertise.</p>
+        <p>Our platform has been designed with simplicity, privacy, and trust in mind.
+          We believe that everyone is entitled to participate in the democratic process,
+          and that's why we've made Asembleo accessible to everyone, regardless of their
+          technical skills or budget.</p>
+        <h1>Main Features</h1>
+        <p>Asembleo's key features include:</p>
+        <ul>
+          <li>
+            <p><strong>Secure and Transparent Voting:</strong> With Asembleo, you can
+              ensure the integrity of your elections and guarantee that every vote is
+              anonymous and tamper-proof.</p>
+          </li>
+          <li>
+            <p><strong>User-Friendly Design:</strong> Our platform is easy to use,
+              intuitive, and accessible, making it easy for anyone to participate in the
+              democratic process.</p>
+          </li>
+          <li>
+            <p><strong>Privacy and Data Protection:</strong> We take privacy seriously
+              and do not collect any personal data. All information is encrypted and
+              stored securely on our servers.</p>
+          </li>
+          <li>
+            <p><strong>Open-Source and Community-Driven:</strong> Asembleo is free and
+              open-source, which means that anyone can contribute to its development and
+              improvement. We believe in the power of community-driven software and
+              transparency in decision-making.</p>
+          </li>
+        </ul>
+        <h1>Why Choose Asembleo?</h1>
+        <p>Asembleo is the perfect choice for any organization looking to conduct secure
+          and transparent voting online. With our platform, you can:</p>
+        <ul>
+          <li>
+            <p><strong>Save Time and Money:</strong> Asembleo makes it easy and
+              affordable to conduct democratic decisions without the need for expensive
+              or complicated software.</p>
+          </li>
+          <li>
+            <p><strong>Engage Your Community:</strong> With Asembleo, you can foster
+              greater engagement and participation among your members or stakeholders,
+              leading to more democratic decision-making.</p>
+          </li>
+          <li>
+            <p><strong>Ensure Trust and Transparency:</strong> Asembleo's open-source
+              and community-driven nature means that you can be confident in the
+              integrity of your election process and results.</p>
+          </li>
+        </ul>
+        <p>Choose Asembleo for a secure, user-friendly, and reliable voting experience.</p>
   question_groups:
     group:
       one: Group
