@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get   'sessions/:token/login',      to: 'sessions#create', as: 'magic_link'
   get   'confirmations/:hash',        to: 'users#confirm', as: 'confirmations'
   get   'approvals/:hash',            to: 'users#approve', as: 'approvals'
+  get   'about',                      to: 'pages#about'
   get   '',                           to: 'main#index'
 
   root to: 'main#index'
