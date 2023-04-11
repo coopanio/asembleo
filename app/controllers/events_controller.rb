@@ -42,7 +42,7 @@ class EventsController < ApplicationController
 
     params = create_token_params
     role = params.fetch(:role, :voter).to_sym
-    multiple = params.fetch(:multiple, '0').to_i.positive?
+    multiple = params.fetch(:multiple, 'false') == 'true'
 
     Token.transaction do
       if multiple
