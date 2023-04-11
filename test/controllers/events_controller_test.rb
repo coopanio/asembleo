@@ -68,7 +68,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     census = StringIO.new("johndoe@exampl.es\rjanedoe@piraten.lu")
 
     assert_emails 0 do
-      post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: '1' }
+      post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: 'true' }
     end
 
     tokens = Token.where(event:, role: :voter)
