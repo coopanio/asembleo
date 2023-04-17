@@ -9,9 +9,11 @@ class Consultation < ApplicationRecord
 
     enum :mode, %i[synchronous asynchronous], default: :synchronous
     enum :ballot, %i[open secret], default: :secret
+    enum :distribution, %i[manual email], default: :manual
 
     translate_enum :mode
     translate_enum :ballot
+    translate_enum :distribution
   end
 
   has_many :events, dependent: :destroy
