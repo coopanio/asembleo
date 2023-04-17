@@ -64,7 +64,7 @@ class EventsController < ApplicationController
       else
         identifier = params[:value].presence
         send_magic_link = params.fetch(:send, '0').to_i == 1
-        send_magic_link ||= EmailValidator.valid?(identifier, mode: :strict)
+        send_magic_link ||= EmailValidator.valid?(identifier, mode: :strict) if consultation.config.distribution == 'email'
 
         result = CreateToken.result(
           identifier:,

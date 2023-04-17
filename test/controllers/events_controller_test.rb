@@ -78,9 +78,14 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create an unaliased token and deliver it' do
+    consultation = token.consultation
     event = create(:event, consultation: token.consultation)
 
     token.update!(role: :manager, event:)
+
+    consultation.config.distribution = :email
+    consultation.save!
+
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
     assert_emails 1 do

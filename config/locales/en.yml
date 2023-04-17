@@ -15,12 +15,15 @@ en:
   activemodel:
     attributes:
       "consultation/config":
-        mode_list:
-          synchronous: Synchronous
-          asynchronous: Asynchronous
         ballot_list:
           open: Open
           secret: Secret
+        distribution_list:
+          manual: Manual
+          email: Email
+        mode_list:
+          synchronous: Synchronous
+          asynchronous: Asynchronous
   activerecord:
     models:
       consultation:
@@ -42,6 +45,7 @@ en:
       consultation:
         ballot: &ballot Ballot
         description: *description
+        distribution: &distribution Distribution
         mode: &mode Mode
         status: *status
         status_list:
