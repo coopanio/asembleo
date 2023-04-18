@@ -40,22 +40,13 @@ class EventsController < ApplicationController
   def create_tokens
     authorize event
 
-    params = create_token_params
-    role = params.fetch(:role, :voter).to_sym
-    multiple = params.fetch(:multiple, 'false') == 'true'
-
     Token.transaction do
       if multiple
         lines = params[:value].open
-        CSV.new(lines).read.each do |line|
-          CreateToken.call(
-            identifier: line.first,
-            role:,
-            aliased: params.fetch(:aliased, '0').to_i == 1,
-            send_magic_link: params.fetch(:send, '0').to_i == 1,
-            event:
-          )
-        end
+        identifiers = CSV.new(lines).read.map(&:first)
+
+        result = BulkCreateTokens.result(identifiers:, role:, aliased:, send_magic_link:, event:)
+        raise result.error if result.failure?
 
         success(I18n.t('events.tokens_created_or_enabled'))
 
@@ -63,16 +54,11 @@ class EventsController < ApplicationController
         redirect_to result.destination
       else
         identifier = params[:value].presence
-        send_magic_link = params.fetch(:send, '0').to_i == 1
-        send_magic_link ||= EmailValidator.valid?(identifier, mode: :strict) if consultation.config.distribution == 'email'
 
-        result = CreateToken.result(
-          identifier:,
-          role:,
-          aliased: params.fetch(:aliased, '0').to_i == 1,
-          send_magic_link:,
-          event:
-        )
+        send_magic_link = false
+        send_magic_link = EmailValidator.valid?(identifier, mode: :strict) if consultation.config.distribution == 'email'
+
+        result = CreateToken.result(identifier:, role:, aliased:, send_magic_link:, event:)
 
         if result.skip
           success(I18n.t('events.token_already_issued'))
@@ -141,6 +127,22 @@ class EventsController < ApplicationController
 
   def create_token_params
     params.permit(:value, :aliased, :multiple, :send, :role)
+  end
+
+  def role
+    create_token_params.fetch(:role, :voter).to_sym
+  end
+
+  def multiple
+    create_token_params.fetch(:multiple, 'false') == 'true'
+  end
+
+  def aliased
+    create_token_params.fetch(:aliased, '0').to_i == 1
+  end
+
+  def send_magic_link
+    create_token_params.fetch(:send, '0').to_i == 1
   end
 
   def update_token_params
