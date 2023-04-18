@@ -56,6 +56,13 @@ module Errors
         error(e.message)
         redirect_back fallback_location: root_path
       end
+
+      rescue_from InvalidEmailAddress do |e|
+        emails = e.emails.map { |email| email.inspect }
+
+        error("#{e.message} (#{emails.join(', ')})")
+        redirect_back fallback_location: root_path
+      end
     end
   end
 
@@ -117,6 +124,16 @@ module Errors
       super(msg)
 
       @consultation = consultation
+    end
+  end
+
+  class InvalidEmailAddress < ActionController::BadRequest
+    attr_reader :emails
+
+    def initialize(msg = I18n.t('errors.invalid_email'), emails:)
+      super(msg)
+
+      @emails = emails
     end
   end
 end
