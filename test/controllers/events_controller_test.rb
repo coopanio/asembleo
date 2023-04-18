@@ -77,6 +77,39 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 2, tokens.size
   end
 
+  test 'should validate multiple tokens and fail' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager, event:)
+
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    file_content = <<~CSV
+      "mohana@coop.mail; "
+      kiran@coopanio.com
+      giang@coopanio.com
+      kelechi_9@coopanio.com
+      blessing@examp.le
+      masozi@coopanio.com
+      chika-dawa.wanangwa@examp.le
+      rathol@coopan.io
+      "s.hozan99@coop.mail;"
+      kelsey@coopanio.com
+      xia@coopanio.com
+    CSV
+    census = StringIO.new(file_content)
+
+    assert_emails 0 do
+      post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: 'true', send: '1' }
+    end
+
+    tokens = Token.where(event:, role: :voter)
+
+    assert_response :redirect
+    assert_equal 'Invalid email. ("mohana@coop.mail; ", "s.hozan99@coop.mail;")', flash[:alert].message
+    assert_equal 0, tokens.size
+  end
+
   test 'should create an unaliased token and deliver it' do
     consultation = token.consultation
     event = create(:event, consultation: token.consultation)
