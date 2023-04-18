@@ -78,7 +78,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should validate multiple tokens and fail' do
-    consultation = token.consultation
     event = create(:event, consultation: token.consultation)
 
     token.update!(role: :manager, event:)
