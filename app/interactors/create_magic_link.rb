@@ -45,6 +45,6 @@ class CreateMagicLink < Actor
   end
 
   def deliver
-    SessionsMailer.magic_link_email(email, token).deliver_later
+    SessionsMailer.magic_link_email(email, token.class.name, token.id, token.to_hash, scope: :global).deliver_later
   end
 end

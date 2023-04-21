@@ -19,8 +19,8 @@ class Question < ApplicationRecord
     options.exists?(value:)
   end
 
-  def voted?(token)
-    receipts.exists?(token:)
+  def voted?(voter)
+    receipts.exists?(voter:)
   end
 
   def short_description

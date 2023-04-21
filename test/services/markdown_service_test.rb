@@ -12,7 +12,7 @@ class MarkdownServiceTest < ActiveSupport::TestCase
   test 'render' do
     rendered = MarkdownService.render(text)
 
-    assert_equal(%(<strong>This is a test</strong>), rendered)
+    assert_equal(%(<h4>This is a test</h4>), rendered)
   end
 
   test 'render plain text' do

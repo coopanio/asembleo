@@ -18,6 +18,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
       post sessions_url, params: { session: { identifier: token.to_hash } }
       post votes_url, params: { vote: { question.id => { value: [value] } }, question_id: question.id }.stringify_keys
+      perform_enqueued_jobs
     end
   end
 
@@ -50,6 +51,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
       post sessions_url, params: { session: { identifier: token.to_hash } }
       post votes_url, params: { vote: { question.id => { value: [value] } }, question_id: question.id }.stringify_keys
+      perform_enqueued_jobs
     end
 
     results = subject

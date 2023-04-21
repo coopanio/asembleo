@@ -51,8 +51,8 @@ class RedirectBySessionTest < ActiveSupport::TestCase
       init_questions(status, event)
     end
 
-    create(:receipt, token: identity, question: questions.first)
-    create(:receipt, token: identity, question: questions.second)
+    create(:receipt, voter: identity, question: questions.first)
+    create(:receipt, voter: identity, question: questions.second)
 
     assert_predicate subject, :present?
     assert_equal subject, "/consultations/#{consultation.id}/questions/#{questions.third.id}"

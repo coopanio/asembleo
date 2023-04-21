@@ -57,7 +57,7 @@ FactoryBot.define do
   end
 
   factory :receipt do
-    token
+    voter { create(:token) }
     question
   end
 end
