@@ -33,6 +33,7 @@ es:
         status: 'Estado'
         mode: 'Modo'
         description: 'Descripción'
+        distribution: Distribución
       event:
         id: 'ID'
         title: 'Título'
@@ -82,8 +83,8 @@ es:
     consultation_deleted: 'Consulta eliminada.'
     consultation_draft: 'La consulta todavía es un borrador.'
     consultation_token_created: 'El token de %{role} es <strong>%{token}</strong>.'
-    consultation_open: 'La consulta está abierta, pero no tiene preguntas activas.
-      Vuelve a intentarlo más tarde.'
+    consultation_open: 'La consulta está abierta. Por favor procede a votar haciendo
+      clic en "Siguiente".'
   consultations_mailer:
     default_tokens_email:
       subject: 'Se han creado los Tokens para %{consultation.title}'
@@ -143,6 +144,9 @@ es:
       session:
         password: 'Contraseña'
         identifier: 'Identificador'
+      user:
+        email: Correo electrónico
+        nid: Documento de identidad
     events_helper:
       disable: 'Deshabilitar'
       enable: 'Activar'
@@ -171,10 +175,13 @@ es:
     status: 'Estado'
     id: 'ID'
     role_list:
-      admin: 'Administrador'
-      manager: 'Gestor'
-      voter: 'Votante'
-      user: 'Usuario'
+      admin: 'administrador'
+      manager: 'gestor'
+      voter:
+        one: Votante
+        many: Votantes
+        other: Votantes
+      user: 'usuario'
     title: 'Título'
     role: 'Rol'
     description: 'Descripción'
@@ -203,6 +210,9 @@ es:
         mode_list:
           synchronous: 'Síncrono'
           asynchronous: 'Asíncrono'
+        distribution_list:
+          manual: Manual
+          email: Correo electrónico
   application_mailer:
     greeting: 'Hola'
     complimentary_close: 'Gracias,
@@ -335,3 +345,7 @@ es:
         \ en el\n      integridad de su proceso y resultados electorales.</p>\n  </li>\n\
         </ul>\n<p>Elija Asembleo para una experiencia de votación segura, fácil de\
         \ usar y confiable.</p>\n"
+  stats:
+    census: Censo
+    title: Estadísticas
+    participants: Participantes
