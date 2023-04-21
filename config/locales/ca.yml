@@ -24,6 +24,7 @@ ca:
         description: 'Descripció'
         status: 'Estat'
         ballot: 'Votació'
+        distribution: Distribució
       token:
         tags: 'Etiquetes'
         role: 'Rol'
@@ -35,8 +36,8 @@ ca:
         role: 'Rol'
     models:
       token:
-        one: Testimoni
-        other: Testimonis
+        one: Identificador
+        other: Identificadors
       event:
         one: Esdeveniment
         other: Esdeveniments
@@ -50,8 +51,7 @@ ca:
         one: Pregunta
         other: Preguntes
   consultations:
-    consultation_open: 'La consulta és oberta, però no hi ha preguntes actives. Torna-ho
-      a provar més tard.'
+    consultation_open: 'La consulta és oberta. Sisplau procedeix a votar clicant "Següent".'
     consultation_archived: 'La consulta s''ha arxivat.'
     consultation_closed: 'La consulta està tancada.'
     consultation_deleted: 'Consulta suprimida.'
@@ -92,7 +92,7 @@ ca:
           value: 'Un valor per línia.'
           email_value: Si el valor és una adreça de correu vàlida, s'enviarà un enllaç
             màgic.
-        tokens: 'Llista de testimonis a crear'
+        tokens: 'Llista de tokens a crear'
         title: 'Títol'
         send: 'Enviar enllaços màgics'
       consultation:
@@ -102,7 +102,7 @@ ca:
         mode: 'Mode'
         description: 'Descripció'
       session:
-        password: 'Contrassenya'
+        password: 'Contrasenya'
         identifier: 'Identificador'
       option:
         value: 'Valor intern'
@@ -112,6 +112,9 @@ ca:
       question:
         max_options: 'Número màxim d''opcions'
         description: 'Descripció'
+      user:
+        email: Correu electrònic
+        nid: Document d'identitat
   mailers: {}
   activemodel:
     attributes:
@@ -122,12 +125,17 @@ ca:
         mode_list:
           asynchronous: 'Asíncron'
           synchronous: 'Síncron'
+        distribution_list:
+          manual: Manual
+          email: Correu electrònic
   attributes:
     role_list:
-      manager: 'Gestor'
-      voter: 'Votant'
-      admin: 'Administrador'
-      user: Usuari
+      manager: 'gestor'
+      voter:
+        one: votant
+        other: votants
+      admin: 'administrador'
+      user: usuari
     description: 'Descripció'
     status: 'Estat'
     id: 'ID'
@@ -177,17 +185,17 @@ ca:
     sign_up: Registrar-se
     email: Correu electrònic
   events:
-    token_disabled: 'Testimoni desactivat.'
-    token_created: 'Testimoni creat.'
+    token_disabled: 'Identificador desactivat.'
+    token_created: 'Identificador creat.'
     token_add_admin: 'Afegir administrador'
-    tokens_created_or_enabled: 'Testimonis creats o activats.'
-    token_already_issued: 'Testimoni ja enviat.'
-    token_enabled_again: 'Testimoni activat de nou.'
+    tokens_created_or_enabled: 'Identificadors creats o activats.'
+    token_already_issued: 'Identificador ja emès.'
+    token_enabled_again: 'Identificador activat de nou.'
     event_deleted: 'Esdeveniment eliminat.'
-    token_exists_and_enabled: 'El testimoni existeix i està activat.'
-    token_enabled: 'Testimoni activat.'
+    token_exists_and_enabled: 'El Identificador existeix i està activat.'
+    token_enabled: 'Identificador activat.'
     token_bulk_creation: 'Creació massiva'
-    created_tokens: 'Testimonis Creats'
+    created_tokens: 'Identificadors Creats'
   interactors:
     create_consultation:
       default: 'Per defecte'
@@ -202,7 +210,7 @@ ca:
       body: 'Els següents testimonis s''han creat:
 
         '
-      subject: 'Testimonis creats per %{consultation.title}'
+      subject: 'Identificadors creats per %{consultation.title}'
   options:
     option_updated: 'Opció modificada.'
     option_deleted: 'Opció eliminada.'
@@ -230,7 +238,7 @@ ca:
         plau, comprova la informació i fes clic a l''enllaç per aprovar.
 
 
-        - Document nacional d''identitat: %{nid}
+        - Document Nacional d''Identitat: %{nid}
 
         - Correu electrònic: %{email}
 
@@ -287,7 +295,7 @@ ca:
     user_approved: 'Compte aprovat.'
   pages:
     about:
-      title: Quant a
+      title: Sobre
       body: "<h1>Què és Asembleo?</h1>\n<p>Asembleo és una plataforma de votació gratuïta\
         \ i de codi obert que apodera\n  organitzacions de totes les mides per prendre\
         \ decisions democràtiques en línia. Amb Assembleo,\n  podeu dur a terme votacions,\
@@ -325,3 +333,7 @@ ca:
         \     integritat del vostre procés electoral i dels vostres resultats.</p>\n\
         \  </li>\n</ul>\n<p>Trieu Asembleo per a una experiència de votació segura,\
         \ fàcil d'utilitzar i fiable.</p>\n"
+  stats:
+    title: Estadístiques
+    census: Cens
+    participants: Participants
