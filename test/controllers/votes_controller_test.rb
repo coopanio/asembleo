@@ -20,11 +20,15 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 
-  subject { post votes_url, params: @params }
+  subject do
+    post votes_url, params: @params
+    perform_enqueued_jobs
+  end
 
   test 'should create vote' do
     subject
 
+    assert_performed_jobs 1
     assert_response :success
 
     Vote.all.tap do |votes|
@@ -98,23 +102,6 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     subject
 
     assert_response :success
-  end
-
-  test 'should asynchronously create vote' do
-    CastVotes.stub_any_instance(:async?, true) do
-      subject
-    end
-
-    perform_enqueued_jobs
-
-    assert_performed_jobs 1
-
-    Vote.all.tap do |votes|
-      assert_equal 1, votes.length
-      assert_equal 'yes', votes.first.value
-    end
-
-    assert_includes response.body, Receipt.first.fingerprint
   end
 
   test 'should fail if question_id is unknown' do

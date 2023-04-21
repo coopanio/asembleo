@@ -41,12 +41,12 @@ class Envelope
     end
   end
 
-  def save(async: false)
-    if async
-      VoteCastJob.perform_later(question.id, token.class.name, token.id, values, receipt.created_at)
-    else
-      votes.map(&:save!)
-    end
+  def save_later
+    VoteCastJob.perform_later(question.id, token.class.name, token.id, values, receipt.created_at)
+  end
+
+  def save!
+    votes.each(&:save!)
   end
 
   private
