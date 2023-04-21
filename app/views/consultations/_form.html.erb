@@ -1,32 +1,36 @@
 <%= form_with scope: :consultation, model: @consultation, class: 'container', local: true do |f| %>
   <div class="row mb-3">
-    <%= f.label :title, class: 'col-2 col-form-label' %>
-    <div class="col-10">
+    <%= f.label :title, class: 'col-1 col-form-label' %>
+    <div class="col-11">
       <%= f.text_field :title, class: 'form-control' %>
     </div>
   </div>
   <div class="row mb-3">
-    <%= f.label :description, class: 'col-2 col-form-label' %>
-    <div class="col-10">
+    <%= f.label :description, class: 'col-1 col-form-label' %>
+    <div class="col-11">
       <%= f.text_area :description, class: 'form-control' %>
     </div>
   </div>
   <%= f.fields_for :config, @consultation.config do |f| %>
   <div class="row mb-3">
-      <%= f.label :mode, class: 'col-2 col-form-label' %>
-      <div class="col-4">
-        <%= f.select :mode, Consultation::Config.translated_modes.map { |translation, k, _v| [translation, k] }, {},  { class: 'form-select' } %>
-      </div>
-      <%= f.label :ballot, class: 'col-2 col-form-label' %>
-      <div class="col-4">
-        <%= f.select :ballot, Consultation::Config.translated_ballots.map { |translation, k, _v| [translation, k] }, {},  { class: 'form-select' } %>
-      </div>
+    <%= f.label :mode, class: 'col-1 col-form-label' %>
+    <div class="col-3">
+      <%= f.select :mode, Consultation::Config.translated_modes.map { |translation, k, _v| [translation, k] }, {},  { class: 'form-select' } %>
+    </div>
+    <%= f.label :ballot, class: 'col-1 col-form-label' %>
+    <div class="col-3">
+      <%= f.select :ballot, Consultation::Config.translated_ballots.map { |translation, k, _v| [translation, k] }, {},  { class: 'form-select' } %>
+    </div>
+    <%= f.label :distribution, class: 'col-1 col-form-label' %>
+    <div class="col-3">
+      <%= f.select :distribution, Consultation::Config.translated_distributions.map { |translation, k, _v| [translation, k] }, {}, { class: 'form-select' } %>
+    </div>
   </div>
   <% end %>
   <% if @consultation.id %>
     <div class="row mb-3">
-      <%= f.label :status, class: 'col-2 col-form-label' %>
-      <div class="col-10">
+      <%= f.label :status, class: 'col-1 col-form-label' %>
+      <div class="col-11">
         <%= f.select :status, Consultation.translated_statuses.map { |translation, k, _v| [translation, k] }, {}, { class: 'form-select' } %>
       </div>
     </div>

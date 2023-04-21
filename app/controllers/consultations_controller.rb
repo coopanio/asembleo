@@ -29,7 +29,7 @@ class ConsultationsController < ApplicationController
     result.tokens.each do |token|
       next if token.blank?
 
-      message << I18n.t('consultations.consultation_token_created', token:, role: token.translated_role)
+      message << I18n.t('consultations.consultation_token_created', token:, role: token.translated_role.titleize)
     end
 
     success(message.join(' '))
@@ -73,7 +73,7 @@ class ConsultationsController < ApplicationController
   end
 
   def update_params
-    params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot])
+    params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot distribution])
   end
 
   def event

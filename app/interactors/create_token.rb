@@ -87,6 +87,7 @@ class CreateToken < Actor
   end
 
   def deliver
-    SessionsMailer.magic_link_email(identifier, token.reload).deliver_later
+    token.reload
+    SessionsMailer.magic_link_email(identifier, token.class.name, token.id, token.to_hash, scope:).deliver_later
   end
 end
