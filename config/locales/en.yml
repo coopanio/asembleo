@@ -81,7 +81,7 @@ en:
     confirm: Are you sure?
     create: Create
     edit: Edit
-    email: Email
+    email: &email Email
     delete: Delete
     footer: Asembleo is a free software project developed by Coopanio
     log_in: Log in
@@ -315,6 +315,9 @@ en:
       session:
         identifier: Identifier
         password: Password
+      user:
+        email: *email
+        nid: Identity document
     events_helper:
       open: Open
       close: Close
