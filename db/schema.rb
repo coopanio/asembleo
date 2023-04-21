@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_232746) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_151747) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -116,13 +116,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_232746) do
 
   create_table "receipts", force: :cascade do |t|
     t.text "fingerprint"
-    t.integer "token_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "voter_type"
+    t.integer "voter_id"
     t.index ["question_id"], name: "index_receipts_on_question_id"
-    t.index ["token_id", "question_id"], name: "index_receipts_on_token_id_and_question_id", unique: true
-    t.index ["token_id"], name: "index_receipts_on_token_id"
+    t.index ["voter_type", "voter_id", "question_id"], name: "index_receipts_on_voter_type_and_voter_id_and_question_id", unique: true
+    t.index ["voter_type", "voter_id"], name: "index_receipts_on_voter"
   end
 
   create_table "token_receipts", id: false, force: :cascade do |t|
@@ -204,7 +205,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_232746) do
   add_foreign_key "question_links", "questions"
   add_foreign_key "questions", "consultations"
   add_foreign_key "receipts", "questions"
-  add_foreign_key "receipts", "tokens"
   add_foreign_key "token_receipts", "consultations"
   add_foreign_key "token_tags", "tokens"
   add_foreign_key "tokens", "consultations"

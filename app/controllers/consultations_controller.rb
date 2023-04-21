@@ -73,7 +73,7 @@ class ConsultationsController < ApplicationController
   end
 
   def update_params
-    params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot])
+    params.require(:consultation).permit(:title, :description, :status, config: %i[mode ballot distribution])
   end
 
   def event

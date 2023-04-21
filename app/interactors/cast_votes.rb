@@ -64,13 +64,9 @@ class CastVotes < Actor
     question = vote_params[:question]
 
     envelope = Envelope.new(question, current_user, **vote_params.to_h.symbolize_keys)
-    envelope.save(async: async?)
+    envelope.save_later
 
     envelope.receipt.save!
     self.receipts << envelope.receipt
-  end
-
-  def async?
-    Rails.configuration.x.asembleo.async_vote
   end
 end

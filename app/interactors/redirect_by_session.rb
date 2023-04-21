@@ -32,7 +32,8 @@ class RedirectBySession < Actor
 
     join_condition = [
       receipts[:question_id].eq(questions[:question_id]),
-      receipts[:token_id].eq(identity.id)
+      receipts[:voter_type].eq(identity.class.name),
+      receipts[:voter_id].eq(identity.id)
     ]
     where = {
       status: :opened,
