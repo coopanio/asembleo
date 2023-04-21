@@ -24,6 +24,7 @@ ca:
         description: 'Descripció'
         status: 'Estat'
         ballot: 'Votació'
+        distribution: Distribució
       token:
         tags: 'Etiquetes'
         role: 'Rol'
@@ -50,8 +51,7 @@ ca:
         one: Pregunta
         other: Preguntes
   consultations:
-    consultation_open: 'La consulta és oberta, però no hi ha preguntes actives. Torna-ho
-      a provar més tard.'
+    consultation_open: 'La consulta és oberta. Sisplau procedeix a votar clicant "Següent".'
     consultation_archived: 'La consulta s''ha arxivat.'
     consultation_closed: 'La consulta està tancada.'
     consultation_deleted: 'Consulta suprimida.'
@@ -112,6 +112,9 @@ ca:
       question:
         max_options: 'Número màxim d''opcions'
         description: 'Descripció'
+      user:
+        email: Correu electrònic
+        nid: Document d'identitat
   mailers: {}
   activemodel:
     attributes:
@@ -122,12 +125,17 @@ ca:
         mode_list:
           asynchronous: 'Asíncron'
           synchronous: 'Síncron'
+        distribution_list:
+          manual: Manual
+          email: Correu electrònic
   attributes:
     role_list:
-      manager: 'Gestor'
-      voter: 'Votant'
-      admin: 'Administrador'
-      user: Usuari
+      manager: 'gestor'
+      voter:
+        one: votant
+        other: votants
+      admin: 'administrador'
+      user: usuari
     description: 'Descripció'
     status: 'Estat'
     id: 'ID'
@@ -325,3 +333,7 @@ ca:
         \     integritat del vostre procés electoral i dels vostres resultats.</p>\n\
         \  </li>\n</ul>\n<p>Trieu Asembleo per a una experiència de votació segura,\
         \ fàcil d'utilitzar i fiable.</p>\n"
+  stats:
+    title: Estadístiques
+    census: Cens
+    participants: Participants
