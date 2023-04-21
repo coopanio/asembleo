@@ -20,11 +20,15 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     post sessions_url, params: { session: { identifier: token.to_hash } }
   end
 
-  subject { post votes_url, params: @params }
+  subject do
+    post votes_url, params: @params
+    perform_enqueued_jobs
+  end
 
   test 'should create vote' do
     subject
 
+    assert_performed_jobs 1
     assert_response :success
 
     Vote.all.tap do |votes|
@@ -33,7 +37,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_equal @token.event, votes.first.event
     end
 
-    Receipt.find_by(token:, question:).tap do |receipt|
+    Receipt.find_by(voter: token, question:).tap do |receipt|
       assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
@@ -51,7 +55,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert(votes.map(&:event).all?(@token.event))
     end
 
-    Receipt.find_by(token:, question:).tap do |receipt|
+    Receipt.find_by(voter: token, question:).tap do |receipt|
       assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
@@ -100,23 +104,6 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should asynchronously create vote' do
-    CastVotes.stub_any_instance(:async?, true) do
-      subject
-    end
-
-    perform_enqueued_jobs
-
-    assert_performed_jobs 1
-
-    Vote.all.tap do |votes|
-      assert_equal 1, votes.length
-      assert_equal 'yes', votes.first.value
-    end
-
-    assert_includes response.body, Receipt.first.fingerprint
-  end
-
   test 'should fail if question_id is unknown' do
     @params['vote'] = { '999' => { value: [@value] } }
     @params['question_id'] = 999
@@ -125,7 +112,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     # Not sure about this, the redirection is caused because not enough questions where found...
     assert_response :redirect
     assert_empty Vote.all
-    assert_not Receipt.exists?(token:, question:)
+    assert_not Receipt.exists?(voter: token, question:)
   end
 
   test 'should fail if value is not valid' do
@@ -134,7 +121,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_empty Vote.all
-    assert_not Receipt.exists?(token:, question:)
+    assert_not Receipt.exists?(voter: token, question:)
   end
 
   test 'should fail if a second vote is attempted' do
