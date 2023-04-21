@@ -20,7 +20,10 @@ class MarkdownService < Redcarpet::Render::HTML
     ActionController::Base.helpers.sanitize(content)
   end
 
-  def header(text, _header_level)
-    %(<strong>#{text}</strong>)
+  def header(text, header_level)
+    new_header_level = header_level + 2
+    new_header_level = 6 if new_header_level > 6
+
+    %(<h#{new_header_level}>#{text}</h#{new_header_level}>)
   end
 end

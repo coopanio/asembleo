@@ -33,7 +33,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert_equal @token.event, votes.first.event
     end
 
-    Receipt.find_by(token:, question:).tap do |receipt|
+    Receipt.find_by(voter: token, question:).tap do |receipt|
       assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
@@ -51,7 +51,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
       assert(votes.map(&:event).all?(@token.event))
     end
 
-    Receipt.find_by(token:, question:).tap do |receipt|
+    Receipt.find_by(voter: token, question:).tap do |receipt|
       assert_predicate receipt, :present?
       assert receipt.fingerprint.present? && receipt.fingerprint.length == 64
     end
@@ -125,7 +125,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
     # Not sure about this, the redirection is caused because not enough questions where found...
     assert_response :redirect
     assert_empty Vote.all
-    assert_not Receipt.exists?(token:, question:)
+    assert_not Receipt.exists?(voter: token, question:)
   end
 
   test 'should fail if value is not valid' do
@@ -134,7 +134,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_empty Vote.all
-    assert_not Receipt.exists?(token:, question:)
+    assert_not Receipt.exists?(voter: token, question:)
   end
 
   test 'should fail if a second vote is attempted' do

@@ -5,7 +5,7 @@ require 'argon2'
 class User < ApplicationRecord
   has_paper_trail
 
-  has_many :receipts, foreign_key: 'token_id', dependent: :destroy
+  has_many :receipts, dependent: :destroy, as: :voter
 
   enum :role, { voter: 0, manager: 1, admin: 2 }, default: :voter
   enum :status, { enabled: 1, disabled: 0 }, default: :disabled

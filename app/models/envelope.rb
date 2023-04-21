@@ -34,7 +34,7 @@ class Envelope
     return @receipt if defined?(@receipt)
 
     @receipt ||= Receipt.new.tap do |r|
-      r.token_id = token.id
+      r.voter = token
       r.question = question
       r.created_at = created_at
       r.fingerprint = FingerprintService.generate(r, token.to_hash, values)
@@ -43,7 +43,7 @@ class Envelope
 
   def save(async: false)
     if async
-      VoteCastJob.perform_later(question.id, token.id, values, receipt.created_at)
+      VoteCastJob.perform_later(question.id, token.class.name, token.id, values, receipt.created_at)
     else
       votes.map(&:save!)
     end
@@ -52,6 +52,7 @@ class Envelope
   private
 
   def vote_alias
+    return unless token.is_a?(Token)
     return unless consultation.ballot == 'open'
 
     token.on_behalf_of || token.alias || token.to_hash
