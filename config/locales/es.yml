@@ -70,6 +70,7 @@ es:
     token:
       exhausted: '¿Agotado?'
     no: 'No'
+    next: 'Siguiente'
     log_in: 'Iniciar Sesión'
     yes: 'Sí'
     sign_up: 'Registrarse'

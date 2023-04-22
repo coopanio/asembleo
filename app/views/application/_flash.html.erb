@@ -1,10 +1,10 @@
 <% if flash.notice %>
-  <div class="alert alert-<%= flash.notice['type'] %>">
+  <div class="alert alert-<%= flash.notice['type'] %> text-break">
     <%= raw(flash.notice['message'])%>
   </div>
 <% end %>
 <% if flash.alert %>
-  <div class="alert alert-<%= flash.alert['type'] %>">
+  <div class="alert alert-<%= flash.alert['type'] %> text-break">
     <%= raw(flash.alert['message'])%>
   </div>
 <% end %>
