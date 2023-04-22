@@ -35,7 +35,7 @@ class Consultation < ApplicationRecord
   after_update :update_default_event, if: :synchronous?
 
   def exhausted_for?(token)
-    token.receipts.count == questions.count
+    token.receipts.where(question_id: question_ids).count == questions.count
   end
 
   private
