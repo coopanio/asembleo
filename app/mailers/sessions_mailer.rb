@@ -6,19 +6,9 @@ class SessionsMailer < ApplicationMailer
     @voter_hash = voter_hash
     raise Errors::InvalidEmail unless EmailValidator.valid?(to, mode: :strict)
 
-    tag = TokenTag.sent
     mail(to:, template_name:, subject:) do |format|
       format.text
     end
-  rescue StandardError => e
-    tag = TokenTag.failed
-
-    raise e
-  ensure
-    return unless voter_type == 'Token'
-
-    tag.token_id = voter_id
-    tag.save!
   end
 
   private
