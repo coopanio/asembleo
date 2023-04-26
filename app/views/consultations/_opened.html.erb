@@ -1,8 +1,8 @@
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-primary text-break" role="alert">
   <% if @consultation.exhausted_for?(@current_user) %>
     <%= t('consultations.consultation_finished') %>
   <% else %>
     <p><%= t('consultations.consultation_open') %></p>
-    <%= link_to t('application.refresh'), { controller: 'events', action: 'next_question', id: @event.id }, class: 'btn btn-primary btn-lg' %>
+    <%= link_to t('application.next'), { controller: 'events', action: 'next_question', id: @event.id }, class: 'btn btn-primary btn-lg' %>
   <% end %>
 </div>

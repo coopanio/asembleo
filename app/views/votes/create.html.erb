@@ -1,6 +1,6 @@
 <h2><%= @consultation.title %></h2>
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-primary text-break" role="alert">
   <p><%= t('votes.casted') %></p>
   <p><%= t('votes.fingerprint', fingerprint: @receipt.fingerprint) %></p>
-  <%= link_to 'Next', { controller: 'events', action: 'next_question', id: @event.id }, class: 'btn btn-primary btn-lg' %>
+  <%= link_to t('application.next'), { controller: 'events', action: 'next_question', id: @event.id }, class: 'btn btn-primary btn-lg' %>
 </div>

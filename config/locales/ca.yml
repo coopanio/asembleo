@@ -177,6 +177,7 @@ ca:
     delete: 'Eliminar'
     create: 'Crear'
     edit: 'Modificar'
+    next: 'Següent'
     token:
       exhausted: 'Exhaurit?'
     log_in: 'Iniciar sessió'
