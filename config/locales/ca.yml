@@ -258,34 +258,31 @@ ca:
         '
   sessions_mailer:
     user_magic_link_email:
-      body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic
-        al següent enllaç per iniciar sessió:
+      body: 'Benvolgudes:
 
+        L’Espai Polític de Decisió de la Candidatura (EPDC) convocat el 28 de maig, després de valorar el resultat de les AO per debatre i aprovar les propostes contingudes en el document Propostes programàtiques externes, va aprovar activar el procés de ratificació telemàtica del Programa electoral. Les tres opcions de vot (a favor, en contra o abstenció) de què disposeu, per tant, busquen ratificar el Programa electoral (https://drive.google.com/file/d/1OWu_5MJ8cDzAO8zmn6vlC4egyShXuuKt/view?usp=sharing) i Propostes programàtiques externes (https://drive.google.com/file/d/1nLCmxMI4G1G8hwTbKN6Hn4mJWygTyviP/view?usp=sharing) alhora. La ratificació inclourà culminar el document amb un procés d’harmonització, revisió del redactat del document Propostes programàtiques externes, revisió estilística i gramatical i maquetació.
+
+        La ratificació telemàtica s’obrirà dissabte 29 d’abril a les 09:00 h i es tancarà diumenge 30 d’abril a les 23:59. El resultat d’aquesta ratificació serà notificat telemàticament a les representants de l’EPDC i als òrgans de la Candidatura.
+
+        Per a poder votar, heu de fer clic al següent enllaç:
 
         %{magic_link_url}
-
-
-        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
 
         '
       subject: 'Enllaç màgic per a iniciar sessió'
     magic_link_email:
       subject: 'Nova consulta'
-      body: 'Estàs rebent aquest correu electrònic per poder votar. Fes clic al següent
-        enllaç per iniciar sessió:
+      body: 'Benvolgudes:
 
+        L’Espai Polític de Decisió de la Candidatura (EPDC) convocat el 28 de maig, després de valorar el resultat de les AO per debatre i aprovar les propostes contingudes en el document Propostes programàtiques externes, va aprovar activar el procés de ratificació telemàtica del Programa electoral. Les tres opcions de vot (a favor, en contra o abstenció) de què disposeu, per tant, busquen ratificar el Programa electoral (https://drive.google.com/file/d/1OWu_5MJ8cDzAO8zmn6vlC4egyShXuuKt/view?usp=sharing) i Propostes programàtiques externes (https://drive.google.com/file/d/1nLCmxMI4G1G8hwTbKN6Hn4mJWygTyviP/view?usp=sharing) alhora. La ratificació inclourà culminar el document amb un procés d’harmonització, revisió del redactat del document Propostes programàtiques externes, revisió estilística i gramatical i maquetació.
+
+        La ratificació telemàtica s’obrirà dissabte 29 d’abril a les 09:00 h i es tancarà diumenge 30 d’abril a les 23:59. El resultat d’aquesta ratificació serà notificat telemàticament a les representants de l’EPDC i als òrgans de la Candidatura.
+
+        Per a poder votar, heu de fer clic al següent enllaç:
 
         %{magic_link_url}
 
-
-        Aquest enllaç és vàlid mentre la votació es trobi oberta.
-
-
-        Si l''enllaç no funciona, vés a %{root_url} i utilitza el testimoni %{token}
-        per iniciar sessió.
-
-
-        Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
+        Si l''enllaç no funciona, aneu a %{root_url} i utilitzeu el testimoni %{token} per iniciar sessió.
 
         '
   users:
