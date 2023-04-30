@@ -56,7 +56,10 @@ class CreateToken < Actor
   end
 
   def find_token
-    Token.from_value(cleaned_identifier) if identifier.present?
+    token = Token.from_hash(cleaned_identifier) if identifier.present?
+    return token if token.present?
+
+    Token.from_alias(cleaned_identifier, event:) if identifier.present? && aliased
   rescue ActiveRecord::RecordNotFound
     nil
   end

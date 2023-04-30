@@ -19,18 +19,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal principal.id, session[:identity_id]
   end
 
-  test 'should create session with aliased token' do
-    aliased_token = Faker::PhoneNumber.cell_phone
-    @params = { session: { identifier: aliased_token } }
-
-    principal.update!(alias: Token.sanitize(aliased_token))
-
-    subject
-
-    assert_response :redirect
-    assert_equal principal.id, session[:identity_id]
-  end
-
   test 'should fail on deleted token' do
     principal.destroy!
     subject

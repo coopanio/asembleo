@@ -21,7 +21,6 @@ class CreateTokenTest < ActionDispatch::IntegrationTest
 
   test 'should deliver magic link' do
     @params[:identifier] = 'voter@example.com'
-    @params[:aliased] = true
     @params[:send_magic_link] = true
 
     subject
