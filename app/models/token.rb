@@ -21,13 +21,6 @@ class Token < ApplicationRecord
 
   after_initialize :init
 
-  def self.from_value(value)
-    token = Token.from_hash(value)
-    token = Token.from_alias(value) if token.nil?
-
-    token
-  end
-
   def self.from_hash(hash)
     hash = sanitize(hash)
 
@@ -35,10 +28,11 @@ class Token < ApplicationRecord
     Token.find(ids.first) unless ids.empty?
   end
 
-  def self.from_alias(value)
+  def self.from_alias(value, event: nil)
     value = sanitize(value)
+    return Token.find_by!(alias: value) if event.blank?
 
-    Token.find_by!(alias: value)
+    Token.find_by!(alias: value, event: event)
   end
 
   def self.sanitize(value)

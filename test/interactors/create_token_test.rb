@@ -21,13 +21,13 @@ class CreateTokenTest < ActionDispatch::IntegrationTest
 
   test 'should deliver magic link' do
     @params[:identifier] = 'voter@example.com'
-    @params[:aliased] = true
     @params[:send_magic_link] = true
 
     subject
 
     assert_enqueued_emails 1
     assert_equal 1, Token.count
+    assert_equal %w[sent], Token.first.tags.map(&:value)
     assert_equal 1, TokenReceipt.count
   end
 end
