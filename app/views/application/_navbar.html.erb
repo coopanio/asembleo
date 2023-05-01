@@ -19,5 +19,13 @@
         <%= link_to t('application.log_out'), session_path('current'), method: :delete, class: 'nav-link' %>
       </li>
     </ul>
+  <% else %>
+    <ul class="navbar-nav">
+      <% Link.all.each do |link| %>
+        <li class="nav-item">
+          <%= link_to link.name, link.url, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
