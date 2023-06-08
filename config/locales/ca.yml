@@ -271,9 +271,9 @@ ca:
         Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
 
         '
-      subject: 'Enllaç màgic per a iniciar sessió'
+      subject: 'Votació CUP eleccions espanyoles 23J'
     magic_link_email:
-      subject: 'Nova consulta'
+      subject: 'Votació CUP eleccions espanyoles 23J'
       body: 'Companyes,
 
         Amb aquesta votació preneu part del procés per decidir si la CUP prendrà part a les eleccions al Congreso, que tindran lloc el pròxim dia 23 de juliol.
