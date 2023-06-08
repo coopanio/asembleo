@@ -3,4 +3,4 @@
 <% else %>
   <%= form.radio_button "vote[#{question.id}][value]", option.value, class: 'form-check-input', disabled: question.draft?, multiple: true %>
 <% end %>
-<%= form.label option.description, for: "vote[#{question.id}][value]_#{option.value}", class: 'form-check-label' %>
+<%= form.label :vote, option.description, for: "vote[#{question.id}][value]_#{option.value}", class: 'form-check-label' %>
