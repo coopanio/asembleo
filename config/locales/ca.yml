@@ -258,12 +258,15 @@ ca:
         '
   sessions_mailer:
     user_magic_link_email:
-      body: 'Estàs rebent aquest correu electrònic per a iniciar sessió. Fes clic
-        al següent enllaç per iniciar sessió:
+      body: 'Companyes,
 
+        Amb aquesta votació preneu part del procés per decidir si la CUP prendrà part a les eleccions al Congreso, que tindran lloc el pròxim dia 23 de juliol.
+
+        Si heu rebut el correu és perquè compliu els requisits per participar-hi, aprovats el passat dissabte 3 de juny, pel Consell Polític Extraordinari de la CUP.
+
+        La votació restarà oberta les properes 24 h. Voteu a través del següent enllaç:
 
         %{magic_link_url}
-
 
         Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
 
@@ -271,19 +274,18 @@ ca:
       subject: 'Enllaç màgic per a iniciar sessió'
     magic_link_email:
       subject: 'Nova consulta'
-      body: 'Estàs rebent aquest correu electrònic per poder votar. Fes clic al següent
-        enllaç per iniciar sessió:
+      body: 'Companyes,
 
+        Amb aquesta votació preneu part del procés per decidir si la CUP prendrà part a les eleccions al Congreso, que tindran lloc el pròxim dia 23 de juliol.
+
+        Si heu rebut el correu és perquè compliu els requisits per participar-hi, aprovats el passat dissabte 3 de juny, pel Consell Polític Extraordinari de la CUP.
+
+        La votació restarà oberta les properes 24 h. Voteu a través del següent enllaç:
 
         %{magic_link_url}
 
-
-        Aquest enllaç és vàlid mentre la votació es trobi oberta.
-
-
         Si l''enllaç no funciona, vés a %{root_url} i utilitza el testimoni %{token}
         per iniciar sessió.
-
 
         Si no has sol·licitat aquest enllaç, ignora aquest correu electrònic.
 
