@@ -3,16 +3,23 @@
   <span class="navbar-toggler-icon"></span>
 </button>
 <div class="navbar-collapse collapse mb-2 mb-md-0" id="navbarCollapse">
-  <% if @current_user %>
-    <ul class="navbar-nav me-auto">
+  <ul class="navbar-nav me-auto">
+    <% if @current_user %>
+    <li class="nav-item">
+      <span class="badge bg-info"><%= @current_user.translated_role %></span>
+    </li>
+    <% end %>
+  </ul>
+  <ul class="navbar-nav">
+    <% Link.all.each do |link| %>
       <li class="nav-item">
-        <span class="badge bg-info"><%= @current_user.translated_role %></span>
+        <%= link_to link.name, link.url, class: 'nav-link' %>
       </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <%= link_to t('application.log_out'), session_path('current'), method: :delete, class: 'nav-link' %>
-      </li>
-    </ul>
-  <% end %>
+    <% end %>
+    <% if @current_user %>
+    <li class="nav-item">
+      <%= link_to t('application.log_out'), session_path('current'), method: :delete, class: 'nav-link' %>
+    </li>
+    <% end %>
+  </ul>
 </div>
