@@ -4,7 +4,7 @@ class ConsultationsController < ApplicationController
   def index
     authorize Consultation
 
-    @consultations = Consultation.all
+    @consultations = Consultation.all.order(created_at: :desc)
   end
 
   def new
