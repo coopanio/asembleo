@@ -1,4 +1,13 @@
 <%= form_with scope: :user, url: users_path, class: 'container', local: true do |f| %>
+  <div class="alert alert-primary text-break" role="alert">
+    <p>Benvingut!</p>
+    <p>Acabes d’entrar a la Plataforma de Consultes Ciutadanes de Decideix.</p>
+    <p>Segueix aquestes passes, si us plau, i aviat podràs votar a totes les consultes obertes.</p>
+    <p>Has d’emplenar les caselles amb el teu DNI i el teu correu electrònic. El DNI només se’t demanarà un cop i és per evitar que dues persones puguin utilitzar el mateix compte.</p>
+    <p>Tot seguit rebràs un correu electrònic al compte on t’has donat d’alta. Segueix les passes i tan bon punt l’administrador o administradora t’hagi donat d’alta, podràs començar a participar.</p>
+    <p>Un cop donat d’alta el DNI desapareixerà de la nostra base de dades, per la qual cosa hi ha la possibilitat que passat un temps hagis de tornar a donar-te d’alta. Pensa que és per mantenir un mínim de seguretat.</p>
+    <p>I ja saps! A més de poder votar, també ens pots enviar propostes de consultes a <a href="mailto:decideixlh@gmail.com">decideixlh@gmail.com</a>, sempre que respectin la DUDH.</p>
+  </div>
   <div class="row mb-3">
     <%= f.label :email, class: 'col-2 col-form-label' %>
     <div class="col-10">
