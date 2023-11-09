@@ -50,3 +50,12 @@ yarn-debug.log*
 /.sass-cache/*
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+/v2
+go.work
+go.work.sum
+.trunk/.gitignore
+.trunk/trunk.yaml
+.trunk/configs/.markdownlint.yaml
+.trunk/configs/.shellcheckrc
+.trunk/configs/.yamllint.yaml
