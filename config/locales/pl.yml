@@ -1,1 +1,291 @@
-{}
+activerecord:
+  models:
+    token:
+      one: Token
+      few: Tokeny
+      many: Tokenów
+    consultation:
+      one: Kontynuacja
+      few: Kontynuacje
+      many: Kontynuacji
+    event:
+      one: Zdarzenie
+      few: Zdarzenia
+      many: Zdarzeń
+    question:
+      one: Pytanie
+      few: Pytania
+      many: Pytań
+    option:
+      one: Opcja
+      few: Opcje
+      many: Opcji
+  attributes:
+    event:
+      status: Status
+      title: Tytuł
+      id: Identyfikator
+      status_list:
+        closed: Zamknięta
+        opened: Otwarta
+    user:
+      role: Rola
+    consultation:
+      status_list:
+        archived: Archiwowana
+        draft: Szkic
+        closed: Zamknięta
+        opened: Otwarta
+      title: Tytuł
+      description: Opis
+      distribution: Dystrybucja
+      ballot: Głosowanie
+      mode: Tryb
+      status: Status
+    question:
+      status: Status
+      id: Identyfikator
+      description: Opis
+    question_group:
+      id: Identyfikator
+    token:
+      tags: Tagi
+      role: Rola
+    option:
+      value: Wartość
+      description: Opis
+application:
+  footer: Asemblo jest otwarto źródłowym projektem tworzonym przez Coopanio
+  upload: Opublikuj
+  no: Nie
+  yes: Tak
+  sign_up: Zarejestruj się
+  edit: Edytuj
+  save: Zapisz
+  email: Email
+  cancel: Anuluj
+  confirm: Jesteś pewny?
+  token:
+    exhausted: Przemęczony?
+  refresh: Odśwież
+  log_in: Zaloguj się
+  log_out: Wyloguj się
+  create: Utwórz
+  back: Wróć
+  delete: Usuń
+pages:
+  about:
+    body: "<h1>Czym jest Asembleo?</h1>\n<p>Asembleo To otwarto źródłowa platforma
+      do glosowania która upoważnia\n  organizacje każdych rozmiarów do podejmowania
+      demokratycznych decyzji online. Z Asembleo,\n  możesz przeprowadzić bezpieczne
+      i przejrzyste głosowania, ankiety i sondarze bez żadnej\n  wiedzy technicznej
+      czy ekspertyzy.</p>\n<p>Nasza platforma jest zaprojetowana z myślą o prostocie,
+      prywatności i zaufaniu.\n  Wierzymy że każdy ma prawo brać udział w demokratycznym
+      procesie,\n  i dlateko stworzyliśmy Asembleo dostępne dla każdego, bez względu
+      na ich\n  umiejętności techniczne czy budżet.</p>\n<h1>Główne funkcje</h1>\n
+      <p>Kluczowe funkcje Asembleo to:</p>\n<ul>\n  <li>\n    <p><strong>Bezpieczne
+      i Przejrzyste Gołosowanie:</strong> Z Asembleo, możesz\n      zapewnić uczciwość
+      wyborów i gwarantować że każdy głos jest\n      anonimowy i odporny na manipulacje.</p>\n\
+      \  </li>\n  <li>\n    <p><strong>Intuicyjny interfejs:</strong> Nasza platforma
+      jest prosta w użytku,\n      intuicyjna i dostępna, ułatwiając każdemu w braniu
+      udziału w \n      procesie demokradycznym.</p>\n  </li>\n  <li>\n    <p><strong>Prywatność
+      i Ochrona danych:</strong> Do prywatności podchodzimy poważnie\n      i nie
+      zbieramy żadnych danych osobistych. Wszystkie informacje są zaszyfrowane i\n\
+      \      przechowywane bezbiecznie na naszych serwerach.</p>\n  </li>\n  <li>\n\
+      \    <p><strong>Otwaro źródłowe i Prowadzone przez Społeczność:</strong> Asembleo
+      jest darmowe i\n      otwarto źródłowe, co oznacza że każdy może przyczynić
+      się do jego rozwoju i\n      ulepszania. Wierzymy w siłę prowadzonego przez
+      społeczność oprogramowania i\n      przejżystości w podejmowaniu decyzji.</p>\n\
+      \  </li>\n</ul>\n<h1>Dlaczego wybrać Asembleo?</h1>\n<p>Asembleo jest perfekcyjnym
+      wyborem dla każdej organizacji planującej przeprowadzić bezpieczne\n  i przejżyste
+      głosowania online. Z naszą platformą możesz:</p>\n<ul>\n  <li>\n    <p><strong>Oszczędzić
+      czas i Pieniądze:</strong> Asembleo sprawia że jest to łatwe i\n      nie drogie
+      aby przeprowadzać demokratyczne decyzje bez potrzeby na drogie\n      lub skomplikowane
+      oprogramowanie.</p>\n  </li>\n  <li>\n    <p><strong>Połączyć się ze swoją społecznością:</strong>
+      Z Asembleo, możesz sprzyjać\n      większemu zaangażowaniu wśród twoich członków
+      lub inwestorów,\n      prowadząc do bardziej demokratycznego podejmowania decyzji.</p>\n\
+      \  </li>\n  <li>\n    <p><strong>Zapewnić Zaufanie i Przejżystość:</strong>
+      Asembleo otwarto źródłowa\n      i prowadzona przez społeczność natura oznacza
+      że możesz być pewien\n      uczciwego procesu i wyniku wyborów.</p>\n  </li>\n
+      </ul>\n<p>Wybierz Asembleo dla bezpiecznego, przyjaznego użytkownikowi i niezawodnemu
+      doświadcznia z głosowaniami.</p>\n"
+    title: O
+sessions_mailer:
+  user_magic_link_email:
+    body: "Dostajesz ten email aby się zalogować. Proszę kliknąć link poniżej:\n\n
+      %{magic_link_url}\n\nJeśli nie prosiłeś o ten link, zignoruj ten email.\n"
+    subject: Magiczny link do zalogowania
+  magic_link_email:
+    subject: Nowa konsultacja
+    body: "Dostajesz ten email aby głosować. Proszę kliknąć link poniżej aby się zalogować:\n
+      \n%{magic_link_url}\n\nTen link jest dostępny kiedy głosowanie jest otwarte.\n
+      \nJeśli link nie dziła przejdź do %{root_url} i użyj tokenu %{token} aby się
+      zalogować.\n\nJeśli nie prosiłeś o ten link, zignoruj ten email.\n"
+events:
+  token_disabled: Token wyłączony.
+  token_bulk_creation: Tworzenie zbiorcze
+  tokens_created_or_enabled: Tokeny stworzone albo włączone.
+  token_exists_and_enabled: Token istnieje i jest włączony.
+  token_add_admin: Dodaj administratora
+  token_enabled: Token włączony.
+  token_enabled_again: Token ponownie włączony.
+  token_created: Token utworzony.
+  created_tokens: Utworzono tokeny
+  event_deleted: Zdarzenie usunięte.
+  token_already_issued: Token został już zgłoszony.
+application_mailer:
+  greeting: Cześć
+  complimentary_close: "Dzięki,\n%{recipient}\n"
+consultations:
+  consultation_token_created: '%{role} token jest <strong>%{token}</strong>.'
+  consultation_finished: Odpowiedziałeś na wszystkie pytania.
+  consultation_closed: Konsultacja jest zamknięta.
+  consultation_deleted: Konsultacja usunięta.
+  consultation_create: Stwórz konsultacje
+  consultation_draft: Konsultacja dalej jest w trybie szkicu.
+  consultation_created: Konsultacja stworzona.
+  consultation_open: Konsultacja jest otwarta. Proszę przejdź do głosowania porzez
+    kliknięcie dalej.
+  consultation_archived: Konsultacja została zarchiwizowana.
+stats:
+  participants: Uczestnicy
+  title: Statystyki
+  census: Spis ludności
+helpers:
+  label:
+    option:
+      value: Wartość wewnętrzna
+      main: Główne opcje
+    user:
+      email: Email
+      nid: Dokument tożsamości
+    consultation:
+      description: Opis
+      title: Tytuł
+      mode: Tryb
+      status: Status
+      ballot: Głosowanie
+    event:
+      hints:
+        aliased: Używa wartości jako aliasów dla tokenów. To umożliwia użytkownikom
+          na zalogowanie się aliasem.
+        value: Jedna wartość na linijkę.
+        send: Wymaga aby wartości były adresami email do wysłania osobistych magicznych
+          linków dostępu do konsultacji. Tokeny będą generowane bez przechowywania
+          powiązanych z nimi adrersów email. Znane adresy email nie otrzymają nowego
+          magicznego linku.
+        email_value: Jeśli wartość jest poprawnym adresem email, mogiczny link zostanie
+          wysłany.
+      aliased: Użyj wartości jako aliasów
+      tokens: Lista tokenów do utworzenia
+      status: Status
+      title: Tytuł
+      send: Wyślij magiczny link
+    question:
+      description: Opis
+      max_options: Opcje maksymalne
+    session:
+      identifier: Identyfikator
+      password: Hasło
+    question_group:
+      description: Opis
+  events_helper:
+    enable: Włącz
+    disable: Wyłącz
+    close: Zamknij
+    open: Otwórz
+questions:
+  question_still_draft: Pytanie dalej w szkicu.
+  question_opened: Otwarto pytanie.
+  results_not_available: Wyniki niedostępne kiedy pytanie jest otwarte.
+  question_results: Wyniki
+  question_created: Pytanie utworzone.
+  question_closed: Pytanie zamknięte.
+  question_deleted: Pytanie usunięte.
+  question_updated: Pytanie zaktualizowane.
+  question_is_closed: To pytanie jest zamknięte.
+  vote: Głosuj
+errors:
+  not_authorized: Nie jesteś autoryzowany.
+  invalid_identity: Niepoprawny dokument identyfikujący.
+  you_already_voted_for_this: Głosowałeś już pod tym pytaniem.
+  you_can_only_choose_up_to2: Możesz wybrać %{e_option_value} maksymalnie %{e_limit}
+    razy.
+  choose_a_valid_option: Wybierz odpowiednią opcje.
+  access_denied: Odmowa dostępu.
+  invalid_email: Niepoprawny email.
+  bad_request: Złe zapytanie
+  you_can_only_choose_up_to: Możesz wybrać maksymalnie %{e_max_options} opcji.
+  invalid_parameters: Niepoprawne parametry.
+users_mailer:
+  welcome_email:
+    body: "Twoje konto zostało zatwierdzone. Możesz się zalogować i brać udział w
+      linku poniżej:\n\n%{magic_link_url}\n\nJeśli nie prosiłeś o ten link, zignoruj
+      ten email.\n"
+    subject: Witamy
+  confirmation_email:
+    subject: Potwierdź prośbię stworzenia konta
+    body: "Dostajesz ten email aby potwierdzić swoje nowe konto. Proszę kliknij link
+      poniżej aby zatwierdzić:\n\n%{confirmation_url}\n"
+  approval_email:
+    body: "Dostajesz ten email aby zatwierdzić nowe konto., Proszę sprawdź informacje
+      i kliknij poniższy link aby zatwierdzić.\n\n- Dokument tożsamości: %{nid}\n
+      - Email: %{email}\n\nZatwierdź: %{approval_url}\n"
+    subject: Zaakceptuj prośbę utowżenia tego konta
+users:
+  voter_sign_up: Zarejestruj się jako głosujący
+  user_confirmed: Konto potwierdzone. Otrzymasz email z akceptacją administarora.
+  user_created: Prośba utworzenia konta zarejestrowana pomyślnie. Otrzymasz email
+    aby potwierdzić że wszystko jest poprawne.
+  user_approved: Konto zaakceptowane.
+attributes:
+  role: Rola
+  description: Opis
+  role_list:
+    manager: menadżer
+    user: użytkownik
+    admin: administrator
+    voter:
+      one: głosujący
+      few: głosujący
+      many: głosujący
+  title: Tytuł
+  id: Identyfikator
+  status: Status
+sessions:
+  log_in_as_admin: Zaloguj się jako administrator
+  magic_link_sent: Email z magicznym linkiem został wysłany na twój adres email
+question_groups:
+  grouped_questions: Pytanie grupowe
+  required_questions: Wybierz przynajmniej dwa pytania.
+  group:
+    one: Grupa
+    few: Grupy
+    many: Grup
+consultations_mailer:
+  default_tokens_email:
+    subject: Utworzono tokeny dla %{consultation.title}
+    body: "Poniższe tokeny zostały stworzone:\n"
+votes:
+  required_cast: Oddaj głos pod każdym pytaniem.
+  casted: Twój głos został poprawnie zarejestrowany. Proszę przejść do kolejnego pytania.
+  fingerprint: Odciskiem palca twojego głosu jest %{fingerprint}
+activemodel:
+  attributes:
+    "consultation/config":
+      distribution_list:
+        email: Email
+        manual: Instrukcja
+      mode_list:
+        asynchronous: asynchroniczny
+        synchronous: Synchroniczny
+      ballot_list:
+        open: Otwórz
+        secret: Sekret
+options:
+  option_created: Opcja utworzona.
+  option_deleted: Opcja usunięta.
+  option_updated: Opcja zaktualizowana.
+interactors:
+  create_consultation:
+    default: Domyślne
