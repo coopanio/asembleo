@@ -7,7 +7,7 @@ class HashIdServiceTest < ActiveSupport::TestCase
 
   setup do
     @ids = [1, 5]
-    @value = 'p6pdh568'
+    @value = 'kepacl8v'
   end
 
   test 'encode' do
@@ -24,7 +24,7 @@ class HashIdServiceTest < ActiveSupport::TestCase
 
   test 'that handles nil values' do
     @ids = [1, nil, 5]
-    @value = '6pdhgtr6'
+    @value = 'epaczhr8'
     encoded = HashIdService.encode(*ids)
     decoded = HashIdService.decode(encoded)
 

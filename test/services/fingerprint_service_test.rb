@@ -18,12 +18,12 @@ class FingerprintServiceTest < ActiveSupport::TestCase
   test 'generate' do
     @short = false
 
-    assert_equal 'f513eba3cdcb251c01f5cfd8ccea0e5f4c388dea74f37645cc3e77491c21c2d5', subject
+    assert_equal 'a85da3dfccd8d6081182413747117004f01df0702dac1602d4f904c41bb882e7', subject
   end
 
   test 'generate short' do
     @short = true
 
-    assert_equal 'f513eba3cdcb251c01f5', subject
+    assert_equal 'a85da3dfccd8d6081182', subject
   end
 end
