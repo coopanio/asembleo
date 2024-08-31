@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.0'
+ruby '3.3.4'
 
 gem 'argon2', '~> 2.2'
 gem 'bootsnap', '~> 1.15', require: false
@@ -35,7 +35,7 @@ end
 
 group :development, :test do
   gem 'pry-rails', '~> 0.3'
-  gem 'sqlite3', '~> 1.5'
+  gem 'sqlite3', '< 1.5'
 end
 
 group :development do
