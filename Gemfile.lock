@@ -228,7 +228,8 @@ GEM
     regexp_parser (2.7.0)
     request_store (1.5.1)
       rack (>= 1.4)
-    rexml (3.2.5)
+    rexml (3.3.6)
+      strscan
     rubocop (1.46.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -283,6 +284,7 @@ GEM
     sqlite3 (1.4.4)
     store_model (1.6.0)
       activerecord (>= 5.2)
+    strscan (3.1.0)
     sucker_punch (3.1.0)
       concurrent-ruby (~> 1.0)
     temple (0.10.0)
