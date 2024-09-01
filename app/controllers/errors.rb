@@ -136,4 +136,6 @@ module Errors
       @emails = emails
     end
   end
+
+  class InvalidTokenScope < ActionController::BadRequest; end
 end
