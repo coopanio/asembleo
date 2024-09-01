@@ -11,6 +11,7 @@ class CreateToken < Actor
 
   output :token
   output :skip
+  output :skip_reason
 
   def call
     validate
@@ -38,7 +39,15 @@ class CreateToken < Actor
 
   def validate
     fail!(error: Errors::InvalidTokenScope) if scope == :consultation && consultation.nil?
-    self.skip = true if already_issued?
+    if already_issued?
+      self.skip_reason = :token_already_issued
+    elsif consultation&.closed?
+      self.skip_reason = :token_consultation_closed
+    elsif event&.closed?
+      self.skip_reason = :token_event_closed
+    end
+
+    self.skip = true if self.skip_reason
   end
 
   def already_issued?

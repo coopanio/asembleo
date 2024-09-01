@@ -61,7 +61,7 @@ class EventsController < ApplicationController
         result = CreateToken.result(identifier:, role:, aliased:, send_magic_link:, event:)
 
         if result.skip
-          success(I18n.t('events.token_already_issued'))
+          error(I18n.t("events.#{result.skip_reason}"))
         elsif result.token.new_record?
           success(I18n.t('events.token_created'))
         elsif result.token.disabled?

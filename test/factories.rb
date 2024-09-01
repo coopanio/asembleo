@@ -25,7 +25,7 @@ FactoryBot.define do
   factory :consultation do
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    status { :draft }
+    status { :opened }
   end
 
   factory :question do
@@ -41,7 +41,7 @@ FactoryBot.define do
 
   factory :event do
     consultation
-    status { :closed }
+    status { :opened }
   end
 
   factory :events_question do

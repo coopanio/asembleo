@@ -196,6 +196,8 @@ es:
     token_disabled: 'Token deshabilitado.'
     event_deleted: 'Evento eliminado.'
     token_enabled_again: 'Token habilitado de nuevo.'
+    token_consultation_closed: 'La consulta está cerrada y no se pueden crear más tokens.'
+    token_event_closed: 'El evento está cerrado y no se pueden crear más tokens.'
     token_already_issued: 'Token ya emitido.'
     tokens_created_or_enabled: 'Tokens creados o activados.'
   options:

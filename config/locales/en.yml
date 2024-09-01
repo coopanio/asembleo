@@ -129,6 +129,8 @@ en:
     invalid_identity: Invalid identity document.
   events:
     tokens_created_or_enabled: Tokens created or enabled.
+    token_consultation_closed: The consultation is closed and it is not possible to create tokens.
+    token_event_closed: The event is closed and it is not possible to create tokens.
     token_already_issued: Token already issued.
     token_created: Token created.
     token_enabled_again: Token enabled again.

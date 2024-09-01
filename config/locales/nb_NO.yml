@@ -124,6 +124,8 @@ nb-NO:
     event_deleted: Begivenhet slettet.
     token_bulk_creation: Masseopprettelse
     token_created: Symbol opprettet.
+    token_consultation_closed: Konsultasjonen er lukket og det er ikke mulig å opprette symboler.
+    token_event_closed: Begivenhet er lukket og det er ikke mulig å opprette symboler.
     token_already_issued: Symbol allerede utstedt.
     tokens_created_or_enabled: Symboler opprettet eller påslått.
     token_add_admin: Legg til administrator
