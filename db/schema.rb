@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_111239) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_01_201521) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -129,7 +129,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_111239) do
     t.string "voter_type"
     t.integer "voter_id"
     t.index ["question_id"], name: "index_receipts_on_question_id"
-    t.index ["question_id"], name: "index_receipts_on_token_id_and_question_id", unique: true
     t.index ["voter_type", "voter_id", "question_id"], name: "index_receipts_on_voter_type_and_voter_id_and_question_id", unique: true
     t.index ["voter_type", "voter_id"], name: "index_receipts_on_voter"
   end
