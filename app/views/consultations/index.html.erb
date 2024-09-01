@@ -14,12 +14,14 @@
       <thead>
         <tr>
           <th scope="col"><%= t('activerecord.attributes.consultation.title') %></th>
+          <th scope="col"><%= t('activerecord.attributes.consultation.created_at') %></th>
           <th colspan="1"></th>
         </tr>
       </thead>
       <% @consultations.each do |consultation| %>
         <tr>
           <td><%= consultation.title %></td>
+          <td><%= consultation.created_at %></td>
           <% if @current_user.admin? %>
             <td><%= link_to t('application.edit'), { controller: :consultations, action: :edit, id: consultation.id }, class: 'btn btn-link py-0' %></td>
           <% else %>
