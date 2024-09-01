@@ -7,7 +7,7 @@ class Consultation < ApplicationRecord
     include StoreModel::Model
     include TranslateStoreModel
 
-    enum :mode, %i[synchronous asynchronous], default: :synchronous
+    enum :mode, %i[synchronous asynchronous], default: :asynchronous
     enum :ballot, %i[open secret], default: :secret
     enum :distribution, %i[manual email], default: :manual
 

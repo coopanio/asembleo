@@ -26,13 +26,10 @@ class CreateConsultation < Actor
     self.admin_token = Token.new(role: :admin, consultation:)
     self.tokens = [admin_token]
 
-    return unless consultation.synchronous?
-
     self.tokens << Token.new(role: :manager, consultation:, event: default_event)
   end
 
   def default_event
-    return unless consultation.synchronous?
     return @default_event if defined?(@default_event)
 
     @default_event = Event.new(title: I18n.t('interactors.create_consultation.default'), consultation:)
