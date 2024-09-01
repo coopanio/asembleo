@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_111239) do
     t.string "voter_type"
     t.integer "voter_id"
     t.index ["question_id"], name: "index_receipts_on_question_id"
+    t.index ["question_id"], name: "index_receipts_on_token_id_and_question_id", unique: true
     t.index ["voter_type", "voter_id", "question_id"], name: "index_receipts_on_voter_type_and_voter_id_and_question_id", unique: true
     t.index ["voter_type", "voter_id"], name: "index_receipts_on_voter"
   end
