@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def new; end
 
   def create
-    result = CreateUser.result(user_params.merge(send_confirmation_email: true))
+    result = CreateUser.result(user_params.merge(send_confirmation_email: true).to_h.symbolize_keys)
     raise result.error if result.failure?
 
     success(I18n.t('users.user_created'))
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    result = ConfirmUser.result(confirmation_params)
+    result = ConfirmUser.result(confirmation_params.to_h.symbolize_keys)
     raise result.error if result.failure?
 
     success(I18n.t('users.user_confirmed'))
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def approve
-    result = ApproveUser.result(confirmation_params)
+    result = ApproveUser.result(confirmation_params.to_h.symbolize_keys)
     raise result.error if result.failure?
 
     success(I18n.t('users.user_approved'))

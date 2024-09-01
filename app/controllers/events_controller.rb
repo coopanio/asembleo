@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def create
     authorize Event
 
-    result = CreateEvent.result(create_params.merge(consultation: current_user.consultation))
+    result = CreateEvent.result(create_params.merge(consultation: current_user.consultation).to_h.symbolize_keys)
     raise result.error if result.failure?
 
     redirect_to action: 'edit', id: result.event.id

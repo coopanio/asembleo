@@ -15,7 +15,7 @@ class ConsultationsController < ApplicationController
   def create
     authorize Consultation
 
-    result = CreateConsultation.result(create_params.merge(admin_email_address: current_user&.email))
+    result = CreateConsultation.result(create_params.merge(admin_email_address: current_user&.email).to_h.symbolize_keys)
     raise result.error if result.failure?
 
     reset_session
