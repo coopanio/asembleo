@@ -2,12 +2,12 @@
 
 require 'test_helper'
 
-class ConsultationsControllerTest < ActionDispatch::IntegrationTest
+class ConsultationsControllerTest < ControllerTestCase
   attr_reader :params, :token
 
   setup do
     @params = { consultation: { title: 'Test', description: 'Description' } }
-    @token = create(:token, :admin)
+    @token = create_admin_token
     event = create(:event, consultation: @token.consultation)
     @token.update!(event:)
   end
@@ -27,7 +27,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create consultation with admin user' do
-    @token = create(:user, :admin, identifier: 'admin@coopanio.com', password: 'notverysafe')
+    @token = create_admin_user
     login_user
 
     assert_emails 1 do
@@ -48,7 +48,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should edit consultation' do
-    login
+    login_token
 
     get edit_consultation_url(token.consultation.id)
 
@@ -56,7 +56,7 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update consultation' do
-    login
+    login_token
 
     @params = { consultation: { status: 'opened' } }
     patch(consultation_url(token.consultation.id), params:)
@@ -65,17 +65,5 @@ class ConsultationsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     assert_equal params[:consultation][:status], consultation.status
-  end
-
-  private
-
-  def login
-    post sessions_url, params: { session: { identifier: token.to_hash } }
-    assert_predicate session[:identity_id], :present?
-  end
-
-  def login_user
-    post sessions_url, params: { session: { identifier: token.identifier, password: 'notverysafe' } }
-    assert_predicate session[:identity_id], :present?
   end
 end

@@ -2,13 +2,14 @@
 
 require 'test_helper'
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class UsersControllerTest < ControllerTestCase
   setup do
     @email = 'example@example.com'
     @nid = DniNie.random_nie
     @fingerprint = FingerprintService.generate(@nid)
 
-    create(:user, identifier: 'admin@example.com', role: :admin)
+    @token = create_admin_user
+    login_user
   end
 
   subject { post users_url, params: { user: { email: @email, nid: @nid } } }
@@ -113,12 +114,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_emails 0
   end
 
-  class E2ETest < ActionDispatch::IntegrationTest
+  class E2ETest < ControllerTestCase
     setup do
       @email = 'example@example.com'
       @nid = DniNie.random_dni
 
-      create(:user, identifier: 'admin@example.com', role: :admin)
+      @token = create_admin_user
+      login_user
     end
 
     def extract_urls_from_emails

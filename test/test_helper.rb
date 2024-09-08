@@ -41,3 +41,27 @@ module ActiveSupport
     end
   end
 end
+
+class ControllerTestCase < ActionDispatch::IntegrationTest
+  private
+
+  attr_reader :token
+
+  def create_admin_token
+    create(:token, :admin)
+  end
+
+  def create_admin_user
+    create(:user, identifier: 'admin@example.com', role: :admin, password: 'notverysafe')
+  end
+
+  def login_user
+    post sessions_url, params: { session: { identifier: token.identifier, password: 'notverysafe' } }
+    assert_predicate session[:identity_id], :present?
+  end
+
+  def login_token
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+    assert_predicate session[:identity_id], :present?
+  end
+end
