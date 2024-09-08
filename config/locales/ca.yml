@@ -222,6 +222,7 @@ ca:
     log_in_as_admin: 'Iniciar sessió com administrador'
     magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça
       de correu'
+    not_valid: 'Sessió invàlida o absent.'
   users_mailer:
     welcome_email:
       subject: Et donem la benvinguda

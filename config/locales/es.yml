@@ -231,6 +231,7 @@ es:
     log_in_as_admin: 'Iniciar sesión como Administrador'
     magic_link_sent: 'Un eMail con un enlace mágico fue enviado a su dirección de
       correo electrónico'
+    not_valid: 'Sesión no válida o ausente.'
   users_mailer:
     approval_email:
       body: 'Está recibiendo este correo electrónico para aprobar una nueva cuenta.

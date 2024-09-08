@@ -224,6 +224,7 @@ en:
   sessions:
     log_in_as_admin: Log in as admin
     magic_link_sent: An email with a magic link was sent to your email address
+    not_valid: The session is not valid or missing.
   sessions_mailer:
     magic_link_email:
       subject: New consultation

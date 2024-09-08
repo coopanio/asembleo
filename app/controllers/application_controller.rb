@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_raven_context
-  before_action :check_token
+  before_action :check_token, unless: -> {
+    return true if controller_name == 'main' && action_name == 'index'
+    return true if controller_name == 'sessions' && action_name.in?(%w[create create_from_email new])
+  }
   before_action :set_context
 
   include Errors
@@ -17,7 +20,12 @@ class ApplicationController < ActionController::Base
   end
 
   def check_token
-    return if current_user.blank?
+    if current_user.blank?
+      error(I18n.t('sessions.not_valid'))
+      redirect_to root_path
+      return
+    end
+
     return unless current_user.disabled?
 
     error(I18n.t('events.token_disabled'))

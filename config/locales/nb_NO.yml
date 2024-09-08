@@ -153,6 +153,7 @@ nb-NO:
   sessions:
     log_in_as_admin: Logg inn som administrator
     magic_link_sent: En e-post med en magisk lenke ble sendt til e-postadressen din
+    not_valid: Økten er ikke gyldig eller mangler.
   sessions_mailer:
     magic_link_email:
       subject: Ny konsultasjon
