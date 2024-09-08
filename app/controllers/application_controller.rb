@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
   before_action :check_token, unless: -> {
+    return true if controller_name == 'consultations' && action_name == 'create'
     return true if controller_name == 'main' && action_name == 'index'
     return true if controller_name == 'sessions' && action_name.in?(%w[create create_from_email new])
   }
