@@ -128,6 +128,17 @@ ca:
         distribution_list:
           manual: Manual
           email: Correu electrònic
+      hints:
+        "consultation/config":
+          ballot_list:
+            open: "El vot de cada participant és visible en el recompte de la consulta."
+            secret: "El vot de cada participant és anònim."
+          distribution_list:
+            manual: "Els identificadors són gestionats manualment pels administradors i gestors."
+            email: "Els identificadors són distribuïts per correu electrònic."
+          mode_list:
+            synchronous: "Els vots es guarden immediatament."
+            asynchronous: "Els vots es guarden utilitzant una cua (recomanat per consultes grans)."
   attributes:
     role_list:
       manager: 'gestor'

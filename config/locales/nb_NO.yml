@@ -69,6 +69,20 @@ nb-NO:
         ballot_list:
           open: Åpen
           secret: Hemmelig
+        distribution_list:
+          manual: Manuell
+          email: E-post
+      hints:
+        "consultation/config":
+          ballot_list:
+            open: "Each participant's casted vote is visible in the consultation's tally."
+            secret: "Each participant's casted vote is anonymous."
+          distribution_list:
+            manual: "Tokens are handled manually by admin and managers."
+            email: "Tokens are distributed by email."
+          mode_list:
+            synchronous: "Votes are saved immediately."
+            asynchronous: "Votes are saved using a queue (recommended for large consultations)."
   application:
     back: Tilbake
     cancel: Avbryt

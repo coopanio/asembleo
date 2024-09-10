@@ -216,6 +216,17 @@ es:
         distribution_list:
           manual: Manual
           email: Correo electrónico
+      hints:
+        "consultation/config":
+          ballot_list:
+            open: "Cada voto emitido por los participantes es visible en el recuento de la consulta."
+            secret: "Cada voto emitido por los participantes es anónimo."
+          distribution_list:
+            manual: "Los identificadores son manejados manualmente por los administradores y gestores."
+            email: "Los identificadores son distribuidos por correo electrónico."
+          mode_list:
+            synchronous: "Los votos se guardan inmediatamente."
+            asynchronous: "Los votos se guardan usando una cola (recomendado para consultas grandes)."
   application_mailer:
     greeting: 'Hola'
     complimentary_close: 'Gracias,

@@ -1,0 +1,13 @@
+<% translations.map do |translation, hint, k, v| %>
+  <div>
+    <%= form.label :"ballot_#{k}" do %>
+      <%= form.radio_button name, k, class: 'form-radio' %>
+      <%= translation %>
+    <% end %>
+    <div class="lh-1 mb-1">
+      <small class="form-text text-muted">
+        <%= hint %>
+      </small>
+    </div>
+  </div>
+<% end %>

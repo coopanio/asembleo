@@ -49,8 +49,9 @@ module TranslateStoreModel
         builder.enum_instance_method.map do |key, value|
           opts = { default: builder.i18n_default_location(key) }.merge(options)
           translated = I18n.translate("#{builder.i18n_scope}.#{builder.i18n_location(key)}", throw: throw, raise: raise, locale: locale, **opts)
+          translated_hint = I18n.translate("#{builder.i18n_scope}.hints.#{builder.i18n_location(key)}", throw: throw, raise: raise, locale: locale, **opts)
 
-          [translated, key, value]
+          [translated, translated_hint, key, value]
         end
       end
     end
