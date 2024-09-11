@@ -128,6 +128,9 @@ ca:
         distribution_list:
           manual: Manual
           email: Correu electrònic
+        alias_list:
+          none: 'Cap'
+          spanish_nid: 'Document Nacional d''Identitat (Espanya; DNI i NIE)'
       hints:
         "consultation/config":
           ballot_list:
@@ -139,6 +142,7 @@ ca:
           mode_list:
             synchronous: "Els vots es guarden immediatament."
             asynchronous: "Els vots es guarden utilitzant una cua (recomanat per consultes grans)."
+          alias_list: "Utilitza valors com a àlies pels identificadors. Això permet als usuaris iniciar sessió amb l'àlies."
   attributes:
     role_list:
       manager: 'gestor'

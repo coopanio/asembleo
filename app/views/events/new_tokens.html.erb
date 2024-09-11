@@ -12,13 +12,7 @@
   </div>
   <div class="row mb-3">
     <div class="form-group">
-      <div class="form-check">
-        <%= f.check_box :aliased, class: 'form-check-input' %>
-        <%= f.label :aliased, t('helpers.label.event.aliased'), class: 'form-check-label' %>
-        <small class="form-text text-muted">
-          <%= t('helpers.label.event.hints.aliased') %>
-        </small>
-      </div>
+      <%= f.hidden_field :aliased, value: @event.consultation.config.alias != 'none' %>
       <div class="form-check">
         <%= f.check_box :send, class: 'form-check-input', checked: @event.consultation.config.distribution == 'email' %>
         <%= f.label :send, t('helpers.label.event.send'), class: 'form-check-label' %>

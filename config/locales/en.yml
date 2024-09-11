@@ -24,6 +24,9 @@ en:
         mode_list:
           synchronous: Synchronous
           asynchronous: Asynchronous
+        alias_list:
+          none: None
+          spanish_nid: Spanish National Identity Document
       hints:
         "consultation/config":
           ballot_list:
@@ -35,6 +38,7 @@ en:
           mode_list:
             synchronous: "Votes are saved immediately."
             asynchronous: "Votes are saved using a queue (recommended for large consultations)."
+          alias_list: "Uses values as aliases for the tokens. This allows users to log in with the alias."
   activerecord:
     models:
       consultation:

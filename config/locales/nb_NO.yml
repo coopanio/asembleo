@@ -72,17 +72,22 @@ nb-NO:
         distribution_list:
           manual: Manuell
           email: E-post
+        alias_list:
+          none: Ingen
+          email: E-post
+          spanish_nid: Spansk ID
       hints:
         "consultation/config":
           ballot_list:
-            open: "Each participant's casted vote is visible in the consultation's tally."
-            secret: "Each participant's casted vote is anonymous."
+            open: "Hver deltakers avgitte stemme er synlig i konsultasjonens opptelling."
+            secret: "Hver deltakers avgitte stemme er anonym."
           distribution_list:
-            manual: "Tokens are handled manually by admin and managers."
-            email: "Tokens are distributed by email."
+            manual: "Symboler håndteres manuelt av administratorer og vedlikeholdere."
+            email: "Symboler distribueres via e-post."
           mode_list:
-            synchronous: "Votes are saved immediately."
-            asynchronous: "Votes are saved using a queue (recommended for large consultations)."
+            synchronous: "Stemmer lagres umiddelbart."
+            asynchronous: "Stemmer lagres ved hjelp av en kø (anbefales for store konsultasjoner)."
+          alias_list: "Bruker verdier som alternative navn for symbolene. Dette tillater brukerinnlogging med aliaset."
   application:
     back: Tilbake
     cancel: Avbryt

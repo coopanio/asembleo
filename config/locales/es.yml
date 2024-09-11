@@ -220,6 +220,9 @@ es:
         distribution_list:
           manual: Manual
           email: Correo electrónico
+        alias_list:
+          none: Ninguno
+          spanish_nid: Documento Nacional de Identidad (España; DNI y NIE)
       hints:
         "consultation/config":
           ballot_list:
@@ -231,6 +234,7 @@ es:
           mode_list:
             synchronous: "Los votos se guardan inmediatamente."
             asynchronous: "Los votos se guardan usando una cola (recomendado para consultas grandes)."
+          alias_list: "Utiliza valores como alias para los identificadores. Esto permite a los usuarios iniciar sesión con el alias."
   application_mailer:
     greeting: 'Hola'
     complimentary_close: 'Gracias,
