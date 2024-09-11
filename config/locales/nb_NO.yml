@@ -106,7 +106,7 @@ nb-NO:
     consultation_token_created: '%{role}-symbolet er <strong>%{token}</strong>.'
     consultation_create: Opprett konsultasjon
     consultation_draft: Konsultasjonen er fremdeles i kladdemodus.
-    consultation_finished: Du har besvart alle spørsmålene.
+    consultation_finished: 'Ingen flere spørsmål å svare på.'
     consultation_archived: Konsultasjonen har blitt arkivert.
     consultation_deleted: Konsultasjon slettet.
     consultation_closed: Konsultasjonen er lukket.

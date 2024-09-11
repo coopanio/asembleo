@@ -116,7 +116,7 @@ en:
     consultation_create: Create consultation
     consultation_created: Consultation created.
     consultation_draft: The consultation is still in draft mode.
-    consultation_finished: You have answered all the questions.
+    consultation_finished: No more questions left to answer.
     consultation_open: The consultation is open. Please proceed to vote by clicking next.
     consultation_archived: The consultation has been archived.
     consultation_closed: The consultation is closed.

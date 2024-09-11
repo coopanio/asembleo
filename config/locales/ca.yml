@@ -59,7 +59,7 @@ ca:
     consultation_token_created: 'El token de %{role} és <strong>%{token}</strong>.'
     consultation_draft: 'La consulta encara és un esborrany.'
     consultation_created: 'Consulta creada.'
-    consultation_finished: 'Has contestat totes les preguntes.'
+    consultation_finished: 'No hi ha més preguntes per respondre.'
   questions:
     question_created: 'Pregunta creada.'
     question_results: 'Resultats'

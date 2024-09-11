@@ -77,7 +77,7 @@ es:
     email: Correo electrónico
   consultations:
     consultation_created: 'La consulta ha sido creada.'
-    consultation_finished: 'Has respondido a todas las preguntas de la consulta.'
+    consultation_finished: 'No hay más preguntas para responder.'
     consultation_archived: 'La consulta ha sido archivada.'
     consultation_create: 'Crear Consulta'
     consultation_closed: 'La consulta está cerrada.'
