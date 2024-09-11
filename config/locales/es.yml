@@ -115,7 +115,7 @@ es:
         send: 'Enviar magic links'
         title: 'Título'
         hints:
-          value: 'Un valor por línea.'
+          value: 'Un valor por línea. Sólo se permiten archivos CSV o texto plano.'
           send: 'Requiere que los valores sean direcciones de correo electrónico para
             enviar enlaces mágicos personales para acceder a la consulta. Los tokens
             se generarán sin almacenar sus direcciones de correo electrónico relacionadas.
@@ -165,6 +165,8 @@ es:
     not_authorized: 'No estás autorizado.'
     invalid_identity: 'Documento de Identidad inválido.'
     invalid_email: 'eMail inválido.'
+  partials:
+    or: o
   question_groups:
     group:
       one: Grupo
@@ -200,6 +202,7 @@ es:
     token_event_closed: 'El evento está cerrado y no se pueden crear más tokens.'
     token_already_issued: 'Token ya emitido.'
     tokens_created_or_enabled: 'Tokens creados o activados.'
+    no_identifiers: 'No hay identificadores.'
   options:
     option_updated: 'Opción actualizada.'
     option_deleted: 'Opción eliminada.'

@@ -143,6 +143,9 @@ nb-NO:
     token_already_issued: Symbol allerede utstedt.
     tokens_created_or_enabled: Symboler opprettet eller påslått.
     token_add_admin: Legg til administrator
+    no_identifiers: Ingen identifikatorer.
+  partials:
+    or: eller
   question_groups:
     group:
       one: Gruppe
@@ -199,7 +202,7 @@ nb-NO:
       event:
         aliased: Bruk verdier som alternative navn
         hints:
-          value: En verdi per linje.
+          value: En verdi per linje. Bare CSV/ren tekstfiler tillatt.
           aliased: Bruker alias for sumbolene. Dette tillater brukerinnlogging med
             aliaset.
           send: Verdier må være e-postadresser for å sende personlige magiske lenker

@@ -42,7 +42,15 @@ class EventsController < ApplicationController
 
     Token.transaction do
       if multiple
-        lines = params[:value].open
+        lines = if params[:value].present?
+          params[:value].open
+        elsif params[:value_raw].present?
+          params[:value_raw]
+        else
+          error(I18n.t('events.no_identifiers'))
+          redirect_back(fallback_location: root_path)
+          return
+        end
         identifiers = CSV.new(lines).read.map(&:first)
 
         result = BulkCreateTokens.result(identifiers:, role:, aliased:, send_magic_link:, event:)

@@ -89,7 +89,7 @@ ca:
             No s''enviarà un nou enllaç màgic a les adreces de correu electrònic conegudes.'
           aliased: 'Usa valors com àlies pels testimonis. Això permet als usuaris
             iniciar sessió amb l''àlies.'
-          value: 'Un valor per línia.'
+          value: 'Un valor per línia. Només arxius CSV/text pla permesos.'
           email_value: Si el valor és una adreça de correu vàlida, s'enviarà un enllaç
             màgic.
         tokens: 'Llista de tokens a crear'
@@ -210,9 +210,12 @@ ca:
     token_enabled: 'Identificador activat.'
     token_bulk_creation: 'Creació massiva'
     created_tokens: 'Identificadors Creats'
+    no_identifiers: 'No hi ha identificadors.'
   interactors:
     create_consultation:
       default: 'Per defecte'
+  partials:
+    or: o
   question_groups:
     grouped_questions: 'Preguntes agrupades'
     required_questions: 'Escull almenys dues preguntes.'

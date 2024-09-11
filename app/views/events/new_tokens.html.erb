@@ -3,6 +3,8 @@
     <div class="form-group">
       <%= f.label :tokens, t('helpers.label.event.tokens'), for: :value, class: 'form-label' %>
       <%= f.file_field :value, class: 'form-control' %>
+      <%= t('partials.or') %>
+      <%= f.text_area :value_raw, class: 'form-control', rows: 5 %>
       <small class="form-text text-muted">
         <%= t('helpers.label.event.hints.value') %>
       </small>

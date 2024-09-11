@@ -152,6 +152,7 @@ en:
     token_bulk_creation: Bulk creation
     event_deleted: Event deleted.
     created_tokens: Created Tokens
+    no_identifiers: No identifiers found.
   options:
     option_created: Option created.
     option_updated: Option updated.
@@ -215,6 +216,8 @@ en:
           </li>
         </ul>
         <p>Choose Asembleo for a secure, user-friendly, and reliable voting experience.</p>
+  partials:
+    or: or
   question_groups:
     group:
       one: Group
@@ -318,7 +321,7 @@ en:
             related e-mail addresses. Known e-mail addresses won't be sent a new magic
             link.
           email_value: If the value is a valid e-mail address, a magic link will be sent.
-          value: One value per line.
+          value: One value per line. Only CSV/plain text files allowed.
       option:
         value: Internal value
         main: Main option
