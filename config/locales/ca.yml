@@ -164,6 +164,7 @@ ca:
     not_authorized: 'No hi tens accés.'
     invalid_identity: 'Document d''identitat invàlid.'
     invalid_email: 'Correu invàlid.'
+    invalid_token_scope: 'Àmbit d''identificador no vàlid.'
   application_mailer:
     complimentary_close: 'Gràcies,
 

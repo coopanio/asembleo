@@ -63,6 +63,16 @@ module Errors
         error("#{e.message} (#{emails.join(', ')})")
         redirect_back fallback_location: root_path
       end
+
+      rescue_from InvalidTokenScope do |_e|
+        error(I18n.t('errors.invalid_token_scope'))
+        redirect_back fallback_location: root_path
+      end
+
+      rescue_from ClosedConsultation do |_e|
+        error(I18n.t('events.token_consultation_closed'))
+        redirect_back fallback_location: root_path
+      end
     end
   end
 
@@ -138,4 +148,6 @@ module Errors
   end
 
   class InvalidTokenScope < ActionController::BadRequest; end
+
+  class ClosedConsultation < ActionController::BadRequest; end
 end

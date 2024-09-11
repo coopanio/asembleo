@@ -138,6 +138,7 @@ en:
     invalid_parameters: Invalid parameters.
     invalid_email: Invalid email.
     invalid_identity: Invalid identity document.
+    invalid_token_scope: Invalid token scope.
   events:
     tokens_created_or_enabled: Tokens created or enabled.
     token_consultation_closed: The consultation is closed and it is not possible to create tokens.

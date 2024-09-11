@@ -15,6 +15,8 @@ class BulkCreateTokens < Actor
   private
 
   def validate
+    fail!(error: Errors::ClosedConsultation.new) if event&.consultation&.closed?
+
     return if identifiers.blank?
     return unless send_magic_link
 
