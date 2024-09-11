@@ -163,8 +163,8 @@ es:
     you_can_only_choose_up_to: 'Sólo puedes elegir un máximo de %{e_max_options} opciones.'
     choose_a_valid_option: 'Elige una opción válida.'
     not_authorized: 'No estás autorizado.'
-    invalid_identity: 'Documento de Identidad inválido.'
-    invalid_email: 'eMail inválido.'
+    invalid_identity: 'Documento de identidad inválido.'
+    invalid_email: 'Correo electrónico inválido.'
     invalid_token_scope: 'Ámbito de identificador inválido.'
   partials:
     or: o
@@ -244,7 +244,7 @@ es:
   mailers: {}
   sessions:
     log_in_as_admin: 'Iniciar sesión como Administrador'
-    magic_link_sent: 'Un eMail con un enlace mágico fue enviado a su dirección de
+    magic_link_sent: 'Un Correo electrónico con un enlace mágico fue enviado a su dirección de
       correo electrónico'
     not_valid: 'Sesión no válida o ausente.'
   users_mailer:
