@@ -73,6 +73,11 @@ module Errors
         error(I18n.t('events.token_consultation_closed'))
         redirect_back fallback_location: root_path
       end
+
+      rescue_from ActionController::InvalidAuthenticityToken do |_e|
+        error(I18n.t('errors.access_denied'))
+        redirect_back fallback_location: root_path
+      end
     end
   end
 
