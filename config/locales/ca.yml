@@ -205,6 +205,7 @@ ca:
     token_disabled: 'Identificador desactivat.'
     token_created: 'Identificador creat.'
     token_add_admin: 'Afegir administrador'
+    token_add_manager: 'Afegir gestor'
     tokens_created_or_enabled: 'Identificadors creats o activats.'
     token_consultation_closed: 'La consulta està tancada i no es poden crear més identificadors.'
     token_event_closed: 'L''esdeveniment està tancat i no es poden crear més identificadors.'

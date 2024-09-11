@@ -154,6 +154,7 @@ en:
     token_enabled: Token enabled.
     token_disabled: Token disabled.
     token_add_admin: Add admin
+    token_add_manager: Add manager
     token_bulk_creation: Bulk creation
     event_deleted: Event deleted.
     created_tokens: Created Tokens

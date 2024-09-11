@@ -194,6 +194,7 @@ es:
     token_exists_and_enabled: 'El Token existe y ha sido habilitado.'
     token_enabled: 'Token habilitado.'
     token_add_admin: 'Añadir administrador'
+    token_add_manager: 'Añadir gestor'
     token_created: 'Token creado.'
     created_tokens: 'Tokens creados'
     token_disabled: 'Token deshabilitado.'

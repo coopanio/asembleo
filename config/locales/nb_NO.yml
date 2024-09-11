@@ -149,6 +149,7 @@ nb-NO:
     token_already_issued: Symbol allerede utstedt.
     tokens_created_or_enabled: Symboler opprettet eller påslått.
     token_add_admin: Legg til administrator
+    token_add_manager: Legg til vedlikeholder
     no_identifiers: Ingen identifikatorer.
   partials:
     or: eller

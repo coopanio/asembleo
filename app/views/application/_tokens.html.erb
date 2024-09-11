@@ -3,21 +3,30 @@
     <div class="col">
       <strong><%= t('activerecord.models.token', count: 2) %> (<%= "#{@consultation.tokens.voter.count} #{t('attributes.role_list.voter', count: 2)}" %>)</strong>
     </div>
-    <div class="col-auto">
-      <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id }, class: 'row row-cols-auto g-1 align-items-center', local: true do |f| %>
-        <div class="col">
-            <%= f.text_field :value, class: 'form-control form-control-sm' %>
-        </div>
-        <div class="col">
-          <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
-          <span class="form-text text-muted" title="<%= t('helpers.label.event.hints.email_value') %>">🛈</span>
-          <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
-          <%= link_to t('events.token_bulk_creation'), { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
-        </div>
-      <% end %>
+    <div class="row col-auto">
+      <div class="col">
+        <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
+        <%= link_to t('events.token_add_manager'), { controller: :events, action: :create_tokens, id: @event.id, role: :manager }, class: 'btn btn-link link-secondary', method: :post %>
+        <%= link_to t('events.token_bulk_creation'), { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
+      </div>
     </div>
   </div>
   <div class="card-body">
+    <%= form_with url: { controller: :events, action: :create_tokens, id: @event.id }, class: 'row p-2 mx-1 bg-light rounded-2 justify-content-end', local: true do |f| %>
+      <div class="col col-auto">
+        <div class="row g-1">
+          <div class="col">
+            <%= f.text_field :value, class: 'form-control form-control-sm' %>
+          </div>
+          <div class="col col-auto">
+            <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
+          </div>
+        </div>
+        <div class="row">
+          <small class="form-text text-muted"><%= t('helpers.label.event.hints.email_value') %></small>
+        </div>
+      </div>
+    <% end %>
     <table class="table table-striped">
       <thead>
         <tr>
