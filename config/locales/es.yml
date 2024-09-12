@@ -205,6 +205,8 @@ es:
     token_already_issued: 'Token ya emitido.'
     tokens_created_or_enabled: 'Tokens creados o activados.'
     no_identifiers: 'No hay identificadores.'
+    token_unseal: Revelar identificadores
+    token_seal: Ocultar identificadores
   options:
     option_updated: 'Opción actualizada.'
     option_deleted: 'Opción eliminada.'

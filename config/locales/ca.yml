@@ -217,6 +217,8 @@ ca:
     token_bulk_creation: 'Creació massiva'
     created_tokens: 'Identificadors Creats'
     no_identifiers: 'No hi ha identificadors.'
+    token_unseal: Revelar identificadors
+    token_seal: Ocultar identificadors
   interactors:
     create_consultation:
       default: 'Per defecte'

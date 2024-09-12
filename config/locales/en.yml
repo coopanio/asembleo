@@ -156,6 +156,8 @@ en:
     token_add_admin: Add admin
     token_add_manager: Add manager
     token_bulk_creation: Bulk creation
+    token_unseal: Unseal tokens
+    token_seal: Seal tokens
     event_deleted: Event deleted.
     created_tokens: Created Tokens
     no_identifiers: No identifiers found.
