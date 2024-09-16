@@ -13,6 +13,11 @@
     <% end %>
   </div>
   <div class="card-body">
+    <% if @consultation.questions.empty? %>
+    <div class="text-center">
+      <%= link_to t('questions.import'), url_for(controller: :questions, action: :import, consultation_id: @consultation.id), class: 'link-secondary py-1 px-3 text-decoration-underline' %>
+    </div>
+    <% else %>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -46,5 +51,6 @@
       </tr>
       <% end %>
     </table>
+    <% end %>
   </div>
 </div>

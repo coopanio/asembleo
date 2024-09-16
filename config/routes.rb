@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get   'consultations/:consultation_id/questions/import',           to: 'questions#import'
+  post  'consultations/:consultation_id/questions/import',           to: 'questions#import'
+
   resources :consultations do
     resources :questions do
       resources :options

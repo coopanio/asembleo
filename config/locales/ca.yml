@@ -72,6 +72,8 @@ ca:
     question_closed: 'Pregunta tancada.'
     question_deleted: 'Pregunta eliminada.'
     question_opened: 'Pregunta oberta.'
+    import: 'Importar preguntes des d''arxiu Markdown'
+    imported: 'Preguntes importades.'
   helpers:
     events_helper:
       disable: 'Desactivar'

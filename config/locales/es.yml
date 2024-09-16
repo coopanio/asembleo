@@ -104,6 +104,8 @@ es:
       esté abierta.'
     question_results: 'Resultados'
     question_is_closed: 'Esta pregunta está cerrada.'
+    import: 'Importar preguntas desde un archivo Markdown'
+    imported: 'Preguntas importadas.'
   votes:
     required_cast: 'Por favor, emita un voto por cada una de las preguntas.'
     casted: 'Su voto ha sido registrado correctamente. Por favor, prosiga con la siguiente

@@ -1,0 +1,18 @@
+<%= form_with url: { controller: :questions, action: :import, format: :md }, class: 'container', local: true do |f| %>
+  <div class="row mb-3">
+    <div class="form-group">
+      <%= f.label :tokens, t('helpers.label.markdown_file'), for: :value, class: 'form-label' %>
+      <%= f.file_field :value, class: 'form-control' %>
+      <%= t('partials.or') %>
+      <%= f.text_area :value_raw, class: 'form-control', rows: 5 %>
+      <small class="form-text text-muted">
+        <%= t('helpers.label.hints.markdown_file') %>
+      </small>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col d-flex justify-content-end">
+      <%= f.submit t('application.upload'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

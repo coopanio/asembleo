@@ -176,6 +176,8 @@ nb-NO:
     question_updated: Spørsmål oppdatert.
     results_not_available: Resultater er ikke tilgjengelig når spørsmålet er åpent.
     vote: Stem
+    import: Importer spørsmål fra Markdown
+    imported: Spørsmål importert.
   sessions:
     log_in_as_admin: Logg inn som administrator
     magic_link_sent: En e-post med en magisk lenke ble sendt til e-postadressen din

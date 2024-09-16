@@ -242,6 +242,8 @@ en:
     question_still_draft: The question is still in draft.
     question_updated: Question updated.
     results_not_available: Results not available while the question is open.
+    import: Import questions from Markdown
+    imported: Questions imported.
     vote: Vote
   sessions:
     log_in_as_admin: Log in as admin
@@ -344,6 +346,11 @@ en:
       user:
         email: *email
         nid: Identity document
+      markdown_file: Markdown file
+      hints:
+        markdown_file: |
+          The content must contain a list of questions including a title prefixed with ##
+          and a list of options.
     events_helper:
       open: Open
       close: Close

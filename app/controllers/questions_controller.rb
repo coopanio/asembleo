@@ -103,6 +103,15 @@ class QuestionsController < ApplicationController
     redirect_to controller: 'consultations', action: 'edit', id: consultation.id
   end
 
+  def import
+    authorize consultation, :edit?
+
+    if request.post?
+      success(I18n.t('questions.questions_imported'))
+      redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+    end
+  end
+
   private
 
   def update_status(status, events: [question_event])
