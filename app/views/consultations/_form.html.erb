@@ -1,19 +1,19 @@
 <%= form_with scope: :consultation, model: @consultation, class: 'container', local: true do |f| %>
   <div class="row mb-3">
-    <%= f.label :title, class: 'col-1 col-form-label' %>
+    <%= f.label :title, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-11">
       <%= f.text_field :title, class: 'form-control' %>
     </div>
   </div>
   <div class="row mb-3">
-    <%= f.label :description, class: 'col-1 col-form-label' %>
+    <%= f.label :description, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-11">
       <%= f.text_area :description, class: 'form-control' %>
     </div>
   </div>
   <% if @consultation.id %>
   <div class="row mb-3">
-    <%= f.label :status, class: 'col-1 col-form-label' %>
+    <%= f.label :status, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-11">
       <%= f.select :status, Consultation.translated_statuses.map { |translation, k, _v| [translation, k] }, {}, { class: 'form-select' } %>
     </div>
@@ -21,7 +21,7 @@
   <% end %>
   <%= f.fields_for :config, @consultation.config do |f| %>
   <div class="row mb-3">
-    <%= f.label :alias, class: 'col-1 col-form-label' %>
+    <%= f.label :alias, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-11">
       <%= f.select :alias, Consultation::Config.translated_aliases.map { |translation, _, k, _v| [translation, k] }, {}, { class: 'form-select' } %>
       <small class="form-text text-muted">
@@ -30,15 +30,15 @@
     </div>
   </div>
   <div class="row mb-3">
-    <%= f.label :mode, class: 'col-1 col-form-label' %>
+    <%= f.label :mode, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :mode, translations: Consultation::Config.translated_modes %>
     </div>
-    <%= f.label :ballot, class: 'col-1 col-form-label' %>
+    <%= f.label :ballot, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :ballot, translations: Consultation::Config.translated_ballots %>
     </div>
-    <%= f.label :distribution, class: 'col-1 col-form-label' %>
+    <%= f.label :distribution, class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :distribution, translations: Consultation::Config.translated_distributions %>
     </div>
