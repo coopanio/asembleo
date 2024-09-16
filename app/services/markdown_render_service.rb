@@ -2,7 +2,7 @@
 
 require 'redcarpet/render_strip'
 
-class MarkdownService < Redcarpet::Render::HTML
+class MarkdownRenderService < Redcarpet::Render::HTML
   OPTIONS = {
     filter_html: true,
     no_images: true,

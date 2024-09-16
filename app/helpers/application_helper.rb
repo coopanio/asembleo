@@ -2,6 +2,6 @@
 
 module ApplicationHelper
   def markdown(text, plain_text: false)
-    MarkdownService.render(text, plain_text:)
+    MarkdownRenderService.render(text, plain_text:)
   end
 end
