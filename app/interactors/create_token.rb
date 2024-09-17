@@ -43,7 +43,7 @@ class CreateToken < Actor
       self.skip_reason = :token_already_issued
     elsif consultation&.closed?
       self.skip_reason = :token_consultation_closed
-    elsif event&.closed?
+    elsif consultation&.asynchronous? && event&.closed?
       self.skip_reason = :token_event_closed
     end
 
