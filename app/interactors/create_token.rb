@@ -40,7 +40,7 @@ class CreateToken < Actor
   def validate
     fail!(error: Errors::InvalidTokenScope) if scope == :consultation && consultation.nil?
     
-    if consultation&.config.alias == 'spanish_nid'
+    if consultation&.config&.alias == 'spanish_nid'
       begin
         valid = DniNie.validate(identifier)
       rescue
