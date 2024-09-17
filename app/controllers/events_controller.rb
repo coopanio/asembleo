@@ -134,7 +134,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.permit(:value, :aliased, :multiple, :send, :role)
+    params.permit(:value, :multiple, :send, :role)
   end
 
   def role
@@ -146,7 +146,7 @@ class EventsController < ApplicationController
   end
 
   def aliased
-    create_token_params.fetch(:aliased, '0').to_i == 1
+    consultation.config.alias != 'none'
   end
 
   def send_magic_link
