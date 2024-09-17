@@ -85,8 +85,8 @@ nb-NO:
             manual: "Symboler håndteres manuelt av administratorer og vedlikeholdere."
             email: "Symboler distribueres via e-post."
           mode_list:
-            synchronous: "Stemmer lagres umiddelbart."
-            asynchronous: "Stemmer lagres ved hjelp av en kø (anbefales for store konsultasjoner)."
+            synchronous: "Konsultasjonen håndteres sentralt."
+            asynchronous: "Konsultasjonen håndteres i distribuerte møter, med sin egen fremdrift."
           alias_list: "Bruker verdier som alternative navn for symbolene. Dette tillater brukerinnlogging med aliaset."
   application:
     back: Tilbake

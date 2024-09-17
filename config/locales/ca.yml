@@ -23,7 +23,7 @@ ca:
         title: 'Títol'
         description: 'Descripció'
         status: 'Estat'
-        ballot: 'Votació'
+        ballot: 'Vot'
         distribution: Distribució
       token:
         tags: 'Etiquetes'
@@ -142,8 +142,8 @@ ca:
             manual: "Els identificadors són gestionats manualment pels administradors i gestors."
             email: "Els identificadors són distribuïts per correu electrònic."
           mode_list:
-            synchronous: "Els vots es guarden immediatament."
-            asynchronous: "Els vots es guarden utilitzant una cua (recomanat per consultes grans)."
+            synchronous: "La consulta es gestiona centralment."
+            asynchronous: "La consulta es gestiona en reunions distribuïdes, amb el seu propi progrés."
           alias_list: "Utilitza valors com a àlies pels identificadors. Això permet als usuaris iniciar sessió amb l'àlies."
   attributes:
     role_list:

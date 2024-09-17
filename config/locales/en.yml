@@ -36,8 +36,8 @@ en:
             manual: "Tokens are handled manually by admin and managers."
             email: "Tokens are distributed by email."
           mode_list:
-            synchronous: "Votes are saved immediately."
-            asynchronous: "Votes are saved using a queue (recommended for large consultations)."
+            synchronous: "The consultation is managed centrally."
+            asynchronous: "The consultation is managed in distributed meetings, with their own progress."
           alias_list: "Uses values as aliases for the tokens. This allows users to log in with the alias."
   activerecord:
     models:

@@ -237,8 +237,8 @@ es:
             manual: "Los identificadores son manejados manualmente por los administradores y gestores."
             email: "Los identificadores son distribuidos por correo electrónico."
           mode_list:
-            synchronous: "Los votos se guardan inmediatamente."
-            asynchronous: "Los votos se guardan usando una cola (recomendado para consultas grandes)."
+            synchronous: "La consulta es gestionada de forma centralizada."
+            asynchronous: "La consulta es gestionada en reuniones distribuidas, con su propio progreso."
           alias_list: "Utiliza valores como alias para los identificadores. Esto permite a los usuarios iniciar sesión con el alias."
   application_mailer:
     greeting: 'Hola'
