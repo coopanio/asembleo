@@ -26,6 +26,7 @@ class AuthenticateCredentials < Actor
   # TODO: fix aliased tokens, because they cause a security vulnerability.
   def authenticate_token
     self.identity = Token.from_hash(identifier)
+    # self.identity = Token.from_alias(identifier) if identity.nil?
     fail!(error: Errors::AccessDenied.new(identifier_type:)) if identity.nil?
     fail!(error: Errors::AccessDenied.new(identifier_type:)) if identity.disabled?
   end
