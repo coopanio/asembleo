@@ -216,4 +216,19 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal identifier, tokens.first.alias
     assert_predicate tokens.first, :enabled?
   end
+
+  test 'should create unaliased manager token in aliased consultation' do
+    event = create(:event, consultation: token.consultation)
+
+    token.consultation.update!(config: { alias: :phone_number })
+    token.update!(role: :admin, event:)
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    post "/events/#{event.id}/tokens", params: { role: :manager }
+
+    tokens = Token.where(event:, role: :manager)
+
+    assert_response :redirect
+    assert_equal 1, tokens.size
+  end
 end

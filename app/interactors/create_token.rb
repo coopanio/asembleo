@@ -75,7 +75,7 @@ class CreateToken < Actor
 
   def create_token
     return create_global_token if scope == :global
-    return create_aliased_token if aliased
+    return create_aliased_token if aliased && identifier.present?
 
     Token.new(consultation:, event:, role:, scope:, scope_context:)
   end
