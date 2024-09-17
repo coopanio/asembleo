@@ -162,6 +162,7 @@ nb-NO:
       other: Grupper
     grouped_questions: Grupperte spørsmål
     required_questions: Velg minst to spørsmål.
+    action: Grupper
   options:
     option_created: Alternativ opprettet.
     option_updated: Alternativ oppdatert.

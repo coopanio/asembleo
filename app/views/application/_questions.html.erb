@@ -7,7 +7,7 @@
           <%= link_to t('application.create'), new_consultation_question_path(consultation_id: @consultation.id), class: 'nav-link active btn py-1' %>
         </li>
         <li class="nav-item">
-          <%= link_to t('question_groups.group', count: 1), consultation_question_groups_path(consultation_id: @consultation.id), class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
+          <%= link_to t('question_groups.action', count: 1), consultation_question_groups_path(consultation_id: @consultation.id), class: 'nav-link link-secondary py-1 px-3 text-decoration-underline' %>
         </li>
       </ul>
     <% end %>

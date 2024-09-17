@@ -230,6 +230,7 @@ ca:
   question_groups:
     grouped_questions: 'Preguntes agrupades'
     required_questions: 'Escull almenys dues preguntes.'
+    action: 'Agrupar'
     group:
       one: Grup
       other: Grups

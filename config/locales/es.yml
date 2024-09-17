@@ -177,6 +177,7 @@ es:
       other: Grupos
     grouped_questions: 'Preguntas agrupadas'
     required_questions: 'Escoge al menos dos preguntas.'
+    action: 'Agrupar'
   attributes:
     status: 'Estado'
     id: 'ID'
