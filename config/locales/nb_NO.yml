@@ -76,6 +76,7 @@ nb-NO:
           none: Ingen
           email: E-post
           spanish_nid: Spansk ID
+          phone_number: Telefonnummer
       hints:
         "consultation/config":
           ballot_list:

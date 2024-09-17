@@ -10,7 +10,7 @@ class Consultation < ApplicationRecord
     enum :mode, %i[synchronous asynchronous], default: :synchronous
     enum :ballot, %i[open secret], default: :secret
     enum :distribution, %i[manual email], default: :manual
-    enum :alias, %i[none spanish_nid], default: :none
+    enum :alias, %i[none spanish_nid phone_number], default: :none
 
     translate_enum :mode
     translate_enum :ballot

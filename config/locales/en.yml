@@ -27,6 +27,7 @@ en:
         alias_list:
           none: None
           spanish_nid: Spanish National Identity Document
+          phone_number: Phone number
       hints:
         "consultation/config":
           ballot_list:

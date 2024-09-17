@@ -184,10 +184,11 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
 
+    token.consultation.update!(config: { alias: :phone_number })
     token.update!(role: :manager, event:)
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
-    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
+    post "/events/#{event.id}/tokens", params: { value: identifier }
 
     tokens = Token.where(event:, role: :voter)
 
@@ -200,12 +201,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     event = create(:event, consultation: token.consultation)
     identifier = Token.sanitize(Faker::PhoneNumber.cell_phone)
 
+    token.consultation.update!(config: { alias: :phone_number })
     create(:token, consultation: token.consultation, event:, alias: identifier, status: :disabled)
     token.update!(role: :manager, event:)
 
     post sessions_url, params: { session: { identifier: token.to_hash } }
 
-    post "/events/#{event.id}/tokens", params: { value: identifier, aliased: '1' }
+    post "/events/#{event.id}/tokens", params: { value: identifier }
 
     tokens = Token.where(event:, role: :voter)
 

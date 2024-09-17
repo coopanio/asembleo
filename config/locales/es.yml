@@ -228,6 +228,7 @@ es:
         alias_list:
           none: Ninguno
           spanish_nid: Documento Nacional de Identidad (España; DNI y NIE)
+          phone_number: Número de teléfono
       hints:
         "consultation/config":
           ballot_list:

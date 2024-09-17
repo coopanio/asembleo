@@ -133,6 +133,7 @@ ca:
         alias_list:
           none: 'Cap'
           spanish_nid: 'Document Nacional d''Identitat (Espanya; DNI i NIE)'
+          phone_number: 'Número de telèfon'
       hints:
         "consultation/config":
           ballot_list:
