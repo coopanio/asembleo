@@ -107,7 +107,20 @@ class QuestionsController < ApplicationController
     authorize consultation, :edit?
 
     if request.post?
-      success(I18n.t('questions.questions_imported'))
+      content = if params[:value].present?
+        params[:value].open
+      elsif params[:value_raw].present?
+        params[:value_raw]
+      else
+        error(I18n.t('errors.bad_request'))
+        redirect_back(fallback_location: root_path)
+        return
+      end
+
+      result = ImportQuestions.result(consultation:, content:)
+      raise result.error if result.failure?
+
+      success(I18n.t('questions.imported'))
       redirect_to controller: 'consultations', action: 'edit', id: consultation.id
     end
   end
