@@ -106,7 +106,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     tokens = Token.where(event:, role: :voter)
 
     assert_response :redirect
-    assert_equal 'Invalid email. ("mohana@coop.mail; ", "s.hozan99@coop.mail;")', flash[:alert].message
+    assert_equal 'Invalid identifiers. ("mohana@coop.mail; ", "s.hozan99@coop.mail;")', flash[:alert].message
     assert_equal 0, tokens.size
   end
 
@@ -138,7 +138,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     tokens = Token.where(event:, role: :voter)
 
     assert_response :redirect
-    assert_equal 'Invalid email. ("mohana@coop.mail; ", "s.hozan99@coop.mail;")', flash[:alert].message
+    assert_equal 'Invalid identifiers. ("mohana@coop.mail; ", "s.hozan99@coop.mail;")', flash[:alert].message
     assert_equal 0, tokens.size
   end
 

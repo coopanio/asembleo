@@ -171,6 +171,7 @@ ca:
     not_authorized: 'No hi tens accés.'
     invalid_identity: 'Document d''identitat invàlid.'
     invalid_email: 'Correu invàlid.'
+    invalid_identifiers: 'Identificadors invàlids.'
     invalid_token_scope: 'Àmbit d''identificador no vàlid.'
   application_mailer:
     complimentary_close: 'Gràcies,
@@ -223,7 +224,7 @@ ca:
     token_unseal: Revelar identificadors
     token_seal: Ocultar identificadors
     token_disable_tokens: Desactivar identificadors
-    token_disabled: 'Identificadors desactivats.'
+    tokens_disabled: 'Identificadors desactivats.'
   interactors:
     create_consultation:
       default: 'Per defecte'

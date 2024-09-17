@@ -67,6 +67,7 @@ class EventsController < ApplicationController
         send_magic_link = EmailValidator.valid?(identifier, mode: :strict) if consultation.config.distribution == 'email'
 
         result = CreateToken.result(identifier:, role:, aliased:, send_magic_link:, event:)
+        raise result.error unless result.success?
 
         if result.skip
           error(I18n.t("events.#{result.skip_reason}"))

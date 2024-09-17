@@ -15,18 +15,34 @@ class BulkCreateTokens < Actor
   private
 
   def validate
-    fail!(error: Errors::ClosedConsultation.new) if event&.consultation&.closed?
-
+    fail!(error: Errors::ClosedConsultation.new) if consultation&.closed?
     return if identifiers.blank?
-    return unless send_magic_link
 
-    invalid_identifiers = identifiers.reject { |identifier| EmailValidator.valid?(identifier, mode: :strict) }
-    fail!(error: Errors::InvalidEmailAddress.new(emails: invalid_identifiers)) if invalid_identifiers.present?
+    invalid_identifiers = identifiers.reject { |identifier| validate_identifier(identifier) }
+    fail!(error: Errors::InvalidIdentifiers.new(invalid_identifiers:)) if invalid_identifiers.present?
   end
 
   def create_tokens
     identifiers.each do |identifier|
       CreateToken.call(identifier:, role:, aliased:, send_magic_link:, event:)
     end
+  end
+
+  def validate_identifier(identifier)
+    if consultation&.config.alias == 'spanish_nid'
+      begin
+        DniNie.validate(identifier)
+      rescue
+        false
+      end
+    elsif send_magic_link
+      EmailValidator.valid?(identifier, mode: :strict)
+    else
+      true
+    end
+  end
+
+  def consultation
+    event&.consultation
   end
 end

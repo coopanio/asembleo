@@ -39,6 +39,17 @@ class CreateToken < Actor
 
   def validate
     fail!(error: Errors::InvalidTokenScope) if scope == :consultation && consultation.nil?
+    
+    if consultation&.config.alias == 'spanish_nid'
+      begin
+        valid = DniNie.validate(identifier)
+      rescue
+        valid = false
+      end
+
+      fail!(error: Errors::InvalidIdentifiers.new(invalid_identifiers: [identifier])) unless valid
+    end
+
     if already_issued?
       self.skip_reason = :token_already_issued
     elsif consultation&.closed?
@@ -52,7 +63,7 @@ class CreateToken < Actor
 
   def already_issued?
     return false if identifier.blank?
-    return true unless TokenReceipt.generate(consultation:, identifier:).new_record?
+    return true unless TokenReceipt.generate(consultation:, identifier: cleaned_identifier).new_record?
 
     false
   end

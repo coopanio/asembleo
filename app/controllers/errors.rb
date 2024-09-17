@@ -57,10 +57,10 @@ module Errors
         redirect_back fallback_location: root_path
       end
 
-      rescue_from InvalidEmailAddress do |e|
-        emails = e.emails.map { |email| email.inspect }
+      rescue_from InvalidIdentifiers do |e|
+        identifiers = e.invalid_identifiers.map { |identifier| identifier.inspect }
 
-        error("#{e.message} (#{emails.join(', ')})")
+        error("#{e.message} (#{identifiers.join(', ')})")
         redirect_back fallback_location: root_path
       end
 
@@ -142,13 +142,13 @@ module Errors
     end
   end
 
-  class InvalidEmailAddress < ActionController::BadRequest
-    attr_reader :emails
+  class InvalidIdentifiers < ActionController::BadRequest
+    attr_reader :invalid_identifiers
 
-    def initialize(msg = I18n.t('errors.invalid_email'), emails:)
+    def initialize(msg = I18n.t('errors.invalid_identifiers'), invalid_identifiers:)
       super(msg)
 
-      @emails = emails
+      @invalid_identifiers = invalid_identifiers
     end
   end
 

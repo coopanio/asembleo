@@ -167,6 +167,7 @@ es:
     not_authorized: 'No estás autorizado.'
     invalid_identity: 'Documento de identidad inválido.'
     invalid_email: 'Correo electrónico inválido.'
+    invalid_identifiers: 'Identificadores inválidos.'
     invalid_token_scope: 'Ámbito de identificador inválido.'
   partials:
     or: o

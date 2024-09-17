@@ -135,6 +135,7 @@ nb-NO:
       ganger.
     invalid_identity: 'Ugyldig identitetsdokument.'
     invalid_email: 'Ugyldig e-post.'
+    invalid_identifiers: 'Ugyldige identifikatorer.'
     invalid_token_scope: 'Ugyldig symbolområde.'
   events:
     token_enabled_again: Symbol aktivert igjen.

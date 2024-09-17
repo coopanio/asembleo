@@ -142,6 +142,7 @@ en:
     not_authorized: You are not authorized.
     invalid_parameters: Invalid parameters.
     invalid_email: Invalid email.
+    invalid_identifiers: Invalid identifiers.
     invalid_identity: Invalid identity document.
     invalid_token_scope: Invalid token scope.
   events:
