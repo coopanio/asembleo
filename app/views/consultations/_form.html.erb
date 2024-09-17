@@ -30,15 +30,15 @@
     </div>
   </div>
   <div class="row mb-3">
-    <%= f.label :mode, class: 'col-1 col-form-label fw-bold' %>
+    <%= f.label :mode, t('activerecord.attributes.consultation.mode'), class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :mode, translations: Consultation::Config.translated_modes %>
     </div>
-    <%= f.label :ballot, class: 'col-1 col-form-label fw-bold' %>
+    <%= f.label :ballot, t('activerecord.attributes.consultation.ballot'), class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :ballot, translations: Consultation::Config.translated_ballots %>
     </div>
-    <%= f.label :distribution, class: 'col-1 col-form-label fw-bold' %>
+    <%= f.label :distribution, t('activerecord.attributes.consultation.distribution'), class: 'col-1 col-form-label fw-bold' %>
     <div class="col-3 mt-2">
       <%= render 'config-radio', form: f, name: :distribution, translations: Consultation::Config.translated_distributions %>
     </div>

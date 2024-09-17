@@ -23,7 +23,7 @@ ca:
         title: 'Títol'
         description: 'Descripció'
         status: 'Estat'
-        ballot: 'Vot'
+        ballot: 'Votació'
         distribution: Distribució
       token:
         tags: 'Etiquetes'
