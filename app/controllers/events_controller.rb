@@ -103,6 +103,18 @@ class EventsController < ApplicationController
     authorize event
   end
 
+  def deactivate_tokens
+    authorize event
+
+    Token.transaction do
+      event.tokens.where(role: :voter).update_all(status: :disabled)
+
+      success(I18n.t('events.tokens_disabled'))
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
   def destroy
     authorize event
 

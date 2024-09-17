@@ -222,6 +222,8 @@ ca:
     no_identifiers: 'No hi ha identificadors.'
     token_unseal: Revelar identificadors
     token_seal: Ocultar identificadors
+    token_disable_tokens: Desactivar identificadors
+    token_disabled: 'Identificadors desactivats.'
   interactors:
     create_consultation:
       default: 'Per defecte'

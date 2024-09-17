@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get   'consultations/:consultation_id/questions/:id/option',       to: 'questions#new_option'
   get   'consultations/:consultation_id/questions/:id/tally',        to: 'questions#tally'
   post  'events/:id/tokens',          to: 'events#create_tokens'
+  post  'events/:id/deactivate_tokens', to: 'events#deactivate_tokens'
   get   'events/:id/tokens',          to: 'events#new_tokens'
   patch 'events/:id/token/:token_id', to: 'events#update_token'
   get   'events/:id/next',            to: 'events#next_question'

@@ -17,6 +17,10 @@ class EventPolicy < ApplicationPolicy
     create_tokens?
   end
 
+  def deactivate_tokens?
+    create_tokens?
+  end
+
   def create_tokens?
     show? && (current_user.admin? || current_user.manager?)
   end

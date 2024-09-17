@@ -137,23 +137,25 @@ nb-NO:
     invalid_email: 'Ugyldig e-post.'
     invalid_token_scope: 'Ugyldig symbolområde.'
   events:
-    token_enabled_again: Symbol opprettet igjen.
+    token_enabled_again: Symbol aktivert igjen.
     created_tokens: Opprettet symboler
-    token_exists_and_enabled: Symbolet finnes og er påskrudd.
-    token_enabled: Symbol påskrudd.
-    token_disabled: Symbol avskrudd.
+    token_exists_and_enabled: Symbol eksisterer og er aktiv.
+    token_enabled: Symbol aktivert.
+    token_disabled: Symbol deaktivert.
     event_deleted: Begivenhet slettet.
     token_bulk_creation: Masseopprettelse
     token_created: Symbol opprettet.
     token_consultation_closed: Konsultasjonen er lukket og det er ikke mulig å opprette symboler.
     token_event_closed: Begivenhet er lukket og det er ikke mulig å opprette symboler.
     token_already_issued: Symbol allerede utstedt.
-    tokens_created_or_enabled: Symboler opprettet eller påslått.
+    tokens_created_or_enabled: Symboler opprettet eller aktivert.
     token_add_admin: Legg til administrator
     token_add_manager: Legg til vedlikeholder
     no_identifiers: Ingen identifikatorer.
     token_unseal: Åpne symboler
     token_seal: Forsegle symboler
+    token_disable_tokens: Deaktiver symboler
+    tokens_disabled: Symboler deaktivert.
   partials:
     or: eller
   question_groups:
@@ -241,8 +243,9 @@ nb-NO:
     events_helper:
       open: Åpne
       close: Lukk
-      disable: Skru av
-      enable: Skru på
+      # Original is "Deactivate"
+      disable: Deaktiver
+      enable: Aktiver
   interactors:
     create_consultation:
       default: Forvalg

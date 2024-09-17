@@ -210,6 +210,8 @@ es:
     no_identifiers: 'No hay identificadores.'
     token_unseal: Revelar identificadores
     token_seal: Ocultar identificadores
+    token_disable_tokens: Desactivar identificadores
+    tokens_disabled: Identificadores desactivados.
   options:
     option_updated: 'Opción actualizada.'
     option_deleted: 'Opción eliminada.'

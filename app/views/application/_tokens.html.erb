@@ -10,8 +10,11 @@
         <% else %>
         <%= link_to t('events.token_unseal'), { controller: :consultations, action: :edit, id: @event.consultation.id, unseal: true }, class: 'btn btn-link link-secondary', method: :get %>
         <% end %>
+        <% if @current_user.admin? %>
         <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
         <%= link_to t('events.token_add_manager'), { controller: :events, action: :create_tokens, id: @event.id, role: :manager }, class: 'btn btn-link link-secondary', method: :post %>
+        <%= link_to t('events.token_disable_tokens'), { controller: :events, action: :deactivate_tokens, id: @event.id }, class: 'btn btn-link link-secondary', method: :post %>
+        <% end %>
         <%= link_to t('events.token_bulk_creation'), { controller: :events, action: :new_tokens, id: @event.id }, class: 'btn btn-link link-secondary' %>
       </div>
     </div>

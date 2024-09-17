@@ -145,15 +145,15 @@ en:
     invalid_identity: Invalid identity document.
     invalid_token_scope: Invalid token scope.
   events:
-    tokens_created_or_enabled: Tokens created or enabled.
+    tokens_created_or_enabled: Tokens created or activated.
     token_consultation_closed: The consultation is closed and it is not possible to create tokens.
     token_event_closed: The event is closed and it is not possible to create tokens.
     token_already_issued: Token already issued.
     token_created: Token created.
-    token_enabled_again: Token enabled again.
-    token_exists_and_enabled: Token exists and enabled.
-    token_enabled: Token enabled.
-    token_disabled: Token disabled.
+    token_enabled_again: Token activated again.
+    token_exists_and_enabled: Token exists and activated.
+    token_enabled: Token activated.
+    token_disabled: Token deactivated.
     token_add_admin: Add admin
     token_add_manager: Add manager
     token_bulk_creation: Bulk creation
@@ -162,6 +162,8 @@ en:
     event_deleted: Event deleted.
     created_tokens: Created Tokens
     no_identifiers: No identifiers found.
+    token_disable_tokens: Deactivate tokens
+    tokens_disabled: Tokens deactivated.
   options:
     option_created: Option created.
     option_updated: Option updated.
@@ -355,8 +357,8 @@ en:
     events_helper:
       open: Open
       close: Close
-      disable: Disable
-      enable: Enable
+      disable: Deactivate
+      enable: Activate
   interactors:
     create_consultation:
       default: Default
