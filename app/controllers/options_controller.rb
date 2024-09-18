@@ -11,6 +11,18 @@ class OptionsController < ApplicationController
   def create
     authorize question
 
+    if create_params[:description].blank?
+      error(I18n.t('options.description_required'))
+      redirect_back(fallback_location: root_path)
+      return
+    end
+
+    if create_params[:value].blank?
+      error(I18n.t('options.value_required'))
+      redirect_back(fallback_location: root_path)
+      return
+    end
+
     @option = Option.new(create_params.merge(question:))
     authorize option
 

@@ -247,6 +247,8 @@ ca:
     option_updated: 'Opció modificada.'
     option_deleted: 'Opció eliminada.'
     option_created: 'Opció creada.'
+    value_required: 'Valor requerit.'
+    description_required: 'Descripció requerida.'
   sessions:
     log_in_as_admin: 'Iniciar sessió com administrador'
     magic_link_sent: 'Un correu amb un enllaç màgic s''ha enviat a la teva adreça

@@ -169,6 +169,8 @@ en:
     option_created: Option created.
     option_updated: Option updated.
     option_deleted: Option deleted.
+    value_required: Value is required.
+    description_required: Description is required.
   pages:
     about:
       title: About

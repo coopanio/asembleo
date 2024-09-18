@@ -170,6 +170,8 @@ nb-NO:
     option_created: Alternativ opprettet.
     option_updated: Alternativ oppdatert.
     option_deleted: Alternativ slettet.
+    value_required: Verdi kreves.
+    description_required: Beskrivelse kreves.
   questions:
     question_closed: Spørsmål lukket.
     question_created: Spørsmål opprettet.

@@ -217,6 +217,8 @@ es:
     option_updated: 'Opción actualizada.'
     option_deleted: 'Opción eliminada.'
     option_created: 'Opción creada.'
+    value_required: 'El valor es obligatorio.'
+    description_required: 'La descripción es obligatoria.'
   activemodel:
     attributes:
       "consultation/config":
