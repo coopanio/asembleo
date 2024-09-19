@@ -18,7 +18,7 @@ class ImportQuestionsTest < ActionDispatch::IntegrationTest
     assert_equal 9, Option.count
 
     question = Question.first
-    assert_equal '## What is the capital of France?', question.description
+    assert_equal "## What is the capital of France?\n\nText before question\n\nMultiple lines can be present", question.description
     assert_equal consultation, question.consultation
     assert_equal %w(Paris London Berlin), question.options.map(&:value)
   end
@@ -28,6 +28,9 @@ class ImportQuestionsTest < ActionDispatch::IntegrationTest
   def content
     <<~CONTENT
       ## What is the capital of France?
+      Text before question
+
+      Multiple lines can be present
 
       - Paris
       - London

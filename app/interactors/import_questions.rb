@@ -53,7 +53,8 @@ class ImportQuestions < Actor
     def paragraph(text)
       return if @questions.empty?
 
-      @questions.last[:description] = text.strip
+      @questions.last[:description] ||= ''.dup
+      @questions.last[:description] << text.strip << "\n\n"
       nil
     end
 
