@@ -108,7 +108,7 @@ class QuestionsController < ApplicationController
 
     if request.post?
       content = if params[:value].present?
-        params[:value].open
+        params[:value].open.read
       elsif params[:value_raw].present?
         params[:value_raw]
       else
