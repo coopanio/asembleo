@@ -5,12 +5,19 @@
     </div>
     <div class="row col-auto">
       <div class="col">
+        <% if @current_user.manager? %>
+        <% if ActiveModel::Type::Boolean.new.cast(request.query_parameters[:unseal]) %>
+        <%= link_to t('events.token_seal'), { controller: :events, action: :edit, id: @event.consultation.id }, class: 'btn btn-link link-secondary', method: :get %>
+        <% else %>
+        <%= link_to t('events.token_unseal'), { controller: :events, action: :edit, id: @event.consultation.id, unseal: true }, class: 'btn btn-link link-secondary', method: :get %>
+        <% end %>
+        <% end %>
+        <% if @current_user.admin? %>
         <% if ActiveModel::Type::Boolean.new.cast(request.query_parameters[:unseal]) %>
         <%= link_to t('events.token_seal'), { controller: :consultations, action: :edit, id: @event.consultation.id }, class: 'btn btn-link link-secondary', method: :get %>
         <% else %>
         <%= link_to t('events.token_unseal'), { controller: :consultations, action: :edit, id: @event.consultation.id, unseal: true }, class: 'btn btn-link link-secondary', method: :get %>
         <% end %>
-        <% if @current_user.admin? %>
         <%= link_to t('events.token_add_admin'), { controller: :events, action: :create_tokens, id: @event.id, role: :admin }, class: 'btn btn-link link-secondary', method: :post %>
         <%= link_to t('events.token_add_manager'), { controller: :events, action: :create_tokens, id: @event.id, role: :manager }, class: 'btn btn-link link-secondary', method: :post %>
         <%= link_to t('events.token_disable_tokens'), { controller: :events, action: :deactivate_tokens, id: @event.id }, class: 'btn btn-link link-secondary', method: :post %>
