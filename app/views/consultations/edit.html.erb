@@ -1,5 +1,12 @@
 <%= render 'form' %>
-<hr>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="#questions"><%= t('activerecord.models.question', count: 2) %></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#tokens"><%= t('activerecord.models.token', count: 2) %></a>
+  </li>
+</ul>
 <%= render 'questions' %>
 <% if @consultation.asynchronous? %>
   <%= render 'events' %>

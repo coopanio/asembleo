@@ -1,6 +1,6 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
-    <strong><%= t('activerecord.models.question', count: 2) %></strong>
+    <strong id="questions"><%= t('activerecord.models.question', count: 2) %></strong>
     <% if @current_user.admin? %>
       <ul class="nav nav-pills">
         <li class="nav-item">

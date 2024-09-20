@@ -1,7 +1,7 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between align-items-center">
     <div class="col">
-      <strong><%= t('activerecord.models.token', count: 2) %> (<%= "#{@consultation.tokens.voter.count} #{t('attributes.role_list.voter', count: 2)}" %>)</strong>
+      <strong id="tokens"><%= t('activerecord.models.token', count: 2) %> (<%= "#{@consultation.tokens.voter.count} #{t('attributes.role_list.voter', count: 2)}" %>)</strong>
     </div>
     <div class="row col-auto">
       <div class="col">
