@@ -41,10 +41,14 @@ class CreateToken < Actor
     fail!(error: Errors::InvalidTokenScope) if scope == :consultation && consultation.nil?
     
     if consultation&.config&.alias == 'spanish_nid'
-      begin
-        valid = DniNie.validate(identifier)
+      valid = begin
+        if role == :admin || role == :manager
+          true
+        else
+          DniNie.validate(identifier)
+        end
       rescue
-        valid = false
+        false
       end
 
       fail!(error: Errors::InvalidIdentifiers.new(invalid_identifiers: [identifier])) unless valid
