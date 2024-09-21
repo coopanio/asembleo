@@ -1,1 +1,44 @@
-{}
+attributes:
+  role: Papel
+  role_list:
+    admin: administrador
+    manager: Gerente
+    user: usuário
+    voter:
+      one: Eleitor
+      many: Eleitores
+      other: Eleitores
+  description: Descrição
+  id: ID
+  status: Status
+  title: Titulo
+activemodel:
+  attributes:
+    "consultation/config":
+      distribution_list:
+        manual: Manual
+        email: Email
+      mode_list:
+        synchronous: Síncrono
+        asynchronous: Assíncrono
+      ballot_list:
+        open: Aberto
+        secret: Segredo
+activerecord:
+  models:
+    consultation:
+      one: Consulta
+      many: Consultas
+      other: Consultas
+    question:
+      one: Pergunta
+      many: Perguntas
+      other: Perguntas
+    event:
+      one: Evento
+      many: Eventos
+      other: Eventos
+    option:
+      one: Opção
+      many: Opções
+      other: Opções
