@@ -69,7 +69,7 @@ class ConsultationsController < ApplicationController
   private
 
   def create_params
-    params.require(:consultation).permit(:title, :description)
+    params.require(:consultation).permit(:title, :description, config: %i[mode ballot distribution alias])
   end
 
   def update_params

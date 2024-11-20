@@ -3,6 +3,7 @@
 class CreateConsultation < Actor
   input :title, type: String, allow_nil: false
   input :description, type: String, allow_nil: false
+  input :config, type: Hash, allow_nil: false
   input :admin_email_address, type: String, allow_nil: true, default: nil
 
   output :consultation
@@ -19,7 +20,7 @@ class CreateConsultation < Actor
   private
 
   def init_consultation
-    self.consultation = Consultation.new(title:, description:)
+    self.consultation = Consultation.new(title:, description:, config:)
   end
 
   def init_tokens
