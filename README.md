@@ -22,10 +22,10 @@ echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
-asdf install ruby 3.3.4
+asdf install ruby 3.3.6
 asdf install nodejs 19.5.0
 
-asdf global nodejs 3.3.4
+asdf global nodejs 3.3.6
 asdf global nodejs 19.5.0
 
 npm install --global yarn

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApproveUser < Actor
-  input :hash, type: String
+  input :fingerprint, type: String
 
   def call
     validate
@@ -49,6 +49,6 @@ class ApproveUser < Actor
   end
 
   def data
-    @data ||= HashIdService.decode(hash)
+    @data ||= HashIdService.decode(fingerprint)
   end
 end

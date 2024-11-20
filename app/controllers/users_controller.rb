@@ -34,6 +34,6 @@ class UsersController < ApplicationController
   end
 
   def confirmation_params
-    params.permit(:hash)
+    params.permit(:fingerprint)
   end
 end

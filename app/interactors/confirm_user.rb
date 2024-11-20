@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ConfirmUser < Actor
-  input :hash, type: String
+  input :fingerprint, type: String
 
   def call
     return if receipt.confirmed?
@@ -40,6 +40,6 @@ class ConfirmUser < Actor
   end
 
   def data
-    @data ||= HashIdService.decode(hash)
+    @data ||= HashIdService.decode(fingerprint)
   end
 end

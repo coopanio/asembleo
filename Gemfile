@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.4'
+ruby '3.3.6'
 
 gem 'argon2', '~> 2.2'
 gem 'bootsnap', '~> 1.15', require: false
@@ -14,12 +14,12 @@ gem 'hashids', '~> 1.0'
 gem 'hiredis', '~> 0.6'
 gem 'jsbundling-rails', '~> 1.1'
 gem 'nokogiri', '~> 1.16'
-gem 'paper_trail', '~> 14.0'
+gem 'paper_trail', '~> 15.0'
 gem 'puma', '~> 6.4.2'
 gem 'pundit', '~> 2.3'
 gem 'rack', '~> 2.2.8'
-gem 'rails', '~> 7.0.8.4'
-gem 'rails-i18n', '~> 7.0'
+gem 'rails', '< 7.2'
+gem 'rails-i18n', '< 7.2'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 5.0'
 gem 'rexml', '~> 3.3.6'
@@ -37,7 +37,7 @@ end
 
 group :development, :test do
   gem 'pry-rails', '~> 0.3'
-  gem 'sqlite3', '< 1.5'
+  gem 'sqlite3', '~> 2.2'
 end
 
 group :development do
