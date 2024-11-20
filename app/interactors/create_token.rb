@@ -110,7 +110,7 @@ class CreateToken < Actor
   def issue_receipt
     return if identifier.blank?
 
-    TokenReceipt.generate(consultation:, identifier:).save!
+    TokenReceipt.generate(consultation:, identifier: cleaned_identifier).save!
   end
 
   def deliver
