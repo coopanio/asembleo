@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ostruct'
+
 class CreateToken < Actor
   input :identifier, type: String, allow_nil: true, default: nil
   input :role, type: Symbol, in: Token.roles.keys.map(&:to_sym)
@@ -35,6 +37,13 @@ class CreateToken < Actor
     return nil if event.nil?
 
     event.consultation
+  end
+
+  def notification
+    n = consultation&.notification
+    return nil if n.nil?
+
+    OpenStruct.new(subject: n.subject, body: n.body).to_h
   end
 
   def validate
@@ -115,7 +124,7 @@ class CreateToken < Actor
 
   def deliver
     token.reload
-    SessionsMailer.magic_link_email(identifier, token.class.name, token.id, token.to_hash, scope:).deliver_later
+    SessionsMailer.magic_link_email(identifier, token.class.name, token.id, token.to_hash, notification:, scope:).deliver_later
 
     return unless token.is_a?(Token)
 

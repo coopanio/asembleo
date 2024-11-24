@@ -18,12 +18,20 @@ class Consultation < ApplicationRecord
     translate_enum :alias
   end
 
+  class Notification
+    include StoreModel::Model
+
+    attribute :subject, :string
+    attribute :body, :string
+  end
+
   has_many :events, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :tokens, dependent: :destroy
   has_many :token_receipts, dependent: :destroy
 
   attribute :config, Config.to_type
+  attribute :notification, Notification.to_type
 
   enum status: { draft: 0, opened: 1, closed: 2, archived: 3 }
 

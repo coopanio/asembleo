@@ -1,0 +1,5 @@
+<%= (@notification[:body] % {
+  magic_link_url: magic_link_url(@voter_hash),
+  root_url: root_url,
+  token: @voter_hash
+}).strip %>

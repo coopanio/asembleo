@@ -6,10 +6,16 @@
   <li class="nav-item">
     <a class="nav-link" href="#tokens"><%= t('activerecord.models.token', count: 2) %></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#notification">Notification</a>
+  </li>
 </ul>
 <%= render 'questions' %>
 <% if @consultation.asynchronous? %>
   <%= render 'events' %>
 <% elsif @consultation.synchronous? %>
   <%= render 'tokens' %>
+<% end %>
+<% if @consultation.config.distribution == 'email' %>
+  <%= render 'notification' %>
 <% end %>
