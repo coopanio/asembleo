@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_raven_context
+  before_action :reject_head_requests
   before_action :check_token, unless: -> {
     return true if controller_name == 'consultations' && action_name == 'create'
     return true if controller_name == 'main' && action_name == 'index'
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
   include Errors
   include FlashConcern
   include Pundit::Authorization
+
+  def reject_head_requests
+    raise ActionController::BadRequest if request.head?
+  end
 
   def set_raven_context
     Sentry.set_user(id: current_user.try(:id))
