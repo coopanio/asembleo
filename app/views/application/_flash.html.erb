@@ -1,10 +1,22 @@
 <% if flash.notice %>
-  <div class="alert alert-<%= flash.notice['type'] %> text-break">
-    <%= raw(flash.notice['message'])%>
-  </div>
+  <% if flash.notice.try(:type) %>
+    <div class="alert alert-<%= flash.notice.type %> text-break">
+      <%= raw(flash.notice.message)%>
+    </div>
+  <% else %>
+    <div class="alert alert-<%= flash.notice['type'] %> text-break">
+      <%= raw(flash.notice['message'])%>
+    </div>
+  <% end %>
 <% end %>
 <% if flash.alert %>
-  <div class="alert alert-<%= flash.alert['type'] %> text-break">
-    <%= raw(flash.alert['message'])%>
-  </div>
+  <% if flash.alert.try(:type) %>
+    <div class="alert alert-<%= flash.alert.type %> text-break">
+      <%= raw(flash.alert.message)%>
+    </div>
+  <% else %>
+    <div class="alert alert-<%= flash.alert['type'] %> text-break">
+      <%= raw(flash.alert['message'])%>
+    </div>
+  <% end %>
 <% end %>
