@@ -1,0 +1,29 @@
+<% if @failed_deliveries == :no_credentials %>
+<p class="alert alert-danger text-break">
+  No credentials provided. Please provide the necessary credentials in the configuration file.
+</p>
+<% else %>
+<p class="alert alert-info text-break">
+  The list below shows up to 50 failed deliveries.
+</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Reason</th>
+      <th scope="col">Last update time</th>
+    </tr>
+  </thead>
+  <% if @failed_deliveries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.email_address %></td>
+    <td><%= delivery.reason %></td>
+    <td><%= delivery.last_update_time %></td>
+  </tr>
+  <% end.empty? %>
+  <tr>
+    <td colspan="3">No failed deliveries found.</td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

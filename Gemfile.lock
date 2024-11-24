@@ -91,7 +91,7 @@ GEM
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-ses (1.78.0)
+    aws-sdk-sesv2 (1.66.0)
       aws-sdk-core (~> 3, >= 3.210.0)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.10.1)
@@ -403,7 +403,7 @@ PLATFORMS
 
 DEPENDENCIES
   argon2 (~> 2.2)
-  aws-sdk-ses (~> 1.6)
+  aws-sdk-sesv2 (~> 1.6)
   bootsnap (~> 1.15)
   capybara (~> 3.38)
   chartkick (~> 5.0)
