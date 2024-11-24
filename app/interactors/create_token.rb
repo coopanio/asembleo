@@ -10,6 +10,7 @@ class CreateToken < Actor
   input :send_magic_link, type: [TrueClass, FalseClass], default: false
   input :scope, type: Symbol, in: %i[consultation global], default: :consultation
   input :scope_context, type: Hash, default: -> { {} }
+  input :force, type: [TrueClass, FalseClass], default: false
 
   output :token
   output :skip
@@ -76,6 +77,7 @@ class CreateToken < Actor
 
   def already_issued?
     return false if identifier.blank?
+    return false if force
     return true unless TokenReceipt.generate(consultation:, identifier: cleaned_identifier).new_record?
 
     false

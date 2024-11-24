@@ -1,0 +1,5 @@
+<p>You can create a new token for the e-mail address <%= identifier %>. Previously issued tokens for this e-mail address won't be deactivated.</p>
+<%= form_with url: { controller: :events, action: :create_tokens, id: @event.id, force: true }, local: true do |f| %>
+  <%= f.hidden_field :value, value: identifier %>
+  <%= f.submit t('application.create'), class: 'btn btn-primary py-1' %>
+<% end %>

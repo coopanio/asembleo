@@ -66,11 +66,15 @@ class EventsController < ApplicationController
         send_magic_link = false
         send_magic_link = EmailValidator.valid?(identifier, mode: :strict) if consultation.config.distribution == 'email'
 
-        result = CreateToken.result(identifier:, role:, aliased:, send_magic_link:, event:)
+        result = CreateToken.result(identifier:, role:, aliased:, send_magic_link:, event:, force:)
         raise result.error unless result.success?
 
         if result.skip
           error(I18n.t("events.#{result.skip_reason}"))
+          if result.skip_reason == :token_already_issued && consultation.config.distribution == 'email'
+            render 'events/confirm_create_issued_token', locals: { identifier: identifier }
+            return
+          end
         elsif result.token.new_record?
           success(I18n.t('events.token_created'))
         elsif result.token.disabled?
@@ -79,7 +83,11 @@ class EventsController < ApplicationController
           info(I18n.t('events.token_exists_and_enabled'))
         end
 
-        redirect_back(fallback_location: root_path)
+        if force
+          redirect_to controller: 'consultations', action: 'edit', id: consultation.id
+        else
+          redirect_back(fallback_location: root_path)
+        end
       end
     end
   end
@@ -147,7 +155,7 @@ class EventsController < ApplicationController
   end
 
   def create_token_params
-    params.permit(:value, :multiple, :send, :role)
+    params.permit(:value, :multiple, :send, :role, :force)
   end
 
   def role
@@ -160,6 +168,10 @@ class EventsController < ApplicationController
 
   def aliased
     consultation.config.alias != 'none'
+  end
+
+  def force
+    create_token_params.fetch(:force, 'false') == 'true'
   end
 
   def send_magic_link
