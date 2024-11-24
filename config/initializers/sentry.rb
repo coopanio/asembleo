@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+SentryApi.configure do |config|
+  config.endpoint = ENV['SENTRY_API_ENDPOINT']
+  config.auth_token = ENV['SENTRY_API_AUTH_TOKEN']
+  config.default_org_slug = ENV['SENTRY_ORGANIZATION_SLUG']
+end
+
 return unless Rails.env.production?
 
 Sentry.init do |config|

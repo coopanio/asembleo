@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :votes
+  resources :diagnostics
 
   patch 'consultations/:consultation_id/questions/:id/open',         to: 'questions#open'
   patch 'consultations/:consultation_id/questions/:id/open_all',     to: 'questions#open_all'

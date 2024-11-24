@@ -29,6 +29,8 @@ gem 'service_actor', '~> 3.6'
 gem 'sprockets-rails', '~> 3.4'
 gem 'store_model', '~> 1.3'
 gem 'translate_enum', '~> 0.2.0', require: 'translate_enum/active_record'
+gem 'sentry-api', '~> 0.3.4'
+gem 'aws-sdk-ses', '~> 1.6'
 
 group :production do
   gem 'pg', '~> 1.4'
