@@ -19,7 +19,7 @@ class DiagnosticsController < ApplicationController
     return :no_credentials unless access_key && secret_key
 
     ses_client = Aws::SESV2::Client.new(
-      region: 'us-east-1',
+      region: 'eu-west-1',
       credentials: Aws::Credentials.new(access_key, secret_key)
     )
     response = ses_client.list_suppressed_destinations
