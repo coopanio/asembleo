@@ -142,6 +142,44 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, tokens.size
   end
 
+  test 'should validate multiple tokens handling BOM' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager, event:)
+
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    census = StringIO.new("\xEF\xBB\xBFmohana@coop.mail\x0D\x0As.hozan99@coop.mail\x0D\x0Amasozi@coopanio.com")
+
+    assert_emails 3 do
+      post "/events/#{event.id}/tokens", params: { value: Rack::Test::UploadedFile.new(census, 'text/csv', original_filename: 'census.csv'), multiple: 'true', send: '1' }
+    end
+
+    tokens = Token.where(event:, role: :voter)
+
+    assert_response :redirect
+    assert_equal 3, tokens.size
+  end
+
+  test 'should validate multiple tokens handling BOM (through :value_raw)' do
+    event = create(:event, consultation: token.consultation)
+
+    token.update!(role: :manager, event:)
+
+    post sessions_url, params: { session: { identifier: token.to_hash } }
+
+    file_content = "\xEF\xBB\xBFmohana@coop.mail\x0D\x0As.hozan99@coop.mail\x0D\x0Amasozi@coopanio.com"
+
+    assert_emails 3 do
+      post "/events/#{event.id}/tokens", params: { value_raw: file_content, multiple: 'true', send: '1' }
+    end
+
+    tokens = Token.where(event:, role: :voter)
+
+    assert_response :redirect
+    assert_equal 3, tokens.size
+  end
+
   test 'should create an unaliased token and deliver it' do
     consultation = token.consultation
     event = create(:event, consultation: token.consultation)

@@ -43,7 +43,7 @@ class EventsController < ApplicationController
     Token.transaction do
       if multiple
         lines = if params[:value].present?
-          params[:value].open
+          params[:value].read
         elsif params[:value_raw].present?
           params[:value_raw]
         else
@@ -51,7 +51,10 @@ class EventsController < ApplicationController
           redirect_back(fallback_location: root_path)
           return
         end
-        identifiers = CSV.new(lines).read.map(&:first)
+
+        src = StringIO.new(lines)
+        src.set_encoding_by_bom
+        identifiers = CSV.parse(src).map(&:first)
 
         result = BulkCreateTokens.result(identifiers:, role:, aliased:, send_magic_link:, event:)
         raise result.error if result.failure?
