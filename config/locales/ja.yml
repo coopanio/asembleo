@@ -1,1 +1,129 @@
-{}
+attributes:
+  description: 概要
+  id: ID
+  status: ステータス
+  title: タイトル
+  role: 役割
+  role_list:
+    admin: 管理者
+    manager: マネージャー
+    user: ユーザー
+    voter:
+      other: 投票者
+activemodel:
+  attributes:
+    "consultation/config":
+      ballot_list:
+        open: 開く
+        secret: シークレット
+      distribution_list:
+        manual: マニュアル
+        email: Eメール
+      mode_list:
+        synchronous: 同期
+        asynchronous: 非同期
+activerecord:
+  models:
+    option:
+      other: 設定
+    question:
+      other: 質問
+    event:
+      other: イベント
+    consultation:
+      other: 相談
+    token:
+      other: トークン
+  attributes:
+    consultation:
+      description: 概要
+      mode: モード
+      status: スタータス
+      status_list:
+        opened: 開く
+        closed: 閉じた
+        archived: 達成した
+        draft: 下書き
+      title: タイトル
+      ballot: 投票
+      distribution: 分布
+    event:
+      id: ID
+      status: ステータス
+      status_list:
+        opened: 開く
+        closed: 閉じた
+      title: タイトル
+    option:
+      description: 概要
+      value: 価値
+    question:
+      id: ID
+      description: 概要
+      status: ステータス
+    question_group:
+      id: ID
+    user:
+      role: 役割
+    token:
+      role: 役割
+      tags: タグ
+application:
+  back: 戻る
+  cancel: キャンセル
+  confirm: 本当に？
+  create: 作成
+  edit: 編集
+  email: Eメール
+  delete: 削除
+  refresh: 更新
+  save: セーブ
+  upload: アップロード
+  yes: はい
+  no: いいえ
+  token:
+    exhausted: 疲れ果てた？
+  log_in: ログイン
+  log_out: ログアウト
+  sign_up: サインイン
+application_mailer:
+  greeting: こんにちは
+pages:
+  about:
+    title: について
+questions:
+  question_results: 結果
+  vote: 投票
+stats:
+  title: ステータス
+users_mailer:
+  welcome_email:
+    subject: ようこそ
+helpers:
+  label:
+    consultation:
+      ballot: 投票
+      description: 概要
+      mode: モード
+      status: ステータス
+      title: タイトル
+    event:
+      status: ステータス
+      title: タイトル
+    question:
+      description: 概要
+    question_group:
+      description: 概要
+    session:
+      identifier: 識別子
+      password: パスワード
+    user:
+      email: Eメール
+  events_helper:
+    open: 開く
+    close: 閉じる
+    disable: 無効化
+    enable: 有効化
+interactors:
+  create_consultation:
+    default: デフォルト
