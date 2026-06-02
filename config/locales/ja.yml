@@ -96,6 +96,8 @@ questions:
   vote: 投票
 stats:
   title: ステータス
+  census: 調査
+  participants: 参加者
 users_mailer:
   welcome_email:
     subject: ようこそ
@@ -127,3 +129,9 @@ helpers:
 interactors:
   create_consultation:
     default: デフォルト
+consultations:
+  consultation_create: コンシュレーションを作成
+  consultation_created: コンシュレーションを作成しました。
+  consultation_deleted: コンシュレーションを削除しました。
+errors:
+  bad_request: 悪いリクエスト
