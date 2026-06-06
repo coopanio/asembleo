@@ -122,8 +122,8 @@ es:
             nuevo enlace mágico.'
           aliased: 'Utiliza valores como alias para los tokens. Esto permite a los
             usuarios iniciar sesión con el alias.'
-          email_value: Si el valor es una dirección de correo electrónico, se enviará
-            un enlace mágico.
+          email_value: Si el valor es una dirección de correo electrónico, se 
+            enviará un enlace mágico.
         status: 'Estado'
         tokens: 'Listado de Tokens a crear'
         aliased: 'Usar valores como alias'
@@ -307,44 +307,42 @@ es:
   pages:
     about:
       title: Acerca de
-      body: "<h1>¿Qué es Asembleo?</h1>\n<p>Asembleo es una plataforma de votación\
-        \ gratuita y de código abierto que permite\n  a organizaciones de todos los\
-        \ tamaños a tomar decisiones democráticas en línea. Con Asembleo,\n  puedes\
-        \ realizar votaciones, encuestas seguras y transparentes sin ningún tipo de\n\
-        \  conocimientos técnicos o experiencia.</p>\n<p>Nuestra plataforma ha sido\
-        \ diseñada pensando en la simplicidad, la privacidad y la confianza.\n  Creemos\
-        \ que todos tienen derecho a participar en el proceso democrático,\n  y por\
-        \ eso hemos hecho que Asembleo sea accesible para todos, independientemente\
-        \ de sus \n  habilidades técnicas o presupuesto.</p>\n<h1>Características\
-        \ principales</h1>\n<p>Las características clave de Asembleo incluyen:</p>\n\
-        <ul>\n  <li>\n    <p><strong>Voto Seguro y Transparente:</strong> Con Asembleo,\
-        \ puedes\n      asegurar la integridad de tus elecciones y garantizar que\
-        \ cada voto sea\n      anónimo y a prueba de manipulaciones.</p>\n  </li>\n\
-        \  <li>\n    <p><strong>Diseño fácil de usar:</strong> nuestra plataforma\
-        \ es fácil de usar,\n      intuitiva y accesible, lo que facilita que cualquier\
-        \ persona participe en el\n      proceso democrático.</p>\n  </li>\n  <li>\n\
-        \    <p><strong>Privacidad y protección de datos:</strong> nos tomamos la\
-        \ privacidad muy en serio\n      y no recopilar ningún dato personal. Toda\
-        \ la información está encriptada y\n      almacenada de forma segura en nuestros\
-        \ servidores.</p>\n  </li>\n  <li>\n    <p><strong>Código abierto e impulsado\
-        \ por la comunidad:</strong> Asembleo es gratuito y\n      de código abierto,\
-        \ lo que significa que cualquiera puede contribuir a su desarrollo y\n   \
-        \   mejora. Creemos en el poder del software impulsado por la comunidad y\n\
-        \      transparencia en la toma de decisiones.</p>\n  </li>\n</ul>\n<h1>¿Por\
-        \ qué elegir Asembleo?</h1>\n<p>Asembleo es la elección perfecta para cualquier\
-        \ organización que busque realizar\n  y votaciones transparentes en línea.\
-        \ Con nuestra plataforma, puedes:</p>\n<ul>\n  <li>\n    <p><strong>Ahorre\
-        \ tiempo y dinero:</strong> Asembleo lo hace fácil y\n      asequible para\
-        \ llevar a cabo decisiones democráticas sin necesidad de costosos\n      o\
-        \ software complicado.</p>\n  </li>\n  <li>\n    <p><strong>Involucra a tu\
-        \ comunidad:</strong> con Asembleo, puedes fomentar\n      mayor compromiso\
-        \ y participación entre sus miembros o partes interesadas,\n      lo que lleva\
-        \ a una toma de decisiones más democrática.</p>\n  </li>\n  <li>\n    <p><strong>Asegure\
-        \ la confianza y la transparencia:</strong> código abierto de Asembleo\n \
-        \     y la naturaleza impulsada por la comunidad significa que puede confiar\
-        \ en el\n      integridad de su proceso y resultados electorales.</p>\n  </li>\n\
-        </ul>\n<p>Elija Asembleo para una experiencia de votación segura, fácil de\
-        \ usar y confiable.</p>\n"
+      body: "<h1>¿Qué es Asembleo?</h1>\n<p>Asembleo es una plataforma de votación
+        gratuita y de código abierto que permite a\n  organizaciones de todos los
+        tamaños a tomar decisiones democráticas en línea. Con\n  Asembleo puedes realizar
+        votaciones, encuestas seguras y transparentes sin ningún\n  tipo de conocimientos
+        técnicos o experiencia.</p>\n<p>Nuestra plataforma ha sido diseñada pensando
+        en la simplicidad, la privacidad y\n  la confianza. Creemos que todos tienen
+        derecho a participar en el proceso\n  democrático, y por eso hemos hecho que
+        Asembleo sea accesible para todos,\n  independientemente de sus habilidades
+        técnicas o presupuesto.</p>\n<h1>Características principales</h1>\n<p>Las
+        características clave de Asembleo incluyen:</p>\n<ul>\n  <li>\n    <p><strong>Voto
+        Seguro y Transparente:</strong> con Asembleo, puedes\n      asegurar la integridad
+        de tus elecciones y garantizar que cada voto sea\n      anónimo y a prueba
+        de manipulaciones.</p>\n  </li>\n  <li>\n    <p><strong>Diseño fácil de usar:</strong>
+        nuestra plataforma es fácil de usar,\n      intuitiva y accesible, lo que
+        facilita que cualquier persona participe en el\n      proceso democrático.</p>\n\
+        \  </li>\n  <li>\n    <p><strong>Privacidad y protección de datos:</strong>
+        nos tomamos la privacidad\n     muy en serio y no recopilar ningún dato personal.
+        Toda la información está cifrada y\n      almacenada de forma segura en nuestros
+        servidores.</p>\n  </li>\n  <li>\n    <p><strong>Código abierto e impulsado
+        por la comunidad:</strong> Asembleo es\n      gratuito y de código abierto,
+        lo que significa que cualquiera puede contribuir a su\n      desarrollo y
+        mejora. Creemos en el poder del software impulsado por la comunidad y\n  \
+        \    transparencia en la toma de decisiones.</p>\n  </li>\n</ul>\n<h1>¿Por
+        qué elegir Asembleo?</h1>\n<p>Asembleo es la elección perfecta para cualquier
+        organización que busque realizar y\n      votaciones transparentes en línea.
+        Con nuestra plataforma, puedes:</p>\n<ul>\n  <li>\n    <p><strong>Ahorre tiempo
+        y dinero:</strong> Asembleo lo hace fácil y asequible\n     para llevar a
+        cabo decisiones democráticas sin necesidad de costosos o software\n     complicado.</p>\n\
+        \  </li>\n  <li>\n    <p><strong>Involucra a tu comunidad:</strong> con Asembleo,
+        puedes fomentar\n      mayor compromiso y participación entre sus miembros
+        o partes interesadas, lo\n      que lleva a una toma de decisiones más democrática.</p>\n\
+        \  </li>\n  <li>\n    <p><strong>Asegure la confianza y la transparencia:</strong>
+        código abierto\n     de Asembleo y la naturaleza impulsada por la comunidad
+        significa que puede\n     confiar en la integridad de su proceso y resultados
+        electorales.</p>\n  </li>\n</ul>\n<p>Elija Asembleo para una experiencia de
+        votación segura, fácil de usar y confiable.</p>\n"
   stats:
     census: Censo
     title: Estadísticas
